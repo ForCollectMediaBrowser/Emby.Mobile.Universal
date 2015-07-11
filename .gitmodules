@@ -1,0 +1,4 @@
+[submodule "Submodules/Cimbalino"]
+	path = Submodules/Cimbalino
+	url = G:/Documents/Visual Studio 2013/Projects/Cimbalino-Toolkit
+	branch = Win10UAP

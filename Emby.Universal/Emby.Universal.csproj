@@ -94,7 +94,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,7 +103,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="ApplicationInsights.config" />
     <None Include="Emby.Universal_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -120,7 +119,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -145,6 +144,16 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10166.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Submodules\Cimbalino\src\Cimbalino.Toolkit %28Win10%29\Cimbalino.Toolkit %28Win10%29.csproj">
+      <Project>{539c4fdb-99bb-4481-95d9-5be9b785d7d8}</Project>
+      <Name>Cimbalino.Toolkit %28Win10%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\Cimbalino\src\Cimbalino.Toolkit.Core %28Win10%29\Cimbalino.Toolkit.Core %28Win10%29.csproj">
+      <Project>{a4a154f3-a724-4ddc-9761-e6ee0afe2374}</Project>
+      <Name>Cimbalino.Toolkit.Core %28Win10%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
