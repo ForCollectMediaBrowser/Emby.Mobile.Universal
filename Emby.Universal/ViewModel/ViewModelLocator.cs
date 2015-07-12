@@ -36,6 +36,8 @@ namespace Emby.Universal.ViewModel
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
+        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

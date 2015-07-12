@@ -5,13 +5,15 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Emby.Universal.ViewModel;
+using Emby.Universal.Views;
 
 namespace Emby.Universal
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App
+    sealed partial class App 
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -63,7 +65,7 @@ namespace Emby.Universal
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                ViewModelLocator.NavigationService.Navigate<MainPage>(e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

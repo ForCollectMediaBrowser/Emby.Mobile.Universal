@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Controls\BaseApplication.cs" />
     <Compile Include="Controls\BasePage.cs" />
+    <Compile Include="Controls\EmbyPage.cs" />
     <Compile Include="Controls\TapButton.cs" />
     <Compile Include="Controls\TapHyperlinkButton.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
