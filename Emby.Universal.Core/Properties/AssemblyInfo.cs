@@ -1,28 +1,15 @@
-﻿// ****************************************************************************
-// <copyright file="AssemblyInfo.cs" company="Pedro Lamas">
-// Copyright © Pedro Lamas 2014
-// </copyright>
-// ****************************************************************************
-// <author>Pedro Lamas</author>
-// <email>pedrolamas@gmail.com</email>
-// <project>Cimbalino.Toolkit.Core</project>
-// <web>http://www.pedrolamas.com</web>
-// <license>
-// See license.txt in this solution or http://www.pedrolamas.com/license_MIT.txt
-// </license>
-// ****************************************************************************
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cimbalino.Toolkit.Core")]
+[assembly: AssemblyTitle("Emby.Universal.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cimbalino.Toolkit.Core")]
+[assembly: AssemblyProduct("Emby.Universal.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -40,4 +27,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: ComVisible(false)]
-[assembly: InternalsVisibleTo("Cimbalino.Toolkit")]
