@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Cimbalino.Toolkit": "2.0.0-beta1",
     "MediaBrowser.ApiClient": "3.0.0.624",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmLightLibs": "5.1.1",
