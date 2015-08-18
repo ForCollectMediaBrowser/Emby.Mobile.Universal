@@ -75,7 +75,7 @@ local.properties
 *.vspscc
 .builds
 *.dotCover
-
+project.lock.json
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 packages/
