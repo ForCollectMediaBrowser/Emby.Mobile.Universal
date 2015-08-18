@@ -2,3 +2,7 @@
 	path = Submodules/Cimbalino
 	url = G:/Documents/Visual Studio 2013/Projects/Cimbalino-Toolkit
 	branch = Win10UAP
+[submodule "Submodules/Emby.Mobile.ViewModels"]
+	path = Submodules/Emby.Mobile.ViewModels
+	url = G:/Documents/Visual Studio 2015/Projects/Emby.Mobile.ViewModels
+	branch = master
