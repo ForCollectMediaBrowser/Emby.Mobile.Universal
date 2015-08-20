@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
-using Emby.Mobile.Interfaces;
+using Emby.Mobile.Core.Interfaces;
 
 namespace Emby.Mobile.Universal.Core.Logging
 {

@@ -3,10 +3,11 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Cimbalino.Toolkit.Services;
-using Emby.Mobile.Interfaces;
+using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Core.Logging;
 using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.Interfaces;
+using INavigationService = Cimbalino.Toolkit.Services.INavigationService;
 
 namespace Emby.Mobile.Universal.Controls
 {

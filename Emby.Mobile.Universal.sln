@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{CB4A9B88
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.ViewModels", "Submodules\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels.csproj", "{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Interfaces", "Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Interfaces.csproj", "{A10C789A-381C-4871-8D36-637C27AE7C2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Core", "Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Core.csproj", "{A10C789A-381C-4871-8D36-637C27AE7C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

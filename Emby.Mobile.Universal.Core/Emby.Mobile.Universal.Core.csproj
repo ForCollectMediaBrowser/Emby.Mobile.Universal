@@ -113,15 +113,28 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\SerialisationExtensions.cs" />
+    <Compile Include="Extensions\StorageServiceExtensions.cs" />
+    <Compile Include="Implementations\Connection\CredentialProvider.cs" />
+    <Compile Include="Implementations\Security\CryptographyProvider.cs" />
+    <Compile Include="Implementations\Connection\NetworkConnection.cs" />
+    <Compile Include="Implementations\Connection\ServerLocator.cs" />
+    <Compile Include="Implementations\Sync\FileRepository.cs" />
+    <Compile Include="Implementations\Sync\ImageRepository.cs" />
+    <Compile Include="Implementations\Sync\UserActionRepository.cs" />
+    <Compile Include="Implementations\Sync\UserRepository.cs" />
     <Compile Include="Logging\WinLogger.cs" />
+    <Compile Include="NullServices\NullConnectionManager.cs" />
     <Compile Include="NullServices\NullNavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Emby.Universal.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Interfaces.csproj">
+    <ProjectReference Include="..\Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Core.csproj">
       <Project>{a10c789a-381c-4871-8d36-637c27ae7c2c}</Project>
-      <Name>Emby.Mobile.Interfaces</Name>
+      <Name>Emby.Mobile.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

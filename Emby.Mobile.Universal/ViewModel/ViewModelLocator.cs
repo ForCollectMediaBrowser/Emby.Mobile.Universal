@@ -1,9 +1,7 @@
-using Cimbalino.Toolkit.Services;
-using Emby.Mobile.Universal.Core.NullServices;
-using GalaSoft.MvvmLight;
+using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Services;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using ScottIsAFool.Windows.MvvmLight.Extensions;
 
 namespace Emby.Mobile.Universal.ViewModel
 {
@@ -20,23 +18,12 @@ namespace Emby.Mobile.Universal.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                // Create design time view services and models
-                SimpleIoc.Default.RegisterIf<INavigationService, NullNavigationService>();
-            }
-            else
-            {
-                // Create run time view services and models
-                SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
-            }
+            AppServices.Create();
 
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
-
-        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
 
         public static void Cleanup()
         {
