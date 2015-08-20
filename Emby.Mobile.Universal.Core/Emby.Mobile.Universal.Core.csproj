@@ -118,6 +118,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\Emby.Universal.Core.rd.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Interfaces.csproj">
+      <Project>{a10c789a-381c-4871-8d36-637c27ae7c2c}</Project>
+      <Name>Emby.Mobile.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

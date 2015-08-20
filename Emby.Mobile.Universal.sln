@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Universal", "Em
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Universal.Core", "Emby.Mobile.Universal.Core\Emby.Mobile.Universal.Core.csproj", "{769C228B-06A9-4765-83C7-49682C84D5E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{CB4A9B88-88D7-4553-94E2-25BD45889517}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.ViewModels", "Submodules\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels.csproj", "{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Interfaces", "Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Interfaces.csproj", "{A10C789A-381C-4871-8D36-637C27AE7C2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,8 +61,44 @@ Global
 		{769C228B-06A9-4765-83C7-49682C84D5E1}.Release|x64.Build.0 = Release|x64
 		{769C228B-06A9-4765-83C7-49682C84D5E1}.Release|x86.ActiveCfg = Release|x86
 		{769C228B-06A9-4765-83C7-49682C84D5E1}.Release|x86.Build.0 = Release|x86
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|ARM.Build.0 = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|x64.Build.0 = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Debug|x86.Build.0 = Debug|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|ARM.Build.0 = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|x64.ActiveCfg = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|x64.Build.0 = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD}.Release|x86.Build.0 = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|x64.Build.0 = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Debug|x86.Build.0 = Debug|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|ARM.Build.0 = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|x64.ActiveCfg = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|x64.Build.0 = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A10C789A-381C-4871-8D36-637C27AE7C2C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D4BB0F0-4CC5-4B7A-B628-55745A305AFD} = {CB4A9B88-88D7-4553-94E2-25BD45889517}
+		{A10C789A-381C-4871-8D36-637C27AE7C2C} = {CB4A9B88-88D7-4553-94E2-25BD45889517}
 	EndGlobalSection
 EndGlobal
