@@ -113,7 +113,11 @@
     <Compile Include="Services\AppServices.cs" />
     <Compile Include="Services\ListType.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\EmbyConnectView.xaml.cs">
+      <DependentUpon>EmbyConnectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +152,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EmbyConnectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>

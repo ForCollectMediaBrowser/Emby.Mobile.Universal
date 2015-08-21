@@ -17,10 +17,18 @@ namespace Emby.Mobile.Universal.Services
 {
     public static class AppServices
     {
-        public static void Create()
+        static AppServices()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                AddDesignTimeServices();
+            }
+        }
+
+        public static void Create()
+        {
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 // Create design time view services and models
@@ -47,6 +55,8 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
 
             await AddConnectionServices(device, mbLogger, network);
+
+            SimpleIoc.Default.RegisterIf<IServices, ServicesContainer>();
         }
 
         private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network)
