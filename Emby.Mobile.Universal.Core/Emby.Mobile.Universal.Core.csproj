@@ -138,12 +138,6 @@
     <Content Include="Properties\Emby.Universal.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Core.csproj">
-      <Project>{a10c789a-381c-4871-8d36-637c27ae7c2c}</Project>
-      <Name>Emby.Mobile.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="WindowsDesktop, Version=10.0.10240.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
@@ -156,6 +150,16 @@
     <SDKReference Include="WindowsTeam, Version=10.0.10240.0">
       <Name>Windows Team Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Emby.Mobile.Core\Emby.Mobile.Core.csproj">
+      <Project>{34fc5818-9221-4081-91ec-f3bc7328202f}</Project>
+      <Name>Emby.Mobile.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels.csproj">
+      <Project>{0dc9ccef-0c7d-4923-811b-d84293a5f708}</Project>
+      <Name>Emby.Mobile.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -1,12 +1,13 @@
 ﻿using Emby.Mobile.Core.Interfaces;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Logging;
 
 namespace Emby.Mobile.ViewModels
 {
     public abstract class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase
     {
         protected IServices Services { get; }
-        public ILog Log { get; }
+        public ILogger Log { get; }
 
         protected ViewModelBase(IServices services)
         {
@@ -44,6 +45,6 @@ namespace Emby.Mobile.ViewModels
         public bool ProgressIsVisible { get; set; }
         public string ProgressText { get; set; }
 
-        protected IApiClient ApiClient => Services.Connection.GetApiClient("");
+        protected IApiClient ApiClient => Services.ConnectionManager.GetApiClient("");
     }
 }

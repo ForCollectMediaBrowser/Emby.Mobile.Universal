@@ -180,16 +180,16 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Emby.Mobile.Core\Emby.Mobile.Core.csproj">
+      <Project>{34fc5818-9221-4081-91ec-f3bc7328202f}</Project>
+      <Name>Emby.Mobile.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Emby.Mobile.Universal.Core\Emby.Mobile.Universal.Core.csproj">
       <Project>{769c228b-06a9-4765-83c7-49682c84d5e1}</Project>
       <Name>Emby.Mobile.Universal.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\Emby.Mobile.ViewModels\Emby.Mobile.Interfaces\Emby.Mobile.Core.csproj">
-      <Project>{a10c789a-381c-4871-8d36-637c27ae7c2c}</Project>
-      <Name>Emby.Mobile.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels.csproj">
-      <Project>{6d4bb0f0-4cc5-4b7a-b628-55745a305afd}</Project>
+    <ProjectReference Include="..\Emby.Mobile.ViewModels\Emby.Mobile.ViewModels.csproj">
+      <Project>{0dc9ccef-0c7d-4923-811b-d84293a5f708}</Project>
       <Name>Emby.Mobile.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>

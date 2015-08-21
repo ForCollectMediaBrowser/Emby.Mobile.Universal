@@ -1,4 +1,7 @@
-﻿using Emby.Mobile.Core.Interfaces;
+﻿using System;
+using Emby.Mobile.Core.Interfaces;
+using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -15,6 +18,30 @@ namespace Emby.Mobile.ViewModels
         public bool CanSignIn => !ProgressIsVisible
                                  && !string.IsNullOrWhiteSpace(Username)
                                  && !string.IsNullOrWhiteSpace(Password);
+
+        public RelayCommand SignInCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    try
+                    {
+                        await Services.ConnectionManager.LoginToConnect(Username, Password);
+
+                        var result = await Services.ConnectionManager.Connect();
+                    }
+                    catch (HttpException hex)
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                    }
+                });
+            }
+        }
 
         public override void UpdateProperties()
         {
