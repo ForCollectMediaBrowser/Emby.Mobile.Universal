@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Universal.Services;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.Universal.Views;
+using EmbyConnectView = Emby.Mobile.Universal.Views.Connect.EmbyConnectView;
 
 namespace Emby.Mobile.Universal
 {

@@ -8,17 +8,30 @@ namespace Emby.Mobile.Universal.Services
 {
     public class ServicesContainer : IServices
     {
-        public ServicesContainer(ILogger log, INavigationService navigationService, IConnectionManager connectionManager, IMessageBoxService messageBox)
+        public ServicesContainer(
+            ILogger log,
+            INavigationService navigationService,
+            IConnectionManager connectionManager, 
+            IMessageBoxService messageBox,
+            IServerInfoService serverInfo,
+            IApplicationSettingsService applicationSettings,
+            IStorageService storage)
         {
             Log = log;
             NavigationService = navigationService;
             ConnectionManager = connectionManager;
             MessageBox = messageBox;
+            ServerInfo = serverInfo;
+            ApplicationSettings = applicationSettings;
+            Storage = storage;
         }
 
         public ILogger Log { get; }
         public INavigationService NavigationService { get; }
         public IConnectionManager ConnectionManager { get; }
         public IMessageBoxService MessageBox { get; }
+        public IServerInfoService ServerInfo { get; }
+        public IApplicationSettingsService ApplicationSettings { get; }
+        public IStorageService Storage { get; }
     }
 }

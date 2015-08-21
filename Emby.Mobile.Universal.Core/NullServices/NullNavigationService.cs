@@ -7,6 +7,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
 {
     public class NullNavigationService : INavigationService
     {
+        #region Cimbalino stuff
         public event EventHandler Navigated;
         public event EventHandler<NavigationServiceBackKeyPressedEventArgs> BackKeyPressed;
         public Uri CurrentSource { get; } = null;
@@ -55,6 +56,32 @@ namespace Emby.Mobile.Universal.Core.NullServices
         public bool RemoveBackEntry()
         {
             return false;
+        }
+        #endregion
+
+        public bool NavigateToServerSelection()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToHome()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToSignUp()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToConnectFirstRun()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToChooseProfile()
+        {
+            throw new NotImplementedException();
         }
     }
 }

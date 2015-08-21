@@ -10,5 +10,8 @@ namespace Emby.Mobile.Core.Interfaces
         INavigationService NavigationService { get; }
         IConnectionManager ConnectionManager { get; }
         IMessageBoxService MessageBox { get; }
+        IServerInfoService ServerInfo { get; }
+        IApplicationSettingsService ApplicationSettings { get; }
+        IStorageService Storage { get; }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Interfaces\ILog.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
+    <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

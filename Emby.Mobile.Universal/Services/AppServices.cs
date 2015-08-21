@@ -6,6 +6,7 @@ using Emby.Mobile.Universal.Core.Implementations;
 using Emby.Mobile.Universal.Core.Implementations.Connection;
 using Emby.Mobile.Universal.Core.Logging;
 using Emby.Mobile.Universal.Core.NullServices;
+using Emby.Mobile.Universal.Core.NullServices.Cimbalino;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
@@ -58,6 +59,9 @@ namespace Emby.Mobile.Universal.Services
 
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
             SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
+            SimpleIoc.Default.RegisterIf<IServerInfoService, ServerInfoService>();
+            SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
+            SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
 
             await AddConnectionServices(device, mbLogger, network);
 
@@ -76,6 +80,9 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<INavigationService, NullNavigationService>();
             SimpleIoc.Default.RegisterIf<IConnectionManager, NullConnectionManager>();
             SimpleIoc.Default.RegisterIf<IMessageBoxService, NullMessageBoxService>();
+            SimpleIoc.Default.RegisterIf<IServerInfoService, NullServerInfoService>();
+            SimpleIoc.Default.RegisterIf<IApplicationSettingsService, NullApplicationSettingsService>();
+            SimpleIoc.Default.RegisterIf<IStorageService, NullStorageService>();
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();

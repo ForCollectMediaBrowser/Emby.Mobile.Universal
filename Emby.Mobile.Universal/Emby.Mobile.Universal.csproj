@@ -113,9 +113,13 @@
     <Compile Include="Services\AppServices.cs" />
     <Compile Include="Services\ListType.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\EmbyConnectView.xaml.cs">
+    <Compile Include="Views\Connect\ChooseServerView.xaml.cs">
+      <DependentUpon>ChooseServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Connect\EmbyConnectView.xaml.cs">
       <DependentUpon>EmbyConnectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
@@ -153,7 +157,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EmbyConnectView.xaml">
+    <Page Include="Views\Connect\ChooseServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Connect\EmbyConnectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +201,7 @@
       <Name>Emby.Mobile.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

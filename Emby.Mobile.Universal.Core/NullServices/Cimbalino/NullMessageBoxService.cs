@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 
-namespace Emby.Mobile.Universal.Core.NullServices
+namespace Emby.Mobile.Universal.Core.NullServices.Cimbalino
 {
     public class NullMessageBoxService : IMessageBoxService
     {
