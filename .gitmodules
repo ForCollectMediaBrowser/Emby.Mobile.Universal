@@ -1,4 +1,0 @@
-[submodule "Submodules/Emby.Mobile.ViewModels"]
-	path = Submodules/Emby.Mobile.ViewModels
-	url = ../Emby.Mobile.ViewModels
-	branch = master
