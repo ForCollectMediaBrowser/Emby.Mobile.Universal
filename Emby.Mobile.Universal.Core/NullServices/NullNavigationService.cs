@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cimbalino.Toolkit.Services;
+using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 
 namespace Emby.Mobile.Universal.Core.NullServices
 {
