@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.Universal.Core.Implementations;
@@ -12,6 +13,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using Microsoft.Practices.ServiceLocation;
 using ScottIsAFool.Windows.MvvmLight.Extensions;
+using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -39,6 +41,8 @@ namespace Emby.Mobile.Universal.Services
                 // Create run time view services and models
                 AddRuntimeServices();
             }
+
+            SimpleIoc.Default.RegisterIf<IServices, ServicesContainer>();
         }
 
         private async static void AddRuntimeServices()
@@ -53,10 +57,10 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILogger>(() => mbLogger);
 
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
+            SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
 
             await AddConnectionServices(device, mbLogger, network);
 
-            SimpleIoc.Default.RegisterIf<IServices, ServicesContainer>();
         }
 
         private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network)
@@ -67,8 +71,11 @@ namespace Emby.Mobile.Universal.Services
 
         private static void AddDesignTimeServices()
         {
+            SimpleIoc.Default.RegisterIf<ILogger, MediaBrowser.Model.Logging.NullLogger>();
+            SimpleIoc.Default.RegisterIf<ILog, Core.Logging.NullLogger>();
             SimpleIoc.Default.RegisterIf<INavigationService, NullNavigationService>();
             SimpleIoc.Default.RegisterIf<IConnectionManager, NullConnectionManager>();
+            SimpleIoc.Default.RegisterIf<IMessageBoxService, NullMessageBoxService>();
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
