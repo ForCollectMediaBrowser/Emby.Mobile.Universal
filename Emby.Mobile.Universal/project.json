@@ -2,7 +2,8 @@
   "dependencies": {
     "Cimbalino.Toolkit": "2.0.0-beta3",
     "Cimbalino.Toolkit.Core": "2.0.0-beta3",
-    "MediaBrowser.ApiClient": "3.0.0.624",
+    "MediaBrowser.ApiClient": "3.0.0.625",
+    "MediaBrowser.Common": "3.0.631",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmLightLibs": "5.1.1",
     "PropertyChanged.Fody": "1.50.1"

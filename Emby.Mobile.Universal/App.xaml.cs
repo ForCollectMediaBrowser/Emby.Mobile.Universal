@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Emby.Mobile.Universal.Services;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.Universal.Views;
 
@@ -65,7 +66,7 @@ namespace Emby.Mobile.Universal
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                ViewModelLocator.NavigationService.Navigate<MainPage>(e.Arguments);
+                AppServices.NavigationService.Navigate<MainPage>(e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

@@ -1,5 +1,5 @@
-using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Services;
+using Emby.Mobile.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
@@ -20,10 +20,10 @@ namespace Emby.Mobile.Universal.ViewModel
 
             AppServices.Create();
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<EmbyConnectViewModel>();
         }
 
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public EmbyConnectViewModel EmbyConnect => ServiceLocator.Current.GetInstance<EmbyConnectViewModel>();
 
         public static void Cleanup()
         {

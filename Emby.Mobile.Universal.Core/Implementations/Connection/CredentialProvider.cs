@@ -3,21 +3,21 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
-using Emby.Mobile.Core.Interfaces;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Logging;
 using Newtonsoft.Json;
 
 namespace Emby.Mobile.Universal.Core.Implementations.Connection
 {
     public class CredentialProvider : ICredentialProvider
     {
-        private readonly ILog _log;
+        private readonly ILogger _log;
         private const string ServerCredentialSettings = "ServerCredentialSettings.json";
 
         private readonly IStorageServiceHandler _storageService = new StorageService().Local;
 
-        public CredentialProvider(ILog log)
+        public CredentialProvider(ILogger log)
         {
             _log = log;
         }
