@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="Helpers\ConnectHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ChooseServerViewModel.cs" />
     <Compile Include="ViewModels\EmbyConnectViewModel.cs" />
     <Compile Include="ViewModels\Entities\ItemViewModel.cs" />
     <Compile Include="ViewModels\StartupViewModel.cs" />
+    <Compile Include="ViewModels\Entities\ServerInfoViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,6 +29,10 @@ namespace Emby.Mobile.Universal.Services
             {
                 AddDesignTimeServices();
             }
+            else
+            {
+                AddRuntimeServices();
+            }
         }
 
         public static void Create()
