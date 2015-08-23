@@ -5,9 +5,11 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Services;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.Universal.Views;
+using GalaSoft.MvvmLight.Ioc;
 using EmbyConnectView = Emby.Mobile.Universal.Views.Connect.EmbyConnectView;
 
 namespace Emby.Mobile.Universal
@@ -34,7 +36,6 @@ namespace Emby.Mobile.Universal
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
 #if DEBUG
             if (Debugger.IsAttached)
             {
@@ -69,8 +70,17 @@ namespace Emby.Mobile.Universal
                 // parameter
                 AppServices.NavigationService.Navigate<EmbyConnectView>(e.Arguments);
             }
+
+            base.AppStarted();
+
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        public override void AppStarted()
+        {
+            base.AppStarted();
+            SimpleIoc.Default.GetInstance<IAuthenticationService>().Start();
         }
 
         /// <summary>

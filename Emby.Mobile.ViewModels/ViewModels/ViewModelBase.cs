@@ -45,6 +45,7 @@ namespace Emby.Mobile.ViewModels
         public bool ProgressIsVisible { get; set; }
         public string ProgressText { get; set; }
 
-        protected IApiClient ApiClient => Services.ConnectionManager.GetApiClient("");
+        protected IApiClient ApiClient => Services.ConnectionManager.GetApiClient(Services?.ServerInfo?.ServerInfo.Id);
+        protected IAuthenticationService AuthenticationService => Services.Authentication;
     }
 }

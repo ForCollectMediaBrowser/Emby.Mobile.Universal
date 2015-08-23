@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\IDispatcherService.cs" />
     <Compile Include="Interfaces\ILog.cs" />
+    <Compile Include="Interfaces\IMessengerService.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\IServices.cs" />
