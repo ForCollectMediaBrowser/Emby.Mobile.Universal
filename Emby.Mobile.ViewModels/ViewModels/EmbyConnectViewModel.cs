@@ -29,16 +29,19 @@ namespace Emby.Mobile.ViewModels
                 {
                     try
                     {
-                        await Services.ConnectionManager.LoginToConnect(Username, Password);
+                        var success = await AuthenticationService.LoginWithConnect(Username, Password);
 
-                        var result = await Services.ConnectionManager.Connect();
-                        if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
+                        if (success)
                         {
-                            Services.ServerInfo.SetServerInfo(result.Servers[0]);
-                            Services.ApplicationSettings.Roaming.Set(ConnectHelper.DefaultServerConnection, result.Servers[0]);
-                        }
+                            var result = await Services.ConnectionManager.Connect();
+                            if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
+                            {
+                                Services.ServerInfo.SetServerInfo(result.Servers[0]);
+                                Services.ApplicationSettings.Roaming.Set(ConnectHelper.DefaultServerConnection, result.Servers[0]);
+                            }
 
-                        await ConnectHelper.HandleConnectState(result, Services);
+                            await ConnectHelper.HandleConnectState(result, Services);
+                        }
                     }
                     catch (HttpException hex)
                     {

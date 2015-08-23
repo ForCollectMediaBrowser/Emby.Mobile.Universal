@@ -15,7 +15,10 @@ namespace Emby.Mobile.Universal.Services
             IMessageBoxService messageBox,
             IServerInfoService serverInfo,
             IApplicationSettingsService applicationSettings,
-            IStorageService storage)
+            IStorageService storage,
+            IAuthenticationService authentication,
+            IMessengerService messenger,
+            IDispatcherService dispatcher)
         {
             Log = log;
             NavigationService = navigationService;
@@ -24,14 +27,20 @@ namespace Emby.Mobile.Universal.Services
             ServerInfo = serverInfo;
             ApplicationSettings = applicationSettings;
             Storage = storage;
+            Authentication = authentication;
+            Messenger = messenger;
+            Dispatcher = dispatcher;
         }
 
         public ILogger Log { get; }
         public INavigationService NavigationService { get; }
         public IConnectionManager ConnectionManager { get; }
+        public IAuthenticationService Authentication { get; }
         public IMessageBoxService MessageBox { get; }
         public IServerInfoService ServerInfo { get; }
         public IApplicationSettingsService ApplicationSettings { get; }
         public IStorageService Storage { get; }
+        public IDispatcherService Dispatcher { get; }
+        public IMessengerService Messenger { get; }
     }
 }
