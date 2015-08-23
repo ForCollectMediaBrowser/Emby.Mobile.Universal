@@ -21,8 +21,10 @@ namespace Emby.Mobile.Universal.ViewModel
             AppServices.Create();
 
             SimpleIoc.Default.Register<EmbyConnectViewModel>();
+            SimpleIoc.Default.Register<StartupViewModel>();
         }
 
+        public StartupViewModel Startup => ServiceLocator.Current.GetInstance<StartupViewModel>();
         public EmbyConnectViewModel EmbyConnect => ServiceLocator.Current.GetInstance<EmbyConnectViewModel>();
 
         public static void Cleanup()

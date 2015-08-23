@@ -68,7 +68,7 @@ namespace Emby.Mobile.Universal
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                AppServices.NavigationService.Navigate<EmbyConnectView>(e.Arguments);
+                AppServices.NavigationService.Navigate<StartupView>(e.Arguments);
             }
 
             base.AppStarted();

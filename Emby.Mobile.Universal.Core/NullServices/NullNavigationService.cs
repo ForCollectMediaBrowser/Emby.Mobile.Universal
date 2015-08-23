@@ -59,6 +59,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
         }
         #endregion
 
+        public bool NavigateToEmbyConnect()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool NavigateToServerSelection()
         {
             throw new NotImplementedException();
@@ -80,6 +85,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
         }
 
         public bool NavigateToChooseProfile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToFirstRun()
         {
             throw new NotImplementedException();
         }
