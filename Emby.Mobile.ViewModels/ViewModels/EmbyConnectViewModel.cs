@@ -40,7 +40,7 @@ namespace Emby.Mobile.ViewModels
                                 Services.ApplicationSettings.Roaming.Set(ConnectHelper.DefaultServerConnection, result.Servers[0]);
                             }
 
-                            await ConnectHelper.HandleConnectState(result, Services);
+                            await ConnectHelper.HandleConnectState(result, Services, ApiClient);
                         }
                     }
                     catch (HttpException hex)
