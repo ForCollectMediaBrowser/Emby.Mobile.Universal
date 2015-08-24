@@ -33,15 +33,13 @@ namespace Emby.Mobile.Core.Util
 
             public void Dispose()
             {
-                if (_locked != null)
-                    _locked.Release();
+                _locked?.Release();
             }
         }
 
         private void Release()
         {
-            if (_semaphore != null)
-                _semaphore.Release();
+            _semaphore?.Release();
         }
     }
 }
