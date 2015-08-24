@@ -1,4 +1,6 @@
-﻿using Emby.Mobile.Core.Interfaces;
+﻿using System.Threading.Tasks;
+using Emby.Mobile.Core.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 
@@ -47,5 +49,28 @@ namespace Emby.Mobile.ViewModels
 
         protected IApiClient ApiClient => Services.ConnectionManager.GetApiClient(Services?.ServerInfo?.ServerInfo.Id);
         protected IAuthenticationService AuthenticationService => Services.Authentication;
+    }
+
+    public abstract class PageViewModelBase : ViewModelBase
+    {
+        protected PageViewModelBase(IServices services) : base(services)
+        {
+        }
+
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await PageLoaded();
+                });
+            }
+        }
+
+        protected virtual Task PageLoaded()
+        {
+            return Task.FromResult(0);
+        }
     }
 }
