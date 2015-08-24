@@ -1,11 +1,20 @@
 ﻿using System;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
 
 namespace Emby.Mobile.Universal.Services
 {
     public class NavigationService : Cimbalino.Toolkit.Services.NavigationService, INavigationService
     {
+        public void ClearBackStack()
+        {
+            while (CanGoBack)
+            {
+                RemoveBackEntry();
+            }
+        }
+
         public bool NavigateToEmbyConnect()
         {
             return Navigate<EmbyConnectView>();
@@ -18,7 +27,7 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToHome()
         {
-            throw new NotImplementedException();
+            return Navigate<MainView>();
         }
 
         public bool NavigateToSignUp()

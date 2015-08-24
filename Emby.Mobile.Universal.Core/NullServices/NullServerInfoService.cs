@@ -23,10 +23,17 @@ namespace Emby.Mobile.Universal.Core.NullServices
         }
 
         public event EventHandler<ServerInfo> ServerInfoChanged;
+        public void Save()
+        {
+        }
+
+        public ServerInfo Load()
+        {
+            throw new NotImplementedException();
+        }
 
         public void SetServerInfo(ServerInfo serverInfo)
         {
-            throw new NotImplementedException();
         }
     }
 }

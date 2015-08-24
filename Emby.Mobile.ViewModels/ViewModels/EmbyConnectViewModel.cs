@@ -37,7 +37,7 @@ namespace Emby.Mobile.ViewModels
                             if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
                             {
                                 Services.ServerInfo.SetServerInfo(result.Servers[0]);
-                                Services.ApplicationSettings.Roaming.Set(ConnectHelper.DefaultServerConnection, result.Servers[0]);
+                                Services.ServerInfo.Save();
                             }
 
                             await ConnectHelper.HandleConnectState(result, Services, ApiClient);

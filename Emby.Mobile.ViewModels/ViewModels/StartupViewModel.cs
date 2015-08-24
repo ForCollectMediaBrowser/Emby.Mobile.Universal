@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
@@ -41,12 +42,10 @@ namespace Emby.Mobile.ViewModels
 
             // TODO: Load photo upload settings
 
-            _serverInfo = Services.ApplicationSettings.Roaming.Get<ServerInfo>("DefaultServerKey");
+            _serverInfo = Services.ServerInfo.Load();
 
             if (_serverInfo != null)
             {
-                Services.ServerInfo.SetServerInfo(_serverInfo);
-
                 task = ConnectToServer();
             }
             else

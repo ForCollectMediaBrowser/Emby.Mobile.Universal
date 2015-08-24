@@ -2,6 +2,7 @@
 {
     public interface INavigationService : Cimbalino.Toolkit.Services.INavigationService
     {
+        void ClearBackStack();
         bool NavigateToEmbyConnect();
         bool NavigateToServerSelection();
         bool NavigateToHome();

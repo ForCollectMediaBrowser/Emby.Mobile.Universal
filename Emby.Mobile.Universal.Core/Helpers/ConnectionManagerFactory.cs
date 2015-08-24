@@ -92,17 +92,22 @@ namespace Emby.Mobile.Universal.Core.Helpers
 
             try
             {
-                StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(ProfileFilename);
+                var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(ProfileFilename);
 
-                using (IInputStream inStream = await file.OpenSequentialReadAsync())
-                {
-                    var serializer = new XmlSerializer(typeof(DeviceProfile));
-                    profile = (DeviceProfile)serializer.Deserialize(inStream.AsStreamForRead());
-                }
+                var file = item as StorageFile;
 
-                if (profile == null)
+                if (file != null)
                 {
-                    throw new SerializationException();
+                    using (IInputStream inStream = await file.OpenSequentialReadAsync())
+                    {
+                        var serializer = new XmlSerializer(typeof (DeviceProfile));
+                        profile = (DeviceProfile) serializer.Deserialize(inStream.AsStreamForRead());
+                    }
+
+                    if (profile == null)
+                    {
+                        throw new SerializationException();
+                    }
                 }
 
                 return profile;

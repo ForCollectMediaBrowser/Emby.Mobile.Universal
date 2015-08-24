@@ -22,10 +22,14 @@ namespace Emby.Mobile.Universal.ViewModel
 
             SimpleIoc.Default.Register<EmbyConnectViewModel>();
             SimpleIoc.Default.Register<StartupViewModel>();
+            SimpleIoc.Default.Register<ChooseServerViewModel>();
+            SimpleIoc.Default.Register<MainViewModel>();
         }
 
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
         public StartupViewModel Startup => ServiceLocator.Current.GetInstance<StartupViewModel>();
         public EmbyConnectViewModel EmbyConnect => ServiceLocator.Current.GetInstance<EmbyConnectViewModel>();
+        public ChooseServerViewModel ChooseServer => ServiceLocator.Current.GetInstance<ChooseServerViewModel>();
 
         public static void Cleanup()
         {
