@@ -24,6 +24,8 @@ namespace Emby.Mobile.ViewModels.Entities
 
         public bool DisplayExternalAddress => !string.IsNullOrEmpty(ExternalAddress);
 
+        public bool IsDummyServer { get; set; }
+
         public RelayCommand ServerTappedCommand
         {
             get

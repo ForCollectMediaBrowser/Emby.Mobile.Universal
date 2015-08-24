@@ -24,12 +24,14 @@ namespace Emby.Mobile.Universal.ViewModel
             SimpleIoc.Default.Register<StartupViewModel>();
             SimpleIoc.Default.Register<ChooseServerViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ManualServerEntryViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
         public StartupViewModel Startup => ServiceLocator.Current.GetInstance<StartupViewModel>();
         public EmbyConnectViewModel EmbyConnect => ServiceLocator.Current.GetInstance<EmbyConnectViewModel>();
         public ChooseServerViewModel ChooseServer => ServiceLocator.Current.GetInstance<ChooseServerViewModel>();
+        public ManualServerEntryViewModel ManualServerEntry => ServiceLocator.Current.GetInstance<ManualServerEntryViewModel>();
 
         public static void Cleanup()
         {

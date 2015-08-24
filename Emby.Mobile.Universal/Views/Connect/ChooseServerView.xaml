@@ -59,11 +59,32 @@
             </GridView.ItemContainerStyle>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:ServerInfoViewModel">
-                    <Button ClickMode="Release"
-                            Command="{Binding ServerTappedCommand}"
-                            Style="{StaticResource EmptyButtonStyle}">
-                        <itemControls:ServerInfoControl />
-                    </Button>
+                    <Grid>
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                ClickMode="Release"
+                                Command="{Binding ChooseServer.ManualServerEntryCommand, Source={StaticResource Locator}}"
+                                Visibility="{Binding IsDummyServer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <RelativePanel VerticalAlignment="Center">
+                                <TextBlock x:Name="PlusText"
+                                           Text="{StaticResource Plus}"
+                                           FontSize="80"
+                                           Style="{StaticResource Mdl2Style}"
+                                           RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                                <TextBlock Text="**Add Server"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{StaticResource EmbyGreenBrush}"
+                                           RelativePanel.RightOf="PlusText"
+                                           RelativePanel.AlignVerticalCenterWithPanel="True"
+                                           Margin="6,0"/>
+                            </RelativePanel>
+                        </Button>
+                        <Button ClickMode="Release"
+                                Command="{Binding ServerTappedCommand}"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                            <itemControls:ServerInfoControl />
+                        </Button>
+                    </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
