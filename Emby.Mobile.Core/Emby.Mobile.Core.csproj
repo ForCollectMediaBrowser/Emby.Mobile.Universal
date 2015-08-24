@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\AsyncLock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

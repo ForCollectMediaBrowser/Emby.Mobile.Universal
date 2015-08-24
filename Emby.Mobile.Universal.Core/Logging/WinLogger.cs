@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Util;
 
 namespace Emby.Mobile.Universal.Core.Logging
 {
@@ -95,6 +96,7 @@ namespace Emby.Mobile.Universal.Core.Logging
 
     public class WinLogger : ILog
     {
+        private static AsyncLock _lock = new AsyncLock();
         private static IStorageServiceHandler _cacheStorage;
         private readonly string _typeName;
 
@@ -159,13 +161,16 @@ namespace Emby.Mobile.Universal.Core.Logging
 
         private static async Task WriteLogToFile(StringBuilder messageLog)
         {
-            try
+            using (await _lock.LockAsync())
             {
-                await _cacheStorage.WriteAllTextAsync(LogFileName, messageLog.ToString());
-            }
-            catch (Exception)
-            {
-                var i = 1;
+                try
+                {
+                    await _cacheStorage.WriteAllTextAsync(LogFileName, messageLog.ToString());
+                }
+                catch (Exception)
+                {
+                    var i = 1;
+                }
             }
         }
 
