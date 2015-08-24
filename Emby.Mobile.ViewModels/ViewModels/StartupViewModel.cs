@@ -37,8 +37,6 @@ namespace Emby.Mobile.ViewModels
             RetryButtonIsVisible = false;
             // TODO: Check to see if OOBE has happened.
 
-            SetProgressBar("Loading settings...");
-
             // TODO: Load specific app settings
 
             // TODO: Load photo upload settings
@@ -69,7 +67,7 @@ namespace Emby.Mobile.ViewModels
             RetryButtonIsVisible = false;
             ConnectionResult result = null;
 
-            SetProgressBar("Getting server details...");
+            SetProgressBar("**Getting server details...");
 
             if (_serverInfo != null)
             {
