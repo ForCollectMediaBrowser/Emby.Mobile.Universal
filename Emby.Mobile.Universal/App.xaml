@@ -3,6 +3,7 @@
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:controls="using:Emby.Mobile.Universal.Controls"
                           xmlns:converters="using:Cimbalino.Toolkit.Converters"
+                          xmlns:embyConverters="using:Emby.Mobile.Universal.Converters"
                           RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
@@ -22,6 +23,8 @@
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"
                                                      InvertValue="True" />
+            <embyConverters:LocalizationConverter x:Key="LocalizationConverter" />
+
             <!-- #endregion -->
         </ResourceDictionary>
     </Application.Resources>

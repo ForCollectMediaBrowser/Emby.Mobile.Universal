@@ -11,14 +11,15 @@ namespace Emby.Mobile.Universal.Services
         public ServicesContainer(
             ILogger log,
             INavigationService navigationService,
-            IConnectionManager connectionManager, 
+            IConnectionManager connectionManager,
             IMessageBoxService messageBox,
             IServerInfoService serverInfo,
             IApplicationSettingsService applicationSettings,
             IStorageService storage,
             IAuthenticationService authentication,
             IMessengerService messenger,
-            IDispatcherService dispatcher)
+            IDispatcherService dispatcher,
+            ILocalizedResources localizedResources)
         {
             Log = log;
             NavigationService = navigationService;
@@ -30,6 +31,7 @@ namespace Emby.Mobile.Universal.Services
             Authentication = authentication;
             Messenger = messenger;
             Dispatcher = dispatcher;
+            LocalizedResources = localizedResources;
         }
 
         public ILogger Log { get; }
@@ -42,5 +44,6 @@ namespace Emby.Mobile.Universal.Services
         public IStorageService Storage { get; }
         public IDispatcherService Dispatcher { get; }
         public IMessengerService Messenger { get; }
+        public ILocalizedResources LocalizedResources { get; }
     }
 }
