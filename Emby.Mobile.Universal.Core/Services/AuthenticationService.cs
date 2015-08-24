@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
+using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
@@ -33,7 +34,7 @@ namespace Emby.Mobile.Universal.Core.Services
             IDispatcherService dispatcher,
             IMessengerService messengerService)
         {
-            _settingsService = settingsService.Legacy;
+            _settingsService = settingsService.Roaming;
             _connectionManager = connectionManager;
             _logger = logger;
             _dispatcher = dispatcher;
@@ -83,7 +84,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         private void SetUserUpdateHandler(ServerInfo serverInfo)
         {
-            var apiClient = _connectionManager.GetApiClient(serverInfo.Id);
+            var apiClient = _connectionManager.GetApiClient(serverInfo?.Id);
             if (apiClient != null)
             {
                 apiClient.UserUpdated -= ApiClientOnUserUpdated;
@@ -125,8 +126,8 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void CheckIfUserSignedIn()
         {
-            var user = _settingsService.Get<UserDto>(Constants.Settings.LoggedInUserSetting);
-            var oldUser = _settingsService.Get<AuthenticationResult>(Constants.Settings.AuthenticationResultSetting);
+            var user = _settingsService.SafeGet<UserDto>(Constants.Settings.LoggedInUserSetting);
+            var oldUser = _settingsService.SafeGet<AuthenticationResult>(Constants.Settings.AuthenticationResultSetting);
 
             if (user != null)
             {
@@ -150,7 +151,7 @@ namespace Emby.Mobile.Universal.Core.Services
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
                 AuthenticationResult = result;
-                _settingsService.Set(Constants.Settings.AuthenticationResultSetting, AuthenticationResult);
+                _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, AuthenticationResult);
 
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
@@ -163,7 +164,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void SetAuthenticationInfo()
         {
-            if (AuthenticationResult != null && AuthenticationResult.User != null && !string.IsNullOrEmpty(AuthenticationResult.User.Id))
+            if (!string.IsNullOrEmpty(AuthenticationResult?.User?.Id))
             {
                 _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
                 _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, AuthenticationResult.User.Id);
@@ -247,7 +248,7 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             LoggedInUser = user;
 
-            _settingsService.Set(Constants.Settings.LoggedInUserSetting, LoggedInUser);
+            _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, LoggedInUser);
         }
 
         public void SetAccessToken(string accessToken)
@@ -259,7 +260,7 @@ namespace Emby.Mobile.Universal.Core.Services
                 User = LoggedInUser
             };
 
-            _settingsService.Set(Constants.Settings.AuthenticationResultSetting, authInfo);
+            _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, authInfo);
 
             AuthenticationResult = authInfo;
         }

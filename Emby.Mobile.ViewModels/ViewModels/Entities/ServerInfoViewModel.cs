@@ -1,4 +1,6 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Helpers;
+using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 
 namespace Emby.Mobile.ViewModels.Entities
@@ -21,5 +23,39 @@ namespace Emby.Mobile.ViewModels.Entities
         public bool DisplayLocalAddress => !string.IsNullOrEmpty(LocalAddress);
 
         public bool DisplayExternalAddress => !string.IsNullOrEmpty(ExternalAddress);
+
+        public RelayCommand ServerTappedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    SetProgressBar("**Connecting...");
+
+                    var result = await Services.ConnectionManager.Connect(ServerInfo);
+
+                    if (result.State == ConnectionState.Unavailable)
+                    {
+                        Log.Info("Invalid connection details");
+                        await Services.MessageBox.ShowAsync("**Unable to connect");
+                    }
+                    else
+                    {
+                        Services.Messenger.SendAppResetNotification();
+                        AuthenticationService.ClearLoggedInUser();
+                        SaveServer(ServerInfo);
+                        await ConnectHelper.HandleConnectState(result, Services, ApiClient);
+                    }
+
+                    SetProgressBar();
+                });
+            }
+        }
+
+        private void SaveServer(ServerInfo server)
+        {
+            Services.ServerInfo.SetServerInfo(server);
+            Services.ServerInfo.Save();
+        }
     }
 }

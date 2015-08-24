@@ -9,5 +9,7 @@ namespace Emby.Mobile.Core.Interfaces
         ServerInfo ServerInfo { get; }
         void SetServerInfo(ServerInfo serverInfo);
         event EventHandler<ServerInfo> ServerInfoChanged;
+        void Save();
+        ServerInfo Load();
     }
 }

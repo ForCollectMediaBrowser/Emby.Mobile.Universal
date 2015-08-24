@@ -7,20 +7,21 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/ColourResources.xaml"/>
-                <ResourceDictionary Source="/Mdl2/Mdl2Resources.xaml"/>
+                <ResourceDictionary Source="Resources/ColourResources.xaml" />
+                <ResourceDictionary Source="/Mdl2/Mdl2Resources.xaml" />
                 <ResourceDictionary Source="/Resources/TextBlockStyles.xaml" />
+                <ResourceDictionary Source="/Resources/ButtonResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <vm:ViewModelLocator x:Key="Locator"
                                  xmlns:vm="using:Emby.Mobile.Universal.ViewModel" />
 
             <x:Double x:Key="NarrowAdaptiveWidth">0</x:Double>
             <x:Double x:Key="WideAdaptiveWidth">360</x:Double>
-            
+
             <!-- #region Converters -->
-            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"
-                                                     InvertValue="True"/>
+                                                     InvertValue="True" />
             <!-- #endregion -->
         </ResourceDictionary>
     </Application.Resources>

@@ -6,8 +6,6 @@ namespace Emby.Mobile.Helpers
 {
     public static class ConnectHelper
     {
-        public const string DefaultServerConnection = "DefaultServerConnection";
-
         public async static Task HandleConnectState(ConnectionResult result, IServices services, IApiClient apiClient)
         {
             switch (result.State)

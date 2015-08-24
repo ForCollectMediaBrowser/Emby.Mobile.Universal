@@ -15,7 +15,7 @@
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-    
+
     <Page.Resources>
         <ItemsPanelTemplate x:Key="HorizontalItemsWrapGrid">
             <ItemsWrapGrid Orientation="Horizontal" />
@@ -30,11 +30,11 @@
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}"/>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ServerList.ItemsPanel"
-                                Value="{StaticResource HorizontalItemsWrapGrid}"/>
+                                Value="{StaticResource HorizontalItemsWrapGrid}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -54,12 +54,16 @@
             <GridView.ItemContainerStyle>
                 <Style TargetType="GridViewItem">
                     <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch"/>
+                            Value="Stretch" />
                 </Style>
             </GridView.ItemContainerStyle>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:ServerInfoViewModel">
-                    <itemControls:ServerInfoControl/>
+                    <Button ClickMode="Release"
+                            Command="{Binding ServerTappedCommand}"
+                            Style="{StaticResource EmptyButtonStyle}">
+                        <itemControls:ServerInfoControl />
+                    </Button>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
