@@ -71,7 +71,8 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.Below="UsernameBox"
                              BorderBrush="Green"
-                             BorderThickness="1,0,1,1"/>
+                             BorderThickness="1,0,1,1"
+                             KeyUp="PasswordBox_OnKeyUp"/>
                 <Button x:Name="LoginButton"
                         Content="Login"
                         BorderBrush="Green"

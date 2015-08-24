@@ -29,6 +29,8 @@ namespace Emby.Mobile.ViewModels
                 {
                     try
                     {
+                        SetProgressBar("**Signing in...");
+
                         var success = await AuthenticationService.LoginWithConnect(Username, Password);
 
                         if (success)
@@ -41,6 +43,8 @@ namespace Emby.Mobile.ViewModels
                             }
 
                             await ConnectHelper.HandleConnectState(result, Services, ApiClient);
+
+                            Services.NavigationService.RemoveBackEntry();
                         }
                     }
                     catch (HttpException hex)
@@ -49,7 +53,11 @@ namespace Emby.Mobile.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        
+
+                    }
+                    finally
+                    {
+                        SetProgressBar();
                     }
                 });
             }
