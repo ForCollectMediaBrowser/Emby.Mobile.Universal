@@ -45,6 +45,7 @@
     <Compile Include="ViewModels\ChooseServerViewModel.cs" />
     <Compile Include="ViewModels\EmbyConnectViewModel.cs" />
     <Compile Include="ViewModels\Entities\ItemViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\StartupViewModel.cs" />
     <Compile Include="ViewModels\Entities\ServerInfoViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

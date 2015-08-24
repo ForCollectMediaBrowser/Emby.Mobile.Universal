@@ -59,6 +59,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
         }
         #endregion
 
+        public void ClearBackStack()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool NavigateToEmbyConnect()
         {
             throw new NotImplementedException();

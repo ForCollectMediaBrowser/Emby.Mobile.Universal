@@ -18,7 +18,7 @@ namespace Emby.Mobile.Helpers
                     services.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
-
+                    // TODO: Manual sign in
                     break;
                 case ConnectionState.SignedIn:
                     if (services.Authentication.LoggedInUser == null)
@@ -32,6 +32,9 @@ namespace Emby.Mobile.Helpers
                     {
                         services.Authentication.SetAccessToken(apiClient.AccessToken);
                     }
+
+                    services.NavigationService.NavigateToHome();
+                    services.NavigationService.ClearBackStack();
                     break;
                 case ConnectionState.ConnectSignIn:
                     services.NavigationService.NavigateToConnectFirstRun();
