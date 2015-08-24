@@ -50,10 +50,17 @@ namespace Emby.Mobile.ViewModels
             }
             else
             {
-                // TODO: This should navigate to First run, but for now, can go to Connect sign in
-                //Services.NavigationService.NavigateToFirstRun();
-                Services.NavigationService.NavigateToEmbyConnect();
-                Services.NavigationService.RemoveBackEntry();
+                if (AuthenticationService.LoggedInConnectUser != null)
+                {
+                    Services.NavigationService.NavigateToServerSelection();
+                }
+                else
+                {
+                    // TODO: This should navigate to First run, but for now, can go to Connect sign in
+                    //Services.NavigationService.NavigateToFirstRun();
+                    Services.NavigationService.NavigateToEmbyConnect();
+                    Services.NavigationService.RemoveBackEntry();
+                }
             }
 
             SetProgressBar();

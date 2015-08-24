@@ -7,6 +7,7 @@
             public const string LoggedInUserSetting = "LoggedInUserSettingKey";
             public const string AuthenticationResultSetting = "AuthenticationResultSettingKey";
             public const string DefaultServerSetting = "DefaultServerSettingKey";
+            public const string ConnectUser = "ConnectUserKey";
         }
     }
 }

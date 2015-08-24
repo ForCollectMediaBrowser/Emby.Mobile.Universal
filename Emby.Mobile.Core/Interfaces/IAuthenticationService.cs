@@ -24,6 +24,7 @@ namespace Emby.Mobile.Core.Interfaces
         Task<bool> LoginWithConnect(string username, string password);
         Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password);
         void SetUser(UserDto user);
+        void SetConnectUser(ConnectUser connectUser);
         void SetAccessToken(string accessToken);
     }
 }

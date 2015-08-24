@@ -128,6 +128,7 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             var user = _settingsService.SafeGet<UserDto>(Constants.Settings.LoggedInUserSetting);
             var oldUser = _settingsService.SafeGet<AuthenticationResult>(Constants.Settings.AuthenticationResultSetting);
+            var connectUser = _settingsService.SafeGet<ConnectUser>(Constants.Settings.ConnectUser);
 
             if (user != null)
             {
@@ -137,6 +138,11 @@ namespace Emby.Mobile.Universal.Core.Services
             if (oldUser != null)
             {
                 AuthenticationResult = oldUser;
+            }
+
+            if (connectUser != null)
+            {
+                SetConnectUser(connectUser);
             }
         }
 
@@ -201,6 +207,7 @@ namespace Emby.Mobile.Universal.Core.Services
             _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
             _settingsService.Remove(Constants.Settings.AuthenticationResultSetting);
             _settingsService.Remove(Constants.Settings.DefaultServerSetting);
+            _settingsService.Remove(Constants.Settings.ConnectUser);
         }
 
         public UserDto LoggedInUser { get; private set; }
@@ -249,6 +256,13 @@ namespace Emby.Mobile.Universal.Core.Services
             LoggedInUser = user;
 
             _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, LoggedInUser);
+        }
+
+        public void SetConnectUser(ConnectUser connectUser)
+        {
+            LoggedInConnectUser = connectUser;
+
+            _settingsService.SafeSet(Constants.Settings.ConnectUser, LoggedInConnectUser);
         }
 
         public void SetAccessToken(string accessToken)
