@@ -1,6 +1,7 @@
 ﻿using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
 using GalaSoft.MvvmLight.Command;
+using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 
@@ -40,11 +41,6 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(async () =>
                 {
-                    if (!CanSignUp)
-                    {
-                        return;
-                    }
-
                     ErrorMessage = string.Empty;
                     SetProgressBar("SysTraySigningUp");
 
@@ -54,30 +50,36 @@ namespace Emby.Mobile.ViewModels
                         switch (response)
                         {
                             case ConnectSignupResponse.Success:
-                                await Services.MessageBox.ShowAsync(GetLocalizedString("MessageSignUpSuccessful"), GetLocalizedString("**MessageTitleSuccess"), new[] { "Ok" });
+                                await Services.MessageBox.ShowAsync(GetLocalizedString("MessageSignUpSuccessful"), GetLocalizedString("MessageTitleSuccess"), new[] { "Ok" });
                                 Services.NavigationService.NavigateToEmbyConnect();
                                 Reset();
                                 break;
                             case ConnectSignupResponse.EmailInUse:
-                                ErrorMessage = GetLocalizedString("**ErrorEmailInUse");
+                                ErrorMessage = GetLocalizedString("ErrorEmailInUse");
                                 break;
                             case ConnectSignupResponse.UsernameInUser:
-                                ErrorMessage = GetLocalizedString("**ErrorUsernameInUse");
+                                ErrorMessage = GetLocalizedString("ErrorUsernameInUse");
                                 break;
                             default:
-                                ErrorMessage = GetLocalizedString("**ErrorSigningUp");
+                                ErrorMessage = GetLocalizedString("ErrorSigningUp");
                                 break;
                         }
                     }
                     catch (HttpException ex)
                     {
-                        ErrorMessage = GetLocalizedString("**ErrorSigningUp");
+                        ErrorMessage = GetLocalizedString("ErrorSigningUp");
                         //Utils.HandleHttpException("SignUpCommand", ex, NavigationService, Log);
                     }
 
                     SetProgressBar();
-                });
+                }, () => CanSignUp);
             }
+        }
+
+        [UsedImplicitly]
+        private void OnCanSignUpChanged()
+        {
+            SignUpCommand.RaiseCanExecuteChanged();
         }
 
         public override void UpdateProperties()

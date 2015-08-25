@@ -4,6 +4,8 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                   xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors"
                    mc:Ignorable="d"
                    DataContext="{Binding EmbyConnect, Source={StaticResource Locator}}">
 
@@ -74,8 +76,11 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.Below="UsernameBox"
                              BorderBrush="Green"
-                             BorderThickness="1,0,1,1"
-                             KeyUp="PasswordBox_OnKeyUp"/>
+                             BorderThickness="1,0,1,1">
+                    <interactivity:Interaction.Behaviors>
+                        <behaviors:EnterKeyBehavior Command="{x:Bind EmbyConnect.SignInCommand}"/>
+                    </interactivity:Interaction.Behaviors>
+                </PasswordBox>
                 <Button x:Name="LoginButton"
                         Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonLogin}"
                         BorderBrush="Green"

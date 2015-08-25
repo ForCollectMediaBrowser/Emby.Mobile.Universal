@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
+using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 
@@ -29,7 +30,7 @@ namespace Emby.Mobile.ViewModels
                 return new RelayCommand(async () =>
                 {
                     await SignIn();
-                });
+                }, () => CanSignIn);
             }
         }
 
@@ -42,6 +43,12 @@ namespace Emby.Mobile.ViewModels
                     Services.NavigationService.NavigateToEmbyConnectSignUp();
                 });
             }
+        }
+
+        [UsedImplicitly]
+        private void OnCanSignInChanged()
+        {
+            SignInCommand.RaiseCanExecuteChanged();
         }
 
         private async Task SignIn()

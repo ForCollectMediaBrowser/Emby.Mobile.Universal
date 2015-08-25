@@ -1,6 +1,4 @@
-﻿using Windows.System;
-using Windows.UI.Xaml.Input;
-using Emby.Mobile.ViewModels;
+﻿using Emby.Mobile.ViewModels;
 
 namespace Emby.Mobile.Universal.Views.Connect
 {
@@ -15,13 +13,5 @@ namespace Emby.Mobile.Universal.Views.Connect
         }
 
         private EmbyConnectViewModel EmbyConnect => DataContext as EmbyConnectViewModel;
-
-        private void PasswordBox_OnKeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == VirtualKey.Enter && EmbyConnect.CanSignIn)
-            {
-                EmbyConnect.SignInCommand.Execute(null);
-            }
-        }
     }
 }
