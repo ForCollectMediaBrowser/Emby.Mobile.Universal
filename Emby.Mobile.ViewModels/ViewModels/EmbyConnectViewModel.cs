@@ -37,7 +37,18 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        public RelayCommand SignUpCommand
+        public ICommand SkipCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToManualServerEntry();
+                });
+            }
+        }
+
+        public ICommand SignUpCommand
         {
             get
             {

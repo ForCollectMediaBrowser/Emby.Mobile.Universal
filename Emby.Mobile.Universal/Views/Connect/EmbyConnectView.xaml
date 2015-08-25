@@ -8,6 +8,16 @@
                    DataContext="{Binding EmbyConnect, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:LoginControl/>
+        <RelativePanel>
+            <controls:LoginControl x:Name="LoginControl"
+                                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                   RelativePanel.AlignVerticalCenterWithPanel="True"/>
+            <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSkip}"
+                             RelativePanel.Below="LoginControl"
+                             HorizontalAlignment="Center"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
+                             ClickMode="Release"
+                             Command="{x:Bind EmbyConnect.SkipCommand}"/>
+        </RelativePanel>
     </Grid>
 </controls:EmbyPage>

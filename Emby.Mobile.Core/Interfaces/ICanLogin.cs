@@ -9,6 +9,7 @@ namespace Emby.Mobile.Core.Interfaces
         string Password { get; set; }
         bool CanSignIn { get; }
         ICommand SignInCommand { get; }
+        ICommand SignUpCommand { get; }
         bool IsEmbyConnect { get; }
     }
 }

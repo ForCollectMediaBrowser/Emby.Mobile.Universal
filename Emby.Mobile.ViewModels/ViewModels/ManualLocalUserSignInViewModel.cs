@@ -17,6 +17,7 @@ namespace Emby.Mobile.ViewModels
         public bool CanSignIn => !ProgressIsVisible
                                  && !string.IsNullOrEmpty(Username);
 
+        public ICommand SignUpCommand { get; } = null;
         public bool IsEmbyConnect { get; } = false;
 
         public ICommand SignInCommand

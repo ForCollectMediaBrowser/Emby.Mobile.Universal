@@ -93,13 +93,14 @@
                         IsEnabled="{x:Bind CanLogin.CanSignIn, Mode=OneWay}"
                         ClickMode="Release"
                         Command="{x:Bind CanLogin.SignInCommand}" />
-                <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonCreateAccount}"
+                <HyperlinkButton x:Name="CreateAccountButton"
+                                 Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonCreateAccount}"
                                  RelativePanel.Below="LoginButton"
                                  HorizontalAlignment="Center"
-                                 RelativePanel.AlignBottomWithPanel="True"
                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                 Command="{x:Bind CanLogin.SignUpCommand}"
+                                 ClickMode="Release"
                                  Visibility="{x:Bind CanLogin.IsEmbyConnect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
             </RelativePanel>
         </Grid>
     </Grid>
