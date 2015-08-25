@@ -102,9 +102,9 @@ namespace Emby.Mobile.Universal.Core.Services
             _dispatcher.RunAsync(() =>
             {
                 SetUser(e.Argument);
-                if (AuthenticationResult != null && _connectionManager.CurrentApiClient != null)
+                if (AuthenticationResult != null)
                 {
-                    _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+                    _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
                 }
             });
         }

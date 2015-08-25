@@ -20,22 +20,36 @@ namespace Emby.Mobile.Universal.ViewModel
 
             AppServices.Create();
 
-            SimpleIoc.Default.Register<EmbyConnectViewModel>();
-            SimpleIoc.Default.Register<StartupViewModel>();
-            SimpleIoc.Default.Register<ChooseServerViewModel>();
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<ManualServerEntryViewModel>();
+            Register<EmbyConnectViewModel>();
+            Register<EmbyConnectSignUpViewModel>();
+            Register<StartupViewModel>();
+            Register<ChooseServerViewModel>();
+            Register<MainViewModel>();
+            Register<ManualServerEntryViewModel>();
         }
 
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
-        public StartupViewModel Startup => ServiceLocator.Current.GetInstance<StartupViewModel>();
-        public EmbyConnectViewModel EmbyConnect => ServiceLocator.Current.GetInstance<EmbyConnectViewModel>();
-        public ChooseServerViewModel ChooseServer => ServiceLocator.Current.GetInstance<ChooseServerViewModel>();
-        public ManualServerEntryViewModel ManualServerEntry => ServiceLocator.Current.GetInstance<ManualServerEntryViewModel>();
+        public MainViewModel Main => Get<MainViewModel>();
+        public StartupViewModel Startup => Get<StartupViewModel>();
+        public EmbyConnectViewModel EmbyConnect => Get<EmbyConnectViewModel>();
+        public ChooseServerViewModel ChooseServer => Get<ChooseServerViewModel>();
+        public ManualServerEntryViewModel ManualServerEntry => Get<ManualServerEntryViewModel>();
+        public EmbyConnectSignUpViewModel ConnectSignUp => Get<EmbyConnectSignUpViewModel>();
 
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
+        }
+
+        private static void Register<T>(bool createImmediately = false)
+            where T : class
+        {
+            SimpleIoc.Default.Register<T>(createImmediately);
+        }
+
+        private static T Get<T>() 
+            where T : class
+        {
+            return ServiceLocator.Current.GetInstance<T>();
         }
     }
 }
