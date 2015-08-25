@@ -71,7 +71,7 @@ namespace Emby.Mobile.Universal
                 AppServices.NavigationService.Navigate<StartupView>(e.Arguments);
             }
 
-            base.AppStarted();
+            AppStarted();
 
             // Ensure the current window is active
             Window.Current.Activate();

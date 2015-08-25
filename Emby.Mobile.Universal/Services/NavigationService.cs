@@ -49,5 +49,10 @@ namespace Emby.Mobile.Universal.Services
         {
             return false;
         }
+
+        public bool NavigateToManualServerEntry()
+        {
+            return Navigate<ManualServerEntryView>();
+        }
     }
 }

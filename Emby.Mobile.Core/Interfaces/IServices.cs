@@ -17,5 +17,6 @@ namespace Emby.Mobile.Core.Interfaces
         IDispatcherService Dispatcher { get; }
         IMessengerService Messenger { get; }
         ILocalizedResources LocalizedResources { get; }
+        ILauncherService Launcher { get; }
     }
 }

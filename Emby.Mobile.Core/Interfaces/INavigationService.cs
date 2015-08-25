@@ -10,5 +10,6 @@
         bool NavigateToConnectFirstRun();
         bool NavigateToChooseProfile();
         bool NavigateToFirstRun();
+        bool NavigateToManualServerEntry();
     }
 }

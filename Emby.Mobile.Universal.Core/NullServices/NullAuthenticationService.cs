@@ -61,6 +61,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public void SetConnectUser(ConnectUser connectUser)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetAccessToken(string accessToken)
         {
             throw new NotImplementedException();

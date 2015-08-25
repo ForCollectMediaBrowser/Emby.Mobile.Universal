@@ -42,6 +42,8 @@ namespace Emby.Mobile.ViewModels
                                 Services.ServerInfo.Save();
                             }
 
+                            AuthenticationService.SetConnectUser(result.ConnectUser);
+
                             await ConnectHelper.HandleConnectState(result, Services, ApiClient);
 
                             Services.NavigationService.RemoveBackEntry();

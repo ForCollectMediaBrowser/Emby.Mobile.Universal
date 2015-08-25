@@ -23,6 +23,7 @@
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"
                                                      InvertValue="True" />
+            <converters:NegativeBooleanConverter x:Key="NegativeBooleanConverter"/>
             <embyConverters:LocalizationConverter x:Key="LocalizationConverter" />
 
             <!-- #endregion -->

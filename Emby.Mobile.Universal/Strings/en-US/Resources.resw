@@ -126,11 +126,24 @@
   <data name="ErrorUnableToConnect" xml:space="preserve">
     <value>Unable to connect</value>
   </data>
+  <data name="LabelAddServer" xml:space="preserve">
+    <value>Add server</value>
+  </data>
+  <data name="LabelConnect" xml:space="preserve">
+    <value>Connect</value>
+    <comment>Context: Connect [to server] (not Emby Connect)</comment>
+  </data>
   <data name="LabelEnterPassword" xml:space="preserve">
     <value>please enter your password</value>
   </data>
   <data name="LabelEnterUsername" xml:space="preserve">
     <value>please enter your username</value>
+  </data>
+  <data name="LabelHostname" xml:space="preserve">
+    <value>Hostname</value>
+  </data>
+  <data name="LabelPortNumber" xml:space="preserve">
+    <value>Port number</value>
   </data>
   <data name="LabelServerConnected" xml:space="preserve">
     <value>Connected to {0}</value>

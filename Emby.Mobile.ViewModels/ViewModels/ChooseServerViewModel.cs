@@ -50,6 +50,17 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        public RelayCommand ManualServerEntryCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToManualServerEntry();
+                });
+            }
+        }
+
         protected override async Task PageLoaded()
         {
             await LoadData(false);
@@ -74,6 +85,7 @@ namespace Emby.Mobile.ViewModels
                 }
 
                 Servers = servers.Select(x => new ServerInfoViewModel(Services, x)).ToObservableCollection();
+                Servers.Add(new ServerInfoViewModel(Services, null) {IsDummyServer = true});
 
                 _serversLoaded = !Servers.IsNullOrEmpty();
             }
