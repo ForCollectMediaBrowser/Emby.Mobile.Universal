@@ -23,6 +23,8 @@ namespace Emby.Mobile.Universal.Services
         {
             ServerInfo = serverInfo;
 
+            Save();
+
             SendEvent();
         }
 

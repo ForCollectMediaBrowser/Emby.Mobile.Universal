@@ -36,11 +36,16 @@
                        VerticalAlignment="Top"
                        x:Name="LayoutRoot"
                        MaxWidth="360">
+            <HyperlinkButton x:Name="DisplayUrl"
+                             ClickMode="Release"
+                             Command="{x:Bind ManualServerEntry.TestUrlCommand}"
+                             Content="{x:Bind ManualServerEntry.DisplayUrl, Mode=OneWay}"/>
             <TextBox x:Name="Hostname"
                      Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.AlignLeftWithPanel="True"
+                     RelativePanel.Below="DisplayUrl"
                      IsSpellCheckEnabled="False"
                      PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelHostname}"
                      InputScope="EmailSmtpAddress" />
