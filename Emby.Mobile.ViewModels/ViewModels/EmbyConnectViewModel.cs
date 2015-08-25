@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
@@ -9,7 +10,7 @@ using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class EmbyConnectViewModel : ViewModelBase
+    public class EmbyConnectViewModel : PageViewModelBase, ICanLogin
     {
         public EmbyConnectViewModel(IServices services)
             : base(services)
@@ -23,7 +24,9 @@ namespace Emby.Mobile.ViewModels
                                  && !string.IsNullOrWhiteSpace(Username)
                                  && !string.IsNullOrWhiteSpace(Password);
 
-        public RelayCommand SignInCommand
+        public bool IsEmbyConnect { get; } = true;
+
+        public ICommand SignInCommand
         {
             get
             {

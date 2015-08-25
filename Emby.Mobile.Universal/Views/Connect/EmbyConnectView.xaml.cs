@@ -1,4 +1,4 @@
-﻿using Emby.Mobile.ViewModels;
+﻿using Emby.Mobile.Core.Interfaces;
 
 namespace Emby.Mobile.Universal.Views.Connect
 {
@@ -12,6 +12,6 @@ namespace Emby.Mobile.Universal.Views.Connect
             this.InitializeComponent();
         }
 
-        private EmbyConnectViewModel EmbyConnect => DataContext as EmbyConnectViewModel;
+        private ICanLogin CanLogin => DataContext as ICanLogin;
     }
 }
