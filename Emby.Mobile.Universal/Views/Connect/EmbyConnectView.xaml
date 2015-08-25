@@ -55,7 +55,7 @@
                          Background="White"
                          Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          IsSpellCheckEnabled="False"
-                         PlaceholderText="please enter your username"
+                         PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterUsername}"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"
                          RelativePanel.AlignRightWithPanel="True"
@@ -65,7 +65,7 @@
                          BorderThickness="1" />
                 <PasswordBox x:Name="PasswordBox"
                              Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             PlaceholderText="please enter your password"
+                             PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterPassword}"
                              IsPasswordRevealButtonEnabled="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignLeftWithPanel="True"
@@ -74,7 +74,7 @@
                              BorderThickness="1,0,1,1"
                              KeyUp="PasswordBox_OnKeyUp"/>
                 <Button x:Name="LoginButton"
-                        Content="Login"
+                        Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonLogin}"
                         BorderBrush="Green"
                         Background="Green"
                         Foreground="White"
@@ -86,7 +86,7 @@
                         IsEnabled="{x:Bind EmbyConnect.CanSignIn, Mode=OneWay}"
                         ClickMode="Release"
                         Command="{x:Bind EmbyConnect.SignInCommand}"/>
-                <HyperlinkButton Content="Create account"
+                <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonCreateAccount}"
                                  RelativePanel.Below="LoginButton"
                                  HorizontalAlignment="Center"
                                  RelativePanel.AlignBottomWithPanel="True"

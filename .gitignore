@@ -178,3 +178,5 @@ pip-log.txt
 .DS_Store
 
 lib
+Emby.Mobile.Universal.Core/Emby.Mobile.Universal.Core.nuget.targets
+.gitignore

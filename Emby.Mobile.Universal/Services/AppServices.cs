@@ -16,6 +16,7 @@ using MediaBrowser.Model.Logging;
 using Microsoft.Practices.ServiceLocation;
 using ScottIsAFool.Windows.MvvmLight.Extensions;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
+using Emby.Mobile.Universal.Strings;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -56,12 +57,13 @@ namespace Emby.Mobile.Universal.Services
             var logger = new WinLogger("Emby.Universal");
             var mbLogger = new MBLogger(logger);
             var device = new Device();
-            var network = new NetworkConnection();
+            var network = new NetworkConnection();            
             SimpleIoc.Default.RegisterIf<ILog>(() => logger);
             SimpleIoc.Default.RegisterIf<IDevice>(() => device);
             SimpleIoc.Default.RegisterIf<INetworkConnection>(() => network);
             SimpleIoc.Default.RegisterIf<ILogger>(() => mbLogger);
 
+            SimpleIoc.Default.RegisterIf<ILocalizedResources, LocalizedResources>();
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
             SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
             SimpleIoc.Default.RegisterIf<IServerInfoService, ServerInfoService>();
@@ -85,6 +87,7 @@ namespace Emby.Mobile.Universal.Services
         {
             SimpleIoc.Default.RegisterIf<ILogger, MediaBrowser.Model.Logging.NullLogger>();
             SimpleIoc.Default.RegisterIf<ILog, Core.Logging.NullLogger>();
+            SimpleIoc.Default.RegisterIf<ILocalizedResources, LocalizedResources>();
             SimpleIoc.Default.RegisterIf<INavigationService, NullNavigationService>();
             SimpleIoc.Default.RegisterIf<IConnectionManager, NullConnectionManager>();
             SimpleIoc.Default.RegisterIf<IMessageBoxService, NullMessageBoxService>();
