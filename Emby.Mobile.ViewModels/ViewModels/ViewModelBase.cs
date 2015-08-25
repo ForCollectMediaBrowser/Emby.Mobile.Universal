@@ -42,6 +42,11 @@ namespace Emby.Mobile.ViewModels
             UpdateProperties();
         }
 
+        public string GetLocalizedString(string key)
+        {
+            return Services.LocalizedResources.GetString(key);
+        }
+
         public virtual void UpdateProperties() { }
         
         public bool ProgressIsVisible { get; set; }

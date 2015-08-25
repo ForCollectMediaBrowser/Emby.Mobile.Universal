@@ -8,6 +8,6 @@ namespace Emby.Mobile.ViewModels
         {
         }
 
-        public string ConnectedTo => string.Format(Services.LocalizedResources.GetString("LabelServerConnected"),Services.ServerInfo?.ServerInfo?.Name);
+        public string ConnectedTo => string.Format(GetLocalizedString("LabelServerConnected"), Services.ServerInfo?.ServerInfo?.Name);
     }
 }

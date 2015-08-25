@@ -29,7 +29,7 @@ namespace Emby.Mobile.ViewModels
                 {
                     try
                     {
-                        SetProgressBar(Services.LocalizedResources.GetString("SysTraySigningIn"));
+                        SetProgressBar(GetLocalizedString("SysTraySigningIn"));
 
                         var success = await AuthenticationService.LoginWithConnect(Username, Password);
 
