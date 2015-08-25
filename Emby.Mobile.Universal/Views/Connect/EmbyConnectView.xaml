@@ -43,6 +43,7 @@
               VerticalAlignment="Center"
               HorizontalAlignment="Stretch"
               MaxWidth="360"
+              MaxHeight="300"
               Padding="5"
               BorderBrush="Green"
               BorderThickness="1"
@@ -88,8 +89,14 @@
                         IsEnabled="{x:Bind EmbyConnect.CanSignIn, Mode=OneWay}"
                         ClickMode="Release"
                         Command="{x:Bind EmbyConnect.SignInCommand}"/>
+                <TextBlock x:Name="FreeAccountText"
+                           Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectFree}"
+                           RelativePanel.Below="LoginButton"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           RelativePanel.AlignHorizontalCenterWithPanel="True" />
                 <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonCreateAccount}"
-                                 RelativePanel.Below="LoginButton"
+                                 RelativePanel.Below="FreeAccountText"
                                  HorizontalAlignment="Center"
                                  RelativePanel.AlignBottomWithPanel="True"
                                  RelativePanel.AlignHorizontalCenterWithPanel="True"

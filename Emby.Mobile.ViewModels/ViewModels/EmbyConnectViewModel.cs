@@ -10,7 +10,7 @@ namespace Emby.Mobile.ViewModels
 {
     public class EmbyConnectViewModel : ViewModelBase
     {
-        public EmbyConnectViewModel(IServices services) 
+        public EmbyConnectViewModel(IServices services)
             : base(services)
         {
         }
@@ -61,7 +61,7 @@ namespace Emby.Mobile.ViewModels
                         Services.ServerInfo.Save();
                     }
 
-                            AuthenticationService.SetConnectUser(result.ConnectUser);
+                    AuthenticationService.SetConnectUser(result.ConnectUser);
 
                     await ConnectHelper.HandleConnectState(result, Services, ApiClient);
 

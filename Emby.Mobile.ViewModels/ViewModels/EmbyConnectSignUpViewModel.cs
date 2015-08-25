@@ -46,7 +46,7 @@ namespace Emby.Mobile.ViewModels
                     }
 
                     ErrorMessage = string.Empty;
-                    SetProgressBar("**Signing up");
+                    SetProgressBar("SysTraySigningUp");
 
                     try
                     {
@@ -54,7 +54,7 @@ namespace Emby.Mobile.ViewModels
                         switch (response)
                         {
                             case ConnectSignupResponse.Success:
-                                await Services.MessageBox.ShowAsync(GetLocalizedString("**MessageSignUpSuccessful"), GetLocalizedString("**MessageTitleSuccess"), new[] { "Ok" });
+                                await Services.MessageBox.ShowAsync(GetLocalizedString("MessageSignUpSuccessful"), GetLocalizedString("**MessageTitleSuccess"), new[] { "Ok" });
                                 Services.NavigationService.NavigateToEmbyConnect();
                                 Reset();
                                 break;
