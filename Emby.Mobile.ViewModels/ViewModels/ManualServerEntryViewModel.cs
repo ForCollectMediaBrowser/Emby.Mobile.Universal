@@ -43,7 +43,7 @@ namespace Emby.Mobile.ViewModels
                     var success = false;
                     try
                     {
-                        SetProgressBar("**Connecting...");
+                        SetProgressBar(GetLocalizedString("SysTrayConnecting"));
 
                         var result = await Services.ConnectionManager.Connect(DisplayUrl);
 
@@ -67,7 +67,7 @@ namespace Emby.Mobile.ViewModels
                     {
                         if (!success)
                         {
-                            await Services.MessageBox.ShowAsync("Unable to connect to this server");
+                            await Services.MessageBox.ShowAsync("ErrorUnableToConnect");
                         }
 
                         SetProgressBar();

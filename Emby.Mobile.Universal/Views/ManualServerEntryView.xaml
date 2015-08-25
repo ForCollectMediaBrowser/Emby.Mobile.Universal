@@ -39,7 +39,7 @@
                      IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.AlignLeftWithPanel="True"
-                     PlaceholderText="**Hostname"
+                     PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelHostname}"
                      InputScope="EmailSmtpAddress" />
             <TextBox x:Name="PortNumber"
                      Text="{Binding PortNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -47,10 +47,10 @@
                      RelativePanel.Below="Hostname"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.AlignLeftWithPanel="True"
-                     PlaceholderText="**Port number"
+                     PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelPortNumber}"
                      InputScope="AlphanumericPin" />
             <Button x:Name="ConnectButton"
-                    Content="**Connect"
+                    Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelConnect}"
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.Below="PortNumber"
