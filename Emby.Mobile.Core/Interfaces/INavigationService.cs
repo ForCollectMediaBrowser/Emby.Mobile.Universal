@@ -4,6 +4,7 @@
     {
         void ClearBackStack();
         bool NavigateToEmbyConnect();
+        bool NavigateToEmbyConnectSignUp();
         bool NavigateToServerSelection();
         bool NavigateToHome();
         bool NavigateToSignUp();

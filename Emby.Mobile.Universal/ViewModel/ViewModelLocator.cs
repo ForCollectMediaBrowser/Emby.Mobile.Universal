@@ -33,6 +33,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public EmbyConnectViewModel EmbyConnect => Get<EmbyConnectViewModel>();
         public ChooseServerViewModel ChooseServer => Get<ChooseServerViewModel>();
         public ManualServerEntryViewModel ManualServerEntry => Get<ManualServerEntryViewModel>();
+        public EmbyConnectSignUpViewModel ConnectSignUp => Get<EmbyConnectSignUpViewModel>();
 
         public static void Cleanup()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
@@ -27,41 +28,55 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(async () =>
                 {
-                    try
+                    await SignIn();
+                });
+            }
+        }
+
+        public RelayCommand SignUpCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToEmbyConnectSignUp();
+                });
+            }
+        }
+
+        private async Task SignIn()
+        {
+            try
+            {
+                SetProgressBar(GetLocalizedString("SysTraySigningIn"));
+
+                var success = await AuthenticationService.LoginWithConnect(Username, Password);
+
+                if (success)
+                {
+                    var result = await Services.ConnectionManager.Connect();
+                    if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
                     {
-                        SetProgressBar(GetLocalizedString("SysTraySigningIn"));
-
-                        var success = await AuthenticationService.LoginWithConnect(Username, Password);
-
-                        if (success)
-                        {
-                            var result = await Services.ConnectionManager.Connect();
-                            if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
-                            {
-                                Services.ServerInfo.SetServerInfo(result.Servers[0]);
-                                Services.ServerInfo.Save();
-                            }
+                        Services.ServerInfo.SetServerInfo(result.Servers[0]);
+                        Services.ServerInfo.Save();
+                    }
 
                             AuthenticationService.SetConnectUser(result.ConnectUser);
 
-                            await ConnectHelper.HandleConnectState(result, Services, ApiClient);
+                    await ConnectHelper.HandleConnectState(result, Services, ApiClient);
 
-                            Services.NavigationService.RemoveBackEntry();
-                        }
-                    }
-                    catch (HttpException hex)
-                    {
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    finally
-                    {
-                        SetProgressBar();
-                    }
-                });
+                    Services.NavigationService.RemoveBackEntry();
+                }
+            }
+            catch (HttpException hex)
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                SetProgressBar();
             }
         }
 

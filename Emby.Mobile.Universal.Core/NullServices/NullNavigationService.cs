@@ -69,6 +69,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public bool NavigateToEmbyConnectSignUp()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool NavigateToServerSelection()
         {
             throw new NotImplementedException();

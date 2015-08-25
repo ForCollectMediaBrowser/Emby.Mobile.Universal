@@ -20,6 +20,11 @@ namespace Emby.Mobile.Universal.Services
             return Navigate<EmbyConnectView>();
         }
 
+        public bool NavigateToEmbyConnectSignUp()
+        {
+            return Navigate<EmbyConnectSignUpView>();
+        }
+
         public bool NavigateToServerSelection()
         {
             return Navigate<ChooseServerView>();

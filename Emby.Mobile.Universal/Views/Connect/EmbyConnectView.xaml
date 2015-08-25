@@ -92,7 +92,9 @@
                                  RelativePanel.Below="LoginButton"
                                  HorizontalAlignment="Center"
                                  RelativePanel.AlignBottomWithPanel="True"
-                                 RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                                 RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                 ClickMode="Release"
+                                 Command="{x:Bind EmbyConnect.SignUpCommand}"/>
                 
             </RelativePanel>
         </Grid>
