@@ -42,9 +42,6 @@
         </VisualStateManager.VisualStateGroups>
 
         <Grid x:Name="ContainerGrid"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Stretch"
-              MaxWidth="360"
               Padding="5"
               BorderBrush="Green"
               BorderThickness="1"

@@ -35,9 +35,11 @@ namespace Emby.Mobile.ViewModels
                     {
                         SetProgressBar(GetLocalizedString("SysTraySigningIn"));
 
-                        await AuthenticationService.Login(Username, Password);
-
-                        Services.NavigationService.NavigateToHome();
+                        if (await AuthenticationService.Login(Username, Password))
+                        {
+                            Services.NavigationService.NavigateToHome();
+                            Services.NavigationService.ClearBackStack();
+                        }
                     }
                     catch (HttpException ex)
                     {

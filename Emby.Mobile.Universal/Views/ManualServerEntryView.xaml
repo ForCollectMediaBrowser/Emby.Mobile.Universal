@@ -4,6 +4,8 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                   xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors"
                    mc:Ignorable="d"
                    DataContext="{Binding ManualServerEntry, Source={StaticResource Locator}}">
 
@@ -36,19 +38,24 @@
                        MaxWidth="360">
             <TextBox x:Name="Hostname"
                      Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
+                     IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.AlignLeftWithPanel="True"
+                     IsSpellCheckEnabled="False"
                      PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelHostname}"
                      InputScope="EmailSmtpAddress" />
             <TextBox x:Name="PortNumber"
                      Text="{Binding PortNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
+                     IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
                      RelativePanel.Below="Hostname"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.AlignLeftWithPanel="True"
                      PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelPortNumber}"
-                     InputScope="AlphanumericPin" />
+                     InputScope="AlphanumericPin">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:EnterKeyBehavior Command="{x:Bind ManualServerEntry.ConnectCommand}"/>
+                </interactivity:Interaction.Behaviors>
+            </TextBox>
             <Button x:Name="ConnectButton"
                     Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelConnect}"
                     RelativePanel.AlignRightWithPanel="True"

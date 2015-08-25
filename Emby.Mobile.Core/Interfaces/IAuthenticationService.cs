@@ -16,7 +16,7 @@ namespace Emby.Mobile.Core.Interfaces
         ConnectUser LoggedInConnectUser { get; }
         void Start();
         void CheckIfUserSignedIn();
-        Task Login(string selectedUserName, string pinCode);
+        Task<bool> Login(string selectedUserName, string pinCode);
         void SetAuthenticationInfo();
         void ClearLoggedInUser();
         Task SignOut();

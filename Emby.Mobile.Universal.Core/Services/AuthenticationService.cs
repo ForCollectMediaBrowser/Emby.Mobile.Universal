@@ -146,8 +146,9 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
-        public async Task Login(string selectedUserName, string pinCode)
+        public async Task<bool> Login(string selectedUserName, string pinCode)
         {
+            var success = false;
             try
             {
                 _logger.Info("Authenticating user [{0}]", selectedUserName);
@@ -161,11 +162,15 @@ namespace Emby.Mobile.Universal.Core.Services
 
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
+
+                success = true;
             }
             catch (HttpException ex)
             {
                 _logger.ErrorException("Login()", ex);
             }
+
+            return success;
         }
 
         public void SetAuthenticationInfo()

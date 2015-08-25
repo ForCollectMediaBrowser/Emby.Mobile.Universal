@@ -8,6 +8,8 @@
                    DataContext="{Binding ManualLocalUser, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:LoginControl/>
+        <controls:LoginControl VerticalAlignment="Center"
+                               HorizontalAlignment="Stretch"
+                               MaxWidth="360"/>
     </Grid>
 </controls:EmbyPage>
