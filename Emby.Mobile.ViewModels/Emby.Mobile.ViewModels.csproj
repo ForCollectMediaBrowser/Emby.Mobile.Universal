@@ -68,6 +68,10 @@
       <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10\GalaSoft.MvvmLight.Extras.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=8.1.11.55, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.4.0\lib\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5692.23065, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.625\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
       <Private>True</Private>

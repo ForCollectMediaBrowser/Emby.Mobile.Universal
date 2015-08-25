@@ -41,6 +41,11 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(async () =>
                 {
+                    if (!CanSignUp)
+                    {
+                        return;
+                    }
+
                     ErrorMessage = string.Empty;
                     SetProgressBar("SysTraySigningUp");
 
@@ -52,6 +57,7 @@ namespace Emby.Mobile.ViewModels
                             case ConnectSignupResponse.Success:
                                 await Services.MessageBox.ShowAsync(GetLocalizedString("MessageSignUpSuccessful"), GetLocalizedString("MessageTitleSuccess"), new[] { "Ok" });
                                 Services.NavigationService.NavigateToEmbyConnect();
+                                Services.NavigationService.ClearBackStack();
                                 Reset();
                                 break;
                             case ConnectSignupResponse.EmailInUse:
@@ -72,14 +78,8 @@ namespace Emby.Mobile.ViewModels
                     }
 
                     SetProgressBar();
-                }, () => CanSignUp);
+                });
             }
-        }
-
-        [UsedImplicitly]
-        private void OnCanSignUpChanged()
-        {
-            SignUpCommand.RaiseCanExecuteChanged();
         }
 
         public override void UpdateProperties()

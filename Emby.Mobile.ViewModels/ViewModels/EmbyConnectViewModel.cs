@@ -30,7 +30,7 @@ namespace Emby.Mobile.ViewModels
                 return new RelayCommand(async () =>
                 {
                     await SignIn();
-                }, () => CanSignIn);
+                });
             }
         }
 
@@ -45,16 +45,15 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        [UsedImplicitly]
-        private void OnCanSignInChanged()
-        {
-            SignInCommand.RaiseCanExecuteChanged();
-        }
-
         private async Task SignIn()
         {
             try
             {
+                if (!CanSignIn)
+                {
+                    return;
+                }
+
                 SetProgressBar(GetLocalizedString("SysTraySigningIn"));
 
                 var success = await AuthenticationService.LoginWithConnect(Username, Password);
