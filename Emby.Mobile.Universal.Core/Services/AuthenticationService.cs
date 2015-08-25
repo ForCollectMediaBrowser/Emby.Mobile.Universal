@@ -138,6 +138,7 @@ namespace Emby.Mobile.Universal.Core.Services
             if (oldUser != null)
             {
                 AuthenticationResult = oldUser;
+                SetAuthenticationInfo();
             }
 
             if (connectUser != null)
@@ -177,8 +178,8 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             if (!string.IsNullOrEmpty(AuthenticationResult?.User?.Id))
             {
-                _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
-                _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, AuthenticationResult.User.Id);
+                _connectionManager.CurrentApiClient?.ClearAuthenticationInfo();
+                _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, AuthenticationResult.User.Id);
             }
         }
 

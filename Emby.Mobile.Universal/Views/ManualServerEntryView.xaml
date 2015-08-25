@@ -39,7 +39,8 @@
             <HyperlinkButton x:Name="DisplayUrl"
                              ClickMode="Release"
                              Command="{x:Bind ManualServerEntry.TestUrlCommand}"
-                             Content="{x:Bind ManualServerEntry.DisplayUrl, Mode=OneWay}"/>
+                             Content="{x:Bind ManualServerEntry.DisplayUrl, Mode=OneWay}"
+                             IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"/>
             <TextBox x:Name="Hostname"
                      Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
