@@ -59,5 +59,10 @@ namespace Emby.Mobile.Universal.Services
         {
             return Navigate<ManualServerEntryView>();
         }
+
+        public bool NavigateToManualLocalUserSignIn()
+        {
+            return Navigate<ManualLocalUserSignInView>();
+        }
     }
 }

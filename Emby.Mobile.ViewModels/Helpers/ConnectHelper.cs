@@ -18,7 +18,8 @@ namespace Emby.Mobile.Helpers
                     services.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
-                    // TODO: Manual sign in
+                    // TODO: This should really navigate to the public users page first
+                    services.NavigationService.NavigateToManualLocalUserSignIn();
                     break;
                 case ConnectionState.SignedIn:
                     if (services.Authentication.LoggedInUser == null)
