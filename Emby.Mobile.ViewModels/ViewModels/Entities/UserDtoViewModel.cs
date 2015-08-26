@@ -2,26 +2,24 @@
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
+using System;
+using System.Windows.Input;
+using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels.Entities
 {
-    public class UserDtoViewModel : ViewModelBase
+    public class UserDtoViewModel : ViewModelBase, ICanSignIn
     {
         public string ErrorMessage { get; set; }
         public bool DisplayErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
-
+        public ICommand SignUpCommand { get; } = null;
+        public bool IsEmbyConnect { get; } = false;
         public UserDto UserDto { get; set; }
-        public string UserName => UserDto?.Name;
+        public string Username { get; set; }
         public string Password { get; set; }
         public bool ShowPasswordInput { get; set; }
-
         public bool CanSignIn => !ProgressIsVisible
                                  && !string.IsNullOrWhiteSpace(Password);
-
-        public UserDtoViewModel(IServices services, UserDto userDto) : base(services)
-        {
-            UserDto = userDto;
-        }
 
         public RelayCommand UserTappedCommand
         {
@@ -35,33 +33,76 @@ namespace Emby.Mobile.ViewModels.Entities
                     }
                     else
                     {
-                        if (await Authenticate(UserName, ""))
-                            Services.NavigationService.NavigateToHome();
+                        if (!await Authenticate(Username, ""))
+                        {
+                            ErrorMessage = GetLocalizedString("ErrorSigningIn");
+                        }
                     }
                 });
             }
         }
-        public RelayCommand AuthenticateCommand
+
+        public ICommand SignInCommand
         {
             get
             {
                 return new RelayCommand(async () =>
                 {
-                    if (await Authenticate(UserName, Password))
+                    if (!CanSignIn)
                     {
-                        Services.NavigationService.NavigateToHome();
+                        return;
+                    }
+                    ErrorMessage = string.Empty;
+                    UpdateProperties();
+
+                    if (await Authenticate(Username, Password))
+                    {
                         ShowPasswordInput = false;
                     }
+                    else
+                    {
+                        ErrorMessage = GetLocalizedString("ErrorUnableToSignIn");
+                    }
                     Password = string.Empty;
+                    UpdateProperties();
                 });
             }
         }
-        private Task<bool> Authenticate(string username, string password)
+
+        public UserDtoViewModel(IServices services, UserDto userDto) : base(services)
         {
-            SetProgressBar(GetLocalizedString("SysTrayAuthenticating"));
-            var authenticated = AuthenticationService.Login(username, password);
-            SetProgressBar();
-            return authenticated;
+            UserDto = userDto;
+            Username = UserDto?.Name;
+        }
+
+        private async Task<bool> Authenticate(string username, string password)
+        {
+            var success = false;
+            try
+            {
+                SetProgressBar(GetLocalizedString("SysTraySigningIn"));
+
+                if (await AuthenticationService.Login(Username, Password))
+                {
+                    success = true;
+                    Services.NavigationService.NavigateToHome();
+                    Services.NavigationService.ClearBackStack();
+                }
+            }
+            catch (HttpException ex)
+            {
+                success = false;
+            }
+            finally
+            {
+                SetProgressBar();
+            }
+            return success;
+        }
+
+        public override void UpdateProperties()
+        {
+            RaisePropertyChanged(() => DisplayErrorMessage);
         }
     }
 }
