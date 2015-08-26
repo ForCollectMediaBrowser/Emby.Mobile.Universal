@@ -138,6 +138,7 @@ namespace Emby.Mobile.Universal.Core.Services
             if (oldUser != null)
             {
                 AuthenticationResult = oldUser;
+                SetAuthenticationInfo();
             }
 
             if (connectUser != null)
@@ -148,6 +149,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public async Task<bool> Login(string selectedUserName, string pinCode)
         {
+            var success = false;
             try
             {
                 _logger.Info("Authenticating user [{0}]", selectedUserName);
@@ -155,31 +157,29 @@ namespace Emby.Mobile.Universal.Core.Services
                 var result = await _connectionManager.CurrentApiClient.AuthenticateUserAsync(selectedUserName, pinCode);
 
                 _logger.Info("Logged in as [{0}]", selectedUserName);
+
                 AuthenticationResult = result;
                 _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, AuthenticationResult);
 
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
-                return true;
+
+                success = true;
             }
             catch (HttpException ex)
             {
                 _logger.ErrorException("Login()", ex);
-                return false;
             }
-            catch (Exception eex)
-            {
-                _logger.ErrorException("Error logging in\n", eex);
-                return false;
-            }
+
+            return success;
         }
 
         public void SetAuthenticationInfo()
         {
             if (!string.IsNullOrEmpty(AuthenticationResult?.User?.Id))
             {
-                _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
-                _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, AuthenticationResult.User.Id);
+                _connectionManager.CurrentApiClient?.ClearAuthenticationInfo();
+                _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, AuthenticationResult.User.Id);
             }
         }
 

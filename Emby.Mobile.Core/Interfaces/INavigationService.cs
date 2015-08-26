@@ -12,5 +12,6 @@
         bool NavigateToChooseProfile();
         bool NavigateToFirstRun();
         bool NavigateToManualServerEntry();
+        bool NavigateToManualLocalUserSignIn();
     }
 }
