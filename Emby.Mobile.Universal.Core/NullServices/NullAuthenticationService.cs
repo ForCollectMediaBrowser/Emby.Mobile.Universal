@@ -41,12 +41,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public Task SignOut()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Logout()
+        public Task<bool> SignOut()
         {
             throw new NotImplementedException();
         }

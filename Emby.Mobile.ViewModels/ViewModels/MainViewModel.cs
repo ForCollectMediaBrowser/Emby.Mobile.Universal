@@ -1,4 +1,6 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Core.Helpers;
+using GalaSoft.MvvmLight.Command;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -9,5 +11,16 @@ namespace Emby.Mobile.ViewModels
         }
 
         public string ConnectedTo => string.Format(GetLocalizedString("LabelServerConnected"), Services.ServerInfo?.ServerInfo?.Name);
+
+        public RelayCommand SignOutCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await SignOutHelper.SignOut(Services);
+                });
+            }
+        }
     }
 }

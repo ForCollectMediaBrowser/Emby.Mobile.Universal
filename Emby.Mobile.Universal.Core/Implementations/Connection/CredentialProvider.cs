@@ -33,7 +33,7 @@ namespace Emby.Mobile.Universal.Core.Implementations.Connection
 
             var credentials = JsonConvert.DeserializeObject<ServerCredentials>(json);
 
-            Debug.WriteLine("GetCreds, Server count: " + (credentials != null && credentials.Servers != null ? credentials.Servers.Count : 0));
+            Debug.WriteLine("GetCreds, Server count: " + (credentials?.Servers?.Count ?? 0));
 
             return credentials ?? new ServerCredentials();
         }

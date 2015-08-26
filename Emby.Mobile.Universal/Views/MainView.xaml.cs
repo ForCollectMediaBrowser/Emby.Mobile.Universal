@@ -1,4 +1,6 @@
-﻿namespace Emby.Mobile.Universal.Views
+﻿using Emby.Mobile.ViewModels;
+
+namespace Emby.Mobile.Universal.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -9,5 +11,7 @@
         {
             InitializeComponent();
         }
+
+        private MainViewModel Main => DataContext as MainViewModel;
     }
 }
