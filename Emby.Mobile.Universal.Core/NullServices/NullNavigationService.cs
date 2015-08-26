@@ -108,5 +108,10 @@ namespace Emby.Mobile.Universal.Core.NullServices
         {
             throw new NotImplementedException();
         }
+
+        public bool NavigateToManualLocalUserSignIn()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public Task Login(string selectedUserName, string pinCode)
+        public Task<bool> Login(string selectedUserName, string pinCode)
         {
             throw new NotImplementedException();
         }
