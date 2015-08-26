@@ -25,6 +25,31 @@
         </Grid.RenderTransform>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="0"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="LoginButton"
+                                         d:IsOptimized="True" />
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="0"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="PasswordBox"
+                                         d:IsOptimized="True" />
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="1"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="LastSeenLabel"
+                                         d:IsOptimized="True" />
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="1"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="LastActivity"
+                                         d:IsOptimized="True" />
+                     
+                    </Storyboard>
+                </VisualState>
                 <VisualState x:Name="Authenticate">
                     <Storyboard>
                         <DoubleAnimation Duration="0:0:0.3"
@@ -66,6 +91,10 @@
                 <core:DataTriggerBehavior Binding="{Binding ShowPasswordInput}"
                                           Value="True">
                     <core:GoToStateAction StateName="Authenticate" />
+                </core:DataTriggerBehavior>
+                <core:DataTriggerBehavior Binding="{Binding ShowPasswordInput}"
+                                          Value="False">
+                    <core:GoToStateAction StateName="Normal" />
                 </core:DataTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <Image Width="80"

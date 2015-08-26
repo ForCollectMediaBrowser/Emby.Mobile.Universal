@@ -6,11 +6,13 @@ using System;
 using System.Windows.Input;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Entities;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.Mobile.ViewModels.Entities
 {
     public class UserDtoViewModel : ViewModelBase, ICanSignIn
     {
+        private const string NOTIFICATION_MESSAGE = "UserProfileSelected";
         public string UserImageUrl { get; } = "ms-appx:///Assets/Logo.png";
         public string ErrorMessage { get; set; }
         public bool DisplayErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
@@ -29,6 +31,7 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(async () =>
                 {
+                    Services.Messenger.SendNotification(NOTIFICATION_MESSAGE, this);
                     if (UserDto?.HasPassword == true)
                     {
                         ShowPasswordInput = true;
@@ -87,6 +90,20 @@ namespace Emby.Mobile.ViewModels.Entities
 
                 UserImageUrl = ApiClient.GetUserImageUrl(UserDto.Id, options);
             }
+        }
+
+        protected override void WireMessages()
+        {
+            MessengerInstance.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification == NOTIFICATION_MESSAGE && m.Sender != this)
+                {
+                    ShowPasswordInput = false;
+                }
+            });
+
+
+            base.WireMessages();
         }
 
         private async Task<bool> Authenticate(string username, string password)
