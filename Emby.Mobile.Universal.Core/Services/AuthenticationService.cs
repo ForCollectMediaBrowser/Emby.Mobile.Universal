@@ -146,7 +146,7 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
-        public async Task Login(string selectedUserName, string pinCode)
+        public async Task<bool> Login(string selectedUserName, string pinCode)
         {
             try
             {
@@ -155,16 +155,22 @@ namespace Emby.Mobile.Universal.Core.Services
                 var result = await _connectionManager.CurrentApiClient.AuthenticateUserAsync(selectedUserName, pinCode);
 
                 _logger.Info("Logged in as [{0}]", selectedUserName);
-
                 AuthenticationResult = result;
                 _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, AuthenticationResult);
 
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
+                return true;
             }
             catch (HttpException ex)
             {
                 _logger.ErrorException("Login()", ex);
+                return false;
+            }
+            catch (Exception eex)
+            {
+                _logger.ErrorException("Error logging in\n", eex);
+                return false;
             }
         }
 
