@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ConnectHelper.cs" />
+    <Compile Include="Helpers\SignOutHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ChooseServerViewModel.cs" />
     <Compile Include="ViewModels\EmbyConnectSignUpViewModel.cs" />

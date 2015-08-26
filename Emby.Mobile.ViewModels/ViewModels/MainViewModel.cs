@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Core.Helpers;
 using GalaSoft.MvvmLight.Command;
 
 namespace Emby.Mobile.ViewModels
@@ -17,20 +18,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(async () =>
                 {
-                    var signedInWithConnect = AuthenticationService.SignedInUsingConnect;
-                    if (await AuthenticationService.SignOut())
-                    {
-                        if (signedInWithConnect)
-                        {
-                            Services.NavigationService.NavigateToEmbyConnect();
-                        }
-                        else
-                        {
-                            Services.NavigationService.NavigateToChooseProfile();
-                        }
-
-                        Services.NavigationService.ClearBackStack();
-                    }
+                    await SignOutHelper.SignOut(Services);
                 });
             }
         }
