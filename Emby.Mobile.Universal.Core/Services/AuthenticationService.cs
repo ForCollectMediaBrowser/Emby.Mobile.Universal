@@ -189,21 +189,26 @@ namespace Emby.Mobile.Universal.Core.Services
             _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
         }
 
-        public async Task SignOut()
+        public async Task<bool> SignOut()
         {
+            var success = false;
+
             try
             {
                 await _connectionManager.Logout();
-                Logout();
+                ClearUserData();
                 _messengerService.SendAppResetNotification();
+                success = true;
             }
             catch (HttpException ex)
             {
                 _logger.ErrorException("SignOut()", ex);
             }
+
+            return success;
         }
 
-        public void Logout()
+        private void ClearUserData()
         {
             LoggedInUser = null;
             LoggedInConnectUser = null;
@@ -212,7 +217,6 @@ namespace Emby.Mobile.Universal.Core.Services
 
             _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
             _settingsService.Remove(Constants.Settings.AuthenticationResultSetting);
-            _settingsService.Remove(Constants.Settings.DefaultServerSetting);
             _settingsService.Remove(Constants.Settings.ConnectUser);
         }
 
