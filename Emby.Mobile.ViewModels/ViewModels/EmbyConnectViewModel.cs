@@ -10,7 +10,7 @@ using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class EmbyConnectViewModel : PageViewModelBase, ICanLogin
+    public class EmbyConnectViewModel : PageViewModelBase, ICanSignIn
     {
         public EmbyConnectViewModel(IServices services)
             : base(services)

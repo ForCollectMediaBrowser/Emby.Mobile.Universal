@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Emby.Mobile.Core.Interfaces
 {
-    public interface ICanLogin : INotifyPropertyChanged
+    public interface ICanSignIn : INotifyPropertyChanged
     {
         string Username { get; set; }
         string Password { get; set; }

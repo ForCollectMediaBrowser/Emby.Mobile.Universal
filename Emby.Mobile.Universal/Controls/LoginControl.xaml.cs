@@ -7,12 +7,8 @@ namespace Emby.Mobile.Universal.Controls
         public LoginControl()
         {
             InitializeComponent();
-            //DataContextChanged += (sender, args) =>
-            //{
-            //    Bindings.Update();
-            //};
         }
 
-        private ICanLogin CanLogin => DataContext as ICanLogin;
+        private ICanSignIn CanSignIn => DataContext as ICanSignIn;
     }
 }

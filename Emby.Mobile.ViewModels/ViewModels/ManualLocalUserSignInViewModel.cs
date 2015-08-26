@@ -5,7 +5,7 @@ using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class ManualLocalUserSignInViewModel : PageViewModelBase, ICanLogin
+    public class ManualLocalUserSignInViewModel : PageViewModelBase, ICanSignIn
     {
         public ManualLocalUserSignInViewModel(IServices services) : base(services)
         {

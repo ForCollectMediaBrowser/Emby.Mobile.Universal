@@ -74,7 +74,7 @@
                              BorderBrush="Green"
                              BorderThickness="1,0,1,1">
                     <interactivity:Interaction.Behaviors>
-                        <behaviors:EnterKeyBehavior Command="{x:Bind CanLogin.SignInCommand}"/>
+                        <behaviors:EnterKeyBehavior Command="{x:Bind CanSignIn.SignInCommand}"/>
                     </interactivity:Interaction.Behaviors>
                 </PasswordBox>
                 <Button x:Name="LoginButton"
@@ -87,17 +87,17 @@
                         RelativePanel.AlignLeftWithPanel="True"
                         HorizontalAlignment="Stretch"
                         RelativePanel.Below="PasswordBox"
-                        IsEnabled="{x:Bind CanLogin.CanSignIn, Mode=OneWay}"
+                        IsEnabled="{x:Bind CanSignIn.CanSignIn, Mode=OneWay}"
                         ClickMode="Release"
-                        Command="{x:Bind CanLogin.SignInCommand}" />
+                        Command="{x:Bind CanSignIn.SignInCommand}" />
                 <HyperlinkButton x:Name="CreateAccountButton"
                                  Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonCreateAccount}"
                                  RelativePanel.Below="LoginButton"
                                  HorizontalAlignment="Center"
                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                 Command="{x:Bind CanLogin.SignUpCommand}"
+                                 Command="{x:Bind CanSignIn.SignUpCommand}"
                                  ClickMode="Release"
-                                 Visibility="{x:Bind CanLogin.IsEmbyConnect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                 Visibility="{x:Bind CanSignIn.IsEmbyConnect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </RelativePanel>
         </Grid>
     </Grid>
