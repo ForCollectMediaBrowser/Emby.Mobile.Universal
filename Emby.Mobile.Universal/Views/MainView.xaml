@@ -6,6 +6,15 @@
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
                    mc:Ignorable="d"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Compact">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
+                              Command="{x:Bind Main.SignOutCommand}"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock Text="{Binding ConnectedTo}"
