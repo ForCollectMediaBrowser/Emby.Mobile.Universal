@@ -8,6 +8,7 @@ using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -15,28 +16,7 @@ namespace Emby.Mobile.ViewModels
     {
         private bool _profilesLoaded;
 
-        public ChooseUserProfileViewModel(IServices services) : base(services)
-        {
-            if (IsInDesignMode)
-            {
-                UserProfiles = new ObservableCollection<UserDtoViewModel>
-                {
-                    new UserDtoViewModel(services, new UserDto
-                    {
-                        Name = "7",
-                        HasPassword = false
-                    }),
-                    new UserDtoViewModel(services, new UserDto
-                    {
-                        Name = "Scott",
-                        HasPassword = true
-                    })
-                };
-            }
-        }
-
         public ObservableCollection<UserDtoViewModel> UserProfiles { get; set; }
-
         public RelayCommand RefreshCommand
         {
             get
@@ -47,7 +27,6 @@ namespace Emby.Mobile.ViewModels
                 });
             }
         }
-
         public RelayCommand ManualUserProfileEntryCommand
         {
             get
@@ -56,6 +35,28 @@ namespace Emby.Mobile.ViewModels
                 {
                     Services.NavigationService.NavigateToManualServerEntry();
                 });
+            }
+        }
+
+        public ChooseUserProfileViewModel(IServices services) : base(services)
+        {
+            if (IsInDesignMode)
+            {
+                UserProfiles = new ObservableCollection<UserDtoViewModel>
+                {
+                    new UserDtoViewModel(services, new UserDto
+                    {
+                        Name = "7illusions",
+                        HasPassword = false,
+                        LastActivityDate= System.DateTime.Now.AddMinutes(-30)
+                    }),
+                    new UserDtoViewModel(services, new UserDto
+                    {
+                        Name = "Scott",
+                        HasPassword = true,
+                        LastActivityDate= System.DateTime.Now.AddMinutes(-10)
+                    })
+                };
             }
         }
 
@@ -81,7 +82,8 @@ namespace Emby.Mobile.ViewModels
                 {
                     return;
                 }
-
+                
+            
                 UserProfiles = userProfiles.Select(x => new UserDtoViewModel(Services, x)).ToObservableCollection();
 
                 _profilesLoaded = !UserProfiles.IsNullOrEmpty();

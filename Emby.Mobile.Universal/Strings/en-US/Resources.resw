@@ -1366,4 +1366,7 @@
   <data name="AppBarCurrentlyDownloading" xml:space="preserve">
     <value>currently downloading</value>
   </data>
+  <data name="LabelLastSeen" xml:space="preserve">
+    <value>Last seen</value>
+  </data>
 </root>

@@ -19,9 +19,8 @@ namespace Emby.Mobile.Helpers
                     break;
                 case ConnectionState.ServerSignIn:
                     if (services.Authentication.LoggedInUser == null)
-                    {
-                        // TODO: This should really navigate to the public users page first
-                        services.NavigationService.NavigateToManualLocalUserSignIn();
+                    {                        
+                        services.NavigationService.NavigateToChooseProfile();
                     }
                     else
                     {

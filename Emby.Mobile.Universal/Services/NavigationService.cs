@@ -47,7 +47,7 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToChooseProfile()
         {
-            throw new NotImplementedException();
+            return Navigate<ChooseUserProfileView>();
         }
 
         public bool NavigateToFirstRun()
