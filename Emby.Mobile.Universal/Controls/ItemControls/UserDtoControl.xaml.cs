@@ -1,18 +1,18 @@
 ﻿using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.ViewModels.Entities;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace Emby.Mobile.Universal.Controls.ItemControls
 {
     public sealed partial class UserDtoControl : UserControl
     {
         private UserDtoViewModel User => DataContext as UserDtoViewModel;
-        private ICanSignIn CanSignIn => DataContext as ICanSignIn;        
+        private ICanSignIn CanSignIn => DataContext as ICanSignIn;
+
         public UserDtoControl()
         {
             DataContextChanged += (sender, args) => Bindings.Update();
-            this.InitializeComponent();            
+            InitializeComponent();
         }
 
     }

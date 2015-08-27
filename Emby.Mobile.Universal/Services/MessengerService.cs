@@ -15,6 +15,7 @@ namespace Emby.Mobile.Universal.Services
         {
             Messenger.Default.Send(new NotificationMessage(notification));
         }
+
         public void SendNotification(string notification, object sender)
         {
             Messenger.Default.Send(new NotificationMessage(sender, notification));

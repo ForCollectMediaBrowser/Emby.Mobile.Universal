@@ -8,7 +8,6 @@ using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -27,6 +26,7 @@ namespace Emby.Mobile.ViewModels
                 });
             }
         }
+
         public RelayCommand ManualUserProfileEntryCommand
         {
             get

@@ -49,7 +49,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <GridView x:Name="UsersList"
-                  ItemsSource="{x:Bind Vm.UserProfiles, Mode=OneWay}"
+                  ItemsSource="{x:Bind ChooseUser.UserProfiles, Mode=OneWay}"
                   ItemsPanel="{StaticResource HorizontalItemsWrapGrid}">
             <GridView.ItemContainerStyle>
                 <Style TargetType="GridViewItem">
