@@ -91,7 +91,6 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -122,7 +121,6 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
-    <Compile Include="Strings\LocalizedResources.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Connect\ChooseServerView.xaml.cs">
       <DependentUpon>ChooseServerView.xaml</DependentUpon>
