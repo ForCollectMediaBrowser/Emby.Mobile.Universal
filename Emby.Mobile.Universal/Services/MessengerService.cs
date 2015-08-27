@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Messages;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.Mobile.Universal.Services
@@ -7,7 +8,7 @@ namespace Emby.Mobile.Universal.Services
     {
         public void SendAppResetNotification()
         {
-            Messenger.Default.Send(new NotificationMessage("ResetAppMsg"));
+            Messenger.Default.Send(new SignOutAppMessage());
         }
 
         public void SendNotification(string notification)

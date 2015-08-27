@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Messages;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 
@@ -9,7 +11,7 @@ namespace Emby.Mobile.ViewModels
     public abstract class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase
     {
         protected IServices Services { get; }
-        public ILogger Log { get; }
+        protected ILogger Log { get; }
 
         protected ViewModelBase(IServices services)
         {
@@ -24,9 +26,13 @@ namespace Emby.Mobile.ViewModels
 
         protected virtual void WireMessages()
         {
+            Messenger.Default.Register<SignOutAppMessage>(this, async m =>
+            {
+                await OnSignOut();
+            });
         }
 
-        public void SetProgressBar(string text)
+        protected void SetProgressBar(string text)
         {
             ProgressIsVisible = true;
             ProgressText = text;
@@ -34,7 +40,7 @@ namespace Emby.Mobile.ViewModels
             UpdateProperties();
         }
 
-        public void SetProgressBar()
+        protected void SetProgressBar()
         {
             ProgressIsVisible = false;
             ProgressText = string.Empty;
@@ -42,12 +48,17 @@ namespace Emby.Mobile.ViewModels
             UpdateProperties();
         }
 
-        public string GetLocalizedString(string key)
+        protected string GetLocalizedString(string key)
         {
             return Services.LocalizedResources.GetString(key);
         }
 
-        public virtual void UpdateProperties() { }
+        protected virtual Task OnSignOut()
+        {
+            return Task.FromResult(0);
+        }
+
+        protected virtual void UpdateProperties() { }
         
         public bool ProgressIsVisible { get; set; }
         public string ProgressText { get; set; }
