@@ -20,7 +20,7 @@
                              HorizontalAlignment="Center"
                              RelativePanel.AlignHorizontalCenterWithPanel="True"
                              ClickMode="Release"
-                             Command="{x:Bind Connect.SkipCommand}"/>
+                             Command="{x:Bind ConnectViewModel.SkipCommand}"/>
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>

@@ -12,6 +12,6 @@ namespace Emby.Mobile.Universal.Views.Connect
             this.InitializeComponent();
         }
 
-        private ConnectViewModel Connect => DataContext as ConnectViewModel;
+        private ConnectViewModel ConnectViewModel => DataContext as ConnectViewModel;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Emby.Mobile.Universal.Views.Connect
+﻿using Emby.Mobile.ViewModels;
+
+namespace Emby.Mobile.Universal.Views.Connect
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -7,7 +9,9 @@
     {
         public ConnectPinEntryView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
+
+        private ConnectPinEntryViewModel PinEntry => DataContext as ConnectPinEntryViewModel;
     }
 }
