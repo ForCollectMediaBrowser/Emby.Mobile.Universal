@@ -53,7 +53,7 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        public override void UpdateProperties()
+        protected override void UpdateProperties()
         {
             RaisePropertyChanged(() => CanSignIn);
         }
