@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Strings;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
@@ -32,14 +33,14 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(async () =>
                 {
-                    SetProgressBar(Core.Strings.Resources.SysTrayConnecting);
+                    SetProgressBar(Resources.SysTrayConnecting);
 
                     var result = await Services.ConnectionManager.Connect(ServerInfo);
 
                     if (result.State == ConnectionState.Unavailable)
                     {
                         Log.Info("Invalid connection details");
-                        await Services.MessageBox.ShowAsync(Core.Strings.Resources.ErrorUnableToConnect);
+                        await Services.MessageBox.ShowAsync(Resources.ErrorUnableToConnect);
                     }
                     else
                     {

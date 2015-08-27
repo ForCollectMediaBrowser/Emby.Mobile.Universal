@@ -9,7 +9,7 @@ namespace Emby.Mobile.Core.Strings
         private static readonly Resources _localisedResources = new Resources();
         private static ResourceManager _resourceManager;
 
-        public Resources LocalisedResources { get { return _localisedResources; } }
+        public Resources LocalisedResources => _localisedResources;
 
         public string GetString(string key)
         {

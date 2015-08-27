@@ -7,6 +7,7 @@ using System.Windows.Input;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Entities;
 using GalaSoft.MvvmLight.Messaging;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels.Entities
 {
@@ -42,7 +43,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     {
                         if (!await Authenticate(Username, ""))
                         {
-                            ErrorMessage = Core.Strings.Resources.ErrorSigningIn;
+                            ErrorMessage = Resources.ErrorSigningIn;
                         }
                     }
                 });
@@ -68,7 +69,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     }
                     else
                     {
-                        ErrorMessage = Core.Strings.Resources.ErrorUnableToSignIn;
+                        ErrorMessage = Resources.ErrorUnableToSignIn;
                     }
                     Password = string.Empty;
                     UpdateProperties();
@@ -112,7 +113,7 @@ namespace Emby.Mobile.ViewModels.Entities
             var success = false;
             try
             {
-                SetProgressBar(Core.Strings.Resources.SysTraySigningIn);
+                SetProgressBar(Resources.SysTraySigningIn);
 
                 if (await AuthenticationService.Login(Username, Password))
                 {

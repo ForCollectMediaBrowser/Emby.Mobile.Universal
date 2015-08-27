@@ -8,6 +8,7 @@ using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -72,7 +73,7 @@ namespace Emby.Mobile.ViewModels
                 return;
             }
 
-            SetProgressBar(Core.Strings.Resources.SysTrayGettingProfiles);
+            SetProgressBar(Resources.SysTrayGettingProfiles);
 
             try
             {
