@@ -102,9 +102,13 @@
     <Compile Include="Controls\ItemControls\ServerInfoControl.xaml.cs">
       <DependentUpon>ServerInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ItemControls\UserDtoControl.xaml.cs">
+      <DependentUpon>UserDtoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Helpers\NavigationParameters.cs" />
@@ -122,6 +126,9 @@
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\Connect\ChooseUserProfileView.xaml.cs">
+      <DependentUpon>ChooseUserProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Connect\ChooseServerView.xaml.cs">
       <DependentUpon>ChooseServerView.xaml</DependentUpon>
     </Compile>
@@ -175,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemControls\UserDtoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +214,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\Connect\ChooseUserProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Connect\ChooseServerView.xaml">
       <SubType>Designer</SubType>
