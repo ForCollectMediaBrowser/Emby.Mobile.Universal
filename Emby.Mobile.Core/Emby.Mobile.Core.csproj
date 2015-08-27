@@ -43,8 +43,10 @@
     <Compile Include="Extensions\ApplicationSettingsExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\DeviceFamily.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />
     <Compile Include="Interfaces\ICanSignIn.cs" />
+    <Compile Include="Interfaces\IDeviceInfoService.cs" />
     <Compile Include="Interfaces\IDispatcherService.cs" />
     <Compile Include="Interfaces\ILocalizedResources.cs" />
     <Compile Include="Interfaces\ILog.cs" />

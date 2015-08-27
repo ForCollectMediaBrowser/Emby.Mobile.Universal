@@ -19,7 +19,8 @@ namespace Emby.Mobile.Universal.Services
             IAuthenticationService authentication,
             IMessengerService messenger,
             IDispatcherService dispatcher,
-            ILauncherService launcher)
+            ILauncherService launcher,
+            IDeviceInfoService device)
         {
             Log = log;
             NavigationService = navigationService;
@@ -32,6 +33,7 @@ namespace Emby.Mobile.Universal.Services
             Messenger = messenger;
             Dispatcher = dispatcher;
             Launcher = launcher;
+            Device = device;
         }
 
         public ILogger Log { get; }
@@ -45,5 +47,6 @@ namespace Emby.Mobile.Universal.Services
         public IDispatcherService Dispatcher { get; }
         public IMessengerService Messenger { get; }    
         public ILauncherService Launcher { get; }
+        public IDeviceInfoService Device { get; }
     }
 }

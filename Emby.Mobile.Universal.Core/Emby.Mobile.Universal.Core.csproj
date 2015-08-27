@@ -135,6 +135,7 @@
     <Compile Include="NullServices\NullAuthenticationService.cs" />
     <Compile Include="NullServices\NullConnectionManager.cs" />
     <Compile Include="NullServices\Cimbalino\NullMessageBoxService.cs" />
+    <Compile Include="NullServices\NullDeviceInfoService.cs" />
     <Compile Include="NullServices\NullDispatcherService.cs" />
     <Compile Include="NullServices\Cimbalino\NullLauncherService.cs" />
     <Compile Include="NullServices\NullMessengerService.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="NullServices\NullServerInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\DeviceInfoService.cs" />
     <Compile Include="Services\DispatcherService.cs" />
     <Compile Include="Streaming\Windows10Profile.cs" />
     <Content Include="FodyWeavers.xml" />
