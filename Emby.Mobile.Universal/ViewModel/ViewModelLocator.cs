@@ -24,6 +24,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<EmbyConnectSignUpViewModel>();
             Register<StartupViewModel>();
             Register<ChooseServerViewModel>();
+            Register<ChooseUserProfileViewModel>();
             Register<MainViewModel>();
             Register<ManualServerEntryViewModel>();
             Register<ManualLocalUserSignInViewModel>();
@@ -33,6 +34,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public StartupViewModel Startup => Get<StartupViewModel>();
         public EmbyConnectViewModel EmbyConnect => Get<EmbyConnectViewModel>();
         public ChooseServerViewModel ChooseServer => Get<ChooseServerViewModel>();
+        public ChooseUserProfileViewModel ChooseUserProfile => Get<ChooseUserProfileViewModel>();
         public ManualServerEntryViewModel ManualServerEntry => Get<ManualServerEntryViewModel>();
         public EmbyConnectSignUpViewModel ConnectSignUp => Get<EmbyConnectSignUpViewModel>();
         public ManualLocalUserSignInViewModel ManualLocalUser => Get<ManualLocalUserSignInViewModel>();

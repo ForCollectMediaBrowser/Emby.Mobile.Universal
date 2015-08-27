@@ -1,0 +1,71 @@
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.Connect.ChooseUserProfileView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                   xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+                   xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
+                   mc:Ignorable="d"
+                   DataContext="{Binding ChooseUserProfile, Source={StaticResource Locator}}">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <Page.Resources>
+        <ItemsPanelTemplate x:Key="HorizontalItemsWrapGrid">
+            <ItemsWrapGrid Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="VerticalItemsWrapGrid">
+            <ItemsWrapGrid Orientation="Vertical" />
+        </ItemsPanelTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="UsersList.ItemsPanel"
+                                Value="{StaticResource HorizontalItemsWrapGrid}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="UsersList.ItemsPanel"
+                                Value="{StaticResource VerticalItemsWrapGrid}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <GridView x:Name="UsersList"
+                  ItemsSource="{x:Bind ChooseUser.UserProfiles, Mode=OneWay}"
+                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="entities:UserDtoViewModel">
+                    <Button ClickMode="Release"
+                            Command="{x:Bind UserTappedCommand, Mode=OneWay}"
+                            Style="{StaticResource EmptyButtonStyle}">
+                        <itemControls:UserDtoControl />
+                    </Button>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</controls:EmbyPage>

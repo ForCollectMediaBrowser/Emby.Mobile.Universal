@@ -4,5 +4,6 @@
     {
         void SendAppResetNotification();
         void SendNotification(string notification);
+        void SendNotification(string notification, object sender);
     }
 }
