@@ -4,6 +4,7 @@ using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -73,7 +74,7 @@ namespace Emby.Mobile.ViewModels
             RetryButtonIsVisible = false;
             ConnectionResult result = null;
 
-            SetProgressBar(GetLocalizedString("SysTrayGettingServerDetails"));
+            SetProgressBar(Resources.SysTrayGettingServerDetails);
 
             if (_serverInfo != null)
             {

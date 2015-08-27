@@ -2,6 +2,7 @@
 using Emby.Mobile.Core.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -33,7 +34,7 @@ namespace Emby.Mobile.ViewModels
 
                     try
                     {
-                        SetProgressBar(GetLocalizedString("SysTraySigningIn"));
+                        SetProgressBar(Resources.SysTraySigningIn);
 
                         if (await AuthenticationService.Login(Username, Password))
                         {

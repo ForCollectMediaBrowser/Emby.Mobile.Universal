@@ -46,12 +46,7 @@ namespace Emby.Mobile.ViewModels
             ProgressText = string.Empty;
 
             UpdateProperties();
-        }
-
-        protected string GetLocalizedString(string key)
-        {
-            return Services.LocalizedResources.GetString(key);
-        }
+        }       
 
         protected virtual Task OnSignOut()
         {

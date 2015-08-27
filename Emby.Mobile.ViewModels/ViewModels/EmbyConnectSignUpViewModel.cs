@@ -1,5 +1,6 @@
 ﻿using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Strings;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
@@ -55,25 +56,25 @@ namespace Emby.Mobile.ViewModels
                         switch (response)
                         {
                             case ConnectSignupResponse.Success:
-                                await Services.MessageBox.ShowAsync(GetLocalizedString("MessageSignUpSuccessful"), GetLocalizedString("MessageTitleSuccess"), new[] { "Ok" });
+                                await Services.MessageBox.ShowAsync(Resources.MessageSignUpSuccessful, Resources.MessageTitleSuccess, new[] { Resources.ButtonOk });
                                 Services.NavigationService.NavigateToEmbyConnect();
                                 Services.NavigationService.ClearBackStack();
                                 Reset();
                                 break;
                             case ConnectSignupResponse.EmailInUse:
-                                ErrorMessage = GetLocalizedString("ErrorEmailInUse");
+                                ErrorMessage = Resources.ErrorEmailInUse;
                                 break;
                             case ConnectSignupResponse.UsernameInUser:
-                                ErrorMessage = GetLocalizedString("ErrorUsernameInUse");
+                                ErrorMessage = Resources.ErrorUsernameInUse;
                                 break;
                             default:
-                                ErrorMessage = GetLocalizedString("ErrorSigningUp");
+                                ErrorMessage = Resources.ErrorSigningUp;
                                 break;
                         }
                     }
                     catch (HttpException ex)
                     {
-                        ErrorMessage = GetLocalizedString("ErrorSigningUp");
+                        ErrorMessage = Resources.ErrorSigningUp;
                         //Utils.HandleHttpException("SignUpCommand", ex, NavigationService, Log);
                     }
 

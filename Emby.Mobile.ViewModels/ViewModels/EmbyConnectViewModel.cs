@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
-using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -68,7 +68,7 @@ namespace Emby.Mobile.ViewModels
                     return;
                 }
 
-                SetProgressBar(GetLocalizedString("SysTraySigningIn"));
+                SetProgressBar(Resources.SysTraySigningIn);
 
                 var success = await AuthenticationService.LoginWithConnect(Username, Password);
 

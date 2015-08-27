@@ -5,6 +5,7 @@ using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -43,7 +44,7 @@ namespace Emby.Mobile.ViewModels
                     var success = false;
                     try
                     {
-                        SetProgressBar(GetLocalizedString("SysTrayConnecting"));
+                        SetProgressBar(Resources.SysTrayConnecting);
 
                         var result = await Services.ConnectionManager.Connect(DisplayUrl);
 

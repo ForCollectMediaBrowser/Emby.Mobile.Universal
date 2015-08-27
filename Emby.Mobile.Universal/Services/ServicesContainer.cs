@@ -19,7 +19,6 @@ namespace Emby.Mobile.Universal.Services
             IAuthenticationService authentication,
             IMessengerService messenger,
             IDispatcherService dispatcher,
-            ILocalizedResources localizedResources,
             ILauncherService launcher)
         {
             Log = log;
@@ -32,7 +31,6 @@ namespace Emby.Mobile.Universal.Services
             Authentication = authentication;
             Messenger = messenger;
             Dispatcher = dispatcher;
-            LocalizedResources = localizedResources;
             Launcher = launcher;
         }
 
@@ -45,8 +43,7 @@ namespace Emby.Mobile.Universal.Services
         public IApplicationSettingsService ApplicationSettings { get; }
         public IStorageService Storage { get; }
         public IDispatcherService Dispatcher { get; }
-        public IMessengerService Messenger { get; }
-        public ILocalizedResources LocalizedResources { get; }
+        public IMessengerService Messenger { get; }    
         public ILauncherService Launcher { get; }
     }
 }

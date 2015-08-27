@@ -8,6 +8,7 @@ using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -73,7 +74,7 @@ namespace Emby.Mobile.ViewModels
                 return;
             }
 
-            SetProgressBar(GetLocalizedString("SysTrayGettingServers"));
+            SetProgressBar(Resources.SysTrayGettingServers);
 
             try
             {
