@@ -135,11 +135,11 @@
     <Compile Include="Views\Connect\ConnectPinEntryView.xaml.cs">
       <DependentUpon>ConnectPinEntryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Connect\EmbyConnectSignUpView.xaml.cs">
-      <DependentUpon>EmbyConnectSignUpView.xaml</DependentUpon>
+    <Compile Include="Views\Connect\ConnectSignUpView.xaml.cs">
+      <DependentUpon>ConnectSignUpView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Connect\EmbyConnectView.xaml.cs">
-      <DependentUpon>EmbyConnectView.xaml</DependentUpon>
+    <Compile Include="Views\Connect\ConnectView.xaml.cs">
+      <DependentUpon>ConnectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstRun\FirstConnectView.xaml.cs">
       <DependentUpon>FirstConnectView.xaml</DependentUpon>
@@ -243,11 +243,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Connect\EmbyConnectSignUpView.xaml">
+    <Page Include="Views\Connect\ConnectSignUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Connect\EmbyConnectView.xaml">
+    <Page Include="Views\Connect\ConnectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,7 +10,7 @@ using Emby.Mobile.Universal.Services;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.Universal.Views;
 using GalaSoft.MvvmLight.Ioc;
-using EmbyConnectView = Emby.Mobile.Universal.Views.Connect.EmbyConnectView;
+using EmbyConnectView = Emby.Mobile.Universal.Views.Connect.ConnectView;
 
 namespace Emby.Mobile.Universal
 {

@@ -48,8 +48,8 @@
     <Compile Include="ViewModels\ChooseUserProfileViewModel.cs" />
     <Compile Include="ViewModels\ChooseServerViewModel.cs" />
     <Compile Include="ViewModels\ConnectPinEntryViewModel.cs" />
-    <Compile Include="ViewModels\EmbyConnectSignUpViewModel.cs" />
-    <Compile Include="ViewModels\EmbyConnectViewModel.cs" />
+    <Compile Include="ViewModels\ConnectSignUpViewModel.cs" />
+    <Compile Include="ViewModels\ConnectViewModel.cs" />
     <Compile Include="ViewModels\Entities\ItemViewModel.cs" />
     <Compile Include="ViewModels\Entities\UserDtoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

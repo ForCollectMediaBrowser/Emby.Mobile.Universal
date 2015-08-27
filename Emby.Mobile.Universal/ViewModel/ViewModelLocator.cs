@@ -20,8 +20,8 @@ namespace Emby.Mobile.Universal.ViewModel
 
             AppServices.Create();
 
-            Register<EmbyConnectViewModel>();
-            Register<EmbyConnectSignUpViewModel>();
+            Register<ConnectViewModel>();
+            Register<ConnectSignUpViewModel>();
             Register<StartupViewModel>();
             Register<ChooseServerViewModel>();
             Register<ChooseUserProfileViewModel>();
@@ -32,11 +32,11 @@ namespace Emby.Mobile.Universal.ViewModel
 
         public MainViewModel Main => Get<MainViewModel>();
         public StartupViewModel Startup => Get<StartupViewModel>();
-        public EmbyConnectViewModel EmbyConnect => Get<EmbyConnectViewModel>();
+        public ConnectViewModel Connect => Get<ConnectViewModel>();
         public ChooseServerViewModel ChooseServer => Get<ChooseServerViewModel>();
         public ChooseUserProfileViewModel ChooseUserProfile => Get<ChooseUserProfileViewModel>();
         public ManualServerEntryViewModel ManualServerEntry => Get<ManualServerEntryViewModel>();
-        public EmbyConnectSignUpViewModel ConnectSignUp => Get<EmbyConnectSignUpViewModel>();
+        public ConnectSignUpViewModel ConnectSignUp => Get<ConnectSignUpViewModel>();
         public ManualLocalUserSignInViewModel ManualLocalUser => Get<ManualLocalUserSignInViewModel>();
 
         public static void Cleanup()
