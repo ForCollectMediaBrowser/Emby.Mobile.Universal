@@ -8,7 +8,7 @@ namespace Emby.Mobile.Core.Helpers
 
     public sealed class Timer : CancellationTokenSource, IDisposable
     {
-        public Timer(TimerCallback callback, object state, int dueTime, int period)
+        public Timer(TimerCallback callback, object state, int dueTime, int period, CancellationToken cancellationToken)
         {
             Task.Delay(dueTime, Token).ContinueWith(async (t, s) =>
             {
@@ -22,7 +22,7 @@ namespace Emby.Mobile.Core.Helpers
                     await Task.Delay(period);
                 }
 
-            }, Tuple.Create(callback, state), CancellationToken.None,
+            }, Tuple.Create(callback, state), cancellationToken,
                 TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion,
                 TaskScheduler.Default);
         }
