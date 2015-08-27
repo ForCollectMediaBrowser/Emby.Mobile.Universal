@@ -10,7 +10,7 @@ namespace Emby.Mobile.ViewModels
         {
         }
 
-        public string ConnectedTo => string.Format(GetLocalizedString("LabelServerConnected"), Services.ServerInfo?.ServerInfo?.Name);
+        public string ConnectedTo => string.Format(Core.Strings.Resources.LabelServerConnected, Services.ServerInfo?.ServerInfo?.Name);
 
         public RelayCommand SignOutCommand
         {

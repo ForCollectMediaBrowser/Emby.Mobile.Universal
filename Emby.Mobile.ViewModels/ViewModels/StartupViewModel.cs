@@ -73,7 +73,7 @@ namespace Emby.Mobile.ViewModels
             RetryButtonIsVisible = false;
             ConnectionResult result = null;
 
-            SetProgressBar(GetLocalizedString("SysTrayGettingServerDetails"));
+            SetProgressBar(Core.Strings.Resources.SysTrayGettingServerDetails);
 
             if (_serverInfo != null)
             {

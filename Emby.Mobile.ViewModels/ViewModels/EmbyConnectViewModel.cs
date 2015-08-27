@@ -68,7 +68,7 @@ namespace Emby.Mobile.ViewModels
                     return;
                 }
 
-                SetProgressBar(GetLocalizedString("SysTraySigningIn"));
+                SetProgressBar(Core.Strings.Resources.SysTraySigningIn);
 
                 var success = await AuthenticationService.LoginWithConnect(Username, Password);
 

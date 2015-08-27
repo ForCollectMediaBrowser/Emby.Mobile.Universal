@@ -73,7 +73,7 @@ namespace Emby.Mobile.ViewModels
                 return;
             }
 
-            SetProgressBar(GetLocalizedString("SysTrayGettingServers"));
+            SetProgressBar(Core.Strings.Resources.SysTrayGettingServers);
 
             try
             {

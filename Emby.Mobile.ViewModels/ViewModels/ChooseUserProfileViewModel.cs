@@ -72,7 +72,7 @@ namespace Emby.Mobile.ViewModels
                 return;
             }
 
-            SetProgressBar(GetLocalizedString("SysTrayGettingProfiles"));
+            SetProgressBar(Core.Strings.Resources.SysTrayGettingProfiles);
 
             try
             {

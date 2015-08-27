@@ -55,25 +55,25 @@ namespace Emby.Mobile.ViewModels
                         switch (response)
                         {
                             case ConnectSignupResponse.Success:
-                                await Services.MessageBox.ShowAsync(GetLocalizedString("MessageSignUpSuccessful"), GetLocalizedString("MessageTitleSuccess"), new[] { "Ok" });
+                                await Services.MessageBox.ShowAsync(Core.Strings.Resources.MessageSignUpSuccessful, Core.Strings.Resources.MessageTitleSuccess, new[] { Core.Strings.Resources.ButtonOk });
                                 Services.NavigationService.NavigateToEmbyConnect();
                                 Services.NavigationService.ClearBackStack();
                                 Reset();
                                 break;
                             case ConnectSignupResponse.EmailInUse:
-                                ErrorMessage = GetLocalizedString("ErrorEmailInUse");
+                                ErrorMessage = Core.Strings.Resources.ErrorEmailInUse;
                                 break;
                             case ConnectSignupResponse.UsernameInUser:
-                                ErrorMessage = GetLocalizedString("ErrorUsernameInUse");
+                                ErrorMessage = Core.Strings.Resources.ErrorUsernameInUse;
                                 break;
                             default:
-                                ErrorMessage = GetLocalizedString("ErrorSigningUp");
+                                ErrorMessage = Core.Strings.Resources.ErrorSigningUp;
                                 break;
                         }
                     }
                     catch (HttpException ex)
                     {
-                        ErrorMessage = GetLocalizedString("ErrorSigningUp");
+                        ErrorMessage = Core.Strings.Resources.ErrorSigningUp;
                         //Utils.HandleHttpException("SignUpCommand", ex, NavigationService, Log);
                     }
 

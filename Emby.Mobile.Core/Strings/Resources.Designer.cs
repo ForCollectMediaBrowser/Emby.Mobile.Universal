@@ -467,6 +467,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ButtonOk {
+            get {
+                return ResourceManager.GetString("ButtonOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         public static string Collections {
@@ -1471,6 +1480,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelJustShowList {
             get {
                 return ResourceManager.GetString("LabelJustShowList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last seen.
+        /// </summary>
+        public static string LabelLastSeen {
+            get {
+                return ResourceManager.GetString("LabelLastSeen", resourceCulture);
             }
         }
         

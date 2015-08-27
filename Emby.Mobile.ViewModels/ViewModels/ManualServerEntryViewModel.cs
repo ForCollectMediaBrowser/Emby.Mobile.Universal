@@ -43,7 +43,7 @@ namespace Emby.Mobile.ViewModels
                     var success = false;
                     try
                     {
-                        SetProgressBar(GetLocalizedString("SysTrayConnecting"));
+                        SetProgressBar(Core.Strings.Resources.SysTrayConnecting);
 
                         var result = await Services.ConnectionManager.Connect(DisplayUrl);
 

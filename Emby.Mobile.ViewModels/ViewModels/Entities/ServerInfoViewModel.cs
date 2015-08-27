@@ -32,14 +32,14 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(async () =>
                 {
-                    SetProgressBar(GetLocalizedString("SysTrayConnecting"));
+                    SetProgressBar(Core.Strings.Resources.SysTrayConnecting);
 
                     var result = await Services.ConnectionManager.Connect(ServerInfo);
 
                     if (result.State == ConnectionState.Unavailable)
                     {
                         Log.Info("Invalid connection details");
-                        await Services.MessageBox.ShowAsync(GetLocalizedString("ErrorUnableToConnect"));
+                        await Services.MessageBox.ShowAsync(Core.Strings.Resources.ErrorUnableToConnect);
                     }
                     else
                     {

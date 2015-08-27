@@ -42,7 +42,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     {
                         if (!await Authenticate(Username, ""))
                         {
-                            ErrorMessage = GetLocalizedString("ErrorSigningIn");
+                            ErrorMessage = Core.Strings.Resources.ErrorSigningIn;
                         }
                     }
                 });
@@ -68,7 +68,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     }
                     else
                     {
-                        ErrorMessage = GetLocalizedString("ErrorUnableToSignIn");
+                        ErrorMessage = Core.Strings.Resources.ErrorUnableToSignIn;
                     }
                     Password = string.Empty;
                     UpdateProperties();
@@ -112,7 +112,7 @@ namespace Emby.Mobile.ViewModels.Entities
             var success = false;
             try
             {
-                SetProgressBar(GetLocalizedString("SysTraySigningIn"));
+                SetProgressBar(Core.Strings.Resources.SysTraySigningIn);
 
                 if (await AuthenticationService.Login(Username, Password))
                 {

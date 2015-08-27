@@ -1369,4 +1369,7 @@
   <data name="LabelLastSeen" xml:space="preserve">
     <value>Last seen</value>
   </data>
+  <data name="ButtonOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>
