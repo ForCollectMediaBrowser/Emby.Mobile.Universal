@@ -11,9 +11,9 @@ namespace Emby.Mobile.Universal.Core.NullServices
     public class NullAuthenticationService : IAuthenticationService
     {
         public AuthenticationResult AuthenticationResult { get; } = null;
-        public UserDto LoggedInUser { get; } = null;
-        public bool IsLoggedIn { get; } = false;
-        public string LoggedInUserId { get; } = null;
+        public UserDto SignedInUser { get; } = null;
+        public bool IsSignedIn { get; } = false;
+        public string SignedInUserId { get; } = null;
         public bool SignedInUsingConnect { get; } = false;
         public ConnectUser LoggedInConnectUser { get; } = null;
         public void Start()
@@ -26,7 +26,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public Task<bool> Login(string selectedUserName, string pinCode)
+        public Task<bool> SignIn(string selectedUserName, string pinCode)
         {
             throw new NotImplementedException();
         }
@@ -46,7 +46,12 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public Task<bool> LoginWithConnect(string username, string password)
+        public Task<bool> SignInWithConnect(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SignInWithPin(string pin)
         {
             throw new NotImplementedException();
         }

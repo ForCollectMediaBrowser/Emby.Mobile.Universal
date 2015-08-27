@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Emby.Mobile.Core.Extensions;
+using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
@@ -58,6 +59,17 @@ namespace Emby.Mobile.ViewModels
                 else
                 {                    
                     Services.NavigationService.NavigateToFirstRun();                    
+
+                    var family = Services.Device.DeviceFamily;
+                    if (family == DeviceFamily.Xbox || family == DeviceFamily.IoT)
+                    {
+                        Services.NavigationService.NavigateToPinLogin();
+                    }
+                    else
+                    {
+			Services.NavigationService.NavigateToFirstRun();
+                    }
+
                     Services.NavigationService.RemoveBackEntry();
                 }
             }

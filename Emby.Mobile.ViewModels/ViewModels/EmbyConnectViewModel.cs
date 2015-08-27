@@ -70,7 +70,7 @@ namespace Emby.Mobile.ViewModels
 
                 SetProgressBar(Resources.SysTraySigningIn);
 
-                var success = await AuthenticationService.LoginWithConnect(Username, Password);
+                var success = await AuthenticationService.SignInWithConnect(Username, Password);
 
                 if (success)
                 {

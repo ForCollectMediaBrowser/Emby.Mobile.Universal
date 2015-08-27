@@ -9,18 +9,19 @@ namespace Emby.Mobile.Core.Interfaces
     public interface IAuthenticationService
     {
         AuthenticationResult AuthenticationResult { get; }
-        UserDto LoggedInUser { get; }
-        bool IsLoggedIn { get; }
-        string LoggedInUserId { get; }
+        UserDto SignedInUser { get; }
+        bool IsSignedIn { get; }
+        string SignedInUserId { get; }
         bool SignedInUsingConnect { get; }
         ConnectUser LoggedInConnectUser { get; }
         void Start();
         void CheckIfUserSignedIn();
-        Task<bool> Login(string selectedUserName, string pinCode);
+        Task<bool> SignIn(string selectedUserName, string pinCode);
         void SetAuthenticationInfo();
         void ClearLoggedInUser();
         Task<bool> SignOut();
-        Task<bool> LoginWithConnect(string username, string password);
+        Task<bool> SignInWithConnect(string username, string password);
+        Task<bool> SignInWithPin(string pin);
         Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password);
         void SetUser(UserDto user);
         void SetConnectUser(ConnectUser connectUser);

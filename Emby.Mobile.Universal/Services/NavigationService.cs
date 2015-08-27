@@ -65,5 +65,10 @@ namespace Emby.Mobile.Universal.Services
         {
             return Navigate<ManualLocalUserSignInView>();
         }
+
+        public bool NavigateToPinLogin()
+        {
+            return Navigate<ConnectPinEntryView>();
+        }
     }
 }

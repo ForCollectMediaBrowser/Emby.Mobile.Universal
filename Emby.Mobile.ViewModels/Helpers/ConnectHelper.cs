@@ -18,7 +18,7 @@ namespace Emby.Mobile.Helpers
                     services.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
-                    if (services.Authentication.LoggedInUser == null)
+                    if (services.Authentication.SignedInUser == null)
                     {                        
                         services.NavigationService.NavigateToChooseProfile();
                     }
@@ -28,7 +28,7 @@ namespace Emby.Mobile.Helpers
                     }
                     break;
                 case ConnectionState.SignedIn:
-                    if (services.Authentication.LoggedInUser == null)
+                    if (services.Authentication.SignedInUser == null)
                     {
                         var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
                         services.Authentication.SetUser(user);

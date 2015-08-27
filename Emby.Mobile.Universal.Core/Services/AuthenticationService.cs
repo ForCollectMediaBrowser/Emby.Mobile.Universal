@@ -94,7 +94,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         private void ConnectionManagerOnLocalUserSignOut(object sender, EventArgs eventArgs)
         {
-            _dispatcher.RunAsync(() => LoggedInUser = null);
+            _dispatcher.RunAsync(() => SignedInUser = null);
         }
 
         private void ConnectionManagerOnLocalUserSignIn(object sender, GenericEventArgs<UserDto> e)
@@ -104,7 +104,7 @@ namespace Emby.Mobile.Universal.Core.Services
                 SetUser(e.Argument);
                 if (AuthenticationResult != null)
                 {
-                    _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+                    _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, SignedInUserId);
                 }
             });
         }
@@ -147,7 +147,7 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
-        public async Task<bool> Login(string selectedUserName, string pinCode)
+        public async Task<bool> SignIn(string selectedUserName, string pinCode)
         {
             var success = false;
             try
@@ -185,7 +185,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void ClearLoggedInUser()
         {
-            LoggedInUser = null;
+            SignedInUser = null;
             _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
         }
 
@@ -210,7 +210,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         private void ClearUserData()
         {
-            LoggedInUser = null;
+            SignedInUser = null;
             LoggedInConnectUser = null;
             AuthenticationResult = null;
             _messengerService.SendNotification("ClearNowPlayingMsg");
@@ -220,17 +220,17 @@ namespace Emby.Mobile.Universal.Core.Services
             _settingsService.Remove(Constants.Settings.ConnectUser);
         }
 
-        public UserDto LoggedInUser { get; private set; }
+        public UserDto SignedInUser { get; private set; }
 
-        public bool IsLoggedIn => LoggedInUser != null;
+        public bool IsSignedIn => SignedInUser != null;
 
-        public string LoggedInUserId => LoggedInUser?.Id;
+        public string SignedInUserId => SignedInUser?.Id;
 
-        public bool SignedInUsingConnect => LoggedInConnectUser != null && LoggedInUser != null && LoggedInConnectUser.Id == LoggedInUser.ConnectUserId;
+        public bool SignedInUsingConnect => LoggedInConnectUser != null && SignedInUser != null && LoggedInConnectUser.Id == SignedInUser.ConnectUserId;
 
         public ConnectUser LoggedInConnectUser { get; private set; }
 
-        public async Task<bool> LoginWithConnect(string username, string password)
+        public async Task<bool> SignInWithConnect(string username, string password)
         {
             try
             {
@@ -254,6 +254,14 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
+        public async Task<bool> SignInWithPin(string pin)
+        {
+            var success = false;
+            
+
+            return success;
+        }
+
         public async Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password)
         {
             var response = await _connectionManager.SignupForConnect(email, username, password);
@@ -263,9 +271,9 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void SetUser(UserDto user)
         {
-            LoggedInUser = user;
+            SignedInUser = user;
 
-            _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, LoggedInUser);
+            _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, SignedInUser);
         }
 
         public void SetConnectUser(ConnectUser connectUser)
@@ -281,7 +289,7 @@ namespace Emby.Mobile.Universal.Core.Services
             var authInfo = new AuthenticationResult
             {
                 AccessToken = accessToken,
-                User = LoggedInUser
+                User = SignedInUser
             };
 
             _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, authInfo);

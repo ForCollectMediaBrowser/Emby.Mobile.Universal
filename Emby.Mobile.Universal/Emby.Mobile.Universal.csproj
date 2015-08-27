@@ -132,6 +132,9 @@
     <Compile Include="Views\Connect\ChooseServerView.xaml.cs">
       <DependentUpon>ChooseServerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Connect\ConnectPinEntryView.xaml.cs">
+      <DependentUpon>ConnectPinEntryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Connect\EmbyConnectSignUpView.xaml.cs">
       <DependentUpon>EmbyConnectSignUpView.xaml</DependentUpon>
     </Compile>
@@ -233,6 +236,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Connect\ChooseServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Connect\ConnectPinEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
