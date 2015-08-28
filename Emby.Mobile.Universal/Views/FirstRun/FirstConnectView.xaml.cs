@@ -11,7 +11,5 @@ namespace Emby.Mobile.Universal.Views.FirstRun
         {
             InitializeComponent();
         }
-
-       
     }
 }
