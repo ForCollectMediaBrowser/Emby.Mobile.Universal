@@ -596,7 +596,7 @@
     <value>Views</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Welcome to Emby for Windows. This app will allow you to browse your media collection, stream it to your devce and remotely control any of the controllable Emby clients.</value>
+    <value>Welcome to Emby for Windows. This app will allow you to browse your media collection, stream it to your device and remotely control any of the controllable Emby clients.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Writer</value>

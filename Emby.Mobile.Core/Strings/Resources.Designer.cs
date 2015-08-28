@@ -2663,7 +2663,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Emby for Windows. This app will allow you to browse your media collection, stream it to your devce and remotely control any of the controllable Emby clients..
+        ///   Looks up a localized string similar to Welcome to Emby for Windows. This app will allow you to browse your media collection, stream it to your device and remotely control any of the controllable Emby clients..
         /// </summary>
         public static string LabelWelcomeText {
             get {

@@ -2,6 +2,7 @@
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
+using Emby.Mobile.Universal.Views.FirstRun;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -52,7 +53,7 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToFirstRun()
         {
-            return Navigate<Views.FirstRun.WelcomeView>();
+            return Navigate<WelcomeView>();
         }
 
         public bool NavigateToManualServerEntry()

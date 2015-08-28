@@ -1,9 +1,6 @@
-﻿using Emby.Mobile.Universal.Services;
-using Windows.UI.Xaml.Controls;
-
-namespace Emby.Mobile.Universal.Views.FirstRun
+﻿namespace Emby.Mobile.Universal.Views.FirstRun
 {
-    public sealed partial class DownloadServerView : Page
+    public sealed partial class DownloadServerView
     {
         public DownloadServerView()
         {
@@ -17,7 +14,7 @@ namespace Emby.Mobile.Universal.Views.FirstRun
 
         private void NextButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            AppServices.NavigationService.Navigate<FirstConnectView>();
+            NavigationService.Navigate<FirstConnectView>();
         }
     }
 }
