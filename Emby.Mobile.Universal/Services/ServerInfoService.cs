@@ -2,13 +2,14 @@
 using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
-using Emby.Mobile.Universal.Core;
 using MediaBrowser.Model.ApiClient;
 
 namespace Emby.Mobile.Universal.Services
 {
     public class ServerInfoService : IServerInfoService
     {
+        public const string DefaultServerSetting = "DefaultServerSettingKey";
+
         private readonly IApplicationSettingsService _applicationSettings;
         public ServerInfoService(IApplicationSettingsService applicationSettings)
         {
@@ -37,16 +38,23 @@ namespace Emby.Mobile.Universal.Services
         public event EventHandler<ServerInfo> ServerInfoChanged;
         public void Save()
         {
-            _applicationSettings.Roaming.SafeSet(Constants.Settings.DefaultServerSetting, ServerInfo);
+            _applicationSettings.Roaming.SafeSet(DefaultServerSetting, ServerInfo);
         }
 
         public ServerInfo Load()
         {
-            var server = _applicationSettings.Roaming.SafeGet<ServerInfo>(Constants.Settings.DefaultServerSetting);
+            var server = _applicationSettings.Roaming.SafeGet<ServerInfo>(DefaultServerSetting);
 
             SetServerInfo(server);
 
             return server;
+        }
+
+        public void Clear()
+        {
+            _applicationSettings.Roaming.Remove(DefaultServerSetting);
+
+            SendEvent();
         }
     }
 }

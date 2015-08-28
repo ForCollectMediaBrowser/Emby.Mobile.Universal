@@ -69,13 +69,13 @@
                                            Text="{StaticResource Plus}"
                                            FontSize="80"
                                            Style="{StaticResource Mdl2Style}"
-                                           RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                                           RelativePanel.AlignVerticalCenterWithPanel="True" />
                                 <TextBlock Text="**Add Server"
                                            Style="{StaticResource TitleTextBlockStyle}"
                                            Foreground="{StaticResource EmbyGreenBrush}"
                                            RelativePanel.RightOf="PlusText"
                                            RelativePanel.AlignVerticalCenterWithPanel="True"
-                                           Margin="6,0"/>
+                                           Margin="6,0" />
                             </RelativePanel>
                         </Button>
                         <Button ClickMode="Release"

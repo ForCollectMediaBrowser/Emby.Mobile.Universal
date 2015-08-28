@@ -2888,6 +2888,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will sign you out of your current user, are you sure?.
+        /// </summary>
+        public static string MessageSignOutOfCurrentUser {
+            get {
+                return ResourceManager.GetString("MessageSignOutOfCurrentUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have successfully signed up, please check your email for a validation email..
         /// </summary>
         public static string MessageSignUpSuccessful {

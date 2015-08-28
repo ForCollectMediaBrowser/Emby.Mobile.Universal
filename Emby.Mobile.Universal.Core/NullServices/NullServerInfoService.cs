@@ -32,6 +32,10 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public void Clear()
+        {
+        }
+
         public void SetServerInfo(ServerInfo serverInfo)
         {
         }
