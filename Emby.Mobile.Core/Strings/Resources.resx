@@ -1372,4 +1372,7 @@
   <data name="ButtonOk" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="MessageSignOutOfCurrentUser" xml:space="preserve">
+    <value>This will sign you out of your current user, are you sure?</value>
+  </data>
 </root>

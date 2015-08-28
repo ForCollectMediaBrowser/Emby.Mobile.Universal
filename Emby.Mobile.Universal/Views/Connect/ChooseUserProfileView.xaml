@@ -25,6 +25,20 @@
         </ItemsPanelTemplate>
     </Page.Resources>
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarChangeServer}"
+                              Command="{x:Bind ChooseUser.ChangeServerCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource Server}"
+                                  Style="{StaticResource Mdl2FontStyle}"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
