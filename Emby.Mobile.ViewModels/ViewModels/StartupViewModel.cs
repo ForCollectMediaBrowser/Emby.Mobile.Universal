@@ -56,10 +56,8 @@ namespace Emby.Mobile.ViewModels
                     Services.NavigationService.NavigateToServerSelection();
                 }
                 else
-                {
-                    // TODO: This should navigate to First run, but for now, can go to Connect sign in
-                    //Services.NavigationService.NavigateToFirstRun();
-                    Services.NavigationService.NavigateToEmbyConnect();
+                {                    
+                    Services.NavigationService.NavigateToFirstRun();                    
                     Services.NavigationService.RemoveBackEntry();
                 }
             }

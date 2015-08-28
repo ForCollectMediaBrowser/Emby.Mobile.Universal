@@ -52,7 +52,7 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToFirstRun()
         {
-            return false;
+            return Navigate<Views.FirstRun.WelcomeView>();
         }
 
         public bool NavigateToManualServerEntry()

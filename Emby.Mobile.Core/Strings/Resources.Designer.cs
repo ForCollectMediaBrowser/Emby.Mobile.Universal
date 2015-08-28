@@ -1376,6 +1376,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Before we can get started though, you need to make sure you&apos;re running the Emby server on a machine in your local network or that you have access to a server, either via Emby Connect or a URL. (Scott, elaborate on this please).
+        /// </summary>
+        public static string LabelFirstRunServerInfo_v2 {
+            get {
+                return ResourceManager.GetString("LabelFirstRunServerInfo_v2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to general.
         /// </summary>
         public static string LabelGeneral {
@@ -2645,20 +2654,20 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Emby for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Emby clients..
+        ///   Looks up a localized string similar to Visit Emby website.
         /// </summary>
-        public static string LabelWelcomeText {
+        public static string LabelVisitEmbyWebsite {
             get {
-                return ResourceManager.GetString("LabelWelcomeText", resourceCulture);
+                return ResourceManager.GetString("LabelVisitEmbyWebsite", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Emby for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Emby clients..
+        ///   Looks up a localized string similar to Welcome to Emby for Windows. This app will allow you to browse your media collection, stream it to your devce and remotely control any of the controllable Emby clients..
         /// </summary>
-        public static string LabelWelcomeTextPhone7 {
+        public static string LabelWelcomeText {
             get {
-                return ResourceManager.GetString("LabelWelcomeTextPhone7", resourceCulture);
+                return ResourceManager.GetString("LabelWelcomeText", resourceCulture);
             }
         }
         

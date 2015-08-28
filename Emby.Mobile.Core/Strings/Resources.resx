@@ -596,7 +596,7 @@
     <value>Views</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Welcome to Emby for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Emby clients.</value>
+    <value>Welcome to Emby for Windows. This app will allow you to browse your media collection, stream it to your devce and remotely control any of the controllable Emby clients.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Writer</value>
@@ -800,9 +800,6 @@
   <data name="LabelReleasedIn" xml:space="preserve">
     <value>Released in</value>
     <comment>eg, Released in 1993</comment>
-  </data>
-  <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Welcome to Emby for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Emby clients.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Channels</value>
@@ -1371,5 +1368,11 @@
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>Ok</value>
+  </data>
+  <data name="LabelFirstRunServerInfo_v2" xml:space="preserve">
+    <value>Before we can get started though, you need to make sure you're running the Emby server on a machine in your local network or that you have access to a server, either via Emby Connect or a URL. (Scott, elaborate on this please)</value>
+  </data>
+  <data name="LabelVisitEmbyWebsite" xml:space="preserve">
+    <value>Visit Emby website</value>
   </data>
 </root>
