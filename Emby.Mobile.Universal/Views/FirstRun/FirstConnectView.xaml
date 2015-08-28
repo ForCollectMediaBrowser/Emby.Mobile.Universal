@@ -1,0 +1,61 @@
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.FirstRun.FirstConnectView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Emby.Mobile.Universal.Views.FirstRun"
+      xmlns:controls="using:Emby.Mobile.Universal.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      DataContext="{Binding EmbyConnect, Source={StaticResource Locator}}">
+
+    <Grid Background="{ThemeResource EmbyWhiteSmokeBrush}">
+        <RelativePanel>
+            <Border x:Name="Logo"
+                    Background="{StaticResource EmbyDarkGrayBrush}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True">
+                <Image RelativePanel.AlignTopWithPanel="True"
+                       Margin="10,30"
+                       MaxHeight="100"
+                       Source="ms-appx:///Assets/logoLight.png" />
+            </Border>
+            <controls:LoginControl x:Name="LoginControl"
+                                   Margin="0,50"
+                                   RelativePanel.AlignRightWithPanel="True"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.AlignVerticalCenterWithPanel="True"
+                                   RelativePanel.Below="Logo" />
+            <Image RelativePanel.Below="LoginControl"
+                   RelativePanel.AlignBottomWithPanel="True"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   RelativePanel.AlignRightWithPanel="True"
+                   Stretch="UniformToFill"
+                   Source="ms-appx:///Assets/Backdrops/EmbyRandomAvatars.jpg" />
+            <Button x:Name="ManualConnectButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.Below="LoginControl"
+                    ClickMode="Release"
+                    Command="{x:Bind EmbyConnect.SkipCommand}">
+                <StackPanel>
+                    <Border CornerRadius="20"
+                            Height="40"
+                            Width="40"
+                            Background="{StaticResource EmbyDarkGrayBrush}">
+                        <TextBlock Style="{StaticResource Mdl2Style}"
+                                   Text="{StaticResource Pen}"
+                                   FontSize="20"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"></TextBlock>
+                    </Border>
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=HeaderManualConnection}"
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                </StackPanel>
+            </Button>
+        </RelativePanel>
+    </Grid>
+</controls:EmbyPage>

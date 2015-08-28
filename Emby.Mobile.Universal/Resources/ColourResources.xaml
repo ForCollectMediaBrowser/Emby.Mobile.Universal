@@ -4,5 +4,13 @@
     <Color x:Key="EmbyGreenColor">#52B54B</Color>
     <SolidColorBrush x:Key="EmbyGreenBrush"
                      Color="{StaticResource EmbyGreenColor}" />
-
+    <Color x:Key="EmbyDarkGrayColor">#333333</Color>
+    <SolidColorBrush x:Key="EmbyDarkGrayBrush"
+                     Color="{StaticResource EmbyDarkGrayColor}" />
+    <Color x:Key="EmbyLightGrayColor">#333333</Color>
+    <SolidColorBrush x:Key="EmbyLightGrayBrush"
+                     Color="{StaticResource EmbyLightGrayColor}" />
+    <Color x:Key="EmbyWhiteSmokeColor">#F5F5F5</Color>
+    <SolidColorBrush x:Key="EmbyWhiteSmokeBrush"
+                     Color="{StaticResource EmbyWhiteSmokeColor}" />
 </ResourceDictionary>

@@ -138,6 +138,15 @@
     <Compile Include="Views\Connect\EmbyConnectView.xaml.cs">
       <DependentUpon>EmbyConnectView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FirstRun\FirstConnectView.xaml.cs">
+      <DependentUpon>FirstConnectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstRun\DownloadServerView.xaml.cs">
+      <DependentUpon>DownloadServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstRun\WelcomeView.xaml.cs">
+      <DependentUpon>WelcomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -158,7 +167,11 @@
     <None Include="Emby.Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Backdrops\EmbySplashNoLogo.png" />
+    <Content Include="Assets\Backdrops\EmbyRandomAvatars.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\LogoDark.png" />
+    <Content Include="Assets\LogoLight.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
@@ -228,6 +241,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Connect\EmbyConnectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\FirstConnectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstRun\DownloadServerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstRun\WelcomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
