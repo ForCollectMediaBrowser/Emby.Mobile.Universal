@@ -13,8 +13,11 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public DeviceFamily DeviceFamily { get; }
 
-        private DeviceFamily GetDeviceFamily()
+        private static DeviceFamily GetDeviceFamily()
         {
+#if DEBUG
+            return DeviceFamily.Xbox;
+#else
             var deviceFamily = AnalyticsInfo.VersionInfo.DeviceFamily;
             DeviceFamily result;
 
@@ -41,6 +44,7 @@ namespace Emby.Mobile.Universal.Core.Services
             }
 
             return result;
+#endif
         }
     }
 }

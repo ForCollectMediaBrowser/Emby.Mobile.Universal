@@ -1,4 +1,6 @@
-﻿using Emby.Mobile.ViewModels;
+﻿using Windows.UI.Xaml.Navigation;
+using Emby.Mobile.ViewModels;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.Mobile.Universal.Views.Connect
 {
@@ -11,7 +13,13 @@ namespace Emby.Mobile.Universal.Views.Connect
         {
             InitializeComponent();
         }
-
+        
         private ConnectPinEntryViewModel PinEntry => DataContext as ConnectPinEntryViewModel;
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            PinEntry.Cancel();
+            base.OnNavigatedFrom(e);
+        }
     }
 }

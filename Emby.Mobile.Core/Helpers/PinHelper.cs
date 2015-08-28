@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
@@ -71,31 +72,43 @@ namespace Emby.Mobile.Core.Helpers
             {
                 if (_cancellationToken.IsCancellationRequested)
                 {
-                    _timer.Dispose();
-                    _tcs.SetResult(PinResult.Cancelled);
+                    SetResult(PinResult.Cancelled);
                     return;
                 }
 
                 var services = state as IServices;
                 if (services == null) return;
+
                 var pinInfo = await services.ConnectionManager.GetPinStatus(_pinInfo);
                 if (pinInfo.IsConfirmed)
                 {
                     _timer.Dispose();
 
                     await services.ConnectionManager.ExchangePin(_pinInfo);
-                    _tcs.SetResult(PinResult.Success);
+                    SetResult(PinResult.Success);
                 }
                 else if (pinInfo.IsExpired)
                 {
-                    _timer.Dispose();
-                    _tcs.SetResult(PinResult.Expired);
+                    SetResult(PinResult.Expired);
                 }
             }
             catch (HttpException ex)
             {
-                _tcs.SetResult(PinResult.Fail);
+                if (!ex.StatusCode.HasValue || ex.StatusCode.Value != HttpStatusCode.NotFound)
+                {
+                    SetResult(PinResult.Fail);
+                }
             }
+            catch (Exception)
+            {
+                SetResult(PinResult.Fail);
+            }
+        }
+
+        private static void SetResult(PinResult result)
+        {
+            _timer.Dispose();
+            _tcs.SetResult(result);
         }
     }
 }

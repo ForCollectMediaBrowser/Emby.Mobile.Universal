@@ -18,7 +18,42 @@
         <RelativePanel VerticalAlignment="Center"
                        HorizontalAlignment="Stretch"
                        MaxWidth="360">
-            <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignInWithConnect}"/>
+            <TextBlock x:Name="WelcomeText"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignInWithConnect}"
+                       Style="{StaticResource HeaderTextBlockStyle}"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" />
+            <TextBlock x:Name="Paragraph1"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectPara1}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       RelativePanel.Below="WelcomeText"
+                       Margin="0,6"/>
+            <TextBlock x:Name="PinDescription"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectPin}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       RelativePanel.Below="Paragraph1"
+                       Margin="0,6" />
+            <HyperlinkButton x:Name="PinAddress"
+                             Style="{StaticResource EmptyButtonStyle}"
+                             Content="http://emby.media/pin"
+                             Foreground="{StaticResource EmbyGreenBrush}"
+                             ClickMode="Release"
+                             Command="{x:Bind PinEntry.PinAddressCommand}"
+                             RelativePanel.Below="PinDescription"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
+                             Margin="0,6"/>
+            <TextBlock x:Name="Pin"
+                       Text="{x:Bind PinEntry.Pin, Mode=OneWay}"
+                       Style="{StaticResource HeaderTextBlockStyle}"
+                       Foreground="{StaticResource EmbyGreenBrush}"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                       RelativePanel.Below="PinAddress"/>
+            <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSkip}"
+                             RelativePanel.Below="Pin"
+                             HorizontalAlignment="Center"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
+                             ClickMode="Release"
+                             Margin="0,12"
+                             Command="{x:Bind PinEntry.SkipCommand}" />
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>

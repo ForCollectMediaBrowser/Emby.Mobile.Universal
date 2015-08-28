@@ -15,12 +15,46 @@ namespace Emby.Mobile.ViewModels
 
         public string Pin { get; set; }
 
-        public RelayCommand CancelCommand => new RelayCommand(PinHelper.Cancel);
+        public RelayCommand SkipCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Cancel();
+                    Services.NavigationService.NavigateToManualServerEntry();
+                });
+            }
+        } 
+
+        public RelayCommand PinAddressCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.Launcher.LaunchUriAsync("http://emby.media/pin");
+                });
+            }
+        }
+
+        public void Cancel()
+        {
+            if (PinHelper.IsBusy)
+            {
+                PinHelper.Cancel();
+            }
+        }
 
         protected override async Task PageLoaded()
         {
             try
             {
+                if (PinHelper.IsBusy)
+                {
+                    return;
+                }
+
                 SetProgressBar("Getting pin...");
                 var result = await PinHelper.ConnectUsingPin(Services, SetPin);
 
