@@ -8,7 +8,7 @@
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
     
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Compact">
+        <CommandBar ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
                               Command="{x:Bind Main.SignOutCommand}"/>

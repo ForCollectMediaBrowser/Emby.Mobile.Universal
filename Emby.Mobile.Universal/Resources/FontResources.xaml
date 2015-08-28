@@ -2,4 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--<FontFamily x:Key="MaterialFont">/Fonts/MaterialIcons-Regular.ttf#Material Icons</FontFamily>-->
+
+    <Style TargetType="FontIcon"
+           x:Key="Mdl2FontStyle">
+        <Setter Property="FontFamily"
+                Value="Segoe MDL2 Assets"/>
+    </Style>
 </ResourceDictionary>

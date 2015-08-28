@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
 using Emby.Mobile.Core.Strings;
+using Emby.Mobile.Helpers;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -35,6 +36,17 @@ namespace Emby.Mobile.ViewModels
                 return new RelayCommand(() =>
                 {
                     Services.NavigationService.NavigateToManualServerEntry();
+                });
+            }
+        }
+
+        public RelayCommand ChangeServerCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await ServerHelper.ChangeServer(Services);
                 });
             }
         }

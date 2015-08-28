@@ -11,5 +11,6 @@ namespace Emby.Mobile.Core.Interfaces
         event EventHandler<ServerInfo> ServerInfoChanged;
         void Save();
         ServerInfo Load();
+        void Clear();
     }
 }

@@ -98,7 +98,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change server.
+        ///   Looks up a localized string similar to change server.
         /// </summary>
         public static string AppBarChangeServer {
             get {
@@ -2875,6 +2875,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string MessagePlaceholder {
             get {
                 return ResourceManager.GetString("MessagePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will sign you out of your current user, are you sure?.
+        /// </summary>
+        public static string MessageSignOutOfCurrentUser {
+            get {
+                return ResourceManager.GetString("MessageSignOutOfCurrentUser", resourceCulture);
             }
         }
         

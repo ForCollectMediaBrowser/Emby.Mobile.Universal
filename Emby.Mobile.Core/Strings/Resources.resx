@@ -1155,7 +1155,7 @@
     <value>Sign out</value>
   </data>
   <data name="AppBarChangeServer" xml:space="preserve">
-    <value>Change server</value>
+    <value>change server</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
     <value>Sign in with Emby Connect</value>
@@ -1371,5 +1371,8 @@
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>Ok</value>
+  </data>
+  <data name="MessageSignOutOfCurrentUser" xml:space="preserve">
+    <value>This will sign you out of your current user, are you sure?</value>
   </data>
 </root>
