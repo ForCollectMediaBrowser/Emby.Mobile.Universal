@@ -98,7 +98,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to change server.
+        ///   Looks up a localized string similar to Change server.
         /// </summary>
         public static string AppBarChangeServer {
             get {
