@@ -1,6 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Emby.Mobile.Core.Extensions;
-using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
