@@ -1426,7 +1426,7 @@
     <value>Loading programmes...</value>
   </data>
   <data name="SysTrayCancellingProgramme" xml:space="preserve">
-    <value>Canceling programme...</value>
+    <value>Cancelling programme...</value>
   </data>
   <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
     <value>Setting programme to record...</value>
