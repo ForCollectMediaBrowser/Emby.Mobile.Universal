@@ -69,6 +69,8 @@ namespace Emby.Mobile.ViewModels
                     case PinResult.Success:
                         var connectResult = await Services.ConnectionManager.Connect();
 
+                        AuthenticationService.SetConnectUser(connectResult.ConnectUser);
+
                         await ConnectHelper.HandleConnectState(connectResult, Services, ApiClient);
                         break;
                 }

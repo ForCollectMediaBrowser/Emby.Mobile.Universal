@@ -21,6 +21,7 @@ namespace Emby.Mobile.Universal.Core.Services
         private readonly IConnectionManager _connectionManager;
         private readonly IMessengerService _messengerService;
         private readonly IApplicationSettingsServiceHandler _settingsService;
+        private readonly IServerInfoService _serverInfoService;
         private readonly ILogger _logger;
         private readonly IDispatcherService _dispatcher;
 
@@ -36,6 +37,7 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             _settingsService = settingsService.Roaming;
             _connectionManager = connectionManager;
+            _serverInfoService = serverInfoService;
             _logger = logger;
             _dispatcher = dispatcher;
             _messengerService = messengerService;
@@ -189,7 +191,7 @@ namespace Emby.Mobile.Universal.Core.Services
             _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
         }
 
-        public async Task<bool> SignOut()
+        public async Task<bool> SignOut(bool removeServerInfo)
         {
             var success = false;
 
@@ -198,6 +200,12 @@ namespace Emby.Mobile.Universal.Core.Services
                 await _connectionManager.Logout();
                 ClearUserData();
                 _messengerService.SendAppResetNotification();
+
+                if (removeServerInfo)
+                {
+                   _serverInfoService.Clear();
+                }
+
                 success = true;
             }
             catch (HttpException ex)
@@ -226,7 +234,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public string SignedInUserId => SignedInUser?.Id;
 
-        public bool SignedInUsingConnect => LoggedInConnectUser != null && SignedInUser != null && LoggedInConnectUser.Id == SignedInUser.ConnectUserId;
+        public bool SignedInUsingConnect => LoggedInConnectUser != null;
 
         public ConnectUser LoggedInConnectUser { get; private set; }
 
@@ -279,6 +287,8 @@ namespace Emby.Mobile.Universal.Core.Services
         public void SetConnectUser(ConnectUser connectUser)
         {
             LoggedInConnectUser = connectUser;
+
+            _connectionManager.Connect = LoggedInConnectUser;
 
             _settingsService.SafeSet(Constants.Settings.ConnectUser, LoggedInConnectUser);
         }

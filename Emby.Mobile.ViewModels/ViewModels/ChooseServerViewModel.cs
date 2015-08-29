@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using Emby.Mobile.Core.Strings;
+using Emby.Mobile.Universal.Core.Helpers;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -61,6 +62,8 @@ namespace Emby.Mobile.ViewModels
                 });
             }
         }
+
+        public RelayCommand SignOutCommand => new RelayCommand(async () => { await SignOutHelper.SignOut(Services); });
 
         protected override async Task PageLoaded()
         {

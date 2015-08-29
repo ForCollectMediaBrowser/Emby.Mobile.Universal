@@ -57,17 +57,14 @@ namespace Emby.Mobile.ViewModels
                     Services.NavigationService.NavigateToServerSelection();
                 }
                 else
-                {                    
-                    Services.NavigationService.NavigateToFirstRun();                    
-
-                    var family = Services.Device.DeviceFamily;
-                    if (family == DeviceFamily.Xbox || family == DeviceFamily.IoT)
+                {
+                    if (ConnectHelper.UsePinLogin(Services.Device.DeviceFamily))
                     {
                         Services.NavigationService.NavigateToPinLogin();
                     }
                     else
                     {
-			Services.NavigationService.NavigateToFirstRun();
+                        Services.NavigationService.NavigateToFirstRun();
                     }
 
                     Services.NavigationService.RemoveBackEntry();

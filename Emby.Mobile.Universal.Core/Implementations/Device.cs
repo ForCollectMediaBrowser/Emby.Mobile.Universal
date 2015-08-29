@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
 using Windows.Storage;
 using Windows.System.Profile;
+using Emby.Mobile.Universal.Core.Implementations.Security;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Devices;
 
@@ -76,7 +77,7 @@ namespace Emby.Mobile.Universal.Core.Implementations
             using (var reader = new BinaryReader(stream))
             {
                 var bytes = reader.ReadBytes((int)stream.Length);
-                return Convert.ToBase64String(bytes);
+                return new Guid(new CryptographyProvider().CreateMD5(bytes)).ToString();
             }
         }
 

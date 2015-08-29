@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using MediaBrowser.Model.ApiClient;
 
@@ -47,6 +48,11 @@ namespace Emby.Mobile.Helpers
                     services.NavigationService.NavigateToConnectFirstRun();
                     break;
             }
+        }
+
+        public static bool UsePinLogin(DeviceFamily deviceFamily)
+        {
+            return deviceFamily == DeviceFamily.Xbox || deviceFamily == DeviceFamily.IoT;
         }
     }
 }
