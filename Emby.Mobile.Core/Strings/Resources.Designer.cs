@@ -557,7 +557,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, there was an error cancelling this series at this time..
+        ///   Looks up a localized string similar to Sorry, there was an error canceling this series at this time..
         /// </summary>
         public static string ErrorDeletingSeriesRecording {
             get {
@@ -2177,7 +2177,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record programme at any time.
+        ///   Looks up a localized string similar to Record program at any time.
         /// </summary>
         public static string LabelRecordProgrammeAtAnyTime {
             get {
@@ -2186,7 +2186,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record programme on all channels.
+        ///   Looks up a localized string similar to Record program on all channels.
         /// </summary>
         public static string LabelRecordProgrammeOnAllChannels {
             get {
@@ -3212,7 +3212,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancelling programme....
+        ///   Looks up a localized string similar to Canceling program....
         /// </summary>
         public static string SysTrayCancellingProgramme {
             get {
@@ -3221,7 +3221,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancelling series link....
+        ///   Looks up a localized string similar to Canceling series link....
         /// </summary>
         public static string SysTrayCancellingSeriesRecording {
             get {
@@ -3482,7 +3482,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Getting programmes....
+        ///   Looks up a localized string similar to Getting programs....
         /// </summary>
         public static string SysTrayGettingProgrammes {
             get {
@@ -3635,7 +3635,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading programmes....
+        ///   Looks up a localized string similar to Loading programs....
         /// </summary>
         public static string SysTrayLoadingProgrammes {
             get {
@@ -3707,7 +3707,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting programme to record....
+        ///   Looks up a localized string similar to Setting program to record....
         /// </summary>
         public static string SysTraySettingProgrammeToRecord {
             get {
