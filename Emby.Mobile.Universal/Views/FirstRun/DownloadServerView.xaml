@@ -18,23 +18,23 @@
                        MaxHeight="100"
                        Source="ms-appx:///Assets/logoLight.png" />
             </Border>
-            <TextBlock x:Name="WelcomeLabel"
+            <TextBlock x:Name="ServerInfoLabel"
                        Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelFirstRunServerInfo_v2}"
                        RelativePanel.Below="Logo"
                        RelativePanel.AlignLeftWithPanel="True"
                        RelativePanel.AlignRightWithPanel="True"
                        TextWrapping="WrapWholeWords"
                        Margin="10,20,10,10"
-                       Style="{StaticResource TitleTextBlockStyle}" />
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
             <HyperlinkButton x:Name="VisitEmbySiteButton"
                              Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelVisitEmbyWebsite}"
-                             RelativePanel.Below="WelcomeLabel"
+                             RelativePanel.Below="ServerInfoLabel"
                              HorizontalAlignment="Center"
                              Margin="0,10,0,20"
                              RelativePanel.AlignHorizontalCenterWithPanel="True"
                              ClickMode="Release"
                              Click="VisitEmbySiteButton_Click" />
-            <Image RelativePanel.Below="VisitEmbySiteButton"
+            <Image Height="120"
                    RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.AlignRightWithPanel="True"
@@ -43,22 +43,28 @@
             <Button x:Name="NextButton"
                     Style="{StaticResource EmptyButtonStyle}"
                     RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.Below="VisitEmbySiteButton"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    Margin="20"
                     ClickMode="Release"
                     Click="NextButton_Click">
-                <Border CornerRadius="40"
-                        Height="80"
-                        Width="80"
+                <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="30"
+                        Height="60"
+                        Width="60"
+                        Margin="10"
                         Background="{StaticResource EmbyGreenBrush}">
-                    <TextBlock Style="{StaticResource Mdl2Style}"
-                               Text="{StaticResource ArrowRight}"
-                               FontSize="40"
+                        <TextBlock Style="{StaticResource Mdl2Style}"
+                                   Text="{StaticResource ArrowRight}"
+                                   FontSize="30"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"/>
+                </Border>
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarNext}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Foreground="White"></TextBlock>
-                </Border>
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </StackPanel>
             </Button>
         </RelativePanel>
     </Grid>

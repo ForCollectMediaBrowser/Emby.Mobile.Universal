@@ -25,30 +25,39 @@
                        Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelWelcomeText}"
                        TextWrapping="WrapWholeWords"
                        Margin="10,50,10,100"
-                       Style="{StaticResource TitleTextBlockStyle}" />
-            <Image RelativePanel.Below="WelcomeLabel"
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
+            <Image 
                    RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.AlignRightWithPanel="True"
+                   Height="120"
                    Stretch="UniformToFill"
                    Source="ms-appx:///Assets/Backdrops/EmbyRandomAvatars.jpg" />
-            <Button x:Name="NextButton" Style="{StaticResource EmptyButtonStyle}"
+            <Button x:Name="NextButton"
+                    Style="{StaticResource EmptyButtonStyle}"
                     RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.Below="WelcomeLabel"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    Margin="20"
+                    ClickMode="Release"
                     Click="NextButton_Click">
-                <Border CornerRadius="40"
-                        Height="80"
-                        Width="80"
-                        Background="{StaticResource EmbyGreenBrush}">
-                    <TextBlock Style="{StaticResource Mdl2Style}"
-                               Text="{StaticResource ArrowRight}"
-                               FontSize="40"
+                <StackPanel Orientation="Horizontal">
+                    <Border CornerRadius="30"
+                            Height="60"
+                            Width="60"
+                            Background="{StaticResource EmbyGreenBrush}"
+                            Margin="10">
+                        <TextBlock Style="{StaticResource Mdl2Style}"
+                                   Text="{StaticResource ArrowRight}"
+                                   FontSize="30"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                    </Border>
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarNext}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Foreground="White"></TextBlock>
-                </Border>
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </StackPanel>
             </Button>
         </RelativePanel>
     </Grid>
