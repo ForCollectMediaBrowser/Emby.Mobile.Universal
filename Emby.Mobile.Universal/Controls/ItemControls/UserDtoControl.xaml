@@ -123,7 +123,7 @@
             <PasswordBox x:Name="PasswordBox"
                          Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterPassword}"
-                         IsPasswordRevealButtonEnabled="True"
+                         PasswordRevealMode="Peek"
                          IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
                          RelativePanel.RightOf="UserImage"
                          RelativePanel.Below="UserName"

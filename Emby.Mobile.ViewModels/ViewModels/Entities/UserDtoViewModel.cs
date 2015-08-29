@@ -115,7 +115,7 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 SetProgressBar(Resources.SysTraySigningIn);
 
-                if (await AuthenticationService.Login(Username, Password))
+                if (await AuthenticationService.SignIn(Username, Password))
                 {
                     success = true;
                     Services.NavigationService.NavigateToHome();

@@ -18,12 +18,12 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToEmbyConnect()
         {
-            return Navigate<EmbyConnectView>();
+            return Navigate<ConnectView>();
         }
 
         public bool NavigateToEmbyConnectSignUp()
         {
-            return Navigate<EmbyConnectSignUpView>();
+            return Navigate<ConnectSignUpView>();
         }
 
         public bool NavigateToServerSelection()
@@ -64,6 +64,11 @@ namespace Emby.Mobile.Universal.Services
         public bool NavigateToManualLocalUserSignIn()
         {
             return Navigate<ManualLocalUserSignInView>();
+        }
+
+        public bool NavigateToPinLogin()
+        {
+            return Navigate<ConnectPinEntryView>();
         }
     }
 }

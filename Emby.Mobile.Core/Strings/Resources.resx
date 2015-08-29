@@ -1378,4 +1378,13 @@
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
     <value>Getting programs...</value>
   </data>
+  <data name="LabelEmbyConnectPara1" xml:space="preserve">
+    <value>With Emby Connect you can easily access your Emby Server wherever you are and share with your family and friends.</value>
+  </data>
+  <data name="LabelEmbyConnectPin" xml:space="preserve">
+    <value>To sign in with Emby Connect, enter the following pin code at</value>
+  </data>
+  <data name="LabelPinExpired" xml:space="preserve">
+    <value>This pin has now expired</value>
+  </data>
 </root>

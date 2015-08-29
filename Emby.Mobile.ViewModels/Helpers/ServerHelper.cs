@@ -16,12 +16,12 @@ namespace Emby.Mobile.Helpers
             }
             else
             {
-                if (services.Authentication.IsLoggedIn)
+                if (services.Authentication.IsSignedIn)
                 {
                     var result = await services.MessageBox.ShowAsync(Resources.MessageSignOutOfCurrentUser, Resources.MessageAreYouSureTitle, new[] {Resources.LabelYes, Resources.LabelNo});
                     if (result == 0)
                     {
-                        if (await services.Authentication.SignOut())
+                        if (await services.Authentication.SignOut(true))
                         {
                             services.NavigationService.NavigateToManualServerEntry();
                             services.NavigationService.ClearBackStack();

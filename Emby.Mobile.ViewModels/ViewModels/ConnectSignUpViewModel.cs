@@ -2,15 +2,14 @@
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Core.Strings;
 using GalaSoft.MvvmLight.Command;
-using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class EmbyConnectSignUpViewModel : PageViewModelBase
+    public class ConnectSignUpViewModel : PageViewModelBase
     {
-        public EmbyConnectSignUpViewModel(IServices services) : base(services)
+        public ConnectSignUpViewModel(IServices services) : base(services)
         {
         }
 
