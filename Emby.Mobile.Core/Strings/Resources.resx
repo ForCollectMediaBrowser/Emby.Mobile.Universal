@@ -819,9 +819,6 @@
   <data name="SysTrayGettingChannels" xml:space="preserve">
     <value>Getting channels...</value>
   </data>
-  <data name="SysTrayGettingProgrammes" xml:space="preserve">
-    <value>Getting programmes...</value>
-  </data>
   <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
     <value>Getting series recordings...</value>
   </data>
@@ -870,12 +867,6 @@
   <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
     <value>Record only new episodes</value>
   </data>
-  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Record programme at any time</value>
-  </data>
-  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
-    <value>Record programme on all channels</value>
-  </data>
   <data name="AppBarCancel" xml:space="preserve">
     <value>cancel</value>
   </data>
@@ -892,17 +883,11 @@
   <data name="LabelPrePaddingRequired" xml:space="preserve">
     <value>Pre-padding is required to record</value>
   </data>
-  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
-    <value>Cancelling series link...</value>
-  </data>
   <data name="SysTrayGettingRecordedItems" xml:space="preserve">
     <value>Getting recorded items...</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>delete</value>
-  </data>
-  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>Sorry, there was an error cancelling this series at this time.</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
     <value>Channel:</value>
@@ -949,20 +934,11 @@
   <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
     <value>Getting what's on now...</value>
   </data>
-  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
-    <value>Loading programmes...</value>
-  </data>
-  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
-    <value>Setting programme to record...</value>
-  </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
     <value>Setting series to record...</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
     <value>create and edit series recording</value>
-  </data>
-  <data name="SysTrayCancellingProgramme" xml:space="preserve">
-    <value>Cancelling programme...</value>
   </data>
   <data name="SysTrayPreparing" xml:space="preserve">
     <value>Preparing...</value>
@@ -1377,5 +1353,29 @@
   </data>
   <data name="MessageSignOutOfCurrentUser" xml:space="preserve">
     <value>This will sign you out of your current user, are you sure?</value>
+  </data>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Loading programs...</value>
+  </data>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Canceling program...</value>
+  </data>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Setting program to record...</value>
+  </data>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Record program at any time</value>
+  </data>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Record program on all channels</value>
+  </data>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Sorry, there was an error canceling this series at this time.</value>
+  </data>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Canceling series link...</value>
+  </data>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Getting programs...</value>
   </data>
 </root>
