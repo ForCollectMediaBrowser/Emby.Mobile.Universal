@@ -18,5 +18,6 @@ namespace Emby.Mobile.Core.Interfaces
         IMessengerService Messenger { get; }
         ILauncherService Launcher { get; }
         IDeviceInfoService Device { get; }
+        IAnalyticsService Analytics { get; }
     }
 }

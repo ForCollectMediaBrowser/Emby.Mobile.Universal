@@ -170,6 +170,7 @@
     <None Include="Emby.Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="analytics.xml" />
     <Content Include="Assets\Backdrops\EmbySplashNoLogo.png" />
     <Content Include="Assets\Backdrops\EmbyRandomAvatars.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
