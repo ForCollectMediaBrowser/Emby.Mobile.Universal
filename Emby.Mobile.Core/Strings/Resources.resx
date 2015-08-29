@@ -188,7 +188,7 @@
     <value>mark as watched</value>
   </data>
   <data name="AppBarNext" xml:space="preserve">
-    <value>next</value>
+    <value>Next</value>
   </data>
   <data name="AppBarNotifications" xml:space="preserve">
     <value>notifications</value>
@@ -1103,7 +1103,7 @@
   <data name="LabelMbConnect" xml:space="preserve">
     <value>Emby Connect</value>
   </data>
-  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+  <data name="LabelEmbyConnectAlreadyGotAccount" xml:space="preserve">
     <value>If you have a Emby account, you can login now.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">

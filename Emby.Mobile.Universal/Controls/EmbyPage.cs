@@ -1,8 +1,7 @@
-﻿using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Services;
+using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Ioc;
-using INavigationService = Cimbalino.Toolkit.Services.INavigationService;
 
 namespace Emby.Mobile.Universal.Controls
 {

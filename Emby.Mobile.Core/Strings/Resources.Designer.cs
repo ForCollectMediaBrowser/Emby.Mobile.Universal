@@ -197,7 +197,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to next.
+        ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string AppBarNext {
             get {
@@ -1304,6 +1304,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you have a Emby account, you can login now..
+        /// </summary>
+        public static string LabelEmbyConnectAlreadyGotAccount {
+            get {
+                return ResourceManager.GetString("LabelEmbyConnectAlreadyGotAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you don&apos;t already have a Emby account, you can sign up now, it&apos;s FREE!.
         /// </summary>
         public static string LabelEmbyConnectFree {
@@ -1624,15 +1633,6 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelMbConnect {
             get {
                 return ResourceManager.GetString("LabelMbConnect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you have a Emby account, you can login now..
-        /// </summary>
-        public static string LabelMbConnectAlreadyGotAccount {
-            get {
-                return ResourceManager.GetString("LabelMbConnectAlreadyGotAccount", resourceCulture);
             }
         }
         
