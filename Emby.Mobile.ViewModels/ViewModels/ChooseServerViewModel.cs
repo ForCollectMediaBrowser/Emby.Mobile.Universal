@@ -81,7 +81,8 @@ namespace Emby.Mobile.ViewModels
 
             try
             {
-                var servers = await Services.ConnectionManager.GetAvailableServers();
+                var connect = await Services.ConnectionManager.Connect();
+                var servers = connect.Servers;
 
                 if (servers.IsNullOrEmpty())
                 {
