@@ -26,7 +26,7 @@
                        Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectPara1}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        RelativePanel.Below="WelcomeText"
-                       Margin="0,6"/>
+                       Margin="0,6" />
             <TextBlock x:Name="PinDescription"
                        Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectPin}"
                        Style="{StaticResource BodyTextBlockStyle}"
@@ -40,15 +40,32 @@
                              Command="{x:Bind PinEntry.PinAddressCommand}"
                              RelativePanel.Below="PinDescription"
                              RelativePanel.AlignHorizontalCenterWithPanel="True"
-                             Margin="0,6"/>
-            <TextBlock x:Name="Pin"
-                       Text="{x:Bind PinEntry.Pin, Mode=OneWay}"
-                       Style="{StaticResource HeaderTextBlockStyle}"
-                       Foreground="{StaticResource EmbyGreenBrush}"
-                       RelativePanel.AlignHorizontalCenterWithPanel="True"
-                       RelativePanel.Below="PinAddress"/>
+                             Margin="0,6" />
+
+            <Grid x:Name="PinArea"
+                  RelativePanel.AlignHorizontalCenterWithPanel="True"
+                  RelativePanel.Below="PinAddress">
+                <TextBlock x:Name="Pin"
+                           Text="{x:Bind PinEntry.Pin, Mode=OneWay}"
+                           Style="{StaticResource HeaderTextBlockStyle}"
+                           Foreground="{StaticResource EmbyGreenBrush}"
+                           HorizontalAlignment="Center"
+                           Visibility="{x:Bind PinEntry.HasExpired, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}"/>
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            Visibility="{x:Bind PinEntry.HasExpired, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelPinExpired}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               HorizontalAlignment="Center"
+                               Foreground="Red"/>
+                    <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelRetry}"
+                                     ClickMode="Release"
+                                     HorizontalAlignment="Center"
+                                     Command="{x:Bind PinEntry.RetryCommand}"/>
+                </StackPanel>
+            </Grid>
             <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSkip}"
-                             RelativePanel.Below="Pin"
+                             RelativePanel.Below="PinArea"
                              HorizontalAlignment="Center"
                              RelativePanel.AlignHorizontalCenterWithPanel="True"
                              ClickMode="Release"

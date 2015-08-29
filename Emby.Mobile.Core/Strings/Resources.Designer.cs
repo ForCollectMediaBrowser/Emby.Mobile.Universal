@@ -1916,6 +1916,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This pin has now expired.
+        /// </summary>
+        public static string LabelPinExpired {
+            get {
+                return ResourceManager.GetString("LabelPinExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shuffle Play.
         /// </summary>
         public static string LabelPlayShuffle {

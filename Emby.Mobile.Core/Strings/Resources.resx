@@ -1384,4 +1384,7 @@
   <data name="LabelEmbyConnectPin" xml:space="preserve">
     <value>To sign in with Emby Connect, enter the following pin code at</value>
   </data>
+  <data name="LabelPinExpired" xml:space="preserve">
+    <value>This pin has now expired</value>
+  </data>
 </root>

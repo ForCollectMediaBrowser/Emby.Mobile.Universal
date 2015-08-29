@@ -288,7 +288,7 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             LoggedInConnectUser = connectUser;
 
-            _connectionManager.Connect = LoggedInConnectUser;
+            //_connectionManager.Connect = LoggedInConnectUser;
 
             _settingsService.SafeSet(Constants.Settings.ConnectUser, LoggedInConnectUser);
         }

@@ -15,6 +15,8 @@ namespace Emby.Mobile.ViewModels
 
         public string Pin { get; set; }
 
+        public bool HasExpired { get; set; }
+
         public RelayCommand SkipCommand
         {
             get
@@ -25,7 +27,18 @@ namespace Emby.Mobile.ViewModels
                     Services.NavigationService.NavigateToManualServerEntry();
                 });
             }
-        } 
+        }
+
+        public RelayCommand RetryCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await ConnectWithPin();
+                });
+            }
+        }
 
         public RelayCommand PinAddressCommand
         {
@@ -48,6 +61,11 @@ namespace Emby.Mobile.ViewModels
 
         protected override async Task PageLoaded()
         {
+            await ConnectWithPin();
+        }
+
+        private async Task ConnectWithPin()
+        {
             try
             {
                 if (PinHelper.IsBusy)
@@ -55,17 +73,23 @@ namespace Emby.Mobile.ViewModels
                     return;
                 }
 
+                HasExpired = false;
+
                 SetProgressBar("Getting pin...");
                 var result = await PinHelper.ConnectUsingPin(Services, SetPin);
 
                 switch (result)
                 {
                     case PinResult.Cancelled:
-                    case PinResult.Expired:
                     case PinResult.Fail:
                     case PinResult.Unknown:
 
                         break;
+
+                    case PinResult.Expired:
+                        HasExpired = true;
+                        break;
+
                     case PinResult.Success:
                         var connectResult = await Services.ConnectionManager.Connect();
 
@@ -77,7 +101,6 @@ namespace Emby.Mobile.ViewModels
             }
             catch (Exception ex)
             {
-
             }
             finally
             {
