@@ -5,13 +5,13 @@ namespace Emby.Mobile.Universal.Views.Connect
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class EmbyConnectView 
+    public sealed partial class ConnectSignUpView
     {
-        public EmbyConnectView()
+        public ConnectSignUpView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
-        private EmbyConnectViewModel EmbyConnect => DataContext as EmbyConnectViewModel;
+        private ConnectSignUpViewModel SignUp => DataContext as ConnectSignUpViewModel;
     }
 }

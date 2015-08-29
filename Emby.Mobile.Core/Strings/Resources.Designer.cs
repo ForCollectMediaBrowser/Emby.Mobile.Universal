@@ -1313,6 +1313,24 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to With Emby Connect you can easily access your Emby Server wherever you are and share with your family and friends..
+        /// </summary>
+        public static string LabelEmbyConnectPara1 {
+            get {
+                return ResourceManager.GetString("LabelEmbyConnectPara1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To sign in with Emby Connect, enter the following pin code at.
+        /// </summary>
+        public static string LabelEmbyConnectPin {
+            get {
+                return ResourceManager.GetString("LabelEmbyConnectPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to please enter your password.
         /// </summary>
         public static string LabelEnterPassword {
@@ -1894,6 +1912,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelPhotoUpload {
             get {
                 return ResourceManager.GetString("LabelPhotoUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This pin has now expired.
+        /// </summary>
+        public static string LabelPinExpired {
+            get {
+                return ResourceManager.GetString("LabelPinExpired", resourceCulture);
             }
         }
         

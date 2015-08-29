@@ -113,5 +113,10 @@ namespace Emby.Mobile.Universal.Core.NullServices
         {
             throw new NotImplementedException();
         }
+
+        public bool NavigateToPinLogin()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

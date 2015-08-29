@@ -36,7 +36,7 @@ namespace Emby.Mobile.ViewModels
                     {
                         SetProgressBar(Resources.SysTraySigningIn);
 
-                        if (await AuthenticationService.Login(Username, Password))
+                        if (await AuthenticationService.SignIn(Username, Password))
                         {
                             Services.NavigationService.NavigateToHome();
                             Services.NavigationService.ClearBackStack();

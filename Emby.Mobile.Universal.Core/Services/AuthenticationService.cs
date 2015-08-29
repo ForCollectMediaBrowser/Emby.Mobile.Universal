@@ -21,6 +21,7 @@ namespace Emby.Mobile.Universal.Core.Services
         private readonly IConnectionManager _connectionManager;
         private readonly IMessengerService _messengerService;
         private readonly IApplicationSettingsServiceHandler _settingsService;
+        private readonly IServerInfoService _serverInfoService;
         private readonly ILogger _logger;
         private readonly IDispatcherService _dispatcher;
 
@@ -36,6 +37,7 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             _settingsService = settingsService.Roaming;
             _connectionManager = connectionManager;
+            _serverInfoService = serverInfoService;
             _logger = logger;
             _dispatcher = dispatcher;
             _messengerService = messengerService;
@@ -94,7 +96,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         private void ConnectionManagerOnLocalUserSignOut(object sender, EventArgs eventArgs)
         {
-            _dispatcher.RunAsync(() => LoggedInUser = null);
+            _dispatcher.RunAsync(() => SignedInUser = null);
         }
 
         private void ConnectionManagerOnLocalUserSignIn(object sender, GenericEventArgs<UserDto> e)
@@ -104,7 +106,7 @@ namespace Emby.Mobile.Universal.Core.Services
                 SetUser(e.Argument);
                 if (AuthenticationResult != null)
                 {
-                    _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+                    _connectionManager.CurrentApiClient?.SetAuthenticationInfo(AuthenticationResult.AccessToken, SignedInUserId);
                 }
             });
         }
@@ -147,7 +149,7 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
-        public async Task<bool> Login(string selectedUserName, string pinCode)
+        public async Task<bool> SignIn(string selectedUserName, string pinCode)
         {
             var success = false;
             try
@@ -185,11 +187,11 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void ClearLoggedInUser()
         {
-            LoggedInUser = null;
+            SignedInUser = null;
             _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
         }
 
-        public async Task<bool> SignOut()
+        public async Task<bool> SignOut(bool removeServerInfo)
         {
             var success = false;
 
@@ -198,6 +200,12 @@ namespace Emby.Mobile.Universal.Core.Services
                 await _connectionManager.Logout();
                 ClearUserData();
                 _messengerService.SendAppResetNotification();
+
+                if (removeServerInfo)
+                {
+                   _serverInfoService.Clear();
+                }
+
                 success = true;
             }
             catch (HttpException ex)
@@ -210,7 +218,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         private void ClearUserData()
         {
-            LoggedInUser = null;
+            SignedInUser = null;
             LoggedInConnectUser = null;
             AuthenticationResult = null;
             _messengerService.SendNotification("ClearNowPlayingMsg");
@@ -220,17 +228,17 @@ namespace Emby.Mobile.Universal.Core.Services
             _settingsService.Remove(Constants.Settings.ConnectUser);
         }
 
-        public UserDto LoggedInUser { get; private set; }
+        public UserDto SignedInUser { get; private set; }
 
-        public bool IsLoggedIn => LoggedInUser != null;
+        public bool IsSignedIn => SignedInUser != null;
 
-        public string LoggedInUserId => LoggedInUser?.Id;
+        public string SignedInUserId => SignedInUser?.Id;
 
-        public bool SignedInUsingConnect => LoggedInConnectUser != null && LoggedInUser != null && LoggedInConnectUser.Id == LoggedInUser.ConnectUserId;
+        public bool SignedInUsingConnect => LoggedInConnectUser != null;
 
         public ConnectUser LoggedInConnectUser { get; private set; }
 
-        public async Task<bool> LoginWithConnect(string username, string password)
+        public async Task<bool> SignInWithConnect(string username, string password)
         {
             try
             {
@@ -254,6 +262,14 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
+        public async Task<bool> SignInWithPin(string pin)
+        {
+            var success = false;
+            
+
+            return success;
+        }
+
         public async Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password)
         {
             var response = await _connectionManager.SignupForConnect(email, username, password);
@@ -263,14 +279,16 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void SetUser(UserDto user)
         {
-            LoggedInUser = user;
+            SignedInUser = user;
 
-            _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, LoggedInUser);
+            _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, SignedInUser);
         }
 
         public void SetConnectUser(ConnectUser connectUser)
         {
             LoggedInConnectUser = connectUser;
+
+            //_connectionManager.Connect = LoggedInConnectUser;
 
             _settingsService.SafeSet(Constants.Settings.ConnectUser, LoggedInConnectUser);
         }
@@ -281,7 +299,7 @@ namespace Emby.Mobile.Universal.Core.Services
             var authInfo = new AuthenticationResult
             {
                 AccessToken = accessToken,
-                User = LoggedInUser
+                User = SignedInUser
             };
 
             _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, authInfo);

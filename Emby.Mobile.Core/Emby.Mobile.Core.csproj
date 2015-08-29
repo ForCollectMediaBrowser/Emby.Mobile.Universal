@@ -35,6 +35,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Xbox|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Xbox\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <Content Include="FodyWeavers.xml" />
@@ -43,8 +52,12 @@
     <Compile Include="Extensions\ApplicationSettingsExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\DeviceFamily.cs" />
+    <Compile Include="Helpers\PinHelper.cs" />
+    <Compile Include="Helpers\Timer.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />
     <Compile Include="Interfaces\ICanSignIn.cs" />
+    <Compile Include="Interfaces\IDeviceInfoService.cs" />
     <Compile Include="Interfaces\IDispatcherService.cs" />
     <Compile Include="Interfaces\ILocalizedResources.cs" />
     <Compile Include="Interfaces\ILog.cs" />

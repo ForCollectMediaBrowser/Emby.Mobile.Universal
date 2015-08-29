@@ -5,7 +5,7 @@ namespace Emby.Mobile.Universal.Views.FirstRun
 {
     public sealed partial class FirstConnectView
     {
-        private EmbyConnectViewModel EmbyConnect => DataContext as EmbyConnectViewModel;
+        private ConnectViewModel EmbyConnect => DataContext as ConnectViewModel;
 
         public FirstConnectView()
         {

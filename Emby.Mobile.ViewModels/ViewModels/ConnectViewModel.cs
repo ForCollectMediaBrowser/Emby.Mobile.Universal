@@ -10,9 +10,9 @@ using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class EmbyConnectViewModel : PageViewModelBase, ICanSignIn
+    public class ConnectViewModel : PageViewModelBase, ICanSignIn
     {
-        public EmbyConnectViewModel(IServices services)
+        public ConnectViewModel(IServices services)
             : base(services)
         {
         }
@@ -70,7 +70,7 @@ namespace Emby.Mobile.ViewModels
 
                 SetProgressBar(Resources.SysTraySigningIn);
 
-                var success = await AuthenticationService.LoginWithConnect(Username, Password);
+                var success = await AuthenticationService.SignInWithConnect(Username, Password);
 
                 if (success)
                 {

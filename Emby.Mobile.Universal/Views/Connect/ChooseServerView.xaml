@@ -25,6 +25,15 @@
         </ItemsPanelTemplate>
     </Page.Resources>
 
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
+                              Command="{x:Bind ChooseServer.SignOutCommand}" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -70,7 +79,7 @@
                                            FontSize="80"
                                            Style="{StaticResource Mdl2Style}"
                                            RelativePanel.AlignVerticalCenterWithPanel="True" />
-                                <TextBlock Text="**Add Server"
+                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelAddServer}"
                                            Style="{StaticResource TitleTextBlockStyle}"
                                            Foreground="{StaticResource EmbyGreenBrush}"
                                            RelativePanel.RightOf="PlusText"
