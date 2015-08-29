@@ -142,9 +142,11 @@
     <Compile Include="NullServices\NullNavigationService.cs" />
     <Compile Include="NullServices\NullServerInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AnalyticsService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\DeviceInfoService.cs" />
     <Compile Include="Services\DispatcherService.cs" />
+    <Compile Include="NullServices\NullAnalyticsService.cs" />
     <Compile Include="Streaming\Windows10Profile.cs" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Emby.Universal.Core.rd.xml" />

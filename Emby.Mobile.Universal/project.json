@@ -2,6 +2,7 @@
   "dependencies": {
     "Cimbalino.Toolkit": "2.0.0-beta3",
     "Cimbalino.Toolkit.Core": "2.0.0-beta3",
+    "GoogleAnalyticsSDK": "1.3.0",
     "MediaBrowser.ApiClient": "3.0.0.625",
     "MediaBrowser.Common": "3.0.631",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",

@@ -60,6 +60,7 @@ namespace Emby.Mobile.ViewModels
         
         protected IApiClient ApiClient => Services.ConnectionManager.GetApiClient(Services?.ServerInfo?.ServerInfo?.Id);
         protected IAuthenticationService AuthenticationService => Services.Authentication;
+        protected IAnalyticsService Analytics => Services.Analytics;
     }
 
     public abstract class PageViewModelBase : ViewModelBase
