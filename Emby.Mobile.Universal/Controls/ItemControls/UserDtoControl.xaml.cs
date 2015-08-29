@@ -15,5 +15,9 @@ namespace Emby.Mobile.Universal.Controls.ItemControls
             InitializeComponent();
         }
 
+        public void SetFocusToPasswordBox()
+        {
+            PasswordBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
+        }
     }
 }
