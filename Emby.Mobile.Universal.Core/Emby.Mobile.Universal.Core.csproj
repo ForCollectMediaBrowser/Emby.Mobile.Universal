@@ -148,7 +148,6 @@
     <Compile Include="Services\DispatcherService.cs" />
     <Compile Include="NullServices\NullAnalyticsService.cs" />
     <Compile Include="Streaming\Windows10Profile.cs" />
-    <Content Include="analytics.xml" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Emby.Universal.Core.rd.xml" />
   </ItemGroup>
