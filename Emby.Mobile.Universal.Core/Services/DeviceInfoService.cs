@@ -15,7 +15,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         private static DeviceFamily GetDeviceFamily()
         {
-#if DEBUG
+#if XBOX
             return DeviceFamily.Xbox;
 #else
             var deviceFamily = AnalyticsInfo.VersionInfo.DeviceFamily;
