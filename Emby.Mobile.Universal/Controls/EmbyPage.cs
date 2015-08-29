@@ -1,6 +1,5 @@
-﻿using Cimbalino.Toolkit.Services;
+﻿using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Services;
-using Emby.Mobile.Universal.ViewModel;
 
 namespace Emby.Mobile.Universal.Controls
 {

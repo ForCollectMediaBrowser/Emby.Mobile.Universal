@@ -7,7 +7,7 @@ using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Core.Logging;
 using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.Interfaces;
-using INavigationService = Cimbalino.Toolkit.Services.INavigationService;
+using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 
 namespace Emby.Mobile.Universal.Controls
 {
