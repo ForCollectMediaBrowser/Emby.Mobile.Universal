@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="300"
+             d:DesignHeight="800"
              d:DesignWidth="400"
-             Width="150"
+             Width="250"
              DataContext="{Binding Burger, Source={StaticResource Locator}}">
 
     <Grid Background="{StaticResource EmbyLightGrayBrush}">
@@ -16,8 +17,40 @@
         </Grid.RowDefinitions>
         
         <RelativePanel Grid.Row="1"
-                       VerticalAlignment="Bottom">
+                       VerticalAlignment="Bottom"
+                       Margin="6,19,0,25">
+            <controls:ProfilePicture ProfileImage="{x:Bind Burger.User.UserImageUrl, Mode=OneWay}"
+                                     Height="25"
+                                     Width="25"
+                                     Margin="8,0,6,0"
+                                     ShowBackground="False"
+                                     x:Name="ProfilePicture"
+                                     RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock Text="{x:Bind Burger.User.Username, Mode=OneWay}"
+                       x:Name="Username"
+                       RelativePanel.RightOf="ProfilePicture"
+                       RelativePanel.AlignVerticalCenterWith="ProfilePicture"
+                       Foreground="White"/>
             
+            <Button x:Name="SettingsButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.Below="ProfilePicture"
+                    ClickMode="Release"
+                    Margin="0,6,0,0"
+                    Command="{x:Bind Burger.NavigateToSettingsCommand}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                              Glyph="{StaticResource Setting}"
+                              Foreground="White"
+                              Margin="10,9,10,9"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarSettings}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="White"/>
+                </StackPanel>
+            </Button>
         </RelativePanel>
     </Grid>
 </UserControl>

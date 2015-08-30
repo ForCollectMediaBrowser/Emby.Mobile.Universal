@@ -91,7 +91,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     ImageType = ImageType.Primary
                 };
 
-                UserImageUrl = ApiClient.GetUserImageUrl(UserDto.Id, options);
+                UserImageUrl = ApiClient?.GetUserImageUrl(UserDto.Id, options);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 SetProgressBar(Resources.SysTraySigningIn);
 
-                if (await AuthenticationService.SignIn(Username, Password))
+                if (await AuthenticationService.SignIn(username, password))
                 {
                     success = true;
                     Services.NavigationService.NavigateToHome();

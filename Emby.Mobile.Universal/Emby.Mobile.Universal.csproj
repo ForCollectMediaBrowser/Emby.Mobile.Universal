@@ -131,6 +131,7 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
+    <Compile Include="Services\StartUpService.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Connect\ChooseUserProfileView.xaml.cs">
       <DependentUpon>ChooseUserProfileView.xaml</DependentUpon>

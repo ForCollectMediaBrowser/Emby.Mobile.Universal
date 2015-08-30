@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 
 namespace Emby.Mobile.ViewModels
@@ -7,10 +8,36 @@ namespace Emby.Mobile.ViewModels
     {
         public BurgerMenuViewModel(IServices services) : base(services)
         {
+            if (!IsInDesignMode)
+            {
+                AuthenticationService.UserChanged += (sender, args) =>
+                {
+                    SetUsernameAndProfilePicture();
+                };
+            }
         }
 
-        public string Username { get; set; }
-        public string ProfilePicture { get; set; }
+        public void Start()
+        {
+            SetUsernameAndProfilePicture();
+        }
+
+        private void SetUsernameAndProfilePicture()
+        {
+            Services.Dispatcher.RunAsync(() =>
+            {
+                if (!AuthenticationService.SignedInUsingConnect && !AuthenticationService.IsSignedIn)
+                {
+                    User = null;
+                }
+                else
+                {
+                    User = new UserDtoViewModel(Services, AuthenticationService.SignedInUser);
+                }
+            });
+        }
+
+        public UserDtoViewModel User { get; set; }
 
         public RelayCommand NavigateToSettingsCommand
         {

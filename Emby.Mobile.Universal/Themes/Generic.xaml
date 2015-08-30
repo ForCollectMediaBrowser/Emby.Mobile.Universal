@@ -32,25 +32,28 @@
                                                               Width="{StaticResource ImageSize}"
                                                               Height="{StaticResource ImageSize}"
                                                               Tag="{TemplateBinding ShowBackground}"
-                                                              Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                <Ellipse HorizontalAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         Width="{StaticResource CentreImageSize}"
-                                         Height="{StaticResource CentreImageSize}"
-                                         x:Name="Ellipse">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Tag, ElementName=LayoutRoot}"
-                                                    Stretch="Uniform"
-                                                    x:Name="ProfileImage" />
-                                    </Ellipse.Fill>
-                                </Ellipse>
+                                                              Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                <Grid Width="{StaticResource ImageSize}"
+                                      Height="{StaticResource ImageSize}">
+                                    <Ellipse HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Width="{StaticResource CentreImageSize}"
+                                             Height="{StaticResource CentreImageSize}"
+                                             x:Name="Ellipse">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Tag, ElementName=LayoutRoot}"
+                                                        Stretch="Uniform"
+                                                        x:Name="ProfileImage" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
 
                                 <Grid x:Name="PlaceholderGrid"
                                       Width="{StaticResource ImageSize}"
                                       Height="{StaticResource ImageSize}">
                                     <Ellipse Grid.Row="0"
-                                             HorizontalAlignment="Stretch"
-                                             VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
                                              Width="{StaticResource CentreImageSize}"
                                              Height="{StaticResource CentreImageSize}"
                                              Fill="{StaticResource EmbyGreenBrush}" />

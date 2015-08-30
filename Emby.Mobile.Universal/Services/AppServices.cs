@@ -75,6 +75,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILauncherService, LauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, DeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();
+            SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
 
             await AddConnectionServices(device, mbLogger, network);
 
@@ -103,6 +104,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILauncherService, NullLauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, NullDeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, NullAnalyticsService>();
+            SimpleIoc.Default.RegisterIf<IStartUpService, NullStartUpService>();
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();

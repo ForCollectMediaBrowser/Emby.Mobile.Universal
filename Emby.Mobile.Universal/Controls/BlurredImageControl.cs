@@ -3,6 +3,7 @@ using Windows.Graphics.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Graphics.Effects;
+using GalaSoft.MvvmLight;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.Graphics.Canvas.UI.Xaml;
@@ -48,10 +49,10 @@ namespace Emby.Mobile.Universal.Controls
 
         private static void SourceSet(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.NewValue.ToString()))
+            if (!string.IsNullOrEmpty(e.NewValue.ToString()) && !ViewModelBase.IsInDesignModeStatic)
             {
                 var control = d as BlurredImageControl;
-                control.RenderImage();
+                control?.RenderImage();
             }
         }
 

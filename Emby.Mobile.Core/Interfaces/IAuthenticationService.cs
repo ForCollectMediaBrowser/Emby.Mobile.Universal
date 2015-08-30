@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
@@ -8,6 +9,7 @@ namespace Emby.Mobile.Core.Interfaces
 {
     public interface IAuthenticationService
     {
+        event EventHandler UserChanged;
         AuthenticationResult AuthenticationResult { get; }
         UserDto SignedInUser { get; }
         bool IsSignedIn { get; }
@@ -21,7 +23,6 @@ namespace Emby.Mobile.Core.Interfaces
         void ClearLoggedInUser();
         Task<bool> SignOut(bool removeServerInfo);
         Task<bool> SignInWithConnect(string username, string password);
-        Task<bool> SignInWithPin(string pin);
         Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password);
         void SetUser(UserDto user);
         void SetConnectUser(ConnectUser connectUser);
