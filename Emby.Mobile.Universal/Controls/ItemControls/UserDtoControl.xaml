@@ -9,6 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="using:Emby.Mobile.Universal.Converters"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
              mc:Ignorable="d"
              d:DesignHeight="140"
              d:DesignWidth="360"
@@ -89,12 +90,12 @@
                     <core:GoToStateAction StateName="Normal" />
                 </core:DataTriggerBehavior>
             </interactivity:Interaction.Behaviors>
-            <Image Width="80"
-                   MinHeight="50"
-                   Margin="0,0,10,0"
-                   Stretch="Uniform"
-                   Source="{x:Bind User.UserImageUrl, Mode=OneWay}"
-                   x:Name="UserImage" />
+
+            <controls:ProfilePicture Width="150"
+                                     Height="150"
+                                     Margin="0,0,10,0"
+                                     ProfileImage="{x:Bind User.UserImageUrl, Mode=OneWay}"
+                                     x:Name="UserImage" />
             <TextBlock x:Name="UserName"
                        Text="{x:Bind CanSignIn.Username, Mode=OneWay}"
                        Style="{StaticResource TitleTextBlockStyle}"

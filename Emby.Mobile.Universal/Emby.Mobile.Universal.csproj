@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Controls\BaseApplication.cs" />
     <Compile Include="Controls\BasePage.cs" />
+    <Compile Include="Controls\BlurredImageControl.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
     <Compile Include="Controls\ItemControls\ServerInfoControl.xaml.cs">
       <DependentUpon>ServerInfoControl.xaml</DependentUpon>
@@ -108,6 +109,7 @@
     <Compile Include="Controls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProfilePicture.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
@@ -231,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Connect\ChooseUserProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>

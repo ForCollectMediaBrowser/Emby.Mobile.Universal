@@ -73,6 +73,16 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        protected override Task OnSignOut()
+        {
+            if (!UserProfiles.IsNullOrEmpty())
+            {
+                UserProfiles.Clear();
+            }
+
+            return base.OnSignOut();
+        }
+
         protected override async Task PageLoaded()
         {
             await LoadData(false);

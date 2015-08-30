@@ -11,8 +11,8 @@ namespace Emby.Mobile.Universal.Controls.ItemControls
 
         public UserDtoControl()
         {
-            DataContextChanged += (sender, args) => Bindings.Update();
             InitializeComponent();
+            DataContextChanged += (sender, args) => Bindings.Update();
         }
 
         public void SetFocusToPasswordBox()
