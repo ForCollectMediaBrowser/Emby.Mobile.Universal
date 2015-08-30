@@ -31,6 +31,11 @@ namespace Emby.Mobile.Universal.Services
             return Navigate<ChooseServerView>();
         }
 
+        public bool NavigateToLocalServerSelection()
+        {
+            return Navigate<ChooseLocalServerView>();
+        }
+
         public bool NavigateToHome()
         {
             return Navigate<MainView>();

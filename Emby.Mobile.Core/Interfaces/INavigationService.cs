@@ -11,6 +11,7 @@
         bool NavigateToConnectFirstRun();
         bool NavigateToChooseProfile();
         bool NavigateToFirstRun();
+        bool NavigateToLocalServerSelection();
         bool NavigateToManualServerEntry();
         bool NavigateToManualLocalUserSignIn();
         bool NavigateToPinLogin();

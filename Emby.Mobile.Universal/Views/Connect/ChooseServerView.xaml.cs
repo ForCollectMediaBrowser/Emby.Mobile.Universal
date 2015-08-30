@@ -12,6 +12,6 @@ namespace Emby.Mobile.Universal.Views.Connect
             this.InitializeComponent();
         }
 
-        private ChooseServerViewModel ChooseServer => DataContext as ChooseServerViewModel;
+        private ConnectChooseServerViewModel ChooseServer => DataContext as ConnectChooseServerViewModel;
     }
 }

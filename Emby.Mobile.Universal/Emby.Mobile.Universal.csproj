@@ -128,6 +128,9 @@
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\ChooseLocalServerView.xaml.cs">
+      <DependentUpon>ChooseLocalServerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Connect\ChooseUserProfileView.xaml.cs">
       <DependentUpon>ChooseUserProfileView.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChooseLocalServerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

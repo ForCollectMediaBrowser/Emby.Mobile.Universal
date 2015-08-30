@@ -21,7 +21,7 @@ namespace Emby.Mobile.Universal.Views.FirstRun
 
         private void ManualConnectButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            NavigationService.NavigateToManualServerEntry();
+            NavigationService.NavigateToLocalServerSelection();
         }
     }
 }
