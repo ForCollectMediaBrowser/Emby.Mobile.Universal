@@ -29,6 +29,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<ManualServerEntryViewModel>();
             Register<ManualLocalUserSignInViewModel>();
             Register<ConnectPinEntryViewModel>();
+            Register<BurgerMenuViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -40,6 +41,9 @@ namespace Emby.Mobile.Universal.ViewModel
         public ConnectSignUpViewModel ConnectSignUp => Get<ConnectSignUpViewModel>();
         public ManualLocalUserSignInViewModel ManualLocalUser => Get<ManualLocalUserSignInViewModel>();
         public ConnectPinEntryViewModel PinEntry => Get<ConnectPinEntryViewModel>();
+        public BurgerMenuViewModel Burger => Get<BurgerMenuViewModel>();
+
+
 
         public static void Cleanup()
         {
@@ -52,7 +56,7 @@ namespace Emby.Mobile.Universal.ViewModel
             SimpleIoc.Default.Register<T>(createImmediately);
         }
 
-        private static T Get<T>() 
+        internal static T Get<T>() 
             where T : class
         {
             return ServiceLocator.Current.GetInstance<T>();

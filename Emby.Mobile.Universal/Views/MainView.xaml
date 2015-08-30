@@ -16,7 +16,7 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid >
         <TextBlock Text="{Binding ConnectedTo}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>

@@ -3,14 +3,12 @@ using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Controls;
 using Emby.Mobile.Universal.Services;
-using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.Universal.Views;
 using GalaSoft.MvvmLight.Ioc;
-using EmbyConnectView = Emby.Mobile.Universal.Views.Connect.ConnectView;
 
 namespace Emby.Mobile.Universal
 {
@@ -44,14 +42,14 @@ namespace Emby.Mobile.Universal
             }
 #endif
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as EmbyApplicationFrame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                rootFrame = new EmbyApplicationFrame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -70,6 +68,7 @@ namespace Emby.Mobile.Universal
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 AppServices.NavigationService.Navigate<StartupView>(e.Arguments);
+                //rootFrame.Navigate(typeof (StartupView), e.Arguments);
             }
 
             AppStarted();
