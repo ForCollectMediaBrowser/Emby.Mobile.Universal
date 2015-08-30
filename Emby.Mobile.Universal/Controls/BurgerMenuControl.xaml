@@ -51,6 +51,25 @@
                                Foreground="White"/>
                 </StackPanel>
             </Button>
+            <Button x:Name="SignOutButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.Below="SettingsButton"
+                    ClickMode="Release"
+                    Margin="0,3,0,0"
+                    Command="{x:Bind Burger.SignOutCommand}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                              Glyph="{StaticResource Lock}"
+                              Foreground="White"
+                              Margin="10,9,10,9" />
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="White" />
+                </StackPanel>
+            </Button>
         </RelativePanel>
     </Grid>
 </UserControl>

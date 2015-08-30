@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 
@@ -46,6 +47,17 @@ namespace Emby.Mobile.ViewModels
                 return new RelayCommand(() =>
                 {
                     Services.NavigationService.NavigateToSettings();
+                });
+            }
+        }
+
+        public RelayCommand SignOutCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await SignOutHelper.SignOut(Services);
                 });
             }
         }
