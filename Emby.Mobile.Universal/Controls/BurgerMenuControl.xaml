@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:Emby.Mobile.Universal.Controls"
+             xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
              mc:Ignorable="d"
              d:DesignHeight="800"
              d:DesignWidth="400"
@@ -12,10 +13,39 @@
 
     <Grid Background="{StaticResource EmbyLightGrayBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
+        <ScrollViewer Grid.Row="0">
+            <ListView x:Name="FoldersList"
+                      ItemsSource="{x:Bind Burger.Views, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:ItemViewModel">
+                        <Button x:Name="SettingsButton"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                RelativePanel.Below="ProfilePicture"
+                                ClickMode="Release"
+                                Margin="6,6,0,0"
+                                Command="{x:Bind NavigateToItem}"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                                          Glyph="{StaticResource Setting}"
+                                          Foreground="White"
+                                          Margin="10,9,10,9" />
+                                <TextBlock Text="{x:Bind Name}"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="White" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+
         <RelativePanel Grid.Row="1"
                        VerticalAlignment="Bottom"
                        Margin="6,19,0,25">
@@ -25,13 +55,13 @@
                                      Margin="8,0,6,0"
                                      ShowBackground="False"
                                      x:Name="ProfilePicture"
-                                     RelativePanel.AlignLeftWithPanel="True"/>
+                                     RelativePanel.AlignLeftWithPanel="True" />
             <TextBlock Text="{x:Bind Burger.User.Username, Mode=OneWay}"
                        x:Name="Username"
                        RelativePanel.RightOf="ProfilePicture"
                        RelativePanel.AlignVerticalCenterWith="ProfilePicture"
-                       Foreground="White"/>
-            
+                       Foreground="White" />
+
             <Button x:Name="SettingsButton"
                     Style="{StaticResource EmptyButtonStyle}"
                     RelativePanel.Below="ProfilePicture"
@@ -44,11 +74,11 @@
                     <FontIcon Style="{StaticResource Mdl2FontStyle}"
                               Glyph="{StaticResource Setting}"
                               Foreground="White"
-                              Margin="10,9,10,9"/>
+                              Margin="10,9,10,9" />
                     <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarSettings}"
                                VerticalAlignment="Center"
                                Style="{StaticResource BodyTextBlockStyle}"
-                               Foreground="White"/>
+                               Foreground="White" />
                 </StackPanel>
             </Button>
             <Button x:Name="SignOutButton"

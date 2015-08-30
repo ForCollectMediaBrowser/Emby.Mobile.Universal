@@ -104,6 +104,9 @@
     </Compile>
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
+    <Compile Include="Controls\ItemControls\MediaFolderControl.xaml.cs">
+      <DependentUpon>MediaFolderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ItemControls\ServerInfoControl.xaml.cs">
       <DependentUpon>ServerInfoControl.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Controls\BurgerMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemControls\MediaFolderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

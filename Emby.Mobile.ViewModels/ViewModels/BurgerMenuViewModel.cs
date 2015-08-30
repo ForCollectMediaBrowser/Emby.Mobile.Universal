@@ -1,12 +1,20 @@
-﻿using Emby.Mobile.Core.Interfaces;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Cimbalino.Toolkit.Extensions;
+using Emby.Mobile.Core.Extensions;
+using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
     public class BurgerMenuViewModel : ViewModelBase
     {
+        private bool _viewsLoaded;
+
         public BurgerMenuViewModel(IServices services) : base(services)
         {
             if (!IsInDesignMode)
@@ -15,30 +23,13 @@ namespace Emby.Mobile.ViewModels
                 {
                     SetUsernameAndProfilePicture();
                 };
+
+                Views = new ObservableCollection<ItemViewModel>();
             }
         }
 
-        public void Start()
-        {
-            SetUsernameAndProfilePicture();
-        }
-
-        private void SetUsernameAndProfilePicture()
-        {
-            Services.Dispatcher.RunAsync(() =>
-            {
-                if (!AuthenticationService.SignedInUsingConnect && !AuthenticationService.IsSignedIn)
-                {
-                    User = null;
-                }
-                else
-                {
-                    User = new UserDtoViewModel(Services, AuthenticationService.SignedInUser);
-                }
-            });
-        }
-
         public UserDtoViewModel User { get; set; }
+        public ObservableCollection<ItemViewModel> Views { get; set; }
 
         public RelayCommand NavigateToSettingsCommand
         {
@@ -59,6 +50,51 @@ namespace Emby.Mobile.ViewModels
                 {
                     await SignOutHelper.SignOut(Services);
                 });
+            }
+        }
+
+        public void Start()
+        {
+            SetUsernameAndProfilePicture();
+            LoadViews(false).ConfigureAwait(false);
+        }
+
+        private void SetUsernameAndProfilePicture()
+        {
+            Services.Dispatcher.RunAsync(() =>
+            {
+                if (!AuthenticationService.SignedInUsingConnect && !AuthenticationService.IsSignedIn)
+                {
+                    User = null;
+                }
+                else
+                {
+                    User = new UserDtoViewModel(Services, AuthenticationService.SignedInUser);
+                }
+            });
+        }
+
+        private async Task LoadViews(bool isRefresh)
+        {
+            if (_viewsLoaded && !isRefresh)
+            {
+                return;
+            }
+
+            try
+            {
+                var item = await ApiClient.GetUserViews(AuthenticationService.SignedInUserId);
+                if (item != null && !item.Items.IsNullOrEmpty())
+                {
+                    Views.Clear();
+                    var views = item.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
+
+                    Views = views;
+                }
+            }
+            catch (HttpException ex)
+            {
+                
             }
         }
     }
