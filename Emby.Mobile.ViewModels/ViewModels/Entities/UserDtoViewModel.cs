@@ -15,7 +15,7 @@ namespace Emby.Mobile.ViewModels.Entities
     {
         private const string UserProfileSelectedMessage = "UserProfileSelected";
 
-        public string UserImageUrl { get; } = "ms-appx:///Assets/Logo.png";
+        public string UserImageUrl { get; } = string.Empty;
         public string ErrorMessage { get; set; }
         public bool DisplayErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
         public ICommand SignUpCommand { get; } = null;

@@ -7,7 +7,8 @@
     "MediaBrowser.Common": "3.0.631",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmLightLibs": "5.1.1",
-    "PropertyChanged.Fody": "1.50.1"
+    "PropertyChanged.Fody": "1.50.1",
+    "Win2D.uwp": "1.0.0"
   },
   "frameworks": {
     "uap10.0": {}
