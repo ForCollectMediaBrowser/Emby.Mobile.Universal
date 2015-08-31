@@ -77,7 +77,8 @@ namespace Emby.Mobile.ViewModels
         {
             if (!UserProfiles.IsNullOrEmpty())
             {
-                UserProfiles.Clear();
+                UserProfiles = null;
+                _profilesLoaded = false;
             }
 
             return base.OnSignOut();

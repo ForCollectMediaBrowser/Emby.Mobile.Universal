@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Helpers;
 using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
@@ -21,8 +22,7 @@ namespace Emby.Mobile.ViewModels
             {
                 AuthenticationService.UserChanged += (sender, args) =>
                 {
-                    SetUsernameAndProfilePicture();
-                    LoadViews(true).ConfigureAwait(false);
+                    Start();
                 };
 
                 Views = new ObservableCollection<ItemViewModel>();
@@ -30,6 +30,7 @@ namespace Emby.Mobile.ViewModels
         }
 
         public bool BurgerIsVisible { get; set; }
+        public bool CanChangeServer => AuthenticationService.SignedInUsingConnect;
         public UserDtoViewModel User { get; set; }
         public ObservableCollection<ItemViewModel> Views { get; set; }
 
@@ -55,10 +56,23 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        public RelayCommand ChangeServerCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await ServerHelper.ChangeServer(Services);
+                });
+            }
+        }
+
         public void Start()
         {
             SetUsernameAndProfilePicture();
             LoadViews(true).ConfigureAwait(false);
+
+            RaisePropertyChanged(() => CanChangeServer);
         }
 
         public void ShowHide(bool show)
