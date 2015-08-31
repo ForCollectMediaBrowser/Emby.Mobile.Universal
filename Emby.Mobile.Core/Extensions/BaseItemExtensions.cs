@@ -41,7 +41,7 @@ namespace Emby.Mobile.Core.Extensions
                     icon = "\uE1B2";
                     break;
                 case "boxsets":
-                case "folder":
+                case "folders":
                     icon = "\uE2C7";
                     break;
                 default:

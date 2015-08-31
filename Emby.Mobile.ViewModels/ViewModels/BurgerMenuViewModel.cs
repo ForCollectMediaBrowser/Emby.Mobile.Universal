@@ -22,12 +22,14 @@ namespace Emby.Mobile.ViewModels
                 AuthenticationService.UserChanged += (sender, args) =>
                 {
                     SetUsernameAndProfilePicture();
+                    LoadViews(true).ConfigureAwait(false);
                 };
 
                 Views = new ObservableCollection<ItemViewModel>();
             }
         }
 
+        public bool BurgerIsVisible { get; set; }
         public UserDtoViewModel User { get; set; }
         public ObservableCollection<ItemViewModel> Views { get; set; }
 
@@ -59,6 +61,11 @@ namespace Emby.Mobile.ViewModels
             LoadViews(true).ConfigureAwait(false);
         }
 
+        public void ShowHide(bool show)
+        {
+            BurgerIsVisible = show;
+        }
+
         private void SetUsernameAndProfilePicture()
         {
             Services.Dispatcher.RunAsync(() =>
@@ -76,7 +83,7 @@ namespace Emby.Mobile.ViewModels
 
         private async Task LoadViews(bool isRefresh)
         {
-            if (_viewsLoaded && !isRefresh)
+            if ((_viewsLoaded && !isRefresh) || !AuthenticationService.IsSignedIn)
             {
                 return;
             }

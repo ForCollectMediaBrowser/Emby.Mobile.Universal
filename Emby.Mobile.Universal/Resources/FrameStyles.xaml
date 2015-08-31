@@ -13,14 +13,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyApplicationFrame">
                     <Grid HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch">
+                          VerticalAlignment="Stretch"
+                          DataContext="{Binding Burger, Source={StaticResource Locator}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <SplitView DisplayMode="Inline"
                                    OpenPaneLength="250"
-                                   IsPaneOpen="True"
+                                   IsPaneOpen="{Binding BurgerIsVisible}"
                                    Grid.Row="1">
                             <SplitView.Pane>
                                 <controls:BurgerMenuControl HorizontalAlignment="Stretch"
