@@ -15,7 +15,6 @@ namespace Emby.Mobile.Core.Extensions
             string icon;
             switch (viewType)
             {
-                case "boxsets":
                 case "recordedtv":
                 case "movies":
                     icon = "\uE04A";
@@ -41,6 +40,7 @@ namespace Emby.Mobile.Core.Extensions
                 case "guide":
                     icon = "\uE1B2";
                     break;
+                case "boxsets":
                 case "folder":
                     icon = "\uE2C7";
                     break;
