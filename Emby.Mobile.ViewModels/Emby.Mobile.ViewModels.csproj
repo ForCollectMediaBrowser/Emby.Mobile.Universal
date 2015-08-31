@@ -57,6 +57,7 @@
     <Compile Include="ViewModels\BurgerMenuViewModel.cs" />
     <Compile Include="ViewModels\ChooseUserProfileViewModel.cs" />
     <Compile Include="ViewModels\ChooseServerViewModel.cs" />
+    <Compile Include="ViewModels\ConnectChooseServerViewModel.cs" />
     <Compile Include="ViewModels\ConnectPinEntryViewModel.cs" />
     <Compile Include="ViewModels\ConnectSignUpViewModel.cs" />
     <Compile Include="ViewModels\ConnectViewModel.cs" />
