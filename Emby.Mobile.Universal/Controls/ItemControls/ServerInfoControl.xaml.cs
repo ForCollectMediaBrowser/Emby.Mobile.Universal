@@ -1,4 +1,7 @@
-﻿using Emby.Mobile.ViewModels.Entities;
+﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
+using Emby.Mobile.ViewModels.Entities;
 
 namespace Emby.Mobile.Universal.Controls.ItemControls
 {
@@ -10,5 +13,11 @@ namespace Emby.Mobile.Universal.Controls.ItemControls
         }
 
         private ServerInfoViewModel ServerInfo => this.DataContext as ServerInfoViewModel;
+
+        private void UIElement_OnHolding(object sender, HoldingRoutedEventArgs e)
+        {
+            var button = sender as Button;
+            FlyoutBase.ShowAttachedFlyout(button);
+        }
     }
 }

@@ -25,11 +25,12 @@ namespace Emby.Mobile.Universal.Core.Helpers
         public async static Task<IConnectionManager> CreateConnectionManager(
             IDevice device, 
             ILogger logger, 
-            INetworkConnection networkConnection)
+            INetworkConnection networkConnection,
+            ICredentialProvider credentialProvider)
         {
             var manager = new ConnectionManager(
                 logger,
-                new CredentialProvider(logger),
+                credentialProvider,
                 networkConnection,
                 new ServerLocator(),
                 "Windows Universal",

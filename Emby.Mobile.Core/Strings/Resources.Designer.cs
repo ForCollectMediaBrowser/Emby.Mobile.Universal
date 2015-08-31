@@ -143,7 +143,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string AppBarDelete {
             get {

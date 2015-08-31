@@ -887,7 +887,7 @@
     <value>Getting recorded items...</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
-    <value>delete</value>
+    <value>Delete</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
     <value>Channel:</value>

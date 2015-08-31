@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
@@ -31,6 +32,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public event EventHandler UserChanged;
         public AuthenticationResult AuthenticationResult { get; private set; }
+        public ICredentialProvider Credential { get; }
 
         public AuthenticationService(
             IConnectionManager connectionManager,
@@ -38,8 +40,10 @@ namespace Emby.Mobile.Universal.Core.Services
             IServerInfoService serverInfoService,
             ILogger logger,
             IDispatcherService dispatcher,
-            IMessengerService messengerService)
+            IMessengerService messengerService,
+            ICredentialProvider credential)
         {
+            Credential = credential;
             _settingsService = settingsService.Roaming;
             _connectionManager = connectionManager;
             _serverInfoService = serverInfoService;
