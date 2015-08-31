@@ -9,12 +9,15 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using Emby.Mobile.Core.Strings;
+using Emby.Mobile.Universal.Core.Helpers;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class ChooseServerViewModel : PageViewModelBase
+    public class ConnectChooseServerViewModel : PageViewModelBase
     {
-        public ChooseServerViewModel(IServices services) : base(services)
+        private bool _serversLoaded;
+
+        public ConnectChooseServerViewModel(IServices services) : base(services)
         {
             if (IsInDesignMode)
             {
@@ -38,6 +41,17 @@ namespace Emby.Mobile.ViewModels
 
         public ObservableCollection<ServerInfoViewModel> Servers { get; set; }
 
+        public RelayCommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await LoadData(true);
+                });
+            }
+        }
+
         public RelayCommand ManualServerEntryCommand
         {
             get
@@ -49,18 +63,26 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        public RelayCommand SignOutCommand => new RelayCommand(async () => { await SignOutHelper.SignOut(Services); });
+
         protected override async Task PageLoaded()
         {
-            await LoadData();
+            await LoadData(false);
         }
 
-        private async Task LoadData()
+        private async Task LoadData(bool isRefresh)
         {
-            SetProgressBar(Resources.SysTrayFindingServer);
+            if (_serversLoaded && !isRefresh)
+            {
+                return;
+            }
+
+            SetProgressBar(Resources.SysTrayGettingServers);
 
             try
             {
-                var servers = await Services.ConnectionManager.GetAvailableServers();
+                var connect = await Services.ConnectionManager.Connect();
+                var servers = connect.Servers;
 
                 if (servers.IsNullOrEmpty())
                 {
@@ -68,7 +90,9 @@ namespace Emby.Mobile.ViewModels
                 }
 
                 Servers = servers.Select(x => new ServerInfoViewModel(Services, x)).ToObservableCollection();
-                Servers.Add(new ServerInfoViewModel(Services, null) { IsDummyServer = true });
+                Servers.Add(new ServerInfoViewModel(Services, null) {IsDummyServer = true});
+
+                _serversLoaded = !Servers.IsNullOrEmpty();
             }
             catch (HttpException ex)
             {

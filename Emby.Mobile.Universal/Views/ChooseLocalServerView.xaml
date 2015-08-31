@@ -1,4 +1,4 @@
-﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.Connect.ChooseServerView"
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.ChooseLocalServerView"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
                    xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
                    xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
                    mc:Ignorable="d"
-                   DataContext="{Binding ConnectChooseServer, Source={StaticResource Locator}}">
+                   DataContext="{Binding ChooseServer, Source={StaticResource Locator}}">
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
@@ -24,15 +24,6 @@
             <ItemsWrapGrid Orientation="Vertical" />
         </ItemsPanelTemplate>
     </Page.Resources>
-
-    <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
-                              Command="{x:Bind ChooseServer.SignOutCommand}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
