@@ -9,7 +9,9 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using Emby.Mobile.Core.Strings;
+using Emby.Mobile.Messages;
 using Emby.Mobile.Universal.Core.Helpers;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -68,6 +70,22 @@ namespace Emby.Mobile.ViewModels
         protected override async Task PageLoaded()
         {
             await LoadData(false);
+        }
+
+        protected override void WireMessages()
+        {
+            Messenger.Default.Register<ServerInfoMessage>(this, m =>
+            {
+                if (m.Notification.Equals(ServerInfoMessage.DeleteServerMsg))
+                {
+                    if (!Servers.IsNullOrEmpty())
+                    {
+                        Servers.Remove(m.Server);
+                    }
+                }
+            });
+
+            base.WireMessages();
         }
 
         private async Task LoadData(bool isRefresh)

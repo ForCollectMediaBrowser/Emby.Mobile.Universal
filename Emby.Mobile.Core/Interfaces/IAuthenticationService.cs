@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
@@ -10,6 +11,7 @@ namespace Emby.Mobile.Core.Interfaces
     public interface IAuthenticationService
     {
         event EventHandler UserChanged;
+        ICredentialProvider Credential { get; }
         AuthenticationResult AuthenticationResult { get; }
         UserDto SignedInUser { get; }
         bool IsSignedIn { get; }

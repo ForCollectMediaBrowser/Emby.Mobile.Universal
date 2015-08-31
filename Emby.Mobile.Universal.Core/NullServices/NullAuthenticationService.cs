@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
@@ -11,6 +12,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
     public class NullAuthenticationService : IAuthenticationService
     {
         public event EventHandler UserChanged;
+        public ICredentialProvider Credential { get; } = null;
         public AuthenticationResult AuthenticationResult { get; } = null;
         public UserDto SignedInUser { get; } = null;
         public bool IsSignedIn { get; } = false;

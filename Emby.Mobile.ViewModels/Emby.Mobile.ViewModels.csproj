@@ -52,6 +52,7 @@
     <Compile Include="Helpers\ConnectHelper.cs" />
     <Compile Include="Helpers\ServerHelper.cs" />
     <Compile Include="Helpers\SignOutHelper.cs" />
+    <Compile Include="Messages\ServerInfoMessage.cs" />
     <Compile Include="Messages\SignOutAppMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BurgerMenuViewModel.cs" />
