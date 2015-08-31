@@ -24,7 +24,8 @@ namespace Emby.Mobile.Universal.Controls
             typeof(ConnectView),
             typeof(ManualServerEntryView),
             typeof(ManualLocalUserSignInView),
-            typeof(StartupView)
+            typeof(StartupView),
+            typeof(ChooseLocalServerView)
         }; 
 
         public EmbyApplicationFrame()
