@@ -18,6 +18,10 @@ namespace Emby.Mobile.Universal.Core.Services
     [ImplementPropertyChanged]
     public class AuthenticationService : IAuthenticationService
     {
+        public const string LoggedInUserSetting = "LoggedInUserSettingKey";
+        public const string AuthenticationResultSetting = "AuthenticationResultSettingKey";
+        public const string ConnectUser = "ConnectUserKey";
+
         private readonly IConnectionManager _connectionManager;
         private readonly IMessengerService _messengerService;
         private readonly IApplicationSettingsServiceHandler _settingsService;
@@ -25,6 +29,7 @@ namespace Emby.Mobile.Universal.Core.Services
         private readonly ILogger _logger;
         private readonly IDispatcherService _dispatcher;
 
+        public event EventHandler UserChanged;
         public AuthenticationResult AuthenticationResult { get; private set; }
 
         public AuthenticationService(
@@ -128,9 +133,9 @@ namespace Emby.Mobile.Universal.Core.Services
 
         public void CheckIfUserSignedIn()
         {
-            var user = _settingsService.SafeGet<UserDto>(Constants.Settings.LoggedInUserSetting);
-            var oldUser = _settingsService.SafeGet<AuthenticationResult>(Constants.Settings.AuthenticationResultSetting);
-            var connectUser = _settingsService.SafeGet<ConnectUser>(Constants.Settings.ConnectUser);
+            var user = _settingsService.SafeGet<UserDto>(LoggedInUserSetting);
+            var oldUser = _settingsService.SafeGet<AuthenticationResult>(AuthenticationResultSetting);
+            var connectUser = _settingsService.SafeGet<ConnectUser>(ConnectUser);
 
             if (user != null)
             {
@@ -161,7 +166,7 @@ namespace Emby.Mobile.Universal.Core.Services
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
                 AuthenticationResult = result;
-                _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, AuthenticationResult);
+                _settingsService.SafeSet(AuthenticationResultSetting, AuthenticationResult);
 
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
@@ -188,7 +193,7 @@ namespace Emby.Mobile.Universal.Core.Services
         public void ClearLoggedInUser()
         {
             SignedInUser = null;
-            _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
+            _settingsService.Remove(LoggedInUserSetting);
         }
 
         public async Task<bool> SignOut(bool removeServerInfo)
@@ -203,7 +208,7 @@ namespace Emby.Mobile.Universal.Core.Services
 
                 if (removeServerInfo)
                 {
-                   _serverInfoService.Clear();
+                    _serverInfoService.Clear();
                 }
 
                 success = true;
@@ -223,9 +228,9 @@ namespace Emby.Mobile.Universal.Core.Services
             AuthenticationResult = null;
             _messengerService.SendNotification("ClearNowPlayingMsg");
 
-            _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
-            _settingsService.Remove(Constants.Settings.AuthenticationResultSetting);
-            _settingsService.Remove(Constants.Settings.ConnectUser);
+            _settingsService.Remove(LoggedInUserSetting);
+            _settingsService.Remove(AuthenticationResultSetting);
+            _settingsService.Remove(ConnectUser);
         }
 
         public UserDto SignedInUser { get; private set; }
@@ -262,14 +267,6 @@ namespace Emby.Mobile.Universal.Core.Services
             }
         }
 
-        public async Task<bool> SignInWithPin(string pin)
-        {
-            var success = false;
-            
-
-            return success;
-        }
-
         public async Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password)
         {
             var response = await _connectionManager.SignupForConnect(email, username, password);
@@ -281,16 +278,32 @@ namespace Emby.Mobile.Universal.Core.Services
         {
             SignedInUser = user;
 
-            _settingsService.SafeSet(Constants.Settings.LoggedInUserSetting, SignedInUser);
+            if (user == null)
+            {
+                _settingsService.Remove(LoggedInUserSetting);
+            }
+            else
+            {
+                _settingsService.SafeSet(LoggedInUserSetting, SignedInUser);
+            }
+
+            SendUserChangedEvent();
         }
 
         public void SetConnectUser(ConnectUser connectUser)
         {
             LoggedInConnectUser = connectUser;
 
-            //_connectionManager.Connect = LoggedInConnectUser;
+            if (connectUser == null)
+            {
+                _settingsService.Remove(ConnectUser);
+            }
+            else
+            {
+                _settingsService.SafeSet(ConnectUser, LoggedInConnectUser);
+            }
 
-            _settingsService.SafeSet(Constants.Settings.ConnectUser, LoggedInConnectUser);
+            SendUserChangedEvent();
         }
 
         public void SetAccessToken(string accessToken)
@@ -302,9 +315,15 @@ namespace Emby.Mobile.Universal.Core.Services
                 User = SignedInUser
             };
 
-            _settingsService.SafeSet(Constants.Settings.AuthenticationResultSetting, authInfo);
+            _settingsService.SafeSet(AuthenticationResultSetting, authInfo);
 
             AuthenticationResult = authInfo;
+        }
+
+        private void SendUserChangedEvent()
+        {
+            var eventHandler = UserChanged;
+            eventHandler?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -75,5 +75,10 @@ namespace Emby.Mobile.Universal.Services
         {
             return Navigate<ConnectPinEntryView>();
         }
+
+        public bool NavigateToSettings()
+        {
+            return false;
+        }
     }
 }

@@ -113,7 +113,6 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\SerialisationExtensions.cs" />
     <Compile Include="Extensions\StorageServiceExtensions.cs" />
@@ -141,6 +140,7 @@
     <Compile Include="NullServices\NullMessengerService.cs" />
     <Compile Include="NullServices\NullNavigationService.cs" />
     <Compile Include="NullServices\NullServerInfoService.cs" />
+    <Compile Include="NullServices\NullStartUpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AnalyticsService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ApplicationSettingsExtensions.cs" />
+    <Compile Include="Extensions\BaseItemExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\DeviceFamily.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\IServices.cs" />
+    <Compile Include="Interfaces\IStartUpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\AppResources.en-GB.Designer.cs">
       <AutoGen>True</AutoGen>

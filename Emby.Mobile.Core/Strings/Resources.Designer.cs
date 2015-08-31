@@ -395,7 +395,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to settings.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string AppBarSettings {
             get {

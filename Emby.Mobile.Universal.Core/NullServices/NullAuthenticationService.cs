@@ -10,6 +10,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
 {
     public class NullAuthenticationService : IAuthenticationService
     {
+        public event EventHandler UserChanged;
         public AuthenticationResult AuthenticationResult { get; } = null;
         public UserDto SignedInUser { get; } = null;
         public bool IsSignedIn { get; } = false;

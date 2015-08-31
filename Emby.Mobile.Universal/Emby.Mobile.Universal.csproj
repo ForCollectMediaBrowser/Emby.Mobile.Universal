@@ -90,6 +90,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Fonts\MaterialIcons-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +102,14 @@
     <Compile Include="Controls\BaseApplication.cs" />
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BlurredImageControl.cs" />
+    <Compile Include="Controls\BurgerMenuControl.xaml.cs">
+      <DependentUpon>BurgerMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmbyApplicationFrame.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
+    <Compile Include="Controls\ItemControls\MediaFolderControl.xaml.cs">
+      <DependentUpon>MediaFolderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ItemControls\ServerInfoControl.xaml.cs">
       <DependentUpon>ServerInfoControl.xaml</DependentUpon>
     </Compile>
@@ -127,6 +137,7 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
+    <Compile Include="Services\StartUpService.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChooseLocalServerView.xaml.cs">
       <DependentUpon>ChooseLocalServerView.xaml</DependentUpon>
@@ -200,6 +211,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\BurgerMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemControls\MediaFolderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemControls\ServerInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +263,11 @@
     <Page Include="Views\ChooseLocalServerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\FrameStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\Connect\ChooseUserProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -326,7 +350,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fonts\" />
+    <Folder Include="Theme\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

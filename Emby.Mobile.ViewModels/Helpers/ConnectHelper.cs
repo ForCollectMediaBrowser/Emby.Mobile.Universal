@@ -25,6 +25,8 @@ namespace Emby.Mobile.Helpers
                     }
                     else
                     {
+                        await services.StartUp.Startup();
+
                         services.NavigationService.NavigateToHome();
                     }
                     break;
@@ -40,6 +42,8 @@ namespace Emby.Mobile.Helpers
                     {
                         services.Authentication.SetAccessToken(apiClient.AccessToken);
                     }
+
+                    await services.StartUp.Startup();
 
                     services.NavigationService.NavigateToHome();
                     services.NavigationService.ClearBackStack();

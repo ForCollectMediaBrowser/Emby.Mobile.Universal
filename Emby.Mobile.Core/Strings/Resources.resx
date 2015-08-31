@@ -242,7 +242,7 @@
     <value>send logs</value>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>settings</value>
+    <value>Settings</value>
   </data>
   <data name="Collections" xml:space="preserve">
     <value>Folders</value>

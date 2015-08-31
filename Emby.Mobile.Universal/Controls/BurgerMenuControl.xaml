@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="Emby.Mobile.Universal.Controls.BurgerMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
+             xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="400"
+             Width="250"
+             DataContext="{Binding Burger, Source={StaticResource Locator}}">
+
+    <Grid Background="{StaticResource EmbyLightGrayBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="0,19,0,0">
+            <ListView x:Name="FoldersList"
+                      ItemsSource="{x:Bind Burger.Views, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:ItemViewModel">
+                        <Button x:Name="SettingsButton"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                RelativePanel.Below="ProfilePicture"
+                                ClickMode="Release"
+                                Margin="6,6,0,0"
+                                Command="{x:Bind NavigateToItem}"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon FontFamily="{StaticResource MaterialFont}"
+                                          Glyph="{x:Bind MaterialIcon}"
+                                          VerticalAlignment="Center"
+                                          Foreground="White"
+                                          Margin="0,9,10,9" />
+                                
+                                <TextBlock Text="{x:Bind Name}"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="White" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+
+        <RelativePanel Grid.Row="1"
+                       VerticalAlignment="Bottom"
+                       Margin="6,19,0,25">
+            <controls:ProfilePicture ProfileImage="{x:Bind Burger.User.UserImageUrl, Mode=OneWay}"
+                                     Height="25"
+                                     Width="25"
+                                     Margin="8,0,9,0"
+                                     ShowBackground="False"
+                                     x:Name="ProfilePicture"
+                                     RelativePanel.AlignLeftWithPanel="True" />
+            <TextBlock Text="{x:Bind Burger.User.Username, Mode=OneWay}"
+                       x:Name="Username"
+                       RelativePanel.RightOf="ProfilePicture"
+                       RelativePanel.AlignVerticalCenterWith="ProfilePicture"
+                       Foreground="White" />
+
+            <Button x:Name="SettingsButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.Below="ProfilePicture"
+                    ClickMode="Release"
+                    Margin="0,6,0,0"
+                    Command="{x:Bind Burger.NavigateToSettingsCommand}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                              Glyph="{StaticResource Setting}"
+                              Foreground="White"
+                              Margin="10,9,13,9" />
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarSettings}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="White" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="ChangeServerButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.Below="SettingsButton"
+                    ClickMode="Release"
+                    Margin="0,3,0,0"
+                    Command="{x:Bind Burger.ChangeServerCommand}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Visibility="{x:Bind Burger.CanChangeServer, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                              Glyph="{StaticResource Server}"
+                              Foreground="White"
+                              Margin="10,9,13,9" />
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarChangeServer}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="White" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="SignOutButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.Below="ChangeServerButton"
+                    ClickMode="Release"
+                    Margin="0,3,0,0"
+                    Command="{x:Bind Burger.SignOutCommand}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                              Glyph="{StaticResource Lock}"
+                              Foreground="White"
+                              Margin="10,9,13,9" />
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="White" />
+                </StackPanel>
+            </Button>
+        </RelativePanel>
+    </Grid>
+</UserControl>

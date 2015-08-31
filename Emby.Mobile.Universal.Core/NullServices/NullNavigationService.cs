@@ -119,6 +119,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public bool NavigateToSettings()
+        {
+            throw new NotImplementedException();
+        }
+        
         public bool NavigateToLocalServerSelection()
         {
             throw new NotImplementedException();

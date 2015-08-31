@@ -15,7 +15,7 @@ namespace Emby.Mobile.Universal.Controls
     {
         protected readonly ILog Logger;
         
-        protected virtual ApplicationViewBoundsMode Mode => ApplicationViewBoundsMode.UseVisible;
+        protected virtual ApplicationViewBoundsMode Mode => ApplicationViewBoundsMode.UseCoreWindow;
 
         public abstract INavigationService NavigationService { get; }
 
