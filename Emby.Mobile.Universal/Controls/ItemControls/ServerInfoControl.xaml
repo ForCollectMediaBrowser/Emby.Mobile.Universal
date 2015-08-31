@@ -8,8 +8,19 @@
              d:DesignWidth="360"
              d:DataContext="{Binding ChooseServer.Servers[0], Source={StaticResource Locator}}">
 
-    <Grid>
-        <!--<VisualStateManager.VisualStateGroups>
+    <Button ClickMode="Release"
+            Command="{x:Bind ServerInfo.ServerTappedCommand}"
+            Style="{StaticResource EmptyButtonStyle}"
+            Holding="UIElement_OnHolding"
+            x:Name="ContainingButton">
+        <Button.Flyout>
+            <MenuFlyout>
+                <MenuFlyoutItem Command="{x:Bind ServerInfo.RemoveServerCommand}"
+                                Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarDelete}"/>
+            </MenuFlyout>
+        </Button.Flyout>
+        <Grid>
+            <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
@@ -45,30 +56,31 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>-->
-        
-        <RelativePanel>
-            <TextBlock Style="{StaticResource Mdl2Style}"
-                       Text="{StaticResource Server}"
-                       FontSize="96"
-                       x:Name="ServerImage"/>
-            <TextBlock x:Name="ServerName"
-                       Text="{Binding ServerName}"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       Foreground="{StaticResource EmbyGreenBrush}"
-                       RelativePanel.RightOf="ServerImage"
-                       Margin="0,0,0,0"/>
-            <TextBlock x:Name="LocalAddress"
-                       Text="{Binding LocalAddress}"
-                       Visibility="{Binding DisplayLocalAddress, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       RelativePanel.RightOf="ServerImage"
-                       RelativePanel.Below="ServerName"/>
-            <TextBlock x:Name="ExternalAddress"
-                       Text="{Binding ExternalAddress}"
-                       Visibility="{Binding DisplayExternalAddress, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       RelativePanel.RightOf="ServerImage"
-                       RelativePanel.Below="LocalAddress" />
-        </RelativePanel>
-    </Grid>
+
+            <RelativePanel>
+                <TextBlock Style="{StaticResource Mdl2Style}"
+                           Text="{StaticResource Server}"
+                           FontSize="96"
+                           x:Name="ServerImage" />
+                <TextBlock x:Name="ServerName"
+                           Text="{Binding ServerName}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Foreground="{StaticResource EmbyGreenBrush}"
+                           RelativePanel.RightOf="ServerImage"
+                           Margin="0,0,0,0" />
+                <TextBlock x:Name="LocalAddress"
+                           Text="{Binding LocalAddress}"
+                           Visibility="{Binding DisplayLocalAddress, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           RelativePanel.RightOf="ServerImage"
+                           RelativePanel.Below="ServerName" />
+                <TextBlock x:Name="ExternalAddress"
+                           Text="{Binding ExternalAddress}"
+                           Visibility="{Binding DisplayExternalAddress, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           RelativePanel.RightOf="ServerImage"
+                           RelativePanel.Below="LocalAddress" />
+            </RelativePanel>
+        </Grid>
+    </Button>
 </UserControl>

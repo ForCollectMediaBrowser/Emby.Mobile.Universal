@@ -134,6 +134,7 @@
     <Compile Include="NullServices\NullAuthenticationService.cs" />
     <Compile Include="NullServices\NullConnectionManager.cs" />
     <Compile Include="NullServices\Cimbalino\NullMessageBoxService.cs" />
+    <Compile Include="NullServices\NullCredentialProvider.cs" />
     <Compile Include="NullServices\NullDeviceInfoService.cs" />
     <Compile Include="NullServices\NullDispatcherService.cs" />
     <Compile Include="NullServices\Cimbalino\NullLauncherService.cs" />
