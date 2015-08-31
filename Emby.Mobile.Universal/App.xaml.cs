@@ -7,10 +7,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Services;
-using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.Universal.Views;
 using GalaSoft.MvvmLight.Ioc;
-using EmbyConnectView = Emby.Mobile.Universal.Views.Connect.ConnectView;
 
 namespace Emby.Mobile.Universal
 {
@@ -27,6 +25,13 @@ namespace Emby.Mobile.Universal
         {
             InitializeComponent();
             Suspending += OnSuspending;
+            UnhandledException += OnUnhandledException;
+        }
+
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            AppServices.Log.ErrorException("UnhandledException", e.Exception);
+            AppServices.Anayltics.SendUnhandledException(e.Exception);
         }
 
         /// <summary>
