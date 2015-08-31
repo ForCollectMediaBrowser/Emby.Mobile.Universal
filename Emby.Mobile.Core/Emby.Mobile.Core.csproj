@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ApplicationSettingsExtensions.cs" />
+    <Compile Include="Extensions\BaseItemExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\DeviceFamily.cs" />

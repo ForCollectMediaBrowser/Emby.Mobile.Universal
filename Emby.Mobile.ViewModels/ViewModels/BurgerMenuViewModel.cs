@@ -56,7 +56,7 @@ namespace Emby.Mobile.ViewModels
         public void Start()
         {
             SetUsernameAndProfilePicture();
-            LoadViews(false).ConfigureAwait(false);
+            LoadViews(true).ConfigureAwait(false);
         }
 
         private void SetUsernameAndProfilePicture()
@@ -90,6 +90,8 @@ namespace Emby.Mobile.ViewModels
                     var views = item.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
 
                     Views = views;
+
+                    _viewsLoaded = true;
                 }
             }
             catch (HttpException ex)

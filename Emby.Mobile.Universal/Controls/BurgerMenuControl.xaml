@@ -17,7 +17,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0">
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="0,19,0,0">
             <ListView x:Name="FoldersList"
                       ItemsSource="{x:Bind Burger.Views, Mode=OneWay}">
                 <ListView.ItemTemplate>
@@ -31,10 +33,12 @@
                                 RelativePanel.AlignLeftWithPanel="True"
                                 RelativePanel.AlignRightWithPanel="True">
                             <StackPanel Orientation="Horizontal">
-                                <FontIcon Style="{StaticResource Mdl2FontStyle}"
-                                          Glyph="{StaticResource Setting}"
+                                <FontIcon FontFamily="{StaticResource MaterialFont}"
+                                          Glyph="{x:Bind MaterialIcon}"
+                                          VerticalAlignment="Center"
                                           Foreground="White"
-                                          Margin="10,9,10,9" />
+                                          Margin="0,9,10,9" />
+                                
                                 <TextBlock Text="{x:Bind Name}"
                                            VerticalAlignment="Center"
                                            Style="{StaticResource BodyTextBlockStyle}"

@@ -18,7 +18,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <SplitView DisplayMode="Overlay"
+                        <SplitView DisplayMode="Inline"
                                    OpenPaneLength="250"
                                    IsPaneOpen="True"
                                    Grid.Row="1">
