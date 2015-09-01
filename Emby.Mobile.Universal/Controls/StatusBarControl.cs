@@ -17,8 +17,9 @@ namespace Emby.Mobile.Universal.Controls
     [TemplateVisualState(GroupName = "DisplayStates", Name = "Warning")]
     public sealed class StatusBarControl : Control
     {
-        private List<DisplayItem> _items = new List<DisplayItem>();
+        private static StatusBarControl _currentControl;
 
+        private List<DisplayItem> _items = new List<DisplayItem>();
         private DisplayItem _currentItem;
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(StatusBarControl), new PropertyMetadata(""));
@@ -26,7 +27,7 @@ namespace Emby.Mobile.Universal.Controls
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
-        }        
+        }
 
         public StatusBarControl()
         {
@@ -40,11 +41,12 @@ namespace Emby.Mobile.Universal.Controls
             RegisterControlForView(this);
         }
 
-
         public void Show(string text, StatusType type)
         {
             var item = new DisplayItem(text, type);
+
             _items.RemoveAll(i => i.Type == type);
+
             _items.Add(item);
 
             ShowInternal();
@@ -65,14 +67,15 @@ namespace Emby.Mobile.Universal.Controls
             VisualStateManager.GoToState(this, "Open", true);
 
             _currentItem = item;
-            Text = item.Text;            
+            Text = item.Text;
+
             SetDisplayState(item);
 
             await HandleNextState(item);
         }
 
         private void SetDisplayState(DisplayItem item)
-        {           
+        {
             switch (item.Type)
             {
                 case StatusType.Error:
@@ -118,7 +121,6 @@ namespace Emby.Mobile.Universal.Controls
             return item;
         }
 
-        private static StatusBarControl _currentControl;
         public static StatusBarControl GetForCurrentView()
         {
             return _currentControl;
