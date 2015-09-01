@@ -58,11 +58,13 @@ namespace Emby.Mobile.Universal.Services
             var logger = new WinLogger("Emby.Universal");
             var mbLogger = new MBLogger(logger);
             var device = new Device();
-            var network = new NetworkConnection();            
+            var network = new NetworkConnection();
+            var credentials = new CredentialProvider(mbLogger);
             SimpleIoc.Default.RegisterIf<ILog>(() => logger);
             SimpleIoc.Default.RegisterIf<IDevice>(() => device);
             SimpleIoc.Default.RegisterIf<INetworkConnection>(() => network);
             SimpleIoc.Default.RegisterIf<ILogger>(() => mbLogger);
+            SimpleIoc.Default.RegisterIf<ICredentialProvider>(() => credentials);
 
             SimpleIoc.Default.RegisterIf<ILocalizedResources, LocalizedStrings>();
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
@@ -79,13 +81,13 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
 
-            await AddConnectionServices(device, mbLogger, network);
+            await AddConnectionServices(device, mbLogger, network, credentials);
 
         }
 
-        private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network)
+        private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network, ICredentialProvider credentialProvider)
         {
-            var connectionManager = await ConnectionManagerFactory.CreateConnectionManager(device, mbLogger, network);
+            var connectionManager = await ConnectionManagerFactory.CreateConnectionManager(device, mbLogger, network, credentialProvider);
             SimpleIoc.Default.RegisterIf<IConnectionManager>(() => connectionManager);
         }
 
@@ -108,6 +110,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IAnalyticsService, NullAnalyticsService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, NullStartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, NullStatusBarService>();
+            SimpleIoc.Default.RegisterIf<ICredentialProvider, NullCredentialProvider>();
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();

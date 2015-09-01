@@ -5,7 +5,7 @@
   <Properties>
     <DisplayName>Emby.Mobile.Universal</DisplayName>
     <PublisherDisplayName>scott</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\Tiles\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -15,10 +15,15 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Emby.Mobile.Universal.App">
-      <uap:VisualElements DisplayName="Emby" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Emby" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements DisplayName="Emby Universal" Square150x150Logo="Assets\Tiles\150x150Logo.png" Square44x44Logo="Assets\Tiles\Square44x44Logo.png" Description="Emby" BackgroundColor="#333333">
+        <uap:DefaultTile Wide310x150Logo="Assets\Tiles\310x150Logo.png" ShortName="Emby" Square310x310Logo="Assets\Tiles\310x310Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#333333" />
       </uap:VisualElements>
     </Application>
   </Applications>

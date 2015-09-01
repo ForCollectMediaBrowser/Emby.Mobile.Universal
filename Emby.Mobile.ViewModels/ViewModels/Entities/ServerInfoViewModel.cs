@@ -1,7 +1,10 @@
-﻿using Emby.Mobile.Core.Interfaces;
+﻿using Emby.Mobile.Core.Extensions;
+using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Core.Strings;
 using Emby.Mobile.Helpers;
+using Emby.Mobile.Messages;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 
 namespace Emby.Mobile.ViewModels.Entities
@@ -51,6 +54,20 @@ namespace Emby.Mobile.ViewModels.Entities
                     }
 
                     SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand RemoveServerCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    var credsProvider = AuthenticationService.Credential;
+                    await credsProvider.RemoveServer(ServerInfo);
+
+                    Messenger.Default.Send(new ServerInfoMessage(this, ServerInfoMessage.DeleteServerMsg));
                 });
             }
         }
