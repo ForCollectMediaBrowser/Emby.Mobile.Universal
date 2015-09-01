@@ -116,5 +116,6 @@ namespace Emby.Mobile.Universal.Services
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
         public static ILogger Log => ServiceLocator.Current.GetInstance<ILogger>();
         public static IAnalyticsService Anayltics => ServiceLocator.Current.GetInstance<IAnalyticsService>();
+        public static IDeviceInfoService DeviceInfo => ServiceLocator.Current.GetInstance<IDeviceInfoService>();
     }
 }
