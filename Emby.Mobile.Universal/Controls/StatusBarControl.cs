@@ -58,7 +58,7 @@ namespace Emby.Mobile.Universal.Controls
 
             if (item == null || string.IsNullOrEmpty(item.Text))
             {
-                if (_currentItem == null)
+                if (_currentItem == null || _currentItem.Type == item.Type)
                 {
                     VisualStateManager.GoToState(this, "Closed", true);
                 }
