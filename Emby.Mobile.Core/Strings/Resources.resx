@@ -1387,4 +1387,7 @@
   <data name="LabelPinExpired" xml:space="preserve">
     <value>This pin has now expired</value>
   </data>
+  <data name="LabelUseConnectInstead" xml:space="preserve">
+    <value>Sign in with Emby Connect instead</value>
+  </data>
 </root>

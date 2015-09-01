@@ -28,9 +28,10 @@ namespace Emby.Mobile.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(ServerAddress)) return string.Empty;
+                var scheme = IsHttps ? "https" : "http";
+                if (string.IsNullOrEmpty(ServerAddress)) return scheme;
 
-                var uriBuilder = new UriBuilder(IsHttps ? "https" : "http", ServerAddress, PortNumber);
+                var uriBuilder = new UriBuilder(scheme, ServerAddress, PortNumber);
                 return uriBuilder.Uri.ToString();
             }
         }
@@ -87,6 +88,17 @@ namespace Emby.Mobile.ViewModels
                     {
                         Services.Launcher.LaunchUriAsync(DisplayUrl);
                     }
+                });
+            }
+        }
+
+        public RelayCommand SignIntoConnectCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToEmbyConnect();
                 });
             }
         }
