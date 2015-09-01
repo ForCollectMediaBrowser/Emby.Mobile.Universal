@@ -2636,6 +2636,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign in with Emby Connect instead.
+        /// </summary>
+        public static string LabelUseConnectInstead {
+            get {
+                return ResourceManager.GetString("LabelUseConnectInstead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use HTTPS.
         /// </summary>
         public static string LabelUseHttps {

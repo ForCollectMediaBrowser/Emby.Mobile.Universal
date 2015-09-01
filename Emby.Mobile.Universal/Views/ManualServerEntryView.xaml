@@ -74,6 +74,12 @@
                     Margin="20,12,20,0"
                     ClickMode="Release"
                     Command="{x:Bind ManualServerEntry.ConnectCommand}"/>
+            
+            <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelUseConnectInstead}"
+                             RelativePanel.Below="ConnectButton"
+                             RelativePanel.AlignHorizontalCenterWith="ConnectButton"
+                             Margin="0,6"
+                             Command="{x:Bind ManualServerEntry.SignIntoConnectCommand}"/>
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>
