@@ -152,10 +152,12 @@
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProfilePicture.cs" />
+    <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Helpers\NavigationParameters.cs" />
+    <Compile Include="Helpers\StatusType.cs" />
     <Compile Include="Interfaces\ICanHasHomeButton.cs" />
     <Compile Include="Interfaces\IListType.cs" />
     <Compile Include="Interfaces\INavigatedFromViewModel.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="Services\StartUpService.cs" />
+    <Compile Include="Services\StatusBarService.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChooseLocalServerView.xaml.cs">
       <DependentUpon>ChooseLocalServerView.xaml</DependentUpon>

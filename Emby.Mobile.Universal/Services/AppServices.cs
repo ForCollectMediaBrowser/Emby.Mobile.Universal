@@ -16,6 +16,7 @@ using MediaBrowser.Model.Logging;
 using Microsoft.Practices.ServiceLocation;
 using ScottIsAFool.Windows.MvvmLight.Extensions;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
+using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.Universal.Services
@@ -78,6 +79,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, DeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
+            SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
 
             await AddConnectionServices(device, mbLogger, network, credentials);
 
@@ -107,6 +109,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, NullDeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, NullAnalyticsService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, NullStartUpService>();
+            SimpleIoc.Default.RegisterIf<IStatusBarService, NullStatusBarService>();
             SimpleIoc.Default.RegisterIf<ICredentialProvider, NullCredentialProvider>();
         }
 

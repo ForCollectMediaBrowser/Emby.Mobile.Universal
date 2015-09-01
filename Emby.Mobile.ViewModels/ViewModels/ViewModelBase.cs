@@ -32,11 +32,26 @@ namespace Emby.Mobile.ViewModels
             });
         }
 
+        protected void ShowStatusBarWarning(string text)
+        {            
+            Services.StatusBar.DisplayWarning(text);            
+        }
+
+        protected void ShowStatusBarError(string text)
+        {
+            Services.StatusBar.DisplayError(text);
+        }
+
+        protected void ShowStatusBarMessage(string text)
+        {
+            Services.StatusBar.DisplayMessage(text);
+        }
+
         protected void SetProgressBar(string text)
         {
             ProgressIsVisible = true;
             ProgressText = text;
-
+            Services.StatusBar.DisplayIndeterminateStatus(text);
             UpdateProperties();
         }
 
@@ -44,7 +59,7 @@ namespace Emby.Mobile.ViewModels
         {
             ProgressIsVisible = false;
             ProgressText = string.Empty;
-
+            Services.StatusBar.DisplayIndeterminateStatus(string.Empty);
             UpdateProperties();
         }       
 

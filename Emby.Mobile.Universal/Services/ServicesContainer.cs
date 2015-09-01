@@ -3,6 +3,7 @@ using Emby.Mobile.Core.Interfaces;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
+using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -22,7 +23,8 @@ namespace Emby.Mobile.Universal.Services
             ILauncherService launcher,
             IDeviceInfoService device,
             IAnalyticsService analytics,
-            IStartUpService startUp)
+            IStartUpService startUp,
+            IStatusBarService statusBar)
         {
             Log = log;
             NavigationService = navigationService;
@@ -38,6 +40,7 @@ namespace Emby.Mobile.Universal.Services
             Device = device;
             Analytics = analytics;
             StartUp = startUp;
+            StatusBar = statusBar;
         }
 
         public ILogger Log { get; }
@@ -54,5 +57,6 @@ namespace Emby.Mobile.Universal.Services
         public IDeviceInfoService Device { get; }
         public IAnalyticsService Analytics { get; }
         public IStartUpService StartUp { get; }
+        public IStatusBarService StatusBar { get; }
     }
 }

@@ -37,6 +37,7 @@
                                                 VerticalAlignment="Stretch" />
                             </SplitView.Content>
                         </SplitView>
+                        <controls:StatusBarControl Grid.RowSpan="2" VerticalAlignment="Top"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

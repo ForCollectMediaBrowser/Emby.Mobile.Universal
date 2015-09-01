@@ -94,7 +94,14 @@ namespace Emby.Mobile.ViewModels
             }
             finally
             {
-                SetProgressBar();
+                if (Servers?.Any() != true)
+                {
+                    ShowStatusBarWarning(Resources.ErrorCouldNotFindServer);
+                }
+                else
+                {
+                    SetProgressBar();
+                }
             }
         }
     }
