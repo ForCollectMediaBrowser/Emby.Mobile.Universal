@@ -120,7 +120,7 @@
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProfilePicture.cs" />
-    <Compile Include="Controls\SystemTrayControl.cs" />
+    <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />

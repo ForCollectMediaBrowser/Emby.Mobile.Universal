@@ -88,12 +88,12 @@
         </Setter>
     </Style>
 
-    <Style TargetType="controls:SystemTrayControl">
+    <Style TargetType="controls:StatusBarControl">
         <Setter Property="Height"
                 Value="30" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:SystemTrayControl">
+                <ControlTemplate TargetType="controls:StatusBarControl">
                     <Border x:Name="control"
                             Background="Transparent"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -145,18 +145,33 @@
                                                       GeneratedDuration="0:0:0.4" />
                                     <VisualTransition To="Normal"
                                                       GeneratedDuration="0:0:0.1" />
+                                    <VisualTransition To="Message"
+                                                      GeneratedDuration="0:0:0.1" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="control"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                         To="#333333" />
-                                        <ColorAnimation Storyboard.TargetName="statusText"
+                                        <ColorAnimation Storyboard.TargetName="StatusText"
                                                         Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                         To="#FFFFFF" />
                                         <ColorAnimation Storyboard.TargetName="ProgressIndicator"
                                                         Storyboard.TargetProperty="(ProgressBar.Foreground).(SolidColorBrush.Color)"
                                                         To="#52B54B" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Message">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="control"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#333333" />
+                                        <ColorAnimation Storyboard.TargetName="StatusText"
+                                                        Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                        To="#FFFFFF" />
+                                        <DoubleAnimation Storyboard.TargetName="ProgressIndicator"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Error">
@@ -164,19 +179,12 @@
                                         <ColorAnimation Storyboard.TargetName="control"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                         To="#7F0000" />
-                                        <ColorAnimation Storyboard.TargetName="statusText"
+                                        <ColorAnimation Storyboard.TargetName="StatusText"
                                                         Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                         To="#FFFFFF" />
-
                                         <DoubleAnimation Storyboard.TargetName="ProgressIndicator"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0" />
-                                        <ObjectAnimationUsingKeyFrames Duration="0:0:0"
-                                                                       Storyboard.TargetName="DismissButton"
-                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="Visible" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                                         To="0" />                                     
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Success">
@@ -184,7 +192,7 @@
                                         <ColorAnimation Storyboard.TargetName="control"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                         To="#333333" />
-                                        <ColorAnimation Storyboard.TargetName="statusText"
+                                        <ColorAnimation Storyboard.TargetName="StatusText"
                                                         Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                         To="#FFFFFF" />
                                         <ColorAnimation Storyboard.TargetName="ProgressIndicator"
@@ -195,13 +203,7 @@
                                                         To="#52B54B" />
                                         <DoubleAnimation Storyboard.TargetName="ProgressIndicator"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0" />
-                                        <ObjectAnimationUsingKeyFrames Duration="0:0:0"
-                                                                       Storyboard.TargetName="DismissButton"
-                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="Visible" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                                         To="0" />                                      
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Warning">
@@ -209,21 +211,15 @@
                                         <ColorAnimation Storyboard.TargetName="control"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                         To="#333333" />
-                                        <ColorAnimation Storyboard.TargetName="statusText"
+                                        <ColorAnimation Storyboard.TargetName="StatusText"
                                                         Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
                                                         To="#FFFFFF" />
-                                        <ColorAnimation Storyboard.TargetName="ProgressIndicator"
-                                                        Storyboard.TargetProperty="(ProgressBar.Foreground).(SolidColorBrush.Color)"
-                                                        To="#FFFFFF" />
+                                        <DoubleAnimation Storyboard.TargetName="ProgressIndicator"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
                                         <ColorAnimation Storyboard.TargetName="BottomBorder"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#E88606" />
-                                        <ObjectAnimationUsingKeyFrames Duration="0:0:0"
-                                                                       Storyboard.TargetName="DismissButton"
-                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                                                    Value="Visible" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                                        To="#E88606" />                                       
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -238,19 +234,17 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <ProgressBar x:Name="ProgressIndicator"
-                                         Maximum="100"
+                            <ProgressBar x:Name="ProgressIndicator"                                         
                                          Grid.Row="1"
                                          Grid.ColumnSpan="2"
-                                         Grid.Column="0"
-                                         Visibility="{TemplateBinding ShowProgress}"
+                                         Grid.Column="0"                                         
                                          Opacity="1"
                                          IsIndeterminate="True"
                                          Foreground="#EE597999"
-                                         Margin="20,0,20,10"
-                                         VerticalAlignment="Bottom"
+                                         Margin="0"
+                                         VerticalAlignment="Top"
                                          HorizontalAlignment="Stretch" />
-                            <TextBlock x:Name="statusText"
+                            <TextBlock x:Name="StatusText"
                                        Foreground="#404040"
                                        Grid.Row="0"
                                        Grid.RowSpan="2"
@@ -258,26 +252,12 @@
                                        Grid.Column="1"
                                        TextWrapping="WrapWholeWords"
                                        Text="{TemplateBinding Text}"
-                                       Margin="20,10,60,0"
-                                       FontSize="16" />
-                            <Button x:Name="DismissButton"
-                                    Visibility="Collapsed"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    Padding="0"
-                                    Background="Transparent"
-                                    HorizontalAlignment="Left"
-                                    BorderBrush="Transparent"
-                                    Margin="10,0">
-                                <TextBlock Text="&#xE283;"
-                                           FontFamily="Segoe UI Symbol"
-                                           FontSize="18"
-                                           Margin="0,0,0,5" />
-                            </Button>
-                            <Border BorderThickness="0,0,0,2"
+                                       Margin="20,0,60,0"
+                                       FontSize="16" />                      
+                            <Border x:Name="BottomBorder"
+                                    BorderThickness="0,0,0,2"
                                     Grid.Row="1"
                                     Grid.ColumnSpan="2"
-                                    x:Name="BottomBorder"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
                                     Height="2"
