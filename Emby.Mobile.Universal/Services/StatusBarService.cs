@@ -11,7 +11,6 @@ namespace Emby.Mobile.Universal.Services
             StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Error);
         }
 
-
         public void DisplayMessage(string message)
         {
             StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Message);
