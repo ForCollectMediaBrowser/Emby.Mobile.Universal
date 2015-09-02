@@ -89,7 +89,7 @@
                                    FontSize="30"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Foreground="White"></TextBlock>
+                                   Foreground="White" />
                     </Border>
                     <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLogIn}"
                                HorizontalAlignment="Center"
