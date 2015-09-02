@@ -18,6 +18,7 @@
                                         VerticalContentAlignment="Stretch"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch" />
+                        <controls:HeaderControl VerticalAlignment="Top" />
                         <controls:StatusBarControl VerticalAlignment="Top" />
                     </Grid>
                 </ControlTemplate>

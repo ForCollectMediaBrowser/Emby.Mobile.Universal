@@ -136,6 +136,9 @@
     <Compile Include="Controls\BlurredImageControl.cs" />
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
+    <Compile Include="Controls\HeaderControl.xaml.cs">
+      <DependentUpon>HeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ItemControls\MediaFolderControl.xaml.cs">
       <DependentUpon>MediaFolderControl.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\HeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemControls\MediaFolderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

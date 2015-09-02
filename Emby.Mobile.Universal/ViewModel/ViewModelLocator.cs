@@ -43,7 +43,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public ConnectSignUpViewModel ConnectSignUp => Get<ConnectSignUpViewModel>();
         public ManualLocalUserSignInViewModel ManualLocalUser => Get<ManualLocalUserSignInViewModel>();
         public ConnectPinEntryViewModel PinEntry => Get<ConnectPinEntryViewModel>();
-        public HeaderMenuViewModel HEader => Get<HeaderMenuViewModel>();
+        public HeaderMenuViewModel Header => Get<HeaderMenuViewModel>();
 
 
 
