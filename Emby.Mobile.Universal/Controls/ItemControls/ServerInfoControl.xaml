@@ -11,15 +11,16 @@
     <Button ClickMode="Release"
             Command="{x:Bind ServerInfo.ServerTappedCommand}"
             Style="{StaticResource EmptyButtonStyle}"
-            Holding="UIElement_OnHolding"
-            x:Name="ContainingButton">
-        <Button.Flyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Command="{x:Bind ServerInfo.RemoveServerCommand}"
-                                Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarDelete}"/>
-            </MenuFlyout>
-        </Button.Flyout>
-        <Grid>
+            >
+        <Grid Holding="UIElement_OnHolding"
+              x:Name="ContainingButton"
+              RightTapped="ContainingButton_OnRightTapped">
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Command="{x:Bind ServerInfo.RemoveServerCommand}"
+                                    Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarDelete}" />
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
             <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">

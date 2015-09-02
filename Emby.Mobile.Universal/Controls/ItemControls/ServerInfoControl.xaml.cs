@@ -9,15 +9,26 @@ namespace Emby.Mobile.Universal.Controls.ItemControls
     {
         public ServerInfoControl()
         {
-            this.InitializeComponent(); 
+            InitializeComponent();
+            DataContextChanged += (sender, args) => Bindings.Update();
         }
 
         private ServerInfoViewModel ServerInfo => this.DataContext as ServerInfoViewModel;
 
         private void UIElement_OnHolding(object sender, HoldingRoutedEventArgs e)
         {
-            var button = sender as Button;
+            ShowContextMenu(sender);
+        }
+
+        private static void ShowContextMenu(object sender)
+        {
+            var button = sender as Grid;
             FlyoutBase.ShowAttachedFlyout(button);
+        }
+
+        private void ContainingButton_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ShowContextMenu(sender);
         }
     }
 }
