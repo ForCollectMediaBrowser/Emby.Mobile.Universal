@@ -1,14 +1,14 @@
 ﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.FirstRun.WelcomeView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:Emby.Mobile.Universal.Views.FirstRun"
-      xmlns:controls="using:Emby.Mobile.Universal.Controls"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d">
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:local="using:Emby.Mobile.Universal.Views.FirstRun"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   mc:Ignorable="d">
 
     <Grid Background="{ThemeResource EmbyWhiteSmokeBrush}">
-        <RelativePanel >
+        <RelativePanel>
             <Border x:Name="Logo"
                     Background="{StaticResource EmbyDarkGrayBrush}"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -18,6 +18,7 @@
                        MaxHeight="100"
                        Source="ms-appx:///Assets/logoLight.png" />
             </Border>
+            <!-- #region Welcome (Step 0)  -->
             <TextBlock x:Name="WelcomeLabel"
                        RelativePanel.Below="Logo"
                        RelativePanel.AlignLeftWithPanel="True"
@@ -25,9 +26,100 @@
                        Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelWelcomeText}"
                        TextWrapping="WrapWholeWords"
                        Margin="10,50,10,100"
+                       Opacity="0"
                        Style="{StaticResource SubtitleTextBlockStyle}" />
-            <Image 
-                   RelativePanel.AlignBottomWithPanel="True"
+            <!--#endregion-->
+            <!-- #region Server info (Step 1) -->
+            <TextBlock x:Name="ServerInfoLabel"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelFirstRunServerInfo_v2}"
+                       RelativePanel.Below="Logo"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True"
+                       TextWrapping="WrapWholeWords"
+                       Margin="10,20,10,10"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Opacity="0" />
+            <HyperlinkButton x:Name="VisitEmbySiteButton"
+                             Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelVisitEmbyWebsite}"
+                             RelativePanel.Below="ServerInfoLabel"
+                             HorizontalAlignment="Center"
+                             Margin="0,10,0,20"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
+                             ClickMode="Release"
+                             Click="VisitEmbySiteButton_Click"
+                             Opacity="0" />
+            <!--#endregion-->
+            <!-- #region About Connect (Step 3) -->
+            <TextBlock x:Name="AboutConnect"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelMbConnectDescriptionPara1}"
+                       RelativePanel.Below="Logo"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True"
+                       TextWrapping="WrapWholeWords"
+                       Opacity="0"
+                       Visibility="Collapsed"
+                       Margin="10,20,10,0"
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
+            <TextBlock x:Name="HasAccountText"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectAlreadyGotAccount}"
+                       RelativePanel.Below="AboutConnect"
+                       Opacity="0"
+                       Visibility="Collapsed"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True"
+                       TextWrapping="WrapWholeWords"
+                       Margin="10"
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
+            <Button x:Name="LoginButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    RelativePanel.Below="HasAccountText"
+                    ClickMode="Release"
+                    Opacity="0"
+                    Visibility="Collapsed"
+                    Click="LoginButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Border CornerRadius="30"
+                            Height="60"
+                            Width="60"
+                            Background="{StaticResource EmbyGreenBrush}"
+                            Margin="10,0">
+                        <TextBlock Style="{StaticResource Mdl2Style}"
+                                   Text="{StaticResource Account}"
+                                   FontSize="30"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                    </Border>
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLogIn}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </StackPanel>
+            </Button>
+            <TextBlock x:Name="SignUpText"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelMbConnectFreeAccount}"
+                       RelativePanel.Below="LoginButton"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True"
+                       Opacity="0"
+                       Visibility="Collapsed"
+                       TextWrapping="WrapWholeWords"
+                       Margin="10,10,10,0"
+                       Style="{StaticResource SubtitleTextBlockStyle}" />
+            <HyperlinkButton x:Name="SignUpButton"
+                             Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignUp}"
+                             RelativePanel.Below="SignUpText"
+                             HorizontalAlignment="Center"
+                             Margin="0,10,0,20"
+                             Opacity="0"
+                             Visibility="Collapsed"
+                             RelativePanel.AlignHorizontalCenterWithPanel="True"
+                             ClickMode="Release"
+                             Click="SignUpButton_Click" />
+            <!--#endregion-->
+
+            <Image RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.AlignRightWithPanel="True"
                    Height="120"
@@ -44,8 +136,8 @@
                     <Border CornerRadius="30"
                             Height="60"
                             Width="60"
-                            Background="{StaticResource EmbyGreenBrush}"
-                            Margin="10">
+                            Margin="10"
+                            Background="{StaticResource EmbyGreenBrush}">
                         <TextBlock Style="{StaticResource Mdl2Style}"
                                    Text="{StaticResource ArrowRight}"
                                    FontSize="30"
@@ -57,6 +149,34 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="ManualConnectButton"
+                    Style="{StaticResource EmptyButtonStyle}"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    Margin="20,20,20,40"
+                    ClickMode="Release"
+                    Opacity="0"
+                    Visibility="Collapsed"
+                    Click="ManualConnectButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Border CornerRadius="20"
+                            Height="40"
+                            Width="40"
+                            Background="{StaticResource EmbyDarkGrayBrush}"
+                            Margin="10,0">
+                        <TextBlock Style="{StaticResource Mdl2Style}"
+                                   Text="{StaticResource Pen}"
+                                   FontSize="20"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                    </Border>
+                    <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSkip}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource TitleTextBlockStyle}" />
                 </StackPanel>
             </Button>
         </RelativePanel>
