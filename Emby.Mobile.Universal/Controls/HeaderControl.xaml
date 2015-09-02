@@ -4,6 +4,7 @@
              xmlns:controls="using:Emby.Mobile.Universal.Controls"
              xmlns:local="using:Emby.Mobile.Universal.Controls"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:cimbalino="using:Cimbalino.Toolkit.Behaviors"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -13,8 +14,9 @@
              DataContext="{Binding Header, Source={StaticResource Locator}}">
     <Grid Background="{StaticResource EmbyDarkGrayBrush}"
           x:Name="LayoutRoot"
-          Visibility="Collapsed"
-          Opacity="0">
+          Visibility="Visible"
+          Height="35"
+          Opacity="1">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="Show">
@@ -47,6 +49,51 @@
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
+                <VisualState x:Name="ExtraWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraWideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="55" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="50" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="50" />
+                        <Setter Target="SearchTextBlock.FontSize"
+                                Value="30" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="45" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="40" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="40" />
+                        <Setter Target="SearchTextBlock.FontSize"
+                                Value="25" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="35" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="30" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="30" />
+                        <Setter Target="SearchTextBlock.FontSize"
+                                Value="20" />
+                    </VisualState.Setters>
+                </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <interactivity:Interaction.Behaviors>
@@ -63,20 +110,36 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Image Height="25"
+        <Image Stretch="UniformToFill"
+               Margin="5"
                Source="ms-appx:///Assets/LogoLight.png" />
-        <TextBox PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSearch}"
-                 Grid.Column="1"
-                 Margin="5,1,0,1"
-                 RequestedTheme="Dark"/>       
-        <controls:ProfilePicture ProfileImage="{x:Bind Header.User.UserImageUrl, Mode=OneWay}"
-                                 Grid.Column="2"
-                                 Height="30"
-                                 Width="30"
-                                 Margin="8,0,9,0"
-                                 ShowBackground="False"
-                                 x:Name="ProfilePicture"
-                                 RelativePanel.AlignLeftWithPanel="True" />
+        <Button x:Name="SearchButton"
+                Style="{StaticResource EmptyButtonStyle}"
+                Grid.Column="2">
+            <TextBlock x:Name="SearchTextBlock"
+                       Style="{StaticResource Mdl2Style}"
+                       Text="{StaticResource Search}"
+                       FontSize="20"
+                       Foreground="{StaticResource EmbyWhiteSmokeBrush}" />
+        </Button>
+        <Button Style="{StaticResource EmptyButtonStyle}"
+                Grid.Column="3">
+            <controls:ProfilePicture ProfileImage="{x:Bind Header.User.UserImageUrl, Mode=OneWay}"
+                                     Height="30"
+                                     Width="30"
+                                     Margin="8,0,9,0"
+                                     ShowBackground="False"
+                                     x:Name="ProfilePicture"
+                                     RelativePanel.AlignLeftWithPanel="True" />
+            <Button.Flyout>
+                <Flyout>
+                    <Grid Height="300"
+                          Width="150"
+                          Background="Red" />
+                </Flyout>
+            </Button.Flyout>
+        </Button>
     </Grid>
 </UserControl>
