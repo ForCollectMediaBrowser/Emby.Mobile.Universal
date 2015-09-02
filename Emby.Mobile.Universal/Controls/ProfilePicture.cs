@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -23,6 +22,15 @@ namespace Emby.Mobile.Universal.Controls
         {
             get { return (string) GetValue(ProfileImageProperty); }
             set { SetValue(ProfileImageProperty, value); }
+        }
+
+        public static readonly DependencyProperty CircleBackgroundProperty = DependencyProperty.Register(
+            "CircleBackground", typeof (SolidColorBrush), typeof (ProfilePicture), new PropertyMetadata(default(SolidColorBrush)));
+
+        public SolidColorBrush CircleBackground
+        {
+            get { return (SolidColorBrush) GetValue(CircleBackgroundProperty); }
+            set { SetValue(CircleBackgroundProperty, value); }
         }
 
         public ProfilePicture()
