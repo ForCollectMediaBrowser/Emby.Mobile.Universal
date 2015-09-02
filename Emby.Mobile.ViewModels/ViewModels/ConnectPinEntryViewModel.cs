@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Strings;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
 
@@ -75,7 +76,7 @@ namespace Emby.Mobile.ViewModels
 
                 HasExpired = false;
 
-                SetProgressBar("Getting pin...");
+                SetProgressBar(Resources.SysTrayGettingPin);
                 var result = await PinHelper.ConnectUsingPin(Services, SetPin);
 
                 switch (result)
