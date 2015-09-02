@@ -87,12 +87,8 @@
                                            Margin="6,0" />
                             </RelativePanel>
                         </Button>
-                        <Button ClickMode="Release"
-                                Command="{Binding ServerTappedCommand}"
-                                Style="{StaticResource EmptyButtonStyle}"
-                                Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                            <itemControls:ServerInfoControl />
-                        </Button>
+
+                        <itemControls:ServerInfoControl Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
