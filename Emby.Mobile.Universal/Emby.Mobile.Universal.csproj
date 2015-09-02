@@ -134,9 +134,6 @@
     <Compile Include="Controls\BaseApplication.cs" />
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BlurredImageControl.cs" />
-    <Compile Include="Controls\BurgerMenuControl.xaml.cs">
-      <DependentUpon>BurgerMenuControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
     <Compile Include="Controls\ItemControls\MediaFolderControl.xaml.cs">
@@ -159,6 +156,7 @@
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\NavigationParameters.cs" />
     <Compile Include="Helpers\StatusType.cs" />
+    <Compile Include="Interfaces\ICanHasHeaderMenu.cs" />
     <Compile Include="Interfaces\ICanHasHomeButton.cs" />
     <Compile Include="Interfaces\IListType.cs" />
     <Compile Include="Interfaces\INavigatedFromViewModel.cs" />
@@ -232,10 +230,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\BurgerMenuControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ItemControls\MediaFolderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

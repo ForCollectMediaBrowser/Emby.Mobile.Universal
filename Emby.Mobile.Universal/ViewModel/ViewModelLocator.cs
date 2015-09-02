@@ -30,7 +30,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<ManualServerEntryViewModel>();
             Register<ManualLocalUserSignInViewModel>();
             Register<ConnectPinEntryViewModel>();
-            Register<BurgerMenuViewModel>();
+            Register<HeaderMenuViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -43,7 +43,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public ConnectSignUpViewModel ConnectSignUp => Get<ConnectSignUpViewModel>();
         public ManualLocalUserSignInViewModel ManualLocalUser => Get<ManualLocalUserSignInViewModel>();
         public ConnectPinEntryViewModel PinEntry => Get<ConnectPinEntryViewModel>();
-        public BurgerMenuViewModel Burger => Get<BurgerMenuViewModel>();
+        public HeaderMenuViewModel HEader => Get<HeaderMenuViewModel>();
 
 
 

@@ -12,32 +12,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyApplicationFrame">
-                    <Grid HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch"
-                          DataContext="{Binding Burger, Source={StaticResource Locator}}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <SplitView DisplayMode="Inline"
-                                   OpenPaneLength="250"
-                                   IsPaneOpen="{Binding BurgerIsVisible}"
-                                   Grid.Row="1">
-                            <SplitView.Pane>
-                                <controls:BurgerMenuControl HorizontalAlignment="Stretch"
-                                                            VerticalAlignment="Stretch"
-                                                            Width="250" />
-                            </SplitView.Pane>
-
-                            <SplitView.Content>
-                                <ContentControl Content="{TemplateBinding Content}"
-                                                HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
-                                                HorizontalAlignment="Stretch"
-                                                VerticalAlignment="Stretch" />
-                            </SplitView.Content>
-                        </SplitView>
-                        <controls:StatusBarControl Grid.RowSpan="2" VerticalAlignment="Top"/>
+                    <Grid>
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch" />
+                        <controls:StatusBarControl VerticalAlignment="Top" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

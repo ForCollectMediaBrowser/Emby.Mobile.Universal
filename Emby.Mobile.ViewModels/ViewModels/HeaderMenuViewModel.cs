@@ -12,11 +12,11 @@ using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class BurgerMenuViewModel : ViewModelBase
+    public class HeaderMenuViewModel : ViewModelBase
     {
         private bool _viewsLoaded;
 
-        public BurgerMenuViewModel(IServices services) : base(services)
+        public HeaderMenuViewModel(IServices services) : base(services)
         {
             if (!IsInDesignMode)
             {
@@ -29,11 +29,10 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        public bool BurgerIsVisible { get; set; }
+        public bool IsVisible { get; set; }
         public bool CanChangeServer => AuthenticationService.SignedInUsingConnect;
         public UserDtoViewModel User { get; set; }
         public ObservableCollection<ItemViewModel> Views { get; set; }
-
         public RelayCommand NavigateToSettingsCommand
         {
             get
@@ -77,7 +76,7 @@ namespace Emby.Mobile.ViewModels
 
         public void ShowHide(bool show)
         {
-            BurgerIsVisible = show;
+            IsVisible = show;
         }
 
         private void SetUsernameAndProfilePicture()

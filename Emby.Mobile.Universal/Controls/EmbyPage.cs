@@ -14,7 +14,7 @@ namespace Emby.Mobile.Universal.Controls
             Analytics = SimpleIoc.Default.GetInstance<IAnalyticsService>();
             Loaded += (sender, args) =>
             {
-                Burger = ViewModelLocator.Get<BurgerMenuViewModel>();
+                Header = ViewModelLocator.Get<HeaderMenuViewModel>();
             };
         }
 
@@ -22,7 +22,7 @@ namespace Emby.Mobile.Universal.Controls
 
         protected IAnalyticsService Analytics { get; }
 
-        protected BurgerMenuViewModel Burger { get; private set; } 
+        protected HeaderMenuViewModel Header { get; private set; } 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
