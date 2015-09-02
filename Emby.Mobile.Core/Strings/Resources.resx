@@ -1390,4 +1390,7 @@
   <data name="LabelUseConnectInstead" xml:space="preserve">
     <value>Sign in with Emby Connect instead</value>
   </data>
+  <data name="SysTrayGettingPin" xml:space="preserve">
+    <value>Getting pin...</value>
+  </data>
 </root>

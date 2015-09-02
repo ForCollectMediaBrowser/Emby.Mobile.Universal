@@ -7,6 +7,8 @@
                 Value="True" />
         <Setter Property="Background"
                 Value="{StaticResource EmbyLightGrayBrush}" />
+        <Setter Property="CircleBackground"
+                Value="{StaticResource EmbyGreenBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ProfilePicture">
@@ -56,7 +58,7 @@
                                              VerticalAlignment="Center"
                                              Width="{StaticResource CentreImageSize}"
                                              Height="{StaticResource CentreImageSize}"
-                                             Fill="{StaticResource EmbyGreenBrush}" />
+                                             Fill="{TemplateBinding CircleBackground}" />
 
                                     <FontIcon Style="{StaticResource Mdl2FontStyle}"
                                               Glyph="{StaticResource AccountOutline}"

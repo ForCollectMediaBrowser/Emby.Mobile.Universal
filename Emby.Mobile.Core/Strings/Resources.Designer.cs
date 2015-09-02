@@ -3482,6 +3482,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting pin....
+        /// </summary>
+        public static string SysTrayGettingPin {
+            get {
+                return ResourceManager.GetString("SysTrayGettingPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting profiles....
         /// </summary>
         public static string SysTrayGettingProfiles {
