@@ -4,40 +4,41 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace Emby.Mobile.Universal.Helpers
+
+namespace Emby.Mobile.Universal.Extensions
 {
-    public class AnimationHelper
+    public static class StoryboardExtensions
     {
-        public const double AnimationDuration = 2000;
+        public const double AnimationDuration = 500;
 
-        public static void AddSlideAndFadeInAnimation(Storyboard storyboard, UIElement element)
+        public static void AddSlideAndFadeInAnimation(this Storyboard storyboard, UIElement element)
         {
             AddVisibleAnimation(storyboard, element);
-            AddTransformXExponentialEaseAnim(storyboard, element, 500, 0, 500);
-            AddFadeAnim(storyboard, element, 1, 1000);
+            AddTransformXExponentialEaseAnim(storyboard, element, 500, 0);
+            AddFadeAnim(storyboard, element, 1);
         }
-        public static void AddSlideAndFadeOutAnimation(Storyboard storyboard, UIElement element)
+        public static void AddSlideAndFadeOutAnimation(this Storyboard storyboard, UIElement element)
         {
-            AddTransformXExponentialEaseAnim(storyboard, element, 0, -500, 500);
+            AddTransformXExponentialEaseAnim(storyboard, element, 0, -500);
             AddFadeAnim(storyboard, element, 0, 500);
-            AddCollapseAnimation(storyboard, element, 500);
+            AddCollapseAnimation(storyboard, element);
         }
 
-        public static void AddSlideAndFadeInReverseAnimation(Storyboard storyboard, UIElement element)
+        public static void AddSlideAndFadeInReverseAnimation(this Storyboard storyboard, UIElement element)
         {
             AddVisibleAnimation(storyboard, element);
-            AddTransformXExponentialEaseAnim(storyboard, element, -500, 0, 500);
-            AddFadeAnim(storyboard, element, 1, 1000);
+            AddTransformXExponentialEaseAnim(storyboard, element, -500, 0);
+            AddFadeAnim(storyboard, element, 1);
         }
 
-        public static void AddSlideAndFadeOutReverseAnimation(Storyboard storyboard, UIElement element)
+        public static void AddSlideAndFadeOutReverseAnimation(this Storyboard storyboard, UIElement element)
         {
-            AddTransformXExponentialEaseAnim(storyboard, element, 0, 500, 500);
-            AddFadeAnim(storyboard, element, 0, 500);
-            AddCollapseAnimation(storyboard, element, 500);
+            AddTransformXExponentialEaseAnim(storyboard, element, 0, 500);
+            AddFadeAnim(storyboard, element, 0);
+            AddCollapseAnimation(storyboard, element);
         }
 
-        public static void AddFadeAnim(Storyboard storyboard, UIElement element, double targetOpacity = 1, double duration = AnimationDuration)
+        public static void AddFadeAnim(this Storyboard storyboard, UIElement element, double targetOpacity = 1, double duration = AnimationDuration)
         {
             var easing = new QuadraticEase { EasingMode = EasingMode.EaseIn };
             var anim = new DoubleAnimation
@@ -53,17 +54,17 @@ namespace Emby.Mobile.Universal.Helpers
             storyboard.Children.Add(anim);
         }
 
-        public static void AddTransformXAnim(Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, double duration = AnimationDuration)
+        public static void AddTransformXAnim(this Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, double duration = AnimationDuration)
         {
             AddTransformXAnim(storyboard, element, fromOffsetX, toOffsetX, null, duration);
         }
 
-        public static void AddTransformXExponentialEaseAnim(Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, double duration = AnimationDuration)
+        public static void AddTransformXExponentialEaseAnim(this Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, double duration = AnimationDuration)
         {
             AddTransformXAnim(storyboard, element, fromOffsetX, toOffsetX, new ExponentialEase { EasingMode = EasingMode.EaseInOut }, duration);
         }
 
-        public static void AddTransformXAnim(Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, EasingFunctionBase easingFunction, double duration = AnimationDuration)
+        public static void AddTransformXAnim(this Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, EasingFunctionBase easingFunction, double duration = AnimationDuration)
         {
             var trans = new TranslateTransform { X = 1, Y = 1 };
             element.RenderTransformOrigin = new Point(0.5, 0.5);
@@ -82,17 +83,17 @@ namespace Emby.Mobile.Universal.Helpers
             storyboard.Children.Add(anim);
         }
 
-        public static void AddTransformYAnim(Storyboard storyboard, UIElement element, double fromOffsetY, double toOffsetY, double duration = AnimationDuration)
+        public static void AddTransformYAnim(this Storyboard storyboard, UIElement element, double fromOffsetY, double toOffsetY, double duration = AnimationDuration)
         {
             AddTransformYAnim(storyboard, element, fromOffsetY, toOffsetY, null, duration);
         }
 
-        public static void AddTransformYExponentialEaseAnim(Storyboard storyboard, UIElement element, double fromOffsetY, double toOffsetY, double duration = AnimationDuration)
+        public static void AddTransformYExponentialEaseAnim(this Storyboard storyboard, UIElement element, double fromOffsetY, double toOffsetY, double duration = AnimationDuration)
         {
             AddTransformYAnim(storyboard, element, fromOffsetY, toOffsetY, new ExponentialEase { EasingMode = EasingMode.EaseInOut }, duration);
         }
 
-        public static void AddTransformYAnim(Storyboard storyboard, UIElement element, double fromOffsetY, double toOffsetY, EasingFunctionBase easingFunction, double duration = AnimationDuration)
+        public static void AddTransformYAnim(this Storyboard storyboard, UIElement element, double fromOffsetY, double toOffsetY, EasingFunctionBase easingFunction, double duration = AnimationDuration)
         {
             var trans = new TranslateTransform { X = 1, Y = 1 };
             element.RenderTransformOrigin = new Point(0.5, 0.5);
@@ -112,7 +113,7 @@ namespace Emby.Mobile.Universal.Helpers
             storyboard.Children.Add(anim);
         }
 
-        public static void AddVisibleAnimation(Storyboard storyboard, DependencyObject element, double keyTime = 0)
+        public static void AddVisibleAnimation(this Storyboard storyboard, DependencyObject element, double keyTime = 0)
         {
             var visibility = new ObjectAnimationUsingKeyFrames
             {
@@ -131,7 +132,7 @@ namespace Emby.Mobile.Universal.Helpers
             storyboard.Children.Add(visibility);
         }
 
-        public static void AddCollapseAnimation(Storyboard storyboard, DependencyObject element, double keyTime = AnimationDuration)
+        public static void AddCollapseAnimation(this Storyboard storyboard, DependencyObject element, double keyTime = AnimationDuration)
         {
             var visibility = new ObjectAnimationUsingKeyFrames
             {

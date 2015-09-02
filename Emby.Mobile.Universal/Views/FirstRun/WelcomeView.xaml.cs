@@ -1,4 +1,5 @@
 ﻿using Cimbalino.Toolkit.Services;
+using Emby.Mobile.Universal.Extensions;
 using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.Services;
 using Windows.UI.Xaml.Media.Animation;
@@ -9,7 +10,12 @@ namespace Emby.Mobile.Universal.Views.FirstRun
 {
     public sealed partial class WelcomeView
     {
+        private const int WelcomePage = 0;
+        private const int ServerDescriptionPage = 1;
+        private const int AboutConnectPage = 2;
+
         private int _step = 0;
+
         public WelcomeView()
         {
             InitializeComponent();
@@ -34,18 +40,18 @@ namespace Emby.Mobile.Universal.Views.FirstRun
                 ServerInfoLabel.Visibility = Visibility.Collapsed;
                 VisitEmbySiteButton.Visibility = Visibility.Collapsed;
                 NextButton.Visibility = Visibility.Collapsed;
-                
-                AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, AboutConnect);
-                AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, HasAccountText);
-                AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, LoginButton);
-                AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, SignUpText);
-                AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, SignUpButton);
-                AnimationHelper.AddVisibleAnimation(sb, ManualConnectButton);
-                AnimationHelper.AddFadeAnim(sb, ManualConnectButton, 1, 500);
+
+                sb.AddSlideAndFadeInReverseAnimation(AboutConnect);
+                sb.AddSlideAndFadeInReverseAnimation(HasAccountText);
+                sb.AddSlideAndFadeInReverseAnimation(LoginButton);
+                sb.AddSlideAndFadeInReverseAnimation(SignUpText);
+                sb.AddSlideAndFadeInReverseAnimation(SignUpButton);
+                sb.AddVisibleAnimation(ManualConnectButton);
+                sb.AddFadeAnim(ManualConnectButton, 1, 500);
                 _step = 2;                
             }
-            {                
-                AnimationHelper.AddFadeAnim(sb, WelcomeLabel, 1, 1000);                
+            {
+                sb.AddFadeAnim(WelcomeLabel, 1, 1000);                
             }
             sb.Begin();
             base.OnNavigatedTo(e);
@@ -82,24 +88,24 @@ namespace Emby.Mobile.Universal.Views.FirstRun
             var sb = new Storyboard();
             switch (_step)
             {
-                case 1:
-                    AnimationHelper.AddSlideAndFadeOutAnimation(sb, WelcomeLabel);
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, ServerInfoLabel);
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, VisitEmbySiteButton);
+                case ServerDescriptionPage:
+                    sb.AddSlideAndFadeOutAnimation(WelcomeLabel);
+                    sb.AddSlideAndFadeInAnimation(ServerInfoLabel);
+                    sb.AddSlideAndFadeInAnimation(VisitEmbySiteButton);
                     break;
-                case 2:
-                    AnimationHelper.AddSlideAndFadeOutAnimation(sb, ServerInfoLabel);
-                    AnimationHelper.AddSlideAndFadeOutAnimation(sb, VisitEmbySiteButton);
-                    AnimationHelper.AddFadeAnim(sb, NextButton, 0, 100);
-                    AnimationHelper.AddCollapseAnimation(sb, NextButton, 100);
+                case AboutConnectPage:
+                    sb.AddSlideAndFadeOutAnimation(ServerInfoLabel);
+                    sb.AddSlideAndFadeOutAnimation(VisitEmbySiteButton);
+                    sb.AddFadeAnim(NextButton, 0, 100);
+                    sb.AddCollapseAnimation(NextButton, 100);
 
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, AboutConnect);
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, HasAccountText);
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, LoginButton);
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, SignUpText);
-                    AnimationHelper.AddSlideAndFadeInAnimation(sb, SignUpButton);
-                    AnimationHelper.AddVisibleAnimation(sb, ManualConnectButton);
-                    AnimationHelper.AddFadeAnim(sb, ManualConnectButton, 1, 500);
+                    sb.AddSlideAndFadeInAnimation(AboutConnect);
+                    sb.AddSlideAndFadeInAnimation(HasAccountText);
+                    sb.AddSlideAndFadeInAnimation(LoginButton);
+                    sb.AddSlideAndFadeInAnimation(SignUpText);
+                    sb.AddSlideAndFadeInAnimation(SignUpButton);
+                    sb.AddVisibleAnimation(ManualConnectButton);
+                    sb.AddFadeAnim(ManualConnectButton, 1, 500);
                     break;
             }
             sb.Begin();
@@ -110,24 +116,24 @@ namespace Emby.Mobile.Universal.Views.FirstRun
             var sb = new Storyboard();
             switch (_step)
             {
-                case 0:
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, ServerInfoLabel);
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, VisitEmbySiteButton);
-                    AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, WelcomeLabel);
+                case WelcomePage:
+                    sb.AddSlideAndFadeOutReverseAnimation(ServerInfoLabel);
+                    sb.AddSlideAndFadeOutReverseAnimation(VisitEmbySiteButton);
+                    sb.AddSlideAndFadeInReverseAnimation(WelcomeLabel);
                     break;
-                case 1:
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, AboutConnect);
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, HasAccountText);
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, LoginButton);
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, SignUpText);
-                    AnimationHelper.AddSlideAndFadeOutReverseAnimation(sb, SignUpButton);
-                    AnimationHelper.AddFadeAnim(sb, ManualConnectButton, 0, 100);
-                    AnimationHelper.AddCollapseAnimation(sb, ManualConnectButton, 100);
+                case ServerDescriptionPage:
+                    sb.AddSlideAndFadeOutReverseAnimation(AboutConnect);
+                    sb.AddSlideAndFadeOutReverseAnimation(HasAccountText);
+                    sb.AddSlideAndFadeOutReverseAnimation(LoginButton);
+                    sb.AddSlideAndFadeOutReverseAnimation(SignUpText);
+                    sb.AddSlideAndFadeOutReverseAnimation(SignUpButton);
+                    sb.AddFadeAnim(ManualConnectButton, 0, 100);
+                    sb.AddCollapseAnimation(ManualConnectButton, 100);
 
-                    AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, ServerInfoLabel);
-                    AnimationHelper.AddSlideAndFadeInReverseAnimation(sb, VisitEmbySiteButton);
-                    AnimationHelper.AddVisibleAnimation(sb, NextButton);
-                    AnimationHelper.AddFadeAnim(sb, NextButton, 1, 500);
+                    sb.AddSlideAndFadeInReverseAnimation(ServerInfoLabel);
+                    sb.AddSlideAndFadeInReverseAnimation(VisitEmbySiteButton);
+                    sb.AddVisibleAnimation(NextButton);
+                    sb.AddFadeAnim(NextButton, 1, 500);
                     break;
             }
             sb.Begin();
