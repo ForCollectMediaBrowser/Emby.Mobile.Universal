@@ -13,12 +13,12 @@ namespace Emby.Mobile.Universal.Helpers
         public static void AddSlideAndFadeInAnimation(Storyboard storyboard, UIElement element)
         {
             AddVisibleAnimation(storyboard, element);
-            AddTransformXExponentialEaseAnim(storyboard, element, 500, 0, 1000);
+            AddTransformXExponentialEaseAnim(storyboard, element, 500, 0, 500);
             AddFadeAnim(storyboard, element, 1, 1000);
         }
         public static void AddSlideAndFadeOutAnimation(Storyboard storyboard, UIElement element)
         {
-            AddTransformXExponentialEaseAnim(storyboard, element, 0, 500, 500);
+            AddTransformXExponentialEaseAnim(storyboard, element, 0, -500, 500);
             AddFadeAnim(storyboard, element, 0, 500);
             AddCollapseAnimation(storyboard, element, 500);
         }
@@ -26,13 +26,13 @@ namespace Emby.Mobile.Universal.Helpers
         public static void AddSlideAndFadeInReverseAnimation(Storyboard storyboard, UIElement element)
         {
             AddVisibleAnimation(storyboard, element);
-            AddTransformXExponentialEaseAnim(storyboard, element, -500, 0, 1000);
+            AddTransformXExponentialEaseAnim(storyboard, element, -500, 0, 500);
             AddFadeAnim(storyboard, element, 1, 1000);
         }
 
         public static void AddSlideAndFadeOutReverseAnimation(Storyboard storyboard, UIElement element)
         {
-            AddTransformXExponentialEaseAnim(storyboard, element, 0, -500, 500);
+            AddTransformXExponentialEaseAnim(storyboard, element, 0, 500, 500);
             AddFadeAnim(storyboard, element, 0, 500);
             AddCollapseAnimation(storyboard, element, 500);
         }

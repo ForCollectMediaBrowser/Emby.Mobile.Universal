@@ -57,12 +57,14 @@
                        RelativePanel.AlignRightWithPanel="True"
                        TextWrapping="WrapWholeWords"
                        Opacity="0"
+                       Visibility="Collapsed"
                        Margin="10,20,10,0"
                        Style="{StaticResource SubtitleTextBlockStyle}" />
             <TextBlock x:Name="HasAccountText"
                        Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEmbyConnectAlreadyGotAccount}"
                        RelativePanel.Below="AboutConnect"
                        Opacity="0"
+                       Visibility="Collapsed"
                        RelativePanel.AlignLeftWithPanel="True"
                        RelativePanel.AlignRightWithPanel="True"
                        TextWrapping="WrapWholeWords"
@@ -101,6 +103,7 @@
                        RelativePanel.AlignLeftWithPanel="True"
                        RelativePanel.AlignRightWithPanel="True"
                        Opacity="0"
+                       Visibility="Collapsed"
                        TextWrapping="WrapWholeWords"
                        Margin="10,10,10,0"
                        Style="{StaticResource SubtitleTextBlockStyle}" />

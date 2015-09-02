@@ -14,8 +14,6 @@ namespace Emby.Mobile.Universal.Controls
     {
         private readonly List<Type> _noBurgersForYou = new List<Type>
         {
-            typeof(DownloadServerView),
-            typeof(FirstConnectView),
             typeof(WelcomeView),
             typeof(ChooseServerView),
             typeof(ChooseUserProfileView),

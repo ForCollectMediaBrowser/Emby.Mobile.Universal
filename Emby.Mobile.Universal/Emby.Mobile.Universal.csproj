@@ -193,12 +193,6 @@
     <Compile Include="Views\Connect\ConnectView.xaml.cs">
       <DependentUpon>ConnectView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FirstRun\FirstConnectView.xaml.cs">
-      <DependentUpon>FirstConnectView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FirstRun\DownloadServerView.xaml.cs">
-      <DependentUpon>DownloadServerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\FirstRun\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
     </Compile>
@@ -315,14 +309,6 @@
     <Page Include="Views\Connect\ConnectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FirstRun\FirstConnectView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FirstRun\DownloadServerView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FirstRun\WelcomeView.xaml">
       <SubType>Designer</SubType>
