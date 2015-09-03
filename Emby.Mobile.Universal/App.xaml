@@ -10,7 +10,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Mdl2/Mdl2Resources.xaml" />
-                <ResourceDictionary Source="/Resources/ColorResources.xaml" />
                 <ResourceDictionary Source="/Resources/TextBlockStyles.xaml" />
                 <ResourceDictionary Source="/Resources/ButtonResources.xaml" />
                 <ResourceDictionary Source="/Resources/FontResources.xaml" />
