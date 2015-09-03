@@ -12,15 +12,25 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyApplicationFrame">
-                    <Grid>
-                        <ContentControl Content="{TemplateBinding Content}"
+                    <RelativePanel>
+                        <controls:HeaderControl x:Name="Header"
+                                                VerticalAlignment="Top"
+                                                RelativePanel.AlignTopWithPanel="True"
+                                                RelativePanel.AlignRightWithPanel="True"
+                                                RelativePanel.AlignLeftWithPanel="True" />
+                        <ContentControl x:Name="Content"
+                                        Content="{TemplateBinding Content}"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Stretch"
                                         HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch" />
-                        <controls:HeaderControl VerticalAlignment="Top" />
-                        <controls:StatusBarControl VerticalAlignment="Top" />
-                    </Grid>
+                                        VerticalAlignment="Stretch" 
+                                        RelativePanel.Below="Header"/>
+                        <controls:StatusBarControl VerticalAlignment="Top"
+                                                   x:Name="StatusBar"
+                                                   RelativePanel.AlignTopWithPanel="True"
+                                                   RelativePanel.AlignRightWithPanel="True"
+                                                   RelativePanel.AlignLeftWithPanel="True"/>
+                    </RelativePanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
