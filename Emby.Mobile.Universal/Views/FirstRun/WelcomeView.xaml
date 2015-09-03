@@ -7,10 +7,10 @@
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource EmbyWhiteSmokeBrush}">
+    <Grid Background="{ThemeResource BackgroundBrush}">
         <RelativePanel>
             <Border x:Name="Logo"
-                    Background="{StaticResource EmbyDarkGrayBrush}"
+                    Background="{ThemeResource SmokeContrastBrush}"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True">
                 <Image RelativePanel.AlignTopWithPanel="True"
@@ -122,6 +122,7 @@
             <Image RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.AlignRightWithPanel="True"
+                   Opacity="0.3"
                    Height="120"
                    Stretch="UniformToFill"
                    Source="ms-appx:///Assets/Backdrops/EmbyRandomAvatars.jpg" />
@@ -164,7 +165,7 @@
                     <Border CornerRadius="20"
                             Height="40"
                             Width="40"
-                            Background="{StaticResource EmbyDarkGrayBrush}"
+                            Background="{ThemeResource EmbyGrayButtonBrush}"
                             Margin="10,0">
                         <TextBlock Style="{StaticResource Mdl2Style}"
                                    Text="{StaticResource Pen}"

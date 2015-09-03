@@ -35,7 +35,7 @@
             <HyperlinkButton x:Name="PinAddress"
                              Style="{StaticResource EmptyButtonStyle}"
                              Content="http://emby.media/pin"
-                             Foreground="{StaticResource EmbyGreenBrush}"
+                             Foreground="{ThemeResource EmbyGreenBrush}"
                              ClickMode="Release"
                              Command="{x:Bind PinEntry.PinAddressCommand}"
                              RelativePanel.Below="PinDescription"
@@ -48,7 +48,7 @@
                 <TextBlock x:Name="Pin"
                            Text="{x:Bind PinEntry.Pin, Mode=OneWay}"
                            Style="{StaticResource HeaderTextBlockStyle}"
-                           Foreground="{StaticResource EmbyGreenBrush}"
+                           Foreground="{ThemeResource EmbyGreenBrush}"
                            HorizontalAlignment="Center"
                            Visibility="{x:Bind PinEntry.HasExpired, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}"/>
                 <StackPanel Orientation="Vertical"

@@ -10,8 +10,8 @@
              d:DesignHeight="35"
              d:DesignWidth="384"
              DataContext="{Binding Header, Source={StaticResource Locator}}">
-    
-    <Grid Background="{StaticResource EmbyDarkGrayBrush}"
+
+    <Grid Background="{ThemeResource BackgroundBrush}"
           x:Name="LayoutRoot"
           Visibility="Visible"
           Height="35"
@@ -121,7 +121,7 @@
             <FontIcon x:Name="SearchIcon"
                       Glyph="{StaticResource Search}"
                       FontSize="20"
-                      Foreground="{StaticResource EmbyWhiteSmokeBrush}" />
+                      Foreground="{ThemeResource SmokeBrush}" />
         </Button>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="3">

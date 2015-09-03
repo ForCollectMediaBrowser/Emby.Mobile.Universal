@@ -72,7 +72,7 @@
                                            RelativePanel.AlignVerticalCenterWithPanel="True" />
                                 <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelAddServer}"
                                            Style="{StaticResource TitleTextBlockStyle}"
-                                           Foreground="{StaticResource EmbyGreenBrush}"
+                                           Foreground="{ThemeResource EmbyGreenBrush}"
                                            RelativePanel.RightOf="PlusText"
                                            RelativePanel.AlignVerticalCenterWithPanel="True"
                                            Margin="6,0" />
