@@ -95,7 +95,7 @@ namespace Emby.Mobile.ViewModels
             });
         }
 
-        async void OnSearchTextChanged()
+        private async void OnSearchTextChanged()
         {
             var query = new SearchQuery
             {

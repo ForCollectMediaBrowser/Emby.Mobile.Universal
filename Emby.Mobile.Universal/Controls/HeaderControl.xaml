@@ -60,7 +60,7 @@
                                 Value="50" />
                         <Setter Target="ProfilePicture.Width"
                                 Value="50" />
-                        <Setter Target="SearchTextBlock.FontSize"
+                        <Setter Target="SearchIcon.FontSize"
                                 Value="30" />
                     </VisualState.Setters>
                 </VisualState>
@@ -75,7 +75,7 @@
                                 Value="40" />
                         <Setter Target="ProfilePicture.Width"
                                 Value="40" />
-                        <Setter Target="SearchTextBlock.FontSize"
+                        <Setter Target="SearchIcon.FontSize"
                                 Value="25" />
                     </VisualState.Setters>
                 </VisualState>
@@ -90,7 +90,7 @@
                                 Value="30" />
                         <Setter Target="ProfilePicture.Width"
                                 Value="30" />
-                        <Setter Target="SearchTextBlock.FontSize"
+                        <Setter Target="SearchIcon.FontSize"
                                 Value="20" />
                     </VisualState.Setters>
                 </VisualState>
@@ -118,11 +118,10 @@
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="2">
-            <TextBlock x:Name="SearchTextBlock"
-                       Style="{StaticResource Mdl2Style}"
-                       Text="{StaticResource Search}"
-                       FontSize="20"
-                       Foreground="{StaticResource EmbyWhiteSmokeBrush}" />
+            <FontIcon x:Name="SearchIcon"
+                      Glyph="{StaticResource Search}"
+                      FontSize="20"
+                      Foreground="{StaticResource EmbyWhiteSmokeBrush}" />
         </Button>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="3">
