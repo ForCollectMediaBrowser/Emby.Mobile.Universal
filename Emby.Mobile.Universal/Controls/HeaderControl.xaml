@@ -139,9 +139,72 @@
                                      RelativePanel.AlignLeftWithPanel="True" />
             <Button.Flyout>
                 <Flyout>
-                    <Grid Height="300"
-                          Width="150"
-                          Background="Red" />
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Padding"
+                                    Value="0"/>
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+                    
+                    <RelativePanel>
+                        <Button x:Name="SettingsButton"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                ClickMode="Release"
+                                Margin="0,6,0,0"
+                                Command="{x:Bind Header.NavigateToSettingsCommand}"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                                          Glyph="{StaticResource Setting}"
+                                          Foreground="White"
+                                          Margin="10,9,13,9" />
+                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarSettings}"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="White" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="ChangeServerButton"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                RelativePanel.Below="SettingsButton"
+                                ClickMode="Release"
+                                Margin="0,3,0,0"
+                                Command="{x:Bind Header.ChangeServerCommand}"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True"
+                                Visibility="{x:Bind Header.CanChangeServer, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                                          Glyph="{StaticResource Server}"
+                                          Foreground="White"
+                                          Margin="10,9,13,9" />
+                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarChangeServer}"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="White" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="SignOutButton"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                RelativePanel.Below="ChangeServerButton"
+                                ClickMode="Release"
+                                Margin="0,3,0,0"
+                                Command="{x:Bind Header.SignOutCommand}"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                                          Glyph="{StaticResource Lock}"
+                                          Foreground="White"
+                                          Margin="10,9,13,9" />
+                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="White" />
+                            </StackPanel>
+                        </Button>
+                    </RelativePanel>
                 </Flyout>
             </Button.Flyout>
         </Button>

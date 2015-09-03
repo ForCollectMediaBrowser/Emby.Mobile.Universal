@@ -16,10 +16,10 @@ namespace Emby.Mobile.Universal.Controls
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
-            var hasHeader = e.Content as ICanHasHeaderMenu;
-            var show = hasHeader != null;
+            //var hasHeader = e.Content as ICanHasHeaderMenu;
+            //var show = hasHeader != null;
 
-            ViewModelLocator.Get<HeaderMenuViewModel>().ShowHide(show);
+            //ViewModelLocator.Get<HeaderMenuViewModel>().ShowHide(show);
         }
     }
 }
