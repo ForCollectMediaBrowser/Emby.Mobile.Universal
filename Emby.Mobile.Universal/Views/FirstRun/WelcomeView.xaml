@@ -12,8 +12,9 @@
             <Border x:Name="Logo"
                     Background="{ThemeResource SmokeContrastBrush}"
                     RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True">
-                <Image RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
+                <Image 
                        Margin="10,30"
                        MaxHeight="100"
                        Source="{ThemeResource EmbyLogo}" />

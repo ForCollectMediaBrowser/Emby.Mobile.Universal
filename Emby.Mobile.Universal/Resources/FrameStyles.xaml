@@ -12,25 +12,25 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyApplicationFrame">
-                    <RelativePanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
                         <controls:HeaderControl x:Name="Header"
-                                                VerticalAlignment="Top"
-                                                RelativePanel.AlignTopWithPanel="True"
-                                                RelativePanel.AlignRightWithPanel="True"
-                                                RelativePanel.AlignLeftWithPanel="True" />
+                                                VerticalAlignment="Top" />
+
                         <ContentControl x:Name="Content"
+                                        Grid.Row="1"
                                         Content="{TemplateBinding Content}"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Stretch"
                                         HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch" 
-                                        RelativePanel.Below="Header"/>
+                                        VerticalAlignment="Stretch" />
                         <controls:StatusBarControl VerticalAlignment="Top"
                                                    x:Name="StatusBar"
-                                                   RelativePanel.AlignTopWithPanel="True"
-                                                   RelativePanel.AlignRightWithPanel="True"
-                                                   RelativePanel.AlignLeftWithPanel="True"/>
-                    </RelativePanel>
+                                                   Grid.RowSpan="2" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
