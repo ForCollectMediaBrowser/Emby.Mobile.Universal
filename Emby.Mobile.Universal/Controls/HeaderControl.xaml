@@ -114,7 +114,7 @@
         
         <Image Stretch="UniformToFill"
                Margin="5"
-               Source="ms-appx:///Assets/LogoLight.png" />
+               Source="{ThemeResource EmbyLogo}" />
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="2">

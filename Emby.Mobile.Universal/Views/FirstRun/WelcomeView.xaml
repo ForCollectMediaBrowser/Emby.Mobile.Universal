@@ -16,7 +16,7 @@
                 <Image RelativePanel.AlignTopWithPanel="True"
                        Margin="10,30"
                        MaxHeight="100"
-                       Source="ms-appx:///Assets/logoLight.png" />
+                       Source="{ThemeResource EmbyLogo}" />
             </Border>
             <!-- #region Welcome (Step 0)  -->
             <TextBlock x:Name="WelcomeLabel"
