@@ -99,7 +99,7 @@
             <TextBlock x:Name="UserName"
                        Text="{x:Bind CanSignIn.Username, Mode=OneWay}"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Foreground="{StaticResource EmbyGreenBrush}"
+                       Foreground="{ThemeResource EmbyGreenBrush}"
                        RelativePanel.RightOf="UserImage"
                        Margin="0,0,0,0" />
             <TextBlock x:Name="LastSeenLabel"

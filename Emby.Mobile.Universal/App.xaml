@@ -4,17 +4,27 @@
                           xmlns:controls="using:Emby.Mobile.Universal.Controls"
                           xmlns:converters="using:Cimbalino.Toolkit.Converters"
                           xmlns:embyConverters="using:Emby.Mobile.Universal.Converters"
-                          RequestedTheme="Light">
+                          xmlns:themeManagerRt="using:ThemeManagerRt"
+                          RequestedTheme="Dark">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/ColourResources.xaml" />
                 <ResourceDictionary Source="/Mdl2/Mdl2Resources.xaml" />
+                <ResourceDictionary Source="/Resources/EmbyColorResources.xaml" />
                 <ResourceDictionary Source="/Resources/TextBlockStyles.xaml" />
                 <ResourceDictionary Source="/Resources/ButtonResources.xaml" />
-                <ResourceDictionary Source="/Resources/FontResources.xaml"/>
-                <ResourceDictionary Source="/Resources/FrameStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/FontResources.xaml" />
+                <ResourceDictionary Source="/Resources/FrameStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Themes/DarkTheme.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <themeManagerRt:ThemeManager x:Key="ThemeManager" />
+
             <vm:ViewModelLocator x:Key="Locator"
                                  xmlns:vm="using:Emby.Mobile.Universal.ViewModel" />
 
@@ -26,7 +36,7 @@
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"
                                                      InvertValue="True" />
-            <converters:NegativeBooleanConverter x:Key="NegativeBooleanConverter"/>
+            <converters:NegativeBooleanConverter x:Key="NegativeBooleanConverter" />
             <embyConverters:LocalizationConverter x:Key="LocalizationConverter" />
 
             <!-- #endregion -->

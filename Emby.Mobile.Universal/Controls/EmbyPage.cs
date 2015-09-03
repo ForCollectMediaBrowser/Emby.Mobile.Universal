@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
+using ThemeManagerRt;
 
 namespace Emby.Mobile.Universal.Controls
 {
@@ -11,6 +12,7 @@ namespace Emby.Mobile.Universal.Controls
     {
         public EmbyPage()
         {
+            this.ThemeEnableThisElement();
             Analytics = SimpleIoc.Default.GetInstance<IAnalyticsService>();
             Loaded += (sender, args) =>
             {

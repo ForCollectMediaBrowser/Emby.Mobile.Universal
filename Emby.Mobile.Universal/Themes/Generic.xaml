@@ -6,9 +6,9 @@
         <Setter Property="ShowBackground"
                 Value="True" />
         <Setter Property="Background"
-                Value="{StaticResource EmbyLightGrayBrush}" />
+                Value="{ThemeResource ContrastBackgroundBrush}" />
         <Setter Property="CircleBackground"
-                Value="{StaticResource EmbyGreenBrush}"/>
+                Value="{ThemeResource EmbyGreenBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ProfilePicture">
