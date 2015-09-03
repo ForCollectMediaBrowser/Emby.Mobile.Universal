@@ -13,7 +13,7 @@
 
     <Grid Background="{ThemeResource BackgroundBrush}"
           x:Name="LayoutRoot"
-          Visibility="Visible"
+          Visibility="{x:Bind Header.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
           Height="35"
           Opacity="1">
         <VisualStateManager.VisualStateGroups>
