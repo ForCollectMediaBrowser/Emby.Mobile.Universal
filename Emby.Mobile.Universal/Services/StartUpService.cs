@@ -9,8 +9,8 @@ namespace Emby.Mobile.Universal.Services
     {
         public Task Startup()
         {
-            var burger = ViewModelLocator.Get<BurgerMenuViewModel>();
-            burger.Start();
+            var header = ViewModelLocator.Get<HeaderMenuViewModel>();
+            header.Start();
 
             return Task.FromResult(9);
         }

@@ -9,14 +9,16 @@ using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Search;
+using Emby.Mobile.Core.Strings;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class BurgerMenuViewModel : ViewModelBase
+    public class HeaderMenuViewModel : ViewModelBase
     {
         private bool _viewsLoaded;
 
-        public BurgerMenuViewModel(IServices services) : base(services)
+        public HeaderMenuViewModel(IServices services) : base(services)
         {
             if (!IsInDesignMode)
             {
@@ -25,15 +27,15 @@ namespace Emby.Mobile.ViewModels
                     Start();
                 };
 
-                Views = new ObservableCollection<ItemViewModel>();
+                SearchResults = new ObservableCollection<SearchHint>();
             }
         }
 
-        public bool BurgerIsVisible { get; set; }
+        public bool IsVisible { get; set; }
+        public string SearchText { get; set; }
         public bool CanChangeServer => AuthenticationService.SignedInUsingConnect;
         public UserDtoViewModel User { get; set; }
-        public ObservableCollection<ItemViewModel> Views { get; set; }
-
+        public ObservableCollection<SearchHint> SearchResults { get; set; }
         public RelayCommand NavigateToSettingsCommand
         {
             get
@@ -70,14 +72,12 @@ namespace Emby.Mobile.ViewModels
         public void Start()
         {
             SetUsernameAndProfilePicture();
-            LoadViews(true).ConfigureAwait(false);
-
             RaisePropertyChanged(() => CanChangeServer);
         }
 
         public void ShowHide(bool show)
         {
-            BurgerIsVisible = show;
+            IsVisible = show;
         }
 
         private void SetUsernameAndProfilePicture()
@@ -95,29 +95,38 @@ namespace Emby.Mobile.ViewModels
             });
         }
 
-        private async Task LoadViews(bool isRefresh)
+        private async void OnSearchTextChanged()
         {
-            if ((_viewsLoaded && !isRefresh) || !AuthenticationService.IsSignedIn)
+            var query = new SearchQuery
             {
-                return;
-            }
+                UserId = AuthenticationService.SignedInUserId,
+                Limit = 20,
+                StartIndex = 0,
+                IncludeArtists = true,
+                IncludeGenres = true,
+                IncludeMedia = true,
+                IncludePeople = true,
+                IncludeStudios = true,
+                SearchTerm = SearchText
+            };
 
             try
             {
-                var item = await ApiClient.GetUserViews(AuthenticationService.SignedInUserId);
-                if (item != null && !item.Items.IsNullOrEmpty())
+                SearchResults.Clear();
+                var search = await ApiClient.GetSearchHintsAsync(query);
+                if (search != null && !search.SearchHints.IsNullOrEmpty())
                 {
-                    Views.Clear();
-                    var views = item.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
-
-                    Views = views;
-
-                    _viewsLoaded = true;
+                    SearchResults = search.SearchHints.ToObservableCollection();
+                    SetProgressBar(Resources.SysTraySearching);
                 }
             }
-            catch (HttpException ex)
+            catch (HttpException e)
             {
-                
+
+            }
+            finally
+            {
+                SetProgressBar();
             }
         }
     }

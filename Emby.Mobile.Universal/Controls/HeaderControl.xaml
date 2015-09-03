@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="Emby.Mobile.Universal.Controls.HeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
+             xmlns:local="using:Emby.Mobile.Universal.Controls"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:cimbalino="using:Cimbalino.Toolkit.Behaviors"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="35"
+             d:DesignWidth="384"
+             DataContext="{Binding Header, Source={StaticResource Locator}}">
+    <Grid Background="{StaticResource EmbyDarkGrayBrush}"
+          x:Name="LayoutRoot"
+          Visibility="Visible"
+          Height="35"
+          Opacity="1">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Show">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="1"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="LayoutRoot"
+                                         d:IsOptimized="True" />
+                        <ObjectAnimationUsingKeyFrames Duration="0:0:0"
+                                                       Storyboard.TargetName="LayoutRoot"
+                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Hide">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="0"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="LayoutRoot"
+                                         d:IsOptimized="True" />
+                        <ObjectAnimationUsingKeyFrames Duration="0:0:0"
+                                                       Storyboard.TargetName="LayoutRoot"
+                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ExtraWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraWideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="55" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="50" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="50" />
+                        <Setter Target="SearchIcon.FontSize"
+                                Value="30" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="45" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="40" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="40" />
+                        <Setter Target="SearchIcon.FontSize"
+                                Value="25" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="35" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="30" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="30" />
+                        <Setter Target="SearchIcon.FontSize"
+                                Value="20" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <interactivity:Interaction.Behaviors>
+            <core:DataTriggerBehavior Binding="{Binding IsVisible}"
+                                      Value="True">
+                <core:GoToStateAction StateName="Show" />
+            </core:DataTriggerBehavior>
+            <core:DataTriggerBehavior Binding="{Binding IsVisible}"
+                                      Value="False">
+                <core:GoToStateAction StateName="Normal" />
+            </core:DataTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Image Stretch="UniformToFill"
+               Margin="5"
+               Source="ms-appx:///Assets/LogoLight.png" />
+        <Button x:Name="SearchButton"
+                Style="{StaticResource EmptyButtonStyle}"
+                Grid.Column="2">
+            <FontIcon x:Name="SearchIcon"
+                      Glyph="{StaticResource Search}"
+                      FontSize="20"
+                      Foreground="{StaticResource EmbyWhiteSmokeBrush}" />
+        </Button>
+        <Button Style="{StaticResource EmptyButtonStyle}"
+                Grid.Column="3">
+            <controls:ProfilePicture ProfileImage="{x:Bind Header.User.UserImageUrl, Mode=OneWay}"
+                                     Height="30"
+                                     Width="30"
+                                     Margin="8,0,9,0"
+                                     ShowBackground="False"
+                                     x:Name="ProfilePicture"
+                                     RelativePanel.AlignLeftWithPanel="True" />
+            <Button.Flyout>
+                <Flyout>
+                    <Grid Height="300"
+                          Width="150"
+                          Background="Red" />
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+    </Grid>
+</UserControl>

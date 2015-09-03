@@ -368,7 +368,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to search.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string AppBarSearch {
             get {
@@ -2339,7 +2339,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to search.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string LabelSearch {
             get {

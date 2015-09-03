@@ -233,7 +233,7 @@
     <value>resume</value>
   </data>
   <data name="AppBarSearch" xml:space="preserve">
-    <value>search</value>
+    <value>Search</value>
   </data>
   <data name="AppBarSelectItems" xml:space="preserve">
     <value>select items</value>
@@ -545,7 +545,7 @@
     <value>Running time:</value>
   </data>
   <data name="LabelSearch" xml:space="preserve">
-    <value>search</value>
+    <value>Search</value>
   </data>
   <data name="LabelSeasons" xml:space="preserve">
     <value>seasons</value>
