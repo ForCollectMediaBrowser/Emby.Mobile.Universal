@@ -4,12 +4,42 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                   xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
                    mc:Ignorable="d"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
-    <Grid >
-        <TextBlock Text="{Binding ConnectedTo}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+    <Grid>
+        <GridView ItemsSource="{x:Bind Main.UserViews, Mode=OneWay}">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="entities:UserViewViewModel">
+                    <Grid BorderBrush="{ThemeResource ContrastBackgroundBrush}"
+                          BorderThickness="1"
+                          Background="{ThemeResource BackgroundBrush}"
+                          Height="200"
+                          Width="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Grid Grid.Row="0" />
+
+                        <Border Background="{ThemeResource ContrastBackgroundBrush}"
+                                Grid.Row="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom">
+                            <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </controls:EmbyPage>
