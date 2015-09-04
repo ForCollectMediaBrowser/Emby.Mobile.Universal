@@ -49,11 +49,15 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Playback\Caption.cs" />
+    <Compile Include="Playback\PlayStateChangedEventArgs.cs" />
+    <Compile Include="Playback\PlayerPositionEventArgs.cs" />
     <Compile Include="Extensions\ApplicationSettingsExtensions.cs" />
     <Compile Include="Extensions\BaseItemExtensions.cs" />
     <Compile Include="Extensions\CredentialProviderExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Playback\PlayerState.cs" />
     <Compile Include="Helpers\DeviceFamily.cs" />
     <Compile Include="Interfaces\IAnalyticsService.cs" />
     <Compile Include="Helpers\PinHelper.cs" />
@@ -64,8 +68,10 @@
     <Compile Include="Interfaces\IDispatcherService.cs" />
     <Compile Include="Interfaces\ILocalizedResources.cs" />
     <Compile Include="Interfaces\ILog.cs" />
+    <Compile Include="Interfaces\IMediaPlayer.cs" />
     <Compile Include="Interfaces\IMessengerService.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
+    <Compile Include="Interfaces\IPlayerService.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="Interfaces\IStartUpService.cs" />
