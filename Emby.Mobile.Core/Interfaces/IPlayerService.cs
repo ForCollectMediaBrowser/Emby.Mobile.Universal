@@ -19,7 +19,9 @@ namespace Emby.Mobile.Core.Interfaces
         BaseItemDto CurrentItem { get; }
         BaseItemDto UpcomingItem { get; }
         List<BaseItemDto> Playlist { get; }
+        List<IMediaPlayer> AvailablePlayers { get; }
 
+        bool RegisterPlayer(IMediaPlayer player);
         void AddToPlaylist(BaseItemDto item);
         void AddToPlaylist(IList<BaseItemDto> items);
         void DecreaseVolume();
