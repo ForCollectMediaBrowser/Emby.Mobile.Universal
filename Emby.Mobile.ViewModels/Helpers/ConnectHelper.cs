@@ -25,6 +25,7 @@ namespace Emby.Mobile.Helpers
                     }
                     else
                     {
+                        services.Authentication.SetAuthenticationInfo();
                         await services.StartUp.Startup();
 
                         services.NavigationService.NavigateToHome();

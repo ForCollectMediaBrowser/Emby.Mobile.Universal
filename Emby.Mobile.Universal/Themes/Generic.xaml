@@ -6,7 +6,7 @@
         <Setter Property="ShowBackground"
                 Value="True" />
         <Setter Property="Background"
-                Value="{ThemeResource ContrastBackgroundBrush}" />
+                Value="Transparent" />
         <Setter Property="CircleBackground"
                 Value="{ThemeResource EmbyGreenBrush}"/>
         <Setter Property="Template">

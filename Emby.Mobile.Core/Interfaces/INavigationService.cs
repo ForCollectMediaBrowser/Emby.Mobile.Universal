@@ -16,5 +16,6 @@
         bool NavigateToManualLocalUserSignIn();
         bool NavigateToPinLogin();
         bool NavigateToSettings();
+        bool NavigateToPreferences();
     }
 }

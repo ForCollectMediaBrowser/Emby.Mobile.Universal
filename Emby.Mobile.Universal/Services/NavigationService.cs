@@ -80,5 +80,10 @@ namespace Emby.Mobile.Universal.Services
         {
             return false;
         }
+
+        public bool NavigateToPreferences()
+        {
+            return false;
+        }
     }
 }

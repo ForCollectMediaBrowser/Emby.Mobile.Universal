@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
@@ -31,7 +29,7 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        public bool IsVisible { get; set; }
+        public bool IsVisible { get; set; } = true;
         public string SearchText { get; set; }
         public bool CanChangeServer => AuthenticationService.SignedInUsingConnect;
         public UserDtoViewModel User { get; set; }
@@ -43,6 +41,17 @@ namespace Emby.Mobile.ViewModels
                 return new RelayCommand(() =>
                 {
                     Services.NavigationService.NavigateToSettings();
+                });
+            }
+        }
+
+        public RelayCommand NavigateTopPreferencesCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToPreferences();
                 });
             }
         }
