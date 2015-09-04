@@ -5,6 +5,8 @@
 
     <SolidColorBrush x:Key="EmbyGreenBrush"
                      Color="{StaticResource EmbyGreenColor}" />
+    <SolidColorBrush x:Key="EmbyLightGreenBrush"
+                     Color="{StaticResource EmbyLightGreenColor}" />
     <SolidColorBrush x:Key="BackgroundBrush"
                      Color="{StaticResource EmbyDarkGrayColor}" />
     <SolidColorBrush x:Key="ContrastBackgroundBrush"

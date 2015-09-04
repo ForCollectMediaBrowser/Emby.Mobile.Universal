@@ -10,11 +10,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Mdl2/Mdl2Resources.xaml" />
+                <ResourceDictionary Source="/Resources/ExplicitStyles.xaml" />
                 <ResourceDictionary Source="/Resources/EmbyColorResources.xaml" />
                 <ResourceDictionary Source="/Resources/TextBlockStyles.xaml" />
                 <ResourceDictionary Source="/Resources/ButtonResources.xaml" />
                 <ResourceDictionary Source="/Resources/FontResources.xaml" />
                 <ResourceDictionary Source="/Resources/FrameStyles.xaml" />
+                <ResourceDictionary Source="/Resources/FlyoutStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">

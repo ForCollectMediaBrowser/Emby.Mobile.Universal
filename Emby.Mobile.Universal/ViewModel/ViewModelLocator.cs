@@ -31,6 +31,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<ManualLocalUserSignInViewModel>();
             Register<ConnectPinEntryViewModel>();
             Register<HeaderMenuViewModel>();
+            Register<SearchViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -44,6 +45,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public ManualLocalUserSignInViewModel ManualLocalUser => Get<ManualLocalUserSignInViewModel>();
         public ConnectPinEntryViewModel PinEntry => Get<ConnectPinEntryViewModel>();
         public HeaderMenuViewModel Header => Get<HeaderMenuViewModel>();
+        public SearchViewModel Search => Get<SearchViewModel>();
 
 
 
