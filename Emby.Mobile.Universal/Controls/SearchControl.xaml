@@ -8,36 +8,26 @@
              xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:cimbalino="using:Cimbalino.Toolkit.Behaviors"
              mc:Ignorable="d"
-             Width="300"             
+             Width="300"
              DataContext="{Binding Search, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource BackgroundBrush}">
         <RelativePanel>
             <TextBox x:Name="TxtSearch"
                      VerticalAlignment="Top"
-                     Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                     Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Margin="10"
                      RelativePanel.AlignLeftWithPanel="True"
                      RelativePanel.AlignRightWithPanel="True"
                      RelativePanel.AlignTopWithPanel="True"
                      PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSearch}">
-                <interactivity:Interaction.Behaviors>
-                    <cimbalino:UpdateTextBindingOnPropertyChanged />
-                </interactivity:Interaction.Behaviors>
             </TextBox>
             <ListView x:Name="ResultBox"
                       RelativePanel.Below="TxtSearch"
                       RelativePanel.AlignLeftWithPanel="True"
                       RelativePanel.AlignRightWithPanel="True"
                       ItemsSource="{Binding SearchResults}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="entities:SearchHintViewModel">
                         <itemControls:SearchHintControl>

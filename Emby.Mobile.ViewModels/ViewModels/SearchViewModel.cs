@@ -16,7 +16,6 @@ namespace Emby.Mobile.ViewModels
         {
             if (!IsInDesignMode)
             {
-
                 SearchResults = new ObservableCollection<SearchHintViewModel>();
             }
             else
@@ -51,12 +50,13 @@ namespace Emby.Mobile.ViewModels
 
                 try
                 {
+                    SetProgressBar(Resources.SysTraySearching);
                     SearchResults.Clear();
                     var search = await ApiClient.GetSearchHintsAsync(query);
                     if (search != null && !search.SearchHints.IsNullOrEmpty())
                     {
                         SearchResults = search.SearchHints.Select(x => new SearchHintViewModel(Services, x)).ToObservableCollection();
-                        SetProgressBar(Resources.SysTraySearching);
+                        
                     }
                 }
                 catch (HttpException e)
