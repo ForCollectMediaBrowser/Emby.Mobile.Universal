@@ -11,10 +11,5 @@ namespace Emby.Mobile.Universal.Controls
         {
             InitializeComponent();
         }
-
-        private void SearchHintControl_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-
-        }
     }
 }
