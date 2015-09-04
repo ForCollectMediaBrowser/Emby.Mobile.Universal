@@ -123,15 +123,7 @@
                       FontSize="20"
                       Foreground="{ThemeResource SmokeBrush}" />
             <Button.Flyout>
-                <Flyout>
-                    <Flyout.FlyoutPresenterStyle>
-                        <Style TargetType="FlyoutPresenter">
-                            <Setter Property="Padding"
-                                    Value="0" />
-                            <Setter Property="BorderThickness"
-                                    Value="0" />
-                        </Style>
-                    </Flyout.FlyoutPresenterStyle>
+                <Flyout FlyoutPresenterStyle="{StaticResource BorderlessFlyoutStyle}">
                     <controls:SearchControl />
                 </Flyout>
             </Button.Flyout>
