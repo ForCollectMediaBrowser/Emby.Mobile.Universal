@@ -149,9 +149,17 @@
                     </Flyout.FlyoutPresenterStyle>
                     
                     <RelativePanel Background="{ThemeResource BackgroundBrush}">
+                        <controls:ProfilePicture ProfileImage="{x:Bind Header.User.UserImageUrl, Mode=OneWay}"
+                                                 x:Name="FlyoutProfilePicture"
+                                                 ShowBackground="False"
+                                                 RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                                 Height="150"
+                                                 Width="150"/>
                         <TextBlock Text="{x:Bind Header.User.Username, Mode=OneWay}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    x:Name="Username"
+                                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                   RelativePanel.Below="FlyoutProfilePicture"
                                    Margin="8,0,0,0"/>
                         <Rectangle Fill="{ThemeResource ContrastBackgroundBrush}"
                                    Height="1"
