@@ -26,7 +26,7 @@ namespace Emby.Mobile.ViewModels.Entities
 
         public SearchHint SearchHint { get; set; }
 
-        public string ImageUrl { get; } = string.Empty;
+        public string ImageUrl { get; } = "ms-appx:///Assets/Tiles/150x150Logo.png";
 
         public string Name => SearchHint?.Name;
 
