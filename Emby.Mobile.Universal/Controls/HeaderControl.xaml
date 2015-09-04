@@ -111,7 +111,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        
+
         <Image Stretch="UniformToFill"
                Margin="5"
                Source="{ThemeResource EmbyLogo}" />
@@ -124,6 +124,14 @@
                       Foreground="{ThemeResource SmokeBrush}" />
             <Button.Flyout>
                 <Flyout>
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Padding"
+                                    Value="0" />
+                            <Setter Property="BorderThickness"
+                                    Value="0" />
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
                     <controls:SearchControl />
                 </Flyout>
             </Button.Flyout>
