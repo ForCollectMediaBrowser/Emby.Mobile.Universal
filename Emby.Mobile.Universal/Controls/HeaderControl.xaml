@@ -122,6 +122,11 @@
                       Glyph="{StaticResource Search}"
                       FontSize="20"
                       Foreground="{ThemeResource SmokeBrush}" />
+            <Button.Flyout>
+                <Flyout>
+                    <controls:SearchControl />
+                </Flyout>
+            </Button.Flyout>
         </Button>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="3">
