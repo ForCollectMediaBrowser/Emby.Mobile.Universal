@@ -1393,4 +1393,7 @@
   <data name="SysTrayGettingPin" xml:space="preserve">
     <value>Getting pin...</value>
   </data>
+  <data name="LabelPreferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
 </root>

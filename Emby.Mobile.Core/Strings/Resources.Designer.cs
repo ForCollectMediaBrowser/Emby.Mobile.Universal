@@ -1997,6 +1997,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preferences.
+        /// </summary>
+        public static string LabelPreferences {
+            get {
+                return ResourceManager.GetString("LabelPreferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pre-padding minutes:.
         /// </summary>
         public static string LabelPrePaddingMinutes {

@@ -45,6 +45,17 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        public RelayCommand NavigateTopPreferencesCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToPreferences();
+                });
+            }
+        }
+
         public RelayCommand SignOutCommand
         {
             get

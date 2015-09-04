@@ -145,6 +145,8 @@
                                     Value="0"/>
                             <Setter Property="BorderThickness"
                                     Value="0"/>
+                            <Setter Property="Width"
+                                    Value="230"/>
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
                     
@@ -158,14 +160,33 @@
                         <TextBlock Text="{x:Bind Header.User.Username, Mode=OneWay}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    x:Name="Username"
-                                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                   RelativePanel.AlignHorizontalCenterWith="FlyoutProfilePicture"
                                    RelativePanel.Below="FlyoutProfilePicture"
-                                   Margin="8,0,0,0"/>
+                                   Margin="8,-10,0,6"/>
+                        <Button x:Name="PreferencesButton"
+                                Style="{StaticResource EmptyButtonStyle}"
+                                ClickMode="Release"
+                                Margin="0,0,0,0"
+                                Command="{x:Bind Header.NavigateTopPreferencesCommand}"
+                                RelativePanel.Below="Username"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                                          Glyph="{StaticResource AccountOutline}"
+                                          Foreground="White"
+                                          Margin="10,9,10,9" />
+                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelPreferences}"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="White" />
+                            </StackPanel>
+                        </Button>
                         <Rectangle Fill="{ThemeResource ContrastBackgroundBrush}"
                                    Height="1"
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.AlignRightWithPanel="True"
-                                   RelativePanel.Below="Username"
+                                   RelativePanel.Below="PreferencesButton"
                                    x:Name="UsernameSeparator"
                                    Margin="0,3,0,0"/>
                         <Button x:Name="SettingsButton"
@@ -180,7 +201,7 @@
                                 <FontIcon Style="{StaticResource Mdl2FontStyle}"
                                           Glyph="{StaticResource Setting}"
                                           Foreground="White"
-                                          Margin="10,9,13,9" />
+                                          Margin="10,9,10,9" />
                                 <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarSettings}"
                                            VerticalAlignment="Center"
                                            Style="{StaticResource BodyTextBlockStyle}"
@@ -200,7 +221,7 @@
                                 <FontIcon Style="{StaticResource Mdl2FontStyle}"
                                           Glyph="{StaticResource Server}"
                                           Foreground="White"
-                                          Margin="10,9,13,9" />
+                                          Margin="10,9,10,9" />
                                 <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarChangeServer}"
                                            VerticalAlignment="Center"
                                            Style="{StaticResource BodyTextBlockStyle}"
@@ -219,7 +240,7 @@
                                 <FontIcon Style="{StaticResource Mdl2FontStyle}"
                                           Glyph="{StaticResource Lock}"
                                           Foreground="White"
-                                          Margin="10,9,13,9" />
+                                          Margin="10,9,10,9" />
                                 <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSignOut}"
                                            VerticalAlignment="Center"
                                            Style="{StaticResource BodyTextBlockStyle}"
