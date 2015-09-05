@@ -1,5 +1,6 @@
 ﻿using Emby.Mobile.Core.Playback;
 using MediaBrowser.Model.Dlna;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Emby.Mobile.Core.Interfaces
     {      
         bool CanSeek { get; }
         bool CanPause { get; }
+        Task Play(BaseItemDto item, double position = 0);
         Task Play(string url, IList<Caption> captions, IList<MediaStream> selectableAudioStreams);
         Task Play(StreamInfo stream, MimeTypes mimeType, IList<Caption> captions, IList<MediaStream> selectableAudioStreams);
         void Pause();

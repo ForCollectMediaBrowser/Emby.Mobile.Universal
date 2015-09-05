@@ -1,5 +1,6 @@
 ﻿using Emby.Mobile.Core.Playback;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Session;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -41,5 +42,9 @@ namespace Emby.Mobile.Core.Interfaces
         Task<bool> SetVolume(double volume);
         Task<bool> SkipToItem(string itemId);
         Task<bool> Stop();
+
+        void ReportPlaybackStarted(PlaybackStartInfo info);
+        void ReportPlaybackStopped(PlaybackStopInfo info);
+        void ReportPlaybackProgress(PlaybackProgressInfo info);
     }
 }
