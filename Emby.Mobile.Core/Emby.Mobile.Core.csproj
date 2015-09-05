@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Playback\Caption.cs" />
+    <Compile Include="Playback\PlaylistItem.cs" />
+    <Compile Include="Playback\PlaylistState.cs" />
     <Compile Include="Playback\PlayStateChangedEventArgs.cs" />
     <Compile Include="Playback\PlayerPositionEventArgs.cs" />
     <Compile Include="Extensions\ApplicationSettingsExtensions.cs" />
@@ -71,7 +73,7 @@
     <Compile Include="Interfaces\IMediaPlayer.cs" />
     <Compile Include="Interfaces\IMessengerService.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
-    <Compile Include="Interfaces\IPlayerService.cs" />
+    <Compile Include="Interfaces\IPlaybackService.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="Interfaces\IStartUpService.cs" />

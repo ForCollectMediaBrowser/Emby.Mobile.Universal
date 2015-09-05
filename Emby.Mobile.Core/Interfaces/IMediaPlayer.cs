@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Emby.Mobile.Core.Interfaces
 {
-    interface IMediaPlayer
+    public interface IMediaPlayer
     {      
         bool CanSeek { get; }
         bool CanPause { get; }

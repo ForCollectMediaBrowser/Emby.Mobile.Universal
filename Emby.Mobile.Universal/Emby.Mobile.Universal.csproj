@@ -177,6 +177,7 @@
     <Compile Include="Services\ListType.cs" />
     <Compile Include="Services\MessengerService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\PlaybackService.cs" />
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="Services\StartUpService.cs" />

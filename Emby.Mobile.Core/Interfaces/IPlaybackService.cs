@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Emby.Mobile.Core.Interfaces
 {
-    interface IPlayerService
+    public interface IPlaybackService
     {
         event EventHandler<PlayStateChangedEventArgs> PlaystateChanged;
         event EventHandler<PlayerPositionEventArgs> PlayerPositionChanged;
@@ -19,7 +19,7 @@ namespace Emby.Mobile.Core.Interfaces
         bool IsPlaying { get; }
         BaseItemDto CurrentItem { get; }
         BaseItemDto UpcomingItem { get; }
-        List<BaseItemDto> Playlist { get; }
+        List<PlaylistItem> Playlist { get; }
         List<IMediaPlayer> AvailablePlayers { get; }
 
         bool RegisterPlayer(IMediaPlayer player);
