@@ -34,14 +34,15 @@
                     <Grid BorderBrush="{ThemeResource ContrastBackgroundBrush}"
                           BorderThickness="1"
                           Background="{ThemeResource BackgroundBrush}"
-                          Height="200"
-                          Width="200">
+                          Height="250"
+                          Width="360">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0">
+                        <Grid Grid.Row="1"
+                              HorizontalAlignment="Left">
                             <ProgressRing IsActive="{x:Bind ProgressIsVisible, Mode=OneWay}"
                                           Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
                             <!--<ContentPresenter ContentTemplateSelector="{StaticResource UserViewDataTemplateSelector}"
@@ -50,16 +51,16 @@
                             <Viewbox Stretch="Uniform"
                                      StretchDirection="DownOnly"
                                      HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch"
+                                     VerticalAlignment="Top"
                                      Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}">
                                 <controls:VariableGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
-                                                           VerticalAlignment="Stretch"
+                                                           VerticalAlignment="Top"
                                                            HorizontalAlignment="Stretch"
                                                            Width="700">
                                     <controls:VariableGridView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid ItemHeight="177"
-                                                                   ItemWidth="266"
+                                            <VariableSizedWrapGrid ItemHeight="119"
+                                                                   ItemWidth="230"
                                                                    Orientation="Horizontal" />
                                         </ItemsPanelTemplate>
                                     </controls:VariableGridView.ItemsPanel>
@@ -75,7 +76,9 @@
                                                                        Source="{x:Bind BackdropImage, Mode=OneWay}"
                                                                        Stretch="UniformToFill"/>-->
                                                     <Image Source="{x:Bind BackdropImage, Mode=OneWay}"
-                                                           Stretch="UniformToFill" />
+                                                           Stretch="UniformToFill"
+                                                           HorizontalAlignment="Stretch"
+                                                           VerticalAlignment="Top" />
                                                 </Grid>
                                             </Button>
                                         </DataTemplate>
@@ -84,12 +87,27 @@
                             </Viewbox>
                         </Grid>
 
-                        <Border Background="{ThemeResource ContrastBackgroundBrush}"
-                                Grid.Row="1"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Bottom">
-                            <TextBlock Text="{x:Bind Name, Mode=OneWay}" />
-                        </Border>
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                ClickMode="Release"
+                                Command="{x:Bind NavigateToItem}"
+                                Grid.Row="0"
+                                VerticalAlignment="Top">
+                            <StackPanel Background="{ThemeResource ContrastBackgroundBrush}"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           Style="{StaticResource HeaderTextBlockStyle}"
+                                           Margin="12,0"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="CharacterEllipsis" />
+                                <TextBlock Text="{StaticResource ChevronRight}"
+                                           Style="{StaticResource SubheaderTextBlockStyle}"
+                                           FontFamily="Segoe MDL2 Assets"
+                                           VerticalAlignment="Bottom"
+                                           Margin="-7,0,0,11"
+                                           FontSize="24" />
+                            </StackPanel>
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
