@@ -4,6 +4,7 @@ using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using System;
 using System.Windows.Input;
+using Emby.Mobile.Core.Helpers;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Entities;
 using GalaSoft.MvvmLight.Messaging;
@@ -84,14 +85,7 @@ namespace Emby.Mobile.ViewModels.Entities
 
             if (UserDto?.HasPrimaryImage == true)
             {
-                var options = new ImageOptions
-                {
-                    Quality = 90,
-                    Height = 120,
-                    ImageType = ImageType.Primary
-                };
-
-                UserImageUrl = ApiClient?.GetUserImageUrl(UserDto.Id, options);
+                UserImageUrl = ApiClient?.GetUserImageUrl(UserDto.Id, ImageOptionsHelper.UserProfile);
             }
         }
 
