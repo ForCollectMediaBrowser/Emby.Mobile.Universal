@@ -90,38 +90,50 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="Assets\SplashScreen.scale-125.png" />
-    <Content Include="Assets\SplashScreen.scale-150.png" />
-    <Content Include="Assets\SplashScreen.scale-400.png" />
-    <Content Include="Assets\Tiles\150x150Logo.scale-100.png" />
-    <Content Include="Assets\Tiles\150x150Logo.scale-125.png" />
-    <Content Include="Assets\Tiles\150x150Logo.scale-150.png" />
-    <Content Include="Assets\Tiles\150x150Logo.scale-200.png" />
-    <Content Include="Assets\Tiles\150x150Logo.scale-400.png" />
-    <Content Include="Assets\Tiles\310X150Logo.scale-100.png" />
-    <Content Include="Assets\Tiles\310X150Logo.scale-125.png" />
-    <Content Include="Assets\Tiles\310X150Logo.scale-150.png" />
-    <Content Include="Assets\Tiles\310X150Logo.scale-200.png" />
-    <Content Include="Assets\Tiles\310X150Logo.scale-400.png" />
-    <Content Include="Assets\Tiles\310x310Logo.scale-100.png" />
-    <Content Include="Assets\Tiles\310x310Logo.scale-125.png" />
-    <Content Include="Assets\Tiles\310x310Logo.scale-150.png" />
-    <Content Include="Assets\Tiles\310x310Logo.Scale-200.png" />
-    <Content Include="Assets\Tiles\310x310Logo.scale-400.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.Scale-100.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.Scale-125.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.Scale-150.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.Scale-200.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.Scale-400.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.targetsize-16_altform-unplated.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.targetsize-256_altform-unplated.png" />
-    <Content Include="Assets\Tiles\Square44x44Logo.targetsize-48_altform-unplated.png" />
-    <Content Include="Assets\Tiles\StoreLogo.scale-100.png" />
-    <Content Include="Assets\Tiles\StoreLogo.scale-125.png" />
-    <Content Include="Assets\Tiles\StoreLogo.scale-150.png" />
-    <Content Include="Assets\Tiles\StoreLogo.scale-200.png" />
-    <Content Include="Assets\Tiles\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Tiles\BadgeLogo.Scale-100.png" />
+    <Content Include="Assets\Tiles\BadgeLogo.Scale-125.png" />
+    <Content Include="Assets\Tiles\BadgeLogo.Scale-150.png" />
+    <Content Include="Assets\Tiles\BadgeLogo.Scale-200.png" />
+    <Content Include="Assets\Tiles\BadgeLogo.Scale-400.png" />
+    <Content Include="Assets\SplashScreen.Scale-100.png" />
+    <Content Include="Assets\SplashScreen.Scale-125.png" />
+    <Content Include="Assets\SplashScreen.Scale-150.png" />
+    <Content Include="Assets\SplashScreen.Scale-200.png" />
+    <Content Include="Assets\SplashScreen.Scale-400.png" />
+    <Content Include="Assets\Tiles\Square150x150.Scale-100.png" />
+    <Content Include="Assets\Tiles\Square150x150.Scale-125.png" />
+    <Content Include="Assets\Tiles\Square150x150.Scale-150.png" />
+    <Content Include="Assets\Tiles\Square150x150.Scale-200.png" />
+    <Content Include="Assets\Tiles\Square150x150.Scale-400.png" />
+    <Content Include="Assets\Tiles\Square310x310.Scale-100.png" />
+    <Content Include="Assets\Tiles\Square310x310.Scale-125.png" />
+    <Content Include="Assets\Tiles\Square310x310.Scale-150.png" />
+    <Content Include="Assets\Tiles\Square310x310.Scale-200.png" />
+    <Content Include="Assets\Tiles\Square310x310.Scale-400.png" />
+    <Content Include="Assets\Tiles\Square44x44.Scale-100.png" />
+    <Content Include="Assets\Tiles\Square44x44.Scale-125.png" />
+    <Content Include="Assets\Tiles\Square44x44.Scale-150.png" />
+    <Content Include="Assets\Tiles\Square44x44.Scale-200.png" />
+    <Content Include="Assets\Tiles\Square44x44.Scale-400.png" />
+    <Content Include="Assets\Tiles\Square44x44.Targetsize-16_altform-unplated.png" />
+    <Content Include="Assets\Tiles\Square44x44.Targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Tiles\Square44x44.Targetsize-256_altform-unplated.png" />
+    <Content Include="Assets\Tiles\Square44x44.Targetsize-48_altform-unplated.png" />
+    <Content Include="Assets\Tiles\Square71x71.Scale-100.png" />
+    <Content Include="Assets\Tiles\Square71x71.Scale-125.png" />
+    <Content Include="Assets\Tiles\Square71x71.Scale-150.png" />
+    <Content Include="Assets\Tiles\Square71x71.Scale-200.png" />
+    <Content Include="Assets\Tiles\Square71x71.Scale-400.png" />
+    <Content Include="Assets\Tiles\StoreLogo.Scale-100.png" />
+    <Content Include="Assets\Tiles\StoreLogo.Scale-125.png" />
+    <Content Include="Assets\Tiles\StoreLogo.Scale-150.png" />
+    <Content Include="Assets\Tiles\StoreLogo.Scale-200.png" />
+    <Content Include="Assets\Tiles\StoreLogo.Scale-400.png" />
+    <Content Include="Assets\Tiles\Wide310x150.Scale-100.png" />
+    <Content Include="Assets\Tiles\Wide310x150.Scale-125.png" />
+    <Content Include="Assets\Tiles\Wide310x150.Scale-150.png" />
+    <Content Include="Assets\Tiles\Wide310x150.Scale-200.png" />
+    <Content Include="Assets\Tiles\Wide310x150.Scale-400.png" />
     <Content Include="Fonts\MaterialIcons-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -228,11 +240,9 @@
     <Content Include="Assets\Backdrops\EmbyRandomAvatars.jpg" />
     <Content Include="Assets\LogoDark.png" />
     <Content Include="Assets\LogoLight.png" />
-    <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
