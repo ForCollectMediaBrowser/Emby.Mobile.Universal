@@ -49,7 +49,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     //IncludeItemTypes = new[] { "Movie" },
                     Limit = 3,
                     Fields = new[] { ItemFields.PrimaryImageAspectRatio },
-                    Filters = new[] { ItemFilter.IsUnplayed },
+                    //Filters = new[] { ItemFilter.IsUnplayed },
                     Recursive = true,
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
