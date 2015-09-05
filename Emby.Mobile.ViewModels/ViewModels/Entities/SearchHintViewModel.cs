@@ -1,7 +1,6 @@
-﻿using Emby.Mobile.Core.Interfaces;
+﻿using Emby.Mobile.Core.Helpers;
+using Emby.Mobile.Core.Interfaces;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Search;
 
 namespace Emby.Mobile.ViewModels.Entities
@@ -13,14 +12,7 @@ namespace Emby.Mobile.ViewModels.Entities
             SearchHint = searchHint;
             if (!string.IsNullOrEmpty(SearchHint?.PrimaryImageTag))
             {
-                var options = new ImageOptions
-                {
-                    Quality = 70,
-                    MaxWidth = 50,
-                    ImageType = ImageType.Primary,
-                    Format = MediaBrowser.Model.Drawing.ImageFormat.Png,
-                };                
-                ImageUrl = ApiClient?.GetImageUrl(searchHint.ItemId, options);
+                ImageUrl = ApiClient?.GetImageUrl(searchHint.ItemId, ImageOptionsHelper.SearchHint);
             }           
         }
 

@@ -15,9 +15,15 @@
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-    
+
     <Page.Resources>
-        <data:UserViewDataTemplateSelector x:Key="UserViewDataTemplateSelector"></data:UserViewDataTemplateSelector>
+        <!--<data:UserViewDataTemplateSelector x:Key="UserViewDataTemplateSelector">
+            <data:UserViewDataTemplateSelector.DefaultTemplate>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </data:UserViewDataTemplateSelector.DefaultTemplate>
+        </data:UserViewDataTemplateSelector>-->
     </Page.Resources>
 
     <Grid>
@@ -36,14 +42,43 @@
 
                         <Grid Grid.Row="0">
                             <ProgressRing IsActive="{x:Bind ProgressIsVisible, Mode=OneWay}"
-                                          Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+                                          Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
+                            <!--<ContentPresenter ContentTemplateSelector="{StaticResource UserViewDataTemplateSelector}"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch"/>-->
+                            <Viewbox Stretch="UniformToFill"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch">
+                                <controls:VariableGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                                           VerticalAlignment="Stretch"
+                                                           HorizontalAlignment="Stretch">
+                                    <controls:VariableGridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VariableSizedWrapGrid ItemWidth="177"
+                                                                   ItemHeight="266"
+                                                                   Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </controls:VariableGridView.ItemsPanel>
+                                    
+                                    <controls:VariableGridView.ItemTemplate>
+                                        <DataTemplate x:DataType="entities:ItemViewModel">
+                                            <Grid Background="Red"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch">
+                                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </controls:VariableGridView.ItemTemplate>
+                                </controls:VariableGridView>
+                            </Viewbox>
                         </Grid>
 
                         <Border Background="{ThemeResource ContrastBackgroundBrush}"
                                 Grid.Row="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Bottom">
-                            <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
+                            <TextBlock Text="{x:Bind Name, Mode=OneWay}" />
                         </Border>
                     </Grid>
                 </DataTemplate>
