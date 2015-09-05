@@ -96,11 +96,11 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <interactivity:Interaction.Behaviors>
-            <core:DataTriggerBehavior Binding="{Binding IsVisible}"
+            <core:DataTriggerBehavior Binding="{x:Bind Header.IsVisible}"
                                       Value="True">
                 <core:GoToStateAction StateName="Show" />
             </core:DataTriggerBehavior>
-            <core:DataTriggerBehavior Binding="{Binding IsVisible}"
+            <core:DataTriggerBehavior Binding="{x:Bind Header.IsVisible}"
                                       Value="False">
                 <core:GoToStateAction StateName="Normal" />
             </core:DataTriggerBehavior>
