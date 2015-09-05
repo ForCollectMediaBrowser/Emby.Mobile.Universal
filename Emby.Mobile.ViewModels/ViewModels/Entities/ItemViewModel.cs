@@ -22,6 +22,8 @@ namespace Emby.Mobile.ViewModels.Entities
 
         public string Type => ItemInfo?.Type;
 
+        public string PrimaryImage => "";
+
         public RelayCommand NavigateToItem
         {
             get
