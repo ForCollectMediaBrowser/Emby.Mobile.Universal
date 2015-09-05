@@ -28,8 +28,11 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
-                        <Grid Grid.Row="0" />
+
+                        <Grid Grid.Row="0">
+                            <ProgressRing IsActive="{x:Bind ProgressIsVisible, Mode=OneWay}"
+                                          Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+                        </Grid>
 
                         <Border Background="{ThemeResource ContrastBackgroundBrush}"
                                 Grid.Row="1"
