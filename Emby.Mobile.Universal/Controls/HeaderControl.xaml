@@ -11,9 +11,8 @@
              d:DesignWidth="384"
              DataContext="{Binding Header, Source={StaticResource Locator}}">
 
-    <Grid Background="{ThemeResource BackgroundBrush}"
+    <Grid Background="Transparent"
           x:Name="LayoutRoot"
-          Visibility="{x:Bind Header.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
           Height="35"
           Opacity="1">
         <VisualStateManager.VisualStateGroups>
@@ -40,7 +39,7 @@
                                          Storyboard.TargetProperty="(UIElement.Opacity)"
                                          Storyboard.TargetName="LayoutRoot"
                                          d:IsOptimized="True" />
-                        <ObjectAnimationUsingKeyFrames Duration="0:0:0"
+                        <ObjectAnimationUsingKeyFrames Duration="0:0:0.3"
                                                        Storyboard.TargetName="LayoutRoot"
                                                        Storyboard.TargetProperty="(UIElement.Visibility)">
                             <DiscreteObjectKeyFrame KeyTime="0:0:0.3"
@@ -48,24 +47,11 @@
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
                 <VisualState x:Name="ExtraWide">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraWideAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LayoutRoot.Height"
-                                Value="55" />
-                        <Setter Target="ProfilePicture.Height"
-                                Value="50" />
-                        <Setter Target="ProfilePicture.Width"
-                                Value="50" />
-                        <Setter Target="SearchIcon.FontSize"
-                                Value="30" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="LayoutRoot.Height"
@@ -74,8 +60,31 @@
                                 Value="40" />
                         <Setter Target="ProfilePicture.Width"
                                 Value="40" />
+                        <Setter Target="SearchButton.Height"
+                                Value="40" />
+                        <Setter Target="SearchButton.Width"
+                                Value="40" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="25" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.Height"
+                                Value="40" />
+                        <Setter Target="ProfilePicture.Height"
+                                Value="35" />
+                        <Setter Target="ProfilePicture.Width"
+                                Value="35" />
+                        <Setter Target="SearchButton.Height"
+                                Value="35" />
+                        <Setter Target="SearchButton.Width"
+                                Value="35" />
+                        <Setter Target="SearchIcon.FontSize"
+                                Value="20" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -89,18 +98,22 @@
                                 Value="30" />
                         <Setter Target="ProfilePicture.Width"
                                 Value="30" />
+                        <Setter Target="SearchButton.Height"
+                                Value="30" />
+                        <Setter Target="SearchButton.Width"
+                                Value="30" />
                         <Setter Target="SearchIcon.FontSize"
-                                Value="20" />
+                                Value="15" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <interactivity:Interaction.Behaviors>
-            <core:DataTriggerBehavior Binding="{Binding IsVisible}"
+            <core:DataTriggerBehavior Binding="{x:Bind Header.IsVisible, Mode=OneWay}"
                                       Value="True">
                 <core:GoToStateAction StateName="Show" />
             </core:DataTriggerBehavior>
-            <core:DataTriggerBehavior Binding="{Binding IsVisible}"
+            <core:DataTriggerBehavior Binding="{x:Bind Header.IsVisible, Mode=OneWay}"
                                       Value="False">
                 <core:GoToStateAction StateName="Normal" />
             </core:DataTriggerBehavior>
@@ -111,16 +124,20 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
+        <Border Grid.ColumnSpan="4"
+                Background="{StaticResource BackgroundBrush}"
+                Opacity="0.85" />
         <Image Stretch="UniformToFill"
                Margin="5"
                Source="{ThemeResource EmbyLogo}" />
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"
-                Grid.Column="2">
+                Grid.Column="2"
+                Height="30"
+                Width="30">
             <FontIcon x:Name="SearchIcon"
                       Glyph="{StaticResource Search}"
-                      FontSize="20"
+                      FontSize="15"
                       Foreground="{ThemeResource SmokeBrush}" />
             <Button.Flyout>
                 <Flyout FlyoutPresenterStyle="{StaticResource BorderlessFlyoutStyle}">
@@ -145,13 +162,13 @@
                                                  ShowBackground="False"
                                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
                                                  Height="150"
-                                                 Width="150"/>
+                                                 Width="150" />
                         <TextBlock Text="{x:Bind Header.User.Username, Mode=OneWay}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    x:Name="Username"
                                    RelativePanel.AlignHorizontalCenterWith="FlyoutProfilePicture"
                                    RelativePanel.Below="FlyoutProfilePicture"
-                                   Margin="8,-10,0,6"/>
+                                   Margin="8,-10,0,6" />
                         <Button x:Name="PreferencesButton"
                                 Style="{StaticResource EmptyButtonStyle}"
                                 ClickMode="Release"
@@ -177,7 +194,7 @@
                                    RelativePanel.AlignRightWithPanel="True"
                                    RelativePanel.Below="PreferencesButton"
                                    x:Name="UsernameSeparator"
-                                   Margin="0,3,0,0"/>
+                                   Margin="0,3,0,0" />
                         <Button x:Name="SettingsButton"
                                 Style="{StaticResource EmptyButtonStyle}"
                                 ClickMode="Release"

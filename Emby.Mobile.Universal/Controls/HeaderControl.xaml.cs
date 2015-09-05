@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Emby.Mobile.Universal.Controls
@@ -14,6 +15,16 @@ namespace Emby.Mobile.Universal.Controls
                 if (Header != null)
                     Bindings.Update();
             };
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            if (Header == null || !Header.IsVisible)
+                VisualStateManager.GoToState(this, "Hide", false);
+            else
+                VisualStateManager.GoToState(this, "Show", false);
+
+            base.OnApplyTemplate();
         }
     }
 }
