@@ -10,21 +10,18 @@ namespace Emby.Mobile.Universal.Controls
         public HeaderControl()
         {
             InitializeComponent();
+            Loaded += (s, e) =>
+            {
+                if (Header == null || !Header.IsVisible)
+                    VisualStateManager.GoToState(this, "Hide", false);
+                else
+                    VisualStateManager.GoToState(this, "Show", false);
+            };
             DataContextChanged += (s, e) =>
             {
                 if (Header != null)
                     Bindings.Update();
             };
-        }
-
-        protected override void OnApplyTemplate()
-        {
-            if (Header == null || !Header.IsVisible)
-                VisualStateManager.GoToState(this, "Hide", false);
-            else
-                VisualStateManager.GoToState(this, "Show", false);
-
-            base.OnApplyTemplate();
         }
     }
 }
