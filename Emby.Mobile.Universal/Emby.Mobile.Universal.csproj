@@ -90,6 +90,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\Backdrops\Splash_Screen_Landscape_1920x1080_nologo.png" />
     <Content Include="Assets\Tiles\BadgeLogo.Scale-100.png" />
     <Content Include="Assets\Tiles\BadgeLogo.Scale-125.png" />
     <Content Include="Assets\Tiles\BadgeLogo.Scale-150.png" />
