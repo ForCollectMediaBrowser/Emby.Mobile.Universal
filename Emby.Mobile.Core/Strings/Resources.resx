@@ -1396,4 +1396,13 @@
   <data name="LabelPreferences" xml:space="preserve">
     <value>Preferences</value>
   </data>
+  <data name="LabelLocalAddress" xml:space="preserve">
+    <value>Local address</value>
+  </data>
+  <data name="LabelManualAddress" xml:space="preserve">
+    <value>Manual address</value>
+  </data>
+  <data name="LabelRemoteAddress" xml:space="preserve">
+    <value>Remote address</value>
+  </data>
 </root>

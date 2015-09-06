@@ -1574,6 +1574,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local address.
+        /// </summary>
+        public static string LabelLocalAddress {
+            get {
+                return ResourceManager.GetString("LabelLocalAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to lock screen.
         /// </summary>
         public static string LabelLockScreen {
@@ -1606,6 +1615,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelMakeLockScreenProvider {
             get {
                 return ResourceManager.GetString("LabelMakeLockScreenProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual address.
+        /// </summary>
+        public static string LabelManualAddress {
+            get {
+                return ResourceManager.GetString("LabelManualAddress", resourceCulture);
             }
         }
         
@@ -2218,6 +2236,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelRemote {
             get {
                 return ResourceManager.GetString("LabelRemote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote address.
+        /// </summary>
+        public static string LabelRemoteAddress {
+            get {
+                return ResourceManager.GetString("LabelRemoteAddress", resourceCulture);
             }
         }
         

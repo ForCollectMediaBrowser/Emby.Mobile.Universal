@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Text;
 using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
@@ -23,6 +24,12 @@ namespace Emby.Mobile.ViewModels
                     Start();
                 };
 
+                Services.ServerInfo.ServerInfoChanged += (sender, info) =>
+                {
+                    RaisePropertyChanged(() => ConnectedToServerAddress);
+                    RaisePropertyChanged(() => ConnectedToServerName);
+                };
+
                 SearchResults = new ObservableCollection<SearchHint>();
             }
         }
@@ -30,6 +37,31 @@ namespace Emby.Mobile.ViewModels
         public bool IsVisible { get; set; } = true;
         public string SearchText { get; set; }
         public bool CanChangeServer => AuthenticationService.SignedInUsingConnect;
+        public string ConnectedToServerName => Services.ServerInfo?.ServerInfo?.Name;
+        public string ConnectedToServerAddress => CreateToolTip();
+
+        private string CreateToolTip()
+        {
+            var sb = new StringBuilder();
+            if (!string.IsNullOrEmpty(Services.ServerInfo?.ServerInfo?.ManualAddress))
+            {
+                sb.AppendLine($"{Resources.LabelManualAddress}: {Services.ServerInfo?.ServerInfo?.ManualAddress}");
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(Services.ServerInfo?.ServerInfo?.LocalAddress))
+                {
+                    sb.AppendLine($"{Resources.LabelLocalAddress}: {Services.ServerInfo?.ServerInfo?.LocalAddress}");
+                }
+                if (!string.IsNullOrEmpty(Services.ServerInfo?.ServerInfo?.RemoteAddress))
+                {
+                    sb.AppendLine($"{Resources.LabelRemoteAddress}: {Services.ServerInfo?.ServerInfo?.RemoteAddress}");
+                }
+            }
+
+            return sb.ToString();
+        }
+
         public UserDtoViewModel User { get; set; }
         public ObservableCollection<SearchHint> SearchResults { get; set; }
         public RelayCommand NavigateToSettingsCommand
