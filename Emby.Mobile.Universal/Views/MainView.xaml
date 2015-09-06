@@ -7,7 +7,6 @@
                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                    xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
-                   xmlns:data="using:Emby.Mobile.Universal.Data"
                    xmlns:coding4Fun="using:Coding4Fun.Toolkit.Controls"
                    mc:Ignorable="d"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -16,16 +15,6 @@
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-
-    <Page.Resources>
-        <!--<data:UserViewDataTemplateSelector x:Key="UserViewDataTemplateSelector">
-            <data:UserViewDataTemplateSelector.DefaultTemplate>
-                <DataTemplate>
-                    
-                </DataTemplate>
-            </data:UserViewDataTemplateSelector.DefaultTemplate>
-        </data:UserViewDataTemplateSelector>-->
-    </Page.Resources>
 
     <Grid>
         <GridView ItemsSource="{x:Bind Main.UserViews, Mode=OneWay}">
@@ -45,9 +34,6 @@
                               HorizontalAlignment="Left">
                             <ProgressRing IsActive="{x:Bind ProgressIsVisible, Mode=OneWay}"
                                           Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
-                            <!--<ContentPresenter ContentTemplateSelector="{StaticResource UserViewDataTemplateSelector}"
-                                              HorizontalAlignment="Stretch"
-                                              VerticalAlignment="Stretch"/>-->
                             <Viewbox Stretch="Uniform"
                                      StretchDirection="DownOnly"
                                      HorizontalAlignment="Stretch"
@@ -72,13 +58,11 @@
                                                     Command="{x:Bind NavigateToItem}">
                                                 <Grid HorizontalAlignment="Stretch"
                                                       VerticalAlignment="Stretch">
-                                                    <!--<coding4Fun:SuperImage Background="Red"
-                                                                       Source="{x:Bind BackdropImage, Mode=OneWay}"
-                                                                       Stretch="UniformToFill"/>-->
-                                                    <Image Source="{x:Bind BackdropImage, Mode=OneWay}"
-                                                           Stretch="UniformToFill"
-                                                           HorizontalAlignment="Stretch"
-                                                           VerticalAlignment="Top" />
+                                                    <coding4Fun:SuperImage Background="Red"
+                                                                           Source="{x:Bind BackdropImage, Mode=OneWay}"
+                                                                           Stretch="UniformToFill"
+                                                                           HorizontalAlignment="Stretch"
+                                                                           VerticalAlignment="Top" />
                                                 </Grid>
                                             </Button>
                                         </DataTemplate>

@@ -15,14 +15,11 @@ namespace Emby.Mobile.ViewModels.Entities
             ItemInfo = itemInfo;
         }
 
-        public string Name => ItemInfo?.Name;
-
-        public string MaterialIcon => ItemInfo.GetMaterialIcon();
-
         public BaseItemDto ItemInfo { get; set; }
 
+        public string Name => ItemInfo?.Name;
+        public string MaterialIcon => ItemInfo.GetMaterialIcon();
         public string Type => ItemInfo?.Type;
-
         public string PrimaryImage => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimary): "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string BackdropImage => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdrop) : "ms-appx:///Assets/Tiles/150x150Logo.png";
 
@@ -32,11 +29,6 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(() =>
                 {
-                    var item = ItemInfo;
-                    if (item.IsAlbum)
-                    {
-                        
-                    }
                 });
             }
         }
