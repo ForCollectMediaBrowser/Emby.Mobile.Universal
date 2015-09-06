@@ -13,14 +13,20 @@ namespace Emby.Mobile.Universal.Controls
             Loaded += (s, e) =>
             {
                 if (Header == null || !Header.IsVisible)
+                {
                     VisualStateManager.GoToState(this, "Hide", false);
+                }
                 else
+                {
                     VisualStateManager.GoToState(this, "Show", false);
+                }
             };
             DataContextChanged += (s, e) =>
             {
                 if (Header != null)
+                {
                     Bindings.Update();
+                }
             };
         }
     }
