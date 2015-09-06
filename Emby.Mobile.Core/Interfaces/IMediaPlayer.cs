@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace Emby.Mobile.Core.Interfaces
 {
     public interface IMediaPlayer
-    {      
+    {
+        PlayerType PlayerType { get; }
         bool CanSeek { get; }
         bool CanPause { get; }
         Task Play(BaseItemDto item, double position = 0);
