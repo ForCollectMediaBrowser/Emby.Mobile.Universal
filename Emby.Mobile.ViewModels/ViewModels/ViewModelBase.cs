@@ -13,6 +13,8 @@ namespace Emby.Mobile.ViewModels
         protected IServices Services { get; }
         protected ILogger Log { get; }
 
+        protected virtual bool UseSystemForProgress { get; }
+
         protected ViewModelBase(IServices services)
         {
             Services = services;
@@ -51,7 +53,11 @@ namespace Emby.Mobile.ViewModels
         {
             ProgressIsVisible = true;
             ProgressText = text;
-            Services.StatusBar.DisplayIndeterminateStatus(text);
+            if (UseSystemForProgress)
+            {
+                Services.StatusBar.DisplayIndeterminateStatus(text);
+            }
+
             UpdateProperties();
         }
 
@@ -59,7 +65,11 @@ namespace Emby.Mobile.ViewModels
         {
             ProgressIsVisible = false;
             ProgressText = string.Empty;
-            Services.StatusBar.DisplayIndeterminateStatus(string.Empty);
+            if (UseSystemForProgress)
+            {
+                Services.StatusBar.DisplayIndeterminateStatus(string.Empty);
+            }
+
             UpdateProperties();
         }       
 

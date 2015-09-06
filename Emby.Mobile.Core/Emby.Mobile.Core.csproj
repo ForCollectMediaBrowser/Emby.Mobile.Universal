@@ -55,6 +55,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\DeviceFamily.cs" />
+    <Compile Include="Helpers\ImageOptionsHelper.cs" />
     <Compile Include="Interfaces\IAnalyticsService.cs" />
     <Compile Include="Helpers\PinHelper.cs" />
     <Compile Include="Helpers\Timer.cs" />

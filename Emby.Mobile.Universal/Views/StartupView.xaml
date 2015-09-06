@@ -14,10 +14,11 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource BackgroundBrush}">
         <RelativePanel>
             <Image x:Name="SplashScreenImage"
                    Source="/Assets/SplashScreen.png"
+                   Height="300"
                    RelativePanel.AlignHorizontalCenterWithPanel="True"
                    RelativePanel.AlignVerticalCenterWithPanel="True" />
             <ProgressRing x:Name="ProgressRing"

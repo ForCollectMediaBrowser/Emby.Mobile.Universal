@@ -14,8 +14,6 @@ namespace Emby.Mobile.ViewModels
 {
     public class HeaderMenuViewModel : ViewModelBase
     {
-        private bool _viewsLoaded;
-
         public HeaderMenuViewModel(IServices services) : base(services)
         {
             if (!IsInDesignMode)
