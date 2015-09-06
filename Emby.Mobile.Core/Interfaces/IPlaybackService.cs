@@ -17,8 +17,8 @@ namespace Emby.Mobile.Core.Interfaces
         bool HasCurrentItem { get; }
         bool HasUpcomingItem { get; }
         bool IsPlaying { get; }
-        BaseItemDto CurrentItem { get; }
-        BaseItemDto UpcomingItem { get; }
+        PlaylistItem CurrentItem { get; }
+        PlaylistItem UpcomingItem { get; }
         List<PlaylistItem> Playlist { get; }
         List<IMediaPlayer> AvailablePlayers { get; }
 
@@ -27,21 +27,21 @@ namespace Emby.Mobile.Core.Interfaces
         void AddToPlaylist(IList<BaseItemDto> items);
         void DecreaseVolume();
         void IncreaseVolume();
-        Task Initialize();
         void Pause();
         Task<bool> PlayItem(BaseItemDto item, long position = 0);
         Task<bool> PlayItems(IList<BaseItemDto> items);
         Task<bool> PlayItems(string[] itemIds, long? position);
         void RemoveFromPlaylist(string itemId);
+        void RemoveFromPlaylist(PlaylistItem item);
         void ResumeFromPause();
         Task<bool> Seek(long newPosition);
-        Task<bool> SetAudioStreamIndex(int? index);
+        void SetAudioStreamIndex(int? index);
         Task<bool> SetNext();
         Task<bool> SetPrevious();
-        Task<bool> SetSubtitleIndex(int? index);
-        Task<bool> SetVolume(double volume);
+        void SetSubtitleIndex(int? index);
+        void SetVolume(double volume);
         Task<bool> SkipToItem(string itemId);
-        Task<bool> Stop();
+        void Stop();
 
         void ReportPlaybackStarted(PlaybackStartInfo info);
         void ReportPlaybackStopped(PlaybackStopInfo info);

@@ -7,42 +7,25 @@ using System.Threading.Tasks;
 using Emby.Mobile.Core.Playback;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Session;
+using MediaBrowser.Model.ApiClient;
 
 namespace Emby.Mobile.Universal.Services
 {
     internal class PlaybackService : IPlaybackService
     {
-        public List<IMediaPlayer> AvailablePlayers
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        private IConnectionManager _connectionManager;
+        private IServerInfoService _serverInfo;
+        private IMediaPlayer _currentPlayer;
+        private IApiClient _apiClient => _connectionManager?.GetApiClient(_serverInfo?.ServerInfo?.Id);
 
-        public long? CurrentDurationTicks
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public List<IMediaPlayer> AvailablePlayers { get; } = new List<IMediaPlayer>();
 
-        public BaseItemDto CurrentItem
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public long? CurrentDurationTicks { get; }
 
-        public long? CurrentPositionTicks
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public PlaylistItem CurrentItem => Playlist?.FirstOrDefault(p => p.State == PlaylistState.Playing);
+
+
+        public long? CurrentPositionTicks { get; }
 
         public bool HasCurrentItem => CurrentItem != null;
 
@@ -50,86 +33,93 @@ namespace Emby.Mobile.Universal.Services
 
         public bool HasUpcomingItem => UpcomingItem != null;
 
-        public bool IsPlaying
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public bool IsPlaying => _currentPlayer?.IsPlaying == true;
 
-        public List<PlaylistItem> Playlist
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public List<PlaylistItem> Playlist { get; } = new List<PlaylistItem>();
 
-        public BaseItemDto UpcomingItem
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public PlaylistItem UpcomingItem => Playlist?.FirstOrDefault(p => p.State == PlaylistState.Queued);
 
         public event EventHandler<PlayerPositionEventArgs> PlayerPositionChanged;
         public event EventHandler<PlayStateChangedEventArgs> PlaystateChanged;
 
+        public PlaybackService(IConnectionManager connectionManager, IServerInfoService serverInfo)
+        {
+            _connectionManager = connectionManager;
+            _serverInfo = serverInfo;
+        }
+
+
         public void AddToPlaylist(IList<BaseItemDto> items)
         {
-            throw new NotImplementedException();
+            Playlist.AddRange(items.Select(x => new PlaylistItem(x)));
         }
 
         public void AddToPlaylist(BaseItemDto item)
         {
-            throw new NotImplementedException();
+            Playlist.Add(new PlaylistItem(item));
         }
 
         public void DecreaseVolume()
         {
-            throw new NotImplementedException();
+            _currentPlayer?.DecreaseVolume();
         }
 
         public void IncreaseVolume()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Initialize()
-        {
-            throw new NotImplementedException();
+            _currentPlayer?.IncreaseVolume();
         }
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            _currentPlayer?.Stop();
         }
 
         public Task<bool> PlayItem(BaseItemDto item, long position = 0)
         {
-            throw new NotImplementedException();
+            var playlistItem = new PlaylistItem(item);
+            Playlist.Clear();      
+            Playlist.Add(playlistItem);
+
+            return PlayItem(playlistItem, position);
         }
 
         public Task<bool> PlayItems(IList<BaseItemDto> items)
         {
-            throw new NotImplementedException();
+            Playlist.Clear();
+            Playlist.AddRange(items.Select(x => new PlaylistItem(x)));
+            return PlayItem(Playlist.FirstOrDefault(), 0);
         }
 
-        public Task<bool> PlayItems(string[] itemIds, long? position)
+        public async Task<bool> PlayItems(string[] itemIds, long? position)
         {
-            throw new NotImplementedException();
+            foreach (string item in itemIds)
+            {
+                var dto = await _apiClient?.GetItemAsync(item, _serverInfo?.ServerInfo?.Id);
+                if (dto != null)
+                    Playlist.Add(new PlaylistItem(dto));
+            }
+            return await PlayItem(GetNextItemFromPlaylist(), position ?? 0);
         }
 
         public bool RegisterPlayer(IMediaPlayer player)
         {
-            throw new NotImplementedException();
+            bool registrationSucceded = false;
+            if (!AvailablePlayers.Any(p => p.Id == player.Id))
+            {
+                AvailablePlayers.Add(player);
+                registrationSucceded = true;
+            }
+            return registrationSucceded;
         }
 
         public void RemoveFromPlaylist(string itemId)
         {
-            throw new NotImplementedException();
+            Playlist.RemoveAll(p => p.Item.Id == itemId);
+        }
+
+        public void RemoveFromPlaylist(PlaylistItem item)
+        {
+            Playlist.Remove(item);
         }
 
         public void ReportPlaybackProgress(PlaybackProgressInfo info)
@@ -149,37 +139,37 @@ namespace Emby.Mobile.Universal.Services
 
         public void ResumeFromPause()
         {
-            throw new NotImplementedException();
+            _currentPlayer.Pause();
         }
 
         public Task<bool> Seek(long newPosition)
         {
-            throw new NotImplementedException();
+            return _currentPlayer?.Seek(newPosition);
         }
 
-        public Task<bool> SetAudioStreamIndex(int? index)
+        public void SetAudioStreamIndex(int? index)
         {
-            throw new NotImplementedException();
+            _currentPlayer?.SetAudioStreamIndex(index ?? 0);
         }
 
         public Task<bool> SetNext()
         {
-            throw new NotImplementedException();
+            return PlayItem(GetNextItemFromPlaylist(), 0);
         }
 
         public Task<bool> SetPrevious()
         {
-            throw new NotImplementedException();
+            return PlayItem(GetPreviousItemFromPlaylist(), 0);
         }
 
-        public Task<bool> SetSubtitleIndex(int? index)
+        public void SetSubtitleIndex(int? index)
         {
-            throw new NotImplementedException();
+            _currentPlayer?.SetSubtitleStreamIndex(index);
         }
 
-        public Task<bool> SetVolume(double volume)
+        public void SetVolume(double volume)
         {
-            throw new NotImplementedException();
+            _currentPlayer?.SetVolume(volume);
         }
 
         public Task<bool> SkipToItem(string itemId)
@@ -187,9 +177,57 @@ namespace Emby.Mobile.Universal.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> Stop()
+        public void Stop()
         {
-            throw new NotImplementedException();
+            _currentPlayer?.Stop();
         }
+
+        private async Task<bool> PlayItem(PlaylistItem item, long position)
+        {   
+            var player = GetPlayerForItem(item.Item);
+            if(player != null)
+            {
+                _currentPlayer?.Stop();
+                SetItemAsCurrentItemPlaying(item);
+                _currentPlayer = player;
+                await player.Play(item.Item, position);
+                return true;
+            }
+            return false;
+        }
+
+        private PlaylistItem GetNextItemFromPlaylist()
+        {
+            return Playlist.FirstOrDefault(p => p.State == PlaylistState.Queued);
+        }
+
+        private PlaylistItem GetPreviousItemFromPlaylist()
+        {
+            return Playlist.LastOrDefault(p => p.State == PlaylistState.Played);
+        }
+
+        private void SetItemAsCurrentItemPlaying(PlaylistItem nextTrack)
+        {
+            var item = Playlist.FirstOrDefault(p => p.State == PlaylistState.Playing);
+            if (item != null)
+            {
+                item.State = PlaylistState.Played;
+            }
+            nextTrack.State = PlaylistState.Playing;
+        }
+
+        private IMediaPlayer GetPlayerForItem(BaseItemDto item)
+        {
+            //Very basic solution, we will have to improve on this to get different players depending on codecs and containers etc
+            if (item.IsAudio)
+            {
+                return AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Audio || p.PlayerType == PlayerType.AudioAndVideo);
+            }
+            else
+            {
+                return AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Video || p.PlayerType == PlayerType.AudioAndVideo);
+            }
+        }
+
     }
 }

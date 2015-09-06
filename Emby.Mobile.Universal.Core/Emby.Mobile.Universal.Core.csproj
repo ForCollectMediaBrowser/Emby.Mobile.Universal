@@ -140,6 +140,7 @@
     <Compile Include="NullServices\Cimbalino\NullLauncherService.cs" />
     <Compile Include="NullServices\NullMessengerService.cs" />
     <Compile Include="NullServices\NullNavigationService.cs" />
+    <Compile Include="NullServices\NullPlaybackService.cs" />
     <Compile Include="NullServices\NullServerInfoService.cs" />
     <Compile Include="NullServices\NullStartUpService.cs" />
     <Compile Include="NullServices\NullStatusBarService.cs" />

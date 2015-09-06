@@ -19,6 +19,7 @@ namespace Emby.Mobile.Core.Interfaces
         ILauncherService Launcher { get; }
         IDeviceInfoService Device { get; }
         IAnalyticsService Analytics { get; }
+        IPlaybackService Playback { get; }
         IStartUpService StartUp { get; }
         IStatusBarService StatusBar { get; }
     }

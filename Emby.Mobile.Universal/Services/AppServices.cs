@@ -18,6 +18,7 @@ using ScottIsAFool.Windows.MvvmLight.Extensions;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 using Emby.Mobile.Core.Strings;
+using MediaBrowser.ApiInteraction.Data;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -78,6 +79,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILauncherService, LauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, DeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();
+            SimpleIoc.Default.RegisterIf<IPlaybackService, PlaybackService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
 
@@ -90,6 +92,9 @@ namespace Emby.Mobile.Universal.Services
             var connectionManager = await ConnectionManagerFactory.CreateConnectionManager(device, mbLogger, network, credentialProvider);
             SimpleIoc.Default.RegisterIf<IConnectionManager>(() => connectionManager);
         }
+
+        private static void AddPlaybackManager(IDevice device, ILogger mbLogger, INetworkConnection network, ILocalAssetManager localAssetManager)
+        { }
 
         private static void AddDesignTimeServices()
         {
@@ -108,6 +113,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILauncherService, NullLauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, NullDeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, NullAnalyticsService>();
+            SimpleIoc.Default.RegisterIf<IPlaybackService, NullPlaybackService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, NullStartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, NullStatusBarService>();
             SimpleIoc.Default.RegisterIf<ICredentialProvider, NullCredentialProvider>();
@@ -118,5 +124,6 @@ namespace Emby.Mobile.Universal.Services
         public static IAnalyticsService Anayltics => ServiceLocator.Current.GetInstance<IAnalyticsService>();
         public static IDeviceInfoService DeviceInfo => ServiceLocator.Current.GetInstance<IDeviceInfoService>();
         public static ILauncherService LauncherService => ServiceLocator.Current.GetInstance<ILauncherService>();
+        public static IPlaybackService PlaybackService => ServiceLocator.Current.GetInstance<IPlaybackService>();
     }
 }
