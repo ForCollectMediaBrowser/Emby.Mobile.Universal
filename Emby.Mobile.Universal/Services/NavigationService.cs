@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Linq;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
 using Emby.Mobile.Universal.Views.FirstRun;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
+using Microsoft.VisualBasic;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -84,6 +90,87 @@ namespace Emby.Mobile.Universal.Services
         public bool NavigateToPreferences()
         {
             return false;
+        }
+
+        public bool NavigateToItem(BaseItemDto item)
+        {
+            var value = false;
+
+            var type = item.Type.ToLower();
+            if (type.Contains("collectionfolder")) type = "collectionfolder";
+            if (type.StartsWith("genre")) type = "genre";
+            switch (type)
+            {
+                case "collectionfolder":
+                case "genre":
+                case "trailercollectionfolder":
+                case "playlistsfolder":
+                case "userview":
+                    value = HandleCollectionNavigation(item);
+                    break;
+                case "photoalbum":
+                case "folder":
+                case "boxset":
+                    break;
+                case "movie":
+                    break;
+                case "series":
+                    break;
+                case "season":
+                    break;
+                case "episode":
+                    break;
+                case "trailer":
+                    break;
+                case "musicartist":
+                case "artist":
+                    break;
+                case "musicalbum":
+                    break;
+                case "channel":
+                case "channelfolderitem":
+                    break;
+                case "playlist":
+                    break;
+                case "person":
+                    var actor = new BaseItemPerson
+                    {
+                        Name = item.Name,
+                        Id = item.Id,
+                        PrimaryImageTag = item.HasPrimaryImage ? item.ImageTags.FirstOrDefault(x => x.Key == ImageType.Primary).Value : string.Empty
+                    };
+
+                    break;
+                default:
+                    break;
+            }
+
+            return value;
+        }
+
+        private bool HandleCollectionNavigation(BaseItemDto item)
+        {
+            var value = false;
+            var viewType = string.IsNullOrEmpty(item.CollectionType) ? string.Empty : item.CollectionType.ToLower();
+            switch (viewType)
+            {
+                case "movies":
+                    break;
+                case "tvshows":
+                    break;
+                case "music":
+                    break;
+                case "channels":
+                    break;
+                case "livetv":
+                    break;
+                case "playlists":
+                    break;
+                default:
+                    break;
+            }
+
+            return value;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Emby.Mobile.Core.Interfaces
+﻿using MediaBrowser.Model.Dto;
+
+namespace Emby.Mobile.Core.Interfaces
 {
     public interface INavigationService : Cimbalino.Toolkit.Services.INavigationService
     {
@@ -17,5 +19,6 @@
         bool NavigateToPinLogin();
         bool NavigateToSettings();
         bool NavigateToPreferences();
+        bool NavigateToItem(BaseItemDto item);
     }
 }
