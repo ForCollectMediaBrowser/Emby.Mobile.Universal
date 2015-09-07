@@ -13,6 +13,10 @@
         /// <summary>
         /// Player can play both audio and video
         /// </summary>
-        AudioAndVideo = 2
+        AudioAndVideo = 2,
+        /// <summary>
+        /// Player can show images
+        /// </summary>
+        Image = 3
     }
 }
