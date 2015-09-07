@@ -49,7 +49,6 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Playback\Caption.cs" />
     <Compile Include="Playback\PlayerType.cs" />
     <Compile Include="Playback\PlaylistItem.cs" />
     <Compile Include="Playback\PlaylistState.cs" />
