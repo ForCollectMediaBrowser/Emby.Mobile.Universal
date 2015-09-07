@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cimbalino.Toolkit.Services;
+using MediaBrowser.Model.Dto;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 
 namespace Emby.Mobile.Universal.Core.NullServices
@@ -125,6 +126,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
         }
 
         public bool NavigateToPreferences()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToItem(BaseItemDto item)
         {
             throw new NotImplementedException();
         }
