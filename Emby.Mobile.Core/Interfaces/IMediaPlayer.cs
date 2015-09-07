@@ -16,9 +16,12 @@ namespace Emby.Mobile.Core.Interfaces
         bool CanSeek { get; }
         bool CanPause { get; }
         bool IsPlaying { get; }
-        Task Play(BaseItemDto item, double position = 0);
-        Task Play(string url, IList<Caption> captions, IList<MediaStream> selectableAudioStreams);
-        Task Play(StreamInfo stream, string mimeType, IList<Caption> captions, IList<MediaStream> selectableAudioStreams);
+
+        Task Play(PlaylistItem item, double position = 0);
+        Task Play(List<PlaylistItem> items, double position = 0);
+        Task Add(List<PlaylistItem> items);
+        Task Remove(PlaylistItem item);
+        Task SkipToItem(PlaylistItem item);
         void Stop();
         void Pause();
         void UnPause();

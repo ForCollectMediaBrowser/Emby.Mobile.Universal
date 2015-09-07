@@ -40,11 +40,12 @@ namespace Emby.Mobile.Core.Interfaces
         Task<bool> SetPrevious();
         void SetSubtitleIndex(int? index);
         void SetVolume(double volume);
-        Task<bool> SkipToItem(string itemId);
+        void SkipToItem(string itemId);
         void Stop();
 
         void ReportPlaybackStarted(PlaybackStartInfo info);
         void ReportPlaybackStopped(PlaybackStopInfo info);
         void ReportPlaybackProgress(PlaybackProgressInfo info);
+        void ReportPlaylistStatus(IList<PlaylistItem> playlist);
     }
 }

@@ -77,7 +77,7 @@ namespace Emby.Mobile.Universal.Services
         public Task<bool> PlayItem(BaseItemDto item, long position = 0)
         {
             var playlistItem = new PlaylistItem(item);
-            Playlist.Clear();      
+            Playlist.Clear();
             Playlist.Add(playlistItem);
 
             return PlayItem(playlistItem, position);
@@ -172,9 +172,13 @@ namespace Emby.Mobile.Universal.Services
             _currentPlayer?.SetVolume(volume);
         }
 
-        public Task<bool> SkipToItem(string itemId)
+        public void SkipToItem(string itemId)
         {
-            throw new NotImplementedException();
+            var item = Playlist.FirstOrDefault(i => i.Item.Id == itemId);
+            if (item != null)
+            {
+                _currentPlayer?.SkipToItem(item);
+            }
         }
 
         public void Stop()
@@ -183,14 +187,14 @@ namespace Emby.Mobile.Universal.Services
         }
 
         private async Task<bool> PlayItem(PlaylistItem item, long position)
-        {   
+        {
             var player = GetPlayerForItem(item.Item);
-            if(player != null)
+            if (player != null)
             {
                 _currentPlayer?.Stop();
                 SetItemAsCurrentItemPlaying(item);
                 _currentPlayer = player;
-                await player.Play(item.Item, position);
+                await player.Play(item, position);
                 return true;
             }
             return false;
@@ -229,5 +233,10 @@ namespace Emby.Mobile.Universal.Services
             }
         }
 
+        public void ReportPlaylistStatus(IList<PlaylistItem> playlist)
+        {
+            Playlist.Clear();
+            Playlist.AddRange(playlist);
+        }
     }
 }

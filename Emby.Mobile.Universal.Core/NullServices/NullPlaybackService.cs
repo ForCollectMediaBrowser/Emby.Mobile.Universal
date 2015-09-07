@@ -163,6 +163,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public void ReportPlaylistStatus(IList<PlaylistItem> playlist)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ResumeFromPause()
         {
             throw new NotImplementedException();
@@ -198,7 +203,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public Task<bool> SkipToItem(string itemId)
+        public void SkipToItem(string itemId)
         {
             throw new NotImplementedException();
         }

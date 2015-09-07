@@ -1,16 +1,10 @@
 ﻿using Emby.Mobile.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Emby.Mobile.Core.Playback;
-using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
-using MediaBrowser.Model.Net;
-using System.IO;
 using Windows.UI.Xaml;
 using Emby.Mobile.Universal.Services;
 using MediaBrowser.Model.Session;
@@ -101,21 +95,31 @@ namespace Emby.Mobile.Universal.MediaPlayers
             }
         }
 
-        public Task Play(BaseItemDto item, double position = 0)
+        public Task Play(PlaylistItem item, double position = 0)
         {
             throw new NotImplementedException();
         }
 
-        public Task Play(string url, IList<Caption> captions, IList<MediaStream> selectableAudioStreams)
-        {
-            _player.Source = new Uri(url);
-            return Task.FromResult(0);
-        }
-
-        public Task Play(StreamInfo stream, string mimeType, IList<Caption> captions, IList<MediaStream> selectableAudioStreams)
+        public Task Play(List<PlaylistItem> items, double position = 0)
         {
             throw new NotImplementedException();
         }
+
+        public Task Add(List<PlaylistItem> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Remove(PlaylistItem item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SkipToItem(PlaylistItem item)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public Task<bool> Seek(long positionTicks)
         {
@@ -148,5 +152,7 @@ namespace Emby.Mobile.Universal.MediaPlayers
         public void NextSubtitleStream() { }
         public void SetAudioStreamIndex(int audioStreamIndex) { }
         public void SetSubtitleStreamIndex(int? subtitleStreamIndex) { }
+
+       
     }
 }
