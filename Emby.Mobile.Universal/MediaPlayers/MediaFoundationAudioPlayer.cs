@@ -129,6 +129,16 @@ namespace Emby.Mobile.Universal.MediaPlayers
             }
             return Task.FromResult(true);
         }
+        public Task<bool> SetNext()
+        {
+            
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SetPrevious()
+        {
+            throw new NotImplementedException();
+        }
 
         public void SetVolume(double value)
         {
@@ -152,7 +162,5 @@ namespace Emby.Mobile.Universal.MediaPlayers
         public void NextSubtitleStream() { }
         public void SetAudioStreamIndex(int audioStreamIndex) { }
         public void SetSubtitleStreamIndex(int? subtitleStreamIndex) { }
-
-       
     }
 }

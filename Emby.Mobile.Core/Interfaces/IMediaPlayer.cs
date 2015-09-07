@@ -33,5 +33,7 @@ namespace Emby.Mobile.Core.Interfaces
         void IncreaseVolume();
         void DecreaseVolume();
         void SetVolume(double value);
+        Task<bool> SetNext();
+        Task<bool> SetPrevious();
     }
 }
