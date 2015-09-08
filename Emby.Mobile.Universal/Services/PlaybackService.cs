@@ -98,7 +98,7 @@ namespace Emby.Mobile.Universal.Services
             var playlist = new List<PlaylistItem>();
             foreach (string item in itemIds)
             {
-                var dto = await _apiClient?.GetItemAsync(item, _serverInfo?.ServerInfo?.Id);
+                var dto = await _apiClient.GetItemAsync(item, _serverInfo?.ServerInfo?.Id);
                 if (dto != null)
                 {
                     playlist.Add(new PlaylistItem(dto));
