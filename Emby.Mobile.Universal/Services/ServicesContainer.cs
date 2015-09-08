@@ -23,6 +23,7 @@ namespace Emby.Mobile.Universal.Services
             ILauncherService launcher,
             IDeviceInfoService device,
             IAnalyticsService analytics,
+            IPlaybackService playback,
             IStartUpService startUp,
             IStatusBarService statusBar)
         {
@@ -39,6 +40,7 @@ namespace Emby.Mobile.Universal.Services
             Launcher = launcher;
             Device = device;
             Analytics = analytics;
+            Playback = playback;
             StartUp = startUp;
             StatusBar = statusBar;
         }
@@ -56,6 +58,7 @@ namespace Emby.Mobile.Universal.Services
         public ILauncherService Launcher { get; }
         public IDeviceInfoService Device { get; }
         public IAnalyticsService Analytics { get; }
+        public IPlaybackService Playback { get; }
         public IStartUpService StartUp { get; }
         public IStatusBarService StatusBar { get; }
     }

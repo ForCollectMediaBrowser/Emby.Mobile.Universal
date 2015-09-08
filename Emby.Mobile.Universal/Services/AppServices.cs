@@ -18,6 +18,12 @@ using ScottIsAFool.Windows.MvvmLight.Extensions;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 using Emby.Mobile.Core.Strings;
+using MediaBrowser.ApiInteraction.Data;
+using Emby.Mobile.Universal.Core.Implementations.Sync;
+using Emby.WindowsPhone.Model.Sync;
+using Emby.Mobile.Universal.Core.Implementations.Security;
+using MediaBrowser.ApiInteraction.Cryptography;
+using MediaBrowser.ApiInteraction.Playback;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -81,6 +87,19 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
 
+            //Sync
+            SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
+            SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
+            SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
+            SimpleIoc.Default.RegisterIf<ICryptographyProvider, CryptographyProvider>();
+            SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
+            SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
+            SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
+
+            //Playback
+            AddPlaybackManager(SimpleIoc.Default.GetInstance<ILocalAssetManager>(), device, mbLogger, network);
+            SimpleIoc.Default.RegisterIf<IPlaybackService, PlaybackService>();
+
             await AddConnectionServices(device, mbLogger, network, credentials);
 
         }
@@ -89,6 +108,12 @@ namespace Emby.Mobile.Universal.Services
         {
             var connectionManager = await ConnectionManagerFactory.CreateConnectionManager(device, mbLogger, network, credentialProvider);
             SimpleIoc.Default.RegisterIf<IConnectionManager>(() => connectionManager);
+        }
+
+        private static void AddPlaybackManager(ILocalAssetManager assetManager, IDevice device, ILogger logger, INetworkConnection network)
+        {
+            var playbackManager = new PlaybackManager(assetManager, device, logger, network);
+            SimpleIoc.Default.RegisterIf<IPlaybackManager>(() => playbackManager);
         }
 
         private static void AddDesignTimeServices()
@@ -108,6 +133,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILauncherService, NullLauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, NullDeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, NullAnalyticsService>();
+            SimpleIoc.Default.RegisterIf<IPlaybackService, NullPlaybackService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, NullStartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, NullStatusBarService>();
             SimpleIoc.Default.RegisterIf<ICredentialProvider, NullCredentialProvider>();
@@ -118,5 +144,6 @@ namespace Emby.Mobile.Universal.Services
         public static IAnalyticsService Anayltics => ServiceLocator.Current.GetInstance<IAnalyticsService>();
         public static IDeviceInfoService DeviceInfo => ServiceLocator.Current.GetInstance<IDeviceInfoService>();
         public static ILauncherService LauncherService => ServiceLocator.Current.GetInstance<ILauncherService>();
+        public static IPlaybackService PlaybackService => ServiceLocator.Current.GetInstance<IPlaybackService>();
     }
 }

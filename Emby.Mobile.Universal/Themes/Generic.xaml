@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="using:Emby.Mobile.Universal.Controls">
+                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                    xmlns:mediaPlayers="using:Emby.Mobile.Universal.Controls.MediaPlayers">
 
     <Style TargetType="controls:ProfilePicture">
         <Setter Property="ShowBackground"
@@ -8,7 +9,7 @@
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="CircleBackground"
-                Value="{ThemeResource EmbyGreenBrush}"/>
+                Value="{ThemeResource EmbyGreenBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ProfilePicture">
@@ -186,7 +187,7 @@
                                                         To="#FFFFFF" />
                                         <DoubleAnimation Storyboard.TargetName="ProgressIndicator"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0" />                                     
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Success">
@@ -205,7 +206,7 @@
                                                         To="#52B54B" />
                                         <DoubleAnimation Storyboard.TargetName="ProgressIndicator"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0" />                                      
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Warning">
@@ -221,7 +222,7 @@
                                                          To="0" />
                                         <ColorAnimation Storyboard.TargetName="BottomBorder"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#E88606" />                                       
+                                                        To="#E88606" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -236,10 +237,10 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <ProgressBar x:Name="ProgressIndicator"                                         
+                            <ProgressBar x:Name="ProgressIndicator"
                                          Grid.Row="1"
                                          Grid.ColumnSpan="2"
-                                         Grid.Column="0"                                         
+                                         Grid.Column="0"
                                          Opacity="1"
                                          IsIndeterminate="True"
                                          Foreground="#EE597999"
@@ -255,7 +256,7 @@
                                        TextWrapping="WrapWholeWords"
                                        Text="{TemplateBinding Text}"
                                        Margin="20,0,60,0"
-                                       FontSize="16" />                      
+                                       FontSize="16" />
                             <Border x:Name="BottomBorder"
                                     BorderThickness="0,0,0,2"
                                     Grid.Row="1"
@@ -268,6 +269,25 @@
                         </Grid>
 
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="mediaPlayers:MediaFoundationAudioPlayer">
+        <Setter Property="Height"
+                Value="0" />
+        <Setter Property="Width"
+                Value="0" />
+        <Setter Property="Opacity"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mediaPlayers:MediaFoundationAudioPlayer">
+                    <MediaElement x:Name="Player"
+                                  Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Width}"
+                                  Opacity="{TemplateBinding Opacity}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

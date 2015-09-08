@@ -120,6 +120,7 @@
     <Compile Include="Implementations\Connection\CredentialProvider.cs" />
     <Compile Include="Implementations\Connection\WebSocketClient.cs" />
     <Compile Include="Implementations\Device.cs" />
+    <Compile Include="Implementations\Sync\ItemRepository.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Implementations\Security\CryptographyProvider.cs" />
     <Compile Include="Implementations\Connection\NetworkConnection.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="NullServices\Cimbalino\NullLauncherService.cs" />
     <Compile Include="NullServices\NullMessengerService.cs" />
     <Compile Include="NullServices\NullNavigationService.cs" />
+    <Compile Include="NullServices\NullPlaybackService.cs" />
     <Compile Include="NullServices\NullServerInfoService.cs" />
     <Compile Include="NullServices\NullStartUpService.cs" />
     <Compile Include="NullServices\NullStatusBarService.cs" />
