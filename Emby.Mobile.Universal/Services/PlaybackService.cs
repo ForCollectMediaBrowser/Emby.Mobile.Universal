@@ -10,14 +10,15 @@ using MediaBrowser.Model.Session;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.Dlna;
+using Emby.Mobile.Core.Extensions;
 
 namespace Emby.Mobile.Universal.Services
 {
     internal class PlaybackService : IPlaybackService
     {
-        private IConnectionManager _connectionManager;
-        private IPlaybackManager _playbackManager;
-        private IServerInfoService _serverInfo;
+        private readonly IConnectionManager _connectionManager;
+        private readonly IPlaybackManager _playbackManager;
+        private readonly IServerInfoService _serverInfo;
         private IMediaPlayer _currentPlayer;
         private IApiClient _apiClient => _connectionManager?.GetApiClient(_serverInfo?.ServerInfo?.Id);
 
@@ -96,7 +97,9 @@ namespace Emby.Mobile.Universal.Services
             {
                 var dto = await _apiClient?.GetItemAsync(item, _serverInfo?.ServerInfo?.Id);
                 if (dto != null)
+                {
                     playlist.Add(new PlaylistItem(dto));
+                }
             }
             return await PlayItems(playlist, position ?? 0);
         }
@@ -174,7 +177,7 @@ namespace Emby.Mobile.Universal.Services
 
         public void SkipToItem(string itemId)
         {
-            var item = Playlist.FirstOrDefault(i => i.Item.Id == itemId);
+            var item = Playlist?.FirstOrDefault(i => i.Item.Id == itemId);
             if (item != null)
             {
                 _currentPlayer?.SkipToItem(item);
@@ -188,13 +191,16 @@ namespace Emby.Mobile.Universal.Services
 
         private async Task<bool> PlayItems(List<PlaylistItem> items, long position)
         {
-            var player = GetPlayerForItem(items.First().Item);
-            if (player != null)
+            if (!items.IsNullOrEmpty())
             {
-                _currentPlayer?.Stop();
-                _currentPlayer = player;
-                await player.Play(items, position);
-                return true;
+                var player = GetPlayerForItem(items.First().Item);
+                if (player != null)
+                {
+                    _currentPlayer?.Stop();
+                    _currentPlayer = player;
+                    await player.Play(items, position);
+                    return true;
+                }
             }
             return false;
         }
