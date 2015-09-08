@@ -11,7 +11,7 @@ namespace Emby.Mobile.Core.Playback
         public PlayStateChangedEventArgs(PlayerState newState, PlayerState oldState)
         {
             NewState = newState;
-            OldState = PlayerState.Unknown;
+            OldState = oldState;
         }
     }
 }
