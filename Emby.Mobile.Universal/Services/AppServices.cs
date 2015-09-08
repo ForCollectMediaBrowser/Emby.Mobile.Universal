@@ -83,7 +83,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IAuthenticationService, AuthenticationService>();
             SimpleIoc.Default.RegisterIf<ILauncherService, LauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, DeviceInfoService>();
-            SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();            
+            SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
 
@@ -108,13 +108,13 @@ namespace Emby.Mobile.Universal.Services
         {
             var connectionManager = await ConnectionManagerFactory.CreateConnectionManager(device, mbLogger, network, credentialProvider);
             SimpleIoc.Default.RegisterIf<IConnectionManager>(() => connectionManager);
-        }    
-        
+        }
+
         private static void AddPlaybackManager(ILocalAssetManager assetManager, IDevice device, ILogger logger, INetworkConnection network)
         {
             var playbackManager = new PlaybackManager(assetManager, device, logger, network);
             SimpleIoc.Default.RegisterIf<IPlaybackManager>(() => playbackManager);
-        }           
+        }
 
         private static void AddDesignTimeServices()
         {

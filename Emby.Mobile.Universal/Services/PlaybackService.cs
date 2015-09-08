@@ -27,7 +27,6 @@ namespace Emby.Mobile.Universal.Services
 
         public PlaylistItem CurrentItem => Playlist?.FirstOrDefault(p => p.State == PlaylistState.Playing);
 
-
         public long? CurrentPositionTicks { get; }
 
         public bool HasCurrentItem => CurrentItem != null;
@@ -51,7 +50,6 @@ namespace Emby.Mobile.Universal.Services
             _playbackManager = playbackManager;
             _serverInfo = serverInfo;
         }
-
 
         public void AddToPlaylist(IList<BaseItemDto> items)
         {
