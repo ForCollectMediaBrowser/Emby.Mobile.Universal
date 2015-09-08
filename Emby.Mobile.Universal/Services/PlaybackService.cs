@@ -16,9 +16,11 @@ namespace Emby.Mobile.Universal.Services
 {
     internal class PlaybackService : IPlaybackService
     {
+        private readonly IAuthenticationService _authenticationService;
         private readonly IConnectionManager _connectionManager;
         private readonly IPlaybackManager _playbackManager;
         private readonly IServerInfoService _serverInfo;
+        private DateTime _lastProgressReportTimeStamp = DateTime.MinValue;
         private IMediaPlayer _currentPlayer;
         private IApiClient _apiClient => _connectionManager?.GetApiClient(_serverInfo?.ServerInfo?.Id);
 
@@ -45,11 +47,12 @@ namespace Emby.Mobile.Universal.Services
         public event EventHandler<PlayerPositionEventArgs> PlayerPositionChanged;
         public event EventHandler<PlayStateChangedEventArgs> PlaystateChanged;
 
-        public PlaybackService(IConnectionManager connectionManager, IServerInfoService serverInfo, IPlaybackManager playbackManager)
+        public PlaybackService(IConnectionManager connectionManager, IServerInfoService serverInfo, IAuthenticationService authenticationService, IPlaybackManager playbackManager)
         {
             _connectionManager = connectionManager;
             _playbackManager = playbackManager;
             _serverInfo = serverInfo;
+            _authenticationService = authenticationService;
         }
 
         public void AddToPlaylist(IList<BaseItemDto> items)
@@ -79,7 +82,7 @@ namespace Emby.Mobile.Universal.Services
 
         public Task<bool> PlayItem(BaseItemDto item, long position = 0)
         {
-            var playlist = new List<PlaylistItem> { new PlaylistItem(item) };  
+            var playlist = new List<PlaylistItem> { new PlaylistItem(item) };
             return PlayItems(playlist, position);
         }
 
@@ -103,7 +106,7 @@ namespace Emby.Mobile.Universal.Services
             }
             return await PlayItems(playlist, position ?? 0);
         }
-       
+
         public bool RegisterPlayer(IMediaPlayer player)
         {
             bool registrationSucceded = false;
@@ -126,18 +129,27 @@ namespace Emby.Mobile.Universal.Services
         }
 
         public async void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo)
-        {            
-            //TODO Report progress using _playbackManager
+        {
+            if (DateTime.UtcNow > _lastProgressReportTimeStamp.AddSeconds(5))
+            {
+                _lastProgressReportTimeStamp = DateTime.UtcNow;
+                await _playbackManager.ReportPlaybackProgress(info, streamInfo, _serverInfo.IsOffline, _apiClient);
+            }
         }
 
         public async void ReportPlaybackStarted(PlaybackStartInfo info)
-        {            
-            //TODO Report Start using _playbackManager
+        {
+            await _playbackManager.ReportPlaybackStart(info, _serverInfo.IsOffline, _apiClient);
         }
 
         public async void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo)
-        {            
-            //TODO Report Stopped using _playbackManager
+        {
+            await _playbackManager.ReportPlaybackStopped(info,
+                                                         streamInfo,
+                                                         _serverInfo.ServerInfo.Id,
+                                                         _authenticationService.SignedInUserId,
+                                                         _serverInfo.IsOffline,
+                                                         _apiClient);
         }
 
         public void ResumeFromPause()

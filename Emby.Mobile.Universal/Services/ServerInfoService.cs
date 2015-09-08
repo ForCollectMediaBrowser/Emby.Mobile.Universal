@@ -16,6 +16,8 @@ namespace Emby.Mobile.Universal.Services
             _applicationSettings = applicationSettings;
         }
 
+        public bool IsOffline => false; //HACK Change this once we implement sync
+
         public bool HasServer => !string.IsNullOrEmpty(ServerInfo?.Id);
 
         public ServerInfo ServerInfo { get; private set; }
