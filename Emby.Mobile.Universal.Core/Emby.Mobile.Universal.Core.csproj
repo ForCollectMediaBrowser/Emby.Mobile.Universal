@@ -120,6 +120,7 @@
     <Compile Include="Implementations\Connection\CredentialProvider.cs" />
     <Compile Include="Implementations\Connection\WebSocketClient.cs" />
     <Compile Include="Implementations\Device.cs" />
+    <Compile Include="Implementations\Sync\ItemRepository.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Implementations\Security\CryptographyProvider.cs" />
     <Compile Include="Implementations\Connection\NetworkConnection.cs" />

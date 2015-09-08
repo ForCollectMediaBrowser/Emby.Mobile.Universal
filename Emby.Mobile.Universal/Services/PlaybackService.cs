@@ -9,6 +9,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.ApiInteraction.Playback;
+using MediaBrowser.Model.Dlna;
 
 namespace Emby.Mobile.Universal.Services
 {
