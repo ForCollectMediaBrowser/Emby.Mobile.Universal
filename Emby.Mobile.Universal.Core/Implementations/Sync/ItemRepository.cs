@@ -15,15 +15,13 @@ namespace Emby.Mobile.Universal.Core.Implementations.Sync
     public class ItemRepository : IItemRepository
     {
         private const string ItemsFile = "Cache\\LocalItems.json";
-        private readonly IStorageServiceHandler _storageService;
-        private readonly IStorageFolder _storageFolder;
+        private readonly IStorageServiceHandler _storageService;        
 
         private List<LocalItem> _items;
 
         public ItemRepository(IStorageService storageService)
         {
-            _storageService = storageService.Local;
-            _storageFolder = ApplicationData.Current.LocalFolder;
+            _storageService = storageService.Local;            
 
             LoadItems().ConfigureAwait(false);
         }
