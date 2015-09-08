@@ -177,6 +177,7 @@
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Data\UserViewDataTemplateSelector.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\NavigationModeExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\NavigationParameters.cs" />
     <Compile Include="Helpers\StatusType.cs" />

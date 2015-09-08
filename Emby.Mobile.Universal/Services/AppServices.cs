@@ -20,7 +20,6 @@ using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 using Emby.Mobile.Core.Strings;
 using MediaBrowser.ApiInteraction.Data;
 using Emby.Mobile.Universal.Core.Implementations.Sync;
-using Emby.WindowsPhone.Model.Sync;
 using Emby.Mobile.Universal.Core.Implementations.Security;
 using MediaBrowser.ApiInteraction.Cryptography;
 using MediaBrowser.ApiInteraction.Playback;
