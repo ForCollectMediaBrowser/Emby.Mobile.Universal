@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,9 +8,8 @@ using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Universal.Core.Extensions;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model.Sync;
-using Microsoft.VisualBasic;
 
-namespace Emby.WindowsPhone.Model.Sync
+namespace Emby.Mobile.Universal.Core.Implementations.Sync
 {
     public class FileRepository : IFileRepository
     {
