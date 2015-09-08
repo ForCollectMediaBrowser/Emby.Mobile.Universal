@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Playback;
+using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Session;
 using System;
@@ -44,8 +45,8 @@ namespace Emby.Mobile.Core.Interfaces
         void Stop();
 
         void ReportPlaybackStarted(PlaybackStartInfo info);
-        void ReportPlaybackStopped(PlaybackStopInfo info);
-        void ReportPlaybackProgress(PlaybackProgressInfo info);
+        void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo);
+        void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo);
         void ReportPlaylistStatus(IList<PlaylistItem> playlist);
     }
 }

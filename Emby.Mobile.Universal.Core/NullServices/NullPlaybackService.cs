@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Emby.Mobile.Core.Playback;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Session;
+using MediaBrowser.Model.Dlna;
 
 namespace Emby.Mobile.Universal.Core.NullServices
 {
@@ -148,7 +149,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public void ReportPlaybackProgress(PlaybackProgressInfo info)
+        public void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo)
         {
             throw new NotImplementedException();
         }
@@ -158,7 +159,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public void ReportPlaybackStopped(PlaybackStopInfo info)
+        public void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo)
         {
             throw new NotImplementedException();
         }

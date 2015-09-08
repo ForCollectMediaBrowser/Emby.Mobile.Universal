@@ -8,12 +8,14 @@ using MediaBrowser.Model.Dto;
 using Windows.UI.Xaml;
 using Emby.Mobile.Universal.Services;
 using MediaBrowser.Model.Session;
+using MediaBrowser.Model.Dlna;
 
 namespace Emby.Mobile.Universal.MediaPlayers
 {
     [TemplatePart(Name = "Player", Type = typeof(MediaElement))]
     public class MediaFoundationAudioPlayer : Control, IMediaPlayer
     {
+        private StreamInfo _streamInfo;
         private BaseItemDto _item;
         private MediaElement _player;
         public bool CanPause => _player?.CanPause == true;
@@ -50,7 +52,7 @@ namespace Emby.Mobile.Universal.MediaPlayers
             {
                 ItemId = _item.Id,
                 PositionTicks = _player.Position.Ticks
-            });
+            }, _streamInfo);
         }
 
         private void _player_MediaOpened(object sender, RoutedEventArgs e)

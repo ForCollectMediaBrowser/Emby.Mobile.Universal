@@ -122,18 +122,18 @@ namespace Emby.Mobile.Universal.Services
             Playlist.Remove(item);
         }
 
-        public async void ReportPlaybackProgress(PlaybackProgressInfo info)
-        {
+        public async void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo)
+        {            
             //TODO Report progress using _playbackManager
         }
 
         public async void ReportPlaybackStarted(PlaybackStartInfo info)
-        {
+        {            
             //TODO Report Start using _playbackManager
         }
 
-        public async void ReportPlaybackStopped(PlaybackStopInfo info)
-        {
+        public async void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo)
+        {            
             //TODO Report Stopped using _playbackManager
         }
 
