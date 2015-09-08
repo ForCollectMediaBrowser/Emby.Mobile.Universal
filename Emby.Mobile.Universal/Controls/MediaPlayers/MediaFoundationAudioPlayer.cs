@@ -10,7 +10,7 @@ using Emby.Mobile.Universal.Services;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Model.Dlna;
 
-namespace Emby.Mobile.Universal.MediaPlayers
+namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
     [TemplatePart(Name = "Player", Type = typeof(MediaElement))]
     public class MediaFoundationAudioPlayer : Control, IMediaPlayer
@@ -38,15 +38,15 @@ namespace Emby.Mobile.Universal.MediaPlayers
             base.OnApplyTemplate();
 
             _player = GetTemplateChild("Player") as MediaElement;
-            _player.CurrentStateChanged += _player_CurrentStateChanged;
-            _player.VolumeChanged += _player_VolumeChanged;
-            _player.MediaOpened += _player_MediaOpened;
-            _player.MediaEnded += _player_MediaEnded;
+            _player.CurrentStateChanged += Player_CurrentStateChanged;
+            _player.VolumeChanged += Player_VolumeChanged;
+            _player.MediaOpened += Player_MediaOpened;
+            _player.MediaEnded += Player_MediaEnded;
 
             AppServices.PlaybackService.RegisterPlayer(this);
         }
 
-        private void _player_MediaEnded(object sender, RoutedEventArgs e)
+        private void Player_MediaEnded(object sender, RoutedEventArgs e)
         {
             AppServices.PlaybackService.ReportPlaybackStopped(new PlaybackStopInfo
             {
@@ -55,7 +55,7 @@ namespace Emby.Mobile.Universal.MediaPlayers
             }, _streamInfo);
         }
 
-        private void _player_MediaOpened(object sender, RoutedEventArgs e)
+        private void Player_MediaOpened(object sender, RoutedEventArgs e)
         {
             AppServices.PlaybackService.ReportPlaybackStarted(new PlaybackStartInfo
             {
@@ -69,12 +69,12 @@ namespace Emby.Mobile.Universal.MediaPlayers
             });
         }
 
-        private void _player_VolumeChanged(object sender, RoutedEventArgs e)
+        private void Player_VolumeChanged(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        private void _player_CurrentStateChanged(object sender, RoutedEventArgs e)
+        private void Player_CurrentStateChanged(object sender, RoutedEventArgs e)
         {
             
         }
@@ -122,7 +122,6 @@ namespace Emby.Mobile.Universal.MediaPlayers
             throw new NotImplementedException();
         }
 
-
         public Task<bool> Seek(long positionTicks)
         {
             if (CanSeek)
@@ -131,9 +130,9 @@ namespace Emby.Mobile.Universal.MediaPlayers
             }
             return Task.FromResult(true);
         }
+
         public Task<bool> SetNext()
-        {
-            
+        {            
             throw new NotImplementedException();
         }
 
@@ -155,9 +154,10 @@ namespace Emby.Mobile.Universal.MediaPlayers
         public void UnPause()
         {
             if (_player.PlaybackRate == 0)
+            {
                 _player.Pause();
+            }
         }
-
 
         //Not supported stuff
         public void NextAudioStream() { }

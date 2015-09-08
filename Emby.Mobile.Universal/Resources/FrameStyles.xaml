@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                    xmlns:mediaPlayers="using:Emby.Mobile.Universal.MediaPlayers">
+                    xmlns:mediaPlayers="using:Emby.Mobile.Universal.Controls.MediaPlayers">
 
     <Style TargetType="controls:EmbyApplicationFrame">
         <Setter Property="HorizontalContentAlignment"
