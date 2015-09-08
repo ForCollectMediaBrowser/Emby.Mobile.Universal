@@ -6,6 +6,14 @@ namespace Emby.Mobile.Universal.Core.NullServices
 {
     public class NullServerInfoService : IServerInfoService
     {
+        public bool IsOffline
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public bool HasServer
         {
             get
