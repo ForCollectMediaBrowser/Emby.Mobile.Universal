@@ -29,7 +29,8 @@ namespace Emby.Mobile.ViewModels.Entities
             get
             {
                 return new RelayCommand(() =>
-                {                    
+                {
+                    Services.Playback.PlayItems(new[] { SearchHint.ItemId }, 0);             
                     switch(SearchHint?.Type)
                     {
                         //TODO Navigate to TypeDetails-view;
