@@ -35,5 +35,16 @@ namespace Emby.Mobile.ViewModels.Entities
                 });
             }
         }
+
+        public RelayCommand PlayItemCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    
+                });
+            }
+        }
     }
 }

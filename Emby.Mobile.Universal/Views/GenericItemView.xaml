@@ -12,11 +12,17 @@
             <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
                        Style="{StaticResource SubheaderTextBlockStyle}" 
                        x:Name="Title"/>
-            <Image Source="{Binding Item.PrimaryImageMedium, Mode=OneWay}"
+            <Image x:Name="PrimaryImage" 
+                   Source="{x:Bind Generic.Item.PrimaryImageMedium, Mode=OneWay}"
                    MaxHeight="200"
                    MaxWidth="200"
                    Stretch="Uniform"
                    RelativePanel.Below="Title"/>
+            <Button Content="Play"
+                    RelativePanel.Below="PrimaryImage"
+                    RelativePanel.AlignLeftWith="PrimaryImage"
+                    RelativePanel.AlignRightWith="PrimaryImage"
+                    Command="{x:Bind Generic.Item.PlayItemCommand}"/>
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>
