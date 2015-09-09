@@ -3,6 +3,11 @@
 
     <x:String x:Key="EmbyLogo">ms-appx:///Assets/LogoLight.png</x:String>
 
+    <Color x:Key="SubtleColor">#7FFFFFFF</Color>
+
+    <SolidColorBrush x:Key="SubtleBrush"
+                     Color="{StaticResource SubtleColor}"/>
+
     <SolidColorBrush x:Key="EmbyGreenBrush"
                      Color="{StaticResource EmbyGreenColor}" />
     <SolidColorBrush x:Key="EmbyLightGreenBrush"
