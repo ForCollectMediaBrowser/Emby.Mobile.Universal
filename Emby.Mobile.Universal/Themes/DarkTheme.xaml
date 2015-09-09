@@ -17,4 +17,7 @@
                      Color="{StaticResource EmbyLightSmokeColor}" />
     <SolidColorBrush x:Key="SmokeContrastBrush"
                      Color="{StaticResource EmbyDarkSmokeColor}" />
+
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+                     Color="{StaticResource EmbyDarkGrayColor}"/>
 </ResourceDictionary>

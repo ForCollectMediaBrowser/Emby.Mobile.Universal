@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Linq;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
 using Emby.Mobile.Universal.Views.FirstRun;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
-using Microsoft.VisualBasic;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -145,7 +140,7 @@ namespace Emby.Mobile.Universal.Services
             //        break;
             //}
 
-            value = Navigate<GenericItemView>();
+            value = Navigate<GenericItemView>(item);
 
             return value;
         }

@@ -4,9 +4,19 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                   mc:Ignorable="d">
+                   mc:Ignorable="d"
+                   d:DataContext="{Binding Generic, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <RelativePanel>
+            <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}" 
+                       x:Name="Title"/>
+            <Image Source="{Binding Item.PrimaryImageMedium, Mode=OneWay}"
+                   MaxHeight="200"
+                   MaxWidth="200"
+                   Stretch="Uniform"
+                   RelativePanel.Below="Title"/>
+        </RelativePanel>
     </Grid>
 </controls:EmbyPage>
