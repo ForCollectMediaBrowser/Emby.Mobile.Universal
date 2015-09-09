@@ -10,8 +10,13 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
             <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="SubTitle" />
+            <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
                        Style="{StaticResource SubheaderTextBlockStyle}" 
-                       x:Name="Title"/>
+                       Foreground="{ThemeResource SubtleBrush}"
+                       x:Name="Title"
+                       RelativePanel.Below="SubTitle"/>
             <Image x:Name="PrimaryImage" 
                    Source="{x:Bind Generic.Item.PrimaryImageMedium, Mode=OneWay}"
                    MaxHeight="200"
