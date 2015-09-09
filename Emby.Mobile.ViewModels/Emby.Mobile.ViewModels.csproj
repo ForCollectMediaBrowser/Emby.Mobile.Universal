@@ -58,6 +58,7 @@
     <Compile Include="ViewModels\Entities\SearchHintViewModel.cs" />
     <Compile Include="ViewModels\Entities\UserViewViewModel.cs" />
     <Compile Include="Helpers\NavigationMode.cs" />
+    <Compile Include="ViewModels\GenericItemViewModel.cs" />
     <Compile Include="ViewModels\PageViewModelBase.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\HeaderMenuViewModel.cs" />

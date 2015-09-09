@@ -9,7 +9,9 @@ namespace Emby.Mobile.Core.Helpers
         public static ImageOptions SearchHint { get; } = GetOptions(ImageType.Primary, 50);
         public static ImageOptions UserProfile { get; } = GetOptions(ImageType.Primary, height: 120);
 
-        public static ImageOptions ItemPrimary { get; } = GetOptions(ImageType.Primary);
+        public static ImageOptions ItemPrimaryLarge { get; } = GetOptions(ImageType.Primary);
+        public static ImageOptions ItemPrimaryMedium { get; } = GetOptions(ImageType.Primary, height: 200);
+        public static ImageOptions ItemPrimarySmall { get; } = GetOptions(ImageType.Primary, height: 100);
         public static ImageOptions ItemBackdrop { get; } = GetOptions(ImageType.Backdrop);
 
         private static ImageOptions GetOptions(

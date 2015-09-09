@@ -32,6 +32,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<ConnectPinEntryViewModel>();
             Register<HeaderMenuViewModel>();
             Register<SearchViewModel>();
+            Register<GenericItemViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -46,9 +47,8 @@ namespace Emby.Mobile.Universal.ViewModel
         public ConnectPinEntryViewModel PinEntry => Get<ConnectPinEntryViewModel>();
         public HeaderMenuViewModel Header => Get<HeaderMenuViewModel>();
         public SearchViewModel Search => Get<SearchViewModel>();
-
-
-
+        public GenericItemViewModel Generic => Get<GenericItemViewModel>();
+        
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
@@ -64,6 +64,12 @@ namespace Emby.Mobile.Universal.ViewModel
             where T : class
         {
             return ServiceLocator.Current.GetInstance<T>();
+        }
+
+        internal static T Get<T>(string id)
+            where T : class
+        {
+            return ServiceLocator.Current.GetInstance<T>(id);
         }
     }
 }
