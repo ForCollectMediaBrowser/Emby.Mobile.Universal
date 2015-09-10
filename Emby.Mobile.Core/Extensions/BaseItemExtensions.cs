@@ -61,19 +61,22 @@ namespace Emby.Mobile.Core.Extensions
 
             if (user.Policy.EnableMediaPlayback)
             {
-                if (item == null || (item.LocationType == LocationType.Virtual && item.Type != "Program")
-                    || (!item.IsVideo && !item.IsAudio)
-                    || item.PlayAccess != PlayAccess.Full
-                    || !IsValidProgram(item))
-                {
-                }
-                else
+                if (IsPlayable(item))
                 {
                     canStream = true;
                 }
             }
 
             return canStream;
+        }
+
+        private static bool IsPlayable(BaseItemDto item)
+        {
+            return item != null 
+                && (item.LocationType != LocationType.Virtual && item.Type != "Program") // This line might not be right *shrugs*
+                   && (item.IsVideo || item.IsAudio)
+                   && item.PlayAccess == PlayAccess.Full
+                   && IsValidProgram(item);
         }
 
         private static bool IsValidProgram(BaseItemDto programme)
