@@ -112,7 +112,11 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void ForegroundApp_Suspending(object sender, SuspendingEventArgs e)
         {
-            _postionChangedTimer.Stop();
+            if (_postionChangedTimer.IsEnabled)
+            {
+                _postionChangedTimer.Stop();
+            }
+
             var deferral = e.SuspendingOperation.GetDeferral();
 
             if (IsAudioBackgroundTaskRunning)
