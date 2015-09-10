@@ -48,10 +48,13 @@ namespace Emby.Mobile.Universal.BackgroundAudio
 
             var albumArtUri = item.Source.CustomProperties[BackgroundAudioConstants.AlbumArt] as Uri;
             if (albumArtUri != null)
+            {
                 _transportControls.DisplayUpdater.Thumbnail = RandomAccessStreamReference.CreateFromUri(albumArtUri);
+            }
             else
+            {
                 _transportControls.DisplayUpdater.Thumbnail = null;
-
+            }
             _transportControls.DisplayUpdater.Update();
         }
 
@@ -75,7 +78,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
                     BackgroundMediaPlayer.Current.Play();
                 }
             }
-
         }
 
         private void TransportControls_ButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
