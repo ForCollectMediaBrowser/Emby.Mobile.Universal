@@ -44,9 +44,9 @@ namespace Emby.Mobile.Universal.BackgroundAudio
 
             _transportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
             _transportControls.DisplayUpdater.Type = MediaPlaybackType.Music;
-            _transportControls.DisplayUpdater.MusicProperties.Title = item.Source.CustomProperties[BackgroundAudioConstants.Title] as string;
+            _transportControls.DisplayUpdater.MusicProperties.Title = item.Source.CustomProperties[BackgroundAudioCommunicationSettings.Title] as string;
 
-            var albumArtUri = item.Source.CustomProperties[BackgroundAudioConstants.AlbumArt] as Uri;
+            var albumArtUri = item.Source.CustomProperties[BackgroundAudioCommunicationSettings.AlbumArt] as Uri;
             if (albumArtUri != null)
             {
                 _transportControls.DisplayUpdater.Thumbnail = RandomAccessStreamReference.CreateFromUri(albumArtUri);

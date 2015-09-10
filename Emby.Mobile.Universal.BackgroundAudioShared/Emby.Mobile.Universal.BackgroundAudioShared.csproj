@@ -113,8 +113,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationSettingsConstants.cs" />
-    <Compile Include="ApplicationSettingsHelper.cs" />
+    <Compile Include="BackgroundAudioSettings.cs" />
     <Compile Include="AppState.cs" />
     <Compile Include="BackgroundTaskState.cs" />
     <Compile Include="Messages\AppResumedMessage.cs" />
