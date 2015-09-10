@@ -67,7 +67,6 @@ namespace Emby.Mobile.Universal.ViewModel
         }
 
         internal static T Get<T>(string id)
-            where T : class
         {
             return ServiceLocator.Current.GetInstance<T>(id);
         }

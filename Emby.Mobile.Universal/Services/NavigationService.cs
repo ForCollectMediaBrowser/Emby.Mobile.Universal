@@ -107,9 +107,9 @@ namespace Emby.Mobile.Universal.Services
                 //    case "folder":
                 //    case "boxset":
                 //        break;
-                case "movie":
-                    value = Navigate<MovieView>(item);
-                    break;
+                //case "movie":
+                //    value = Navigate<MovieView>(item);
+                //    break;
                 //    case "series":
                 //        break;
                 //    case "season":

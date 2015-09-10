@@ -58,7 +58,7 @@ namespace Emby.Mobile.Universal.Controls
         }
 
         protected virtual void SetItem<TViewModelType>(BaseItemDto item)
-            where TViewModelType : ItemPageViewModelBase
+            where TViewModelType : IItemSettable
         {
             if (item != null)
             {
