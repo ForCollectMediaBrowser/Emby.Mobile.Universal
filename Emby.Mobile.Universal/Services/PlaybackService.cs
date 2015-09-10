@@ -19,7 +19,7 @@ namespace Emby.Mobile.Universal.Services
         private readonly IAuthenticationService _authenticationService;
         private readonly IConnectionManager _connectionManager;
         private readonly IPlaybackManager _playbackManager;
-        private readonly IServerInfoService _serverInfo;        
+        private readonly IServerInfoService _serverInfo;
         private DateTime _lastProgressReportTimeStamp = DateTime.MinValue;
         private IMediaPlayer _currentPlayer;
         private IApiClient _apiClient => _connectionManager?.GetApiClient(_serverInfo?.ServerInfo?.Id);

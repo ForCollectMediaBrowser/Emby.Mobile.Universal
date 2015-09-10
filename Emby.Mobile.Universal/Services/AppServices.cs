@@ -103,7 +103,6 @@ namespace Emby.Mobile.Universal.Services
             await AddConnectionServices(device, mbLogger, network, credentials);
 
             RegisterBackgroundPlayer();
-
         }
 
         private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network, ICredentialProvider credentialProvider)

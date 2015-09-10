@@ -80,7 +80,6 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
             _player = BackgroundMediaPlayer.Current;
             _player.CurrentStateChanged += Player_CurrentStateChanged;
-            _player.VolumeChanged += Player_VolumeChanged;
             _player.MediaOpened += Player_MediaOpened;
             _player.MediaEnded += Player_MediaEnded;
             _player.MediaFailed += Player_MediaFailed;
@@ -128,7 +127,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         private void AddMediaPlayerEventHandlers()
         {
             BackgroundMediaPlayer.Current.CurrentStateChanged += Player_CurrentStateChanged;
-            BackgroundMediaPlayer.MessageReceivedFromBackground += this.BackgroundMediaPlayer_MessageReceivedFromBackground;
+            BackgroundMediaPlayer.MessageReceivedFromBackground += BackgroundMediaPlayer_MessageReceivedFromBackground;
         }
 
         #endregion
@@ -175,14 +174,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             });
         }
 
-        private void Player_VolumeChanged(MediaPlayer sender, object args)
-        {
-            //TODO Report this to PlaybackService
-        }
-
         private void Player_CurrentStateChanged(MediaPlayer sender, object args)
         {
-
+            
         }
 
         #endregion
@@ -214,8 +208,14 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                         var playlistItem = _playlist?.FirstOrDefault(t => t.Item.Id == trackChangedMessage.Id);
                         if (playlistItem != null)
                         {
+                            foreach(var track in _playlist.Where(p => p.State == PlaylistState.Playing))
+                            {
+                                track.State = PlaylistState.Played;
+                            }
+                            playlistItem.State = PlaylistState.Playing;
                             _item = playlistItem.Item;
                         }
+                        AppServices.PlaybackService.ReportPlaylistStatus(_playlist);
                     }
                 });
                 return;
