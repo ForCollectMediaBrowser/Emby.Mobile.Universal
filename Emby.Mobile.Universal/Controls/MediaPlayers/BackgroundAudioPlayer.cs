@@ -106,6 +106,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 if (playlistItem != null)
                 {
                     _item = playlistItem.Item;
+                    _postionChangedTimer.Start();
                 }
             }
         }
