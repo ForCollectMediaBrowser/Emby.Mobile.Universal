@@ -19,6 +19,7 @@ using Emby.Mobile.Universal.BackgroundAudio;
 using Emby.Mobile.Core.Helpers;
 using Windows.ApplicationModel;
 using System.Threading;
+using Emby.Mobile.Core.Extensions;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -39,7 +40,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 if (_isAudioBackgroundTaskRunning)
                     return true;
 
-                string value = ApplicationSettingsHelper.ReadResetSettingsValue(ApplicationSettingsConstants.BackgroundAudioTaskState) as string;
+                string value = ApplicationSettingsHelper.ReadAndRemoveSettingsValue(BackgroundAudioConstants.BackgroundAudioTaskState) as string;
                 if (value == null)
                 {
                     return false;
@@ -48,7 +49,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 {
                     try
                     {
-                        _isAudioBackgroundTaskRunning = EnumHelper.Parse<BackgroundTaskState>(value) == BackgroundTaskState.Running;
+                        _isAudioBackgroundTaskRunning = value.ToEnum<BackgroundTaskState>() == BackgroundTaskState.Running;
                     }
                     catch (ArgumentException)
                     {
@@ -86,12 +87,12 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
             Application.Current.Suspending += ForegroundApp_Suspending;
             Application.Current.Resuming += ForegroundApp_Resuming;
-            ApplicationSettingsHelper.SaveSettingsValue(ApplicationSettingsConstants.AppState, AppState.Active.ToString());
+            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, AppState.Active.ToString());
         }
 
         private void ForegroundApp_Resuming(object sender, object e)
         {
-            ApplicationSettingsHelper.SaveSettingsValue(ApplicationSettingsConstants.AppState, AppState.Active.ToString());
+            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, AppState.Active.ToString());
 
             if (IsAudioBackgroundTaskRunning)
             {
@@ -117,7 +118,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 MessageService.SendMessageToBackground(new AppSuspendedMessage());
             }
 
-            ApplicationSettingsHelper.SaveSettingsValue(ApplicationSettingsConstants.AppState, AppState.Suspended.ToString());
+            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, AppState.Suspended.ToString());
             deferral.Complete();
         }
 
@@ -366,7 +367,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private string GetCurrentTrackIdAfterAppResume()
         {
-            object value = ApplicationSettingsHelper.ReadResetSettingsValue(ApplicationSettingsConstants.TrackId);
+            object value = ApplicationSettingsHelper.ReadAndRemoveSettingsValue(BackgroundAudioConstants.TrackId);
             if (value != null)
                 return (string)value;
             else
