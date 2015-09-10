@@ -56,5 +56,24 @@ namespace Emby.Mobile.Universal.Controls
 
             base.OnNavigatedFrom(e);
         }
+
+        protected virtual void SetItem<TViewModelType>(BaseItemDto item)
+            where TViewModelType : ItemPageViewModelBase
+        {
+            if (item != null)
+            {
+                var vm = ViewModelLocator.Get<TViewModelType>(item.Id);
+                if (vm.Item == null)
+                {
+                    vm.SetItem(item);
+                }
+
+                DataContext = vm;
+            }
+            else
+            {
+                AppServices.NavigationService.GoBack();
+            }
+        }
     }
 }

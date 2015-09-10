@@ -7,11 +7,9 @@ namespace Emby.Mobile.Universal.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public partial class GenericItemView
+    public sealed partial class MovieView
     {
-        private GenericItemViewModel Generic => DataContext as GenericItemViewModel;
-
-        public GenericItemView()
+        public MovieView()
         {
             InitializeComponent();
         }
@@ -19,7 +17,7 @@ namespace Emby.Mobile.Universal.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var item = e.Parameter as BaseItemDto;
-            SetItem<GenericItemViewModel>(item);
+            SetItem<MovieViewModel>(item);
 
             base.OnNavigatedTo(e);
         }
