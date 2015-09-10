@@ -89,7 +89,7 @@ namespace Emby.Mobile.Universal.Core.Helpers
         public static async Task<DeviceProfile> GetProfileAsync()
         {
             return new Windows10Profile();
-
+            //TODO Enable this when we get further on down the road.
             DeviceProfile profile = null;
 
             try

@@ -348,7 +348,10 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public void SetVolume(double value)
         {
-            _player.Volume = value;
+            if (_player != null)
+            {
+                _player.Volume = value;
+            }
         }
 
         public void Stop() => _player.Pause();
