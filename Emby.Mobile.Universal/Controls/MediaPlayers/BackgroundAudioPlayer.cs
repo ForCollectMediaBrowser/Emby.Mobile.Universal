@@ -25,6 +25,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
     public class BackgroundAudioPlayer : IMediaPlayer
     {
+        private readonly IConnectionManager _connectionManager;
         private DispatcherTimer _postionChangedTimer;
         private StreamInfo _streamInfo;
         private BaseItemDto _item;
@@ -69,8 +70,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         #region Ctors and LifeCycle management
 
-        public BackgroundAudioPlayer()
+        public BackgroundAudioPlayer(IConnectionManager connectionManager)
         {
+            _connectionManager = connectionManager;
             _postionChangedTimer = new DispatcherTimer();
             _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
             _postionChangedTimer.Tick += PostionChangedTimer_Tick;
@@ -354,7 +356,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private async Task<TrackModel> GetTrackModel(PlaylistItem item)
         {
-            var client = SimpleIoc.Default.GetInstance<IConnectionManager>().GetApiClient(item.Item);
+            var client = _connectionManager.GetApiClient(item.Item);
             var profile = await ConnectionManagerFactory.GetProfileAsync();
             _item = item.Item;
             _streamInfo = await item.GetStreamInfoAsync(0,
@@ -380,7 +382,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             {
                 MessageService.SendMessageToBackground(new UpdatePlaylistMessage(tracks, clearCurrentList));
                 if (clearCurrentList)
+                {
                     MessageService.SendMessageToBackground(new StartPlaybackMessage());
+                }
             }
         }
 

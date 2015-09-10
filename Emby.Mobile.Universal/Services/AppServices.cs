@@ -119,8 +119,9 @@ namespace Emby.Mobile.Universal.Services
 
         private static void RegisterBackgroundPlayer()
         {
-            SimpleIoc.Default.GetInstance<IPlaybackService>().RegisterPlayer(new BackgroundAudioPlayer());
+            SimpleIoc.Default.GetInstance<IPlaybackService>().RegisterPlayer(new BackgroundAudioPlayer(SimpleIoc.Default.GetInstance<IConnectionManager>()));
         }
+
         private static void AddDesignTimeServices()
         {
             SimpleIoc.Default.RegisterIf<ILogger, MediaBrowser.Model.Logging.NullLogger>();
