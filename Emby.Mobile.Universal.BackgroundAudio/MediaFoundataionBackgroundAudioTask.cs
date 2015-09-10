@@ -21,12 +21,12 @@ namespace Emby.Mobile.Universal.BackgroundAudio
         private TransportControlsService _transportService;
         private AppState _foregroundAppState = AppState.Unknown;
         private ManualResetEvent _backgroundTaskStarted = new ManualResetEvent(false);
-        private bool _playbackStartedPreviously = false;               
+        private bool _playbackStartedPreviously = false;
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             Debug.WriteLine("Background Audio Task " + taskInstance.Task.Name + " starting...");
-                        
+
             var value = ApplicationSettingsHelper.ReadAndRemoveSettingsValue(BackgroundAudioConstants.AppState) as string;
             if (value == null)
                 _foregroundAppState = AppState.Unknown;
@@ -49,29 +49,24 @@ namespace Emby.Mobile.Universal.BackgroundAudio
 
             taskInstance.Task.Completed += TaskCompleted;
             taskInstance.Canceled += new BackgroundTaskCanceledEventHandler(OnCanceled);
-        }        
+        }
 
         private void TaskCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
-            Debug.WriteLine("MyBackgroundAudioTask " + sender.TaskId + " Completed...");
             _deferral.Complete();
         }
 
         private void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
-            Debug.WriteLine("MyBackgroundAudioTask " + sender.Task.TaskId + " Cancel Requested...");
             try
             {
-                // immediately set not running
                 _backgroundTaskStarted.Reset();
 
-                // save state
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.TrackId, GetCurrentTrackId() == null ? null : GetCurrentTrackId().ToString());
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.Position, BackgroundMediaPlayer.Current.Position.ToString());
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundAudioTaskState, BackgroundTaskState.Canceled.ToString());
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, Enum.GetName(typeof(AppState), _foregroundAppState));
 
-                // unsubscribe from list changes
                 if (_playlist != null)
                 {
                     _playlist.CurrentItemChanged -= Playlist_CurrentItemChanged;
@@ -89,38 +84,37 @@ namespace Emby.Mobile.Universal.BackgroundAudio
                 Debug.WriteLine(ex.ToString());
             }
             _deferral.Complete();
-            Debug.WriteLine("MyBackgroundAudioTask Cancel complete...");
         }
-        
+
         private void StartPlayback()
         {
             try
-            {               
+            {
                 if (!_playbackStartedPreviously)
                 {
                     _playbackStartedPreviously = true;
-             
+
                     var currentTrackId = ApplicationSettingsHelper.ReadAndRemoveSettingsValue(BackgroundAudioConstants.TrackId);
                     var currentTrackPosition = ApplicationSettingsHelper.ReadAndRemoveSettingsValue(BackgroundAudioConstants.Position);
                     if (currentTrackId != null)
-                    {                        
+                    {
                         var index = _playlist.Items.ToList().FindIndex(item => GetTrackId(item).ToString() == (string)currentTrackId);
 
                         if (currentTrackPosition == null)
-                        {                     
+                        {
                             Debug.WriteLine("StartPlayback: Switching to track " + index);
-                            _playlist.MoveTo((uint)index);                         
+                            _playlist.MoveTo((uint)index);
                             BackgroundMediaPlayer.Current.Play();
                         }
                         else
-                        {                    
+                        {
                             TypedEventHandler<MediaPlaybackList, CurrentMediaPlaybackItemChangedEventArgs> handler = null;
                             handler = (MediaPlaybackList list, CurrentMediaPlaybackItemChangedEventArgs args) =>
                             {
                                 if (args.NewItem == _playlist.Items[index])
-                                {                         
+                                {
                                     _playlist.CurrentItemChanged -= handler;
-                                 
+
                                     var position = TimeSpan.Parse((string)currentTrackPosition);
                                     Debug.WriteLine("StartPlayback: Setting Position " + position);
                                     BackgroundMediaPlayer.Current.Position = position;
@@ -134,12 +128,12 @@ namespace Emby.Mobile.Universal.BackgroundAudio
                         }
                     }
                     else
-                    {                        
+                    {
                         BackgroundMediaPlayer.Current.Play();
                     }
                 }
                 else
-                {                    
+                {
                     BackgroundMediaPlayer.Current.Play();
                 }
             }
@@ -147,7 +141,7 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             {
                 Debug.WriteLine(ex.ToString());
             }
-        }        
+        }
 
         private void SkipToPrevious()
         {
@@ -162,7 +156,7 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             _playlist.MoveNext();
             BackgroundMediaPlayer.Current.Play();
         }
-        
+
         void Current_CurrentStateChanged(MediaPlayer sender, object args)
         {
             switch (sender.CurrentState)
@@ -184,7 +178,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             AppSuspendedMessage appSuspendedMessage;
             if (MessageService.TryParseMessage(e.Data, out appSuspendedMessage))
             {
-                Debug.WriteLine("App suspending");
                 _foregroundAppState = AppState.Suspended;
                 var currentTrackId = GetCurrentTrackId();
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.TrackId, currentTrackId == null ? null : currentTrackId.ToString());
@@ -194,7 +187,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             AppResumedMessage appResumedMessage;
             if (MessageService.TryParseMessage(e.Data, out appResumedMessage))
             {
-                Debug.WriteLine("App resuming");
                 _foregroundAppState = AppState.Active;
                 return;
             }
@@ -202,7 +194,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             StartPlaybackMessage startPlaybackMessage;
             if (MessageService.TryParseMessage(e.Data, out startPlaybackMessage))
             {
-                Debug.WriteLine("Starting Playback");
                 StartPlayback();
                 return;
             }
@@ -210,7 +201,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             SkipNextMessage skipNextMessage;
             if (MessageService.TryParseMessage(e.Data, out skipNextMessage))
             {
-                Debug.WriteLine("Skipping to next");
                 SkipToNext();
                 return;
             }
@@ -218,7 +208,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             SkipPreviousMessage skipPreviousMessage;
             if (MessageService.TryParseMessage(e.Data, out skipPreviousMessage))
             {
-                Debug.WriteLine("Skipping to previous");
                 SkipToPrevious();
                 return;
             }
@@ -227,7 +216,6 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             if (MessageService.TryParseMessage(e.Data, out trackChangedMessage))
             {
                 var index = _playlist.Items.ToList().FindIndex(i => (string)i.Source.CustomProperties[BackgroundAudioConstants.TrackId] == trackChangedMessage.Id);
-                Debug.WriteLine("Skipping to track " + index);
                 _transportService.SetStatus(MediaPlaybackStatus.Changing);
                 _playlist.MoveTo((uint)index);
                 BackgroundMediaPlayer.Current.Play();
@@ -237,6 +225,15 @@ namespace Emby.Mobile.Universal.BackgroundAudio
             UpdatePlaylistMessage updatePlaylistMessage;
             if (MessageService.TryParseMessage(e.Data, out updatePlaylistMessage))
             {
+                CreatePlaybackList(updatePlaylistMessage.Tracks, updatePlaylistMessage.ClearCurrentList);
+                return;
+            }
+
+            RemoveTrackMessage removeTrackMessage;
+            if (MessageService.TryParseMessage(e.Data, out removeTrackMessage))
+            {
+                var index = _playlist.Items.ToList().FindIndex(i => (string)i.Source.CustomProperties[BackgroundAudioConstants.TrackId] == removeTrackMessage.Id);
+                _playlist.Items.RemoveAt(index);
                 CreatePlaybackList(updatePlaylistMessage.Tracks, updatePlaylistMessage.ClearCurrentList);
                 return;
             }
@@ -336,7 +333,7 @@ namespace Emby.Mobile.Universal.BackgroundAudio
         private string GetTrackId(MediaPlaybackItem item)
         {
             if (item == null)
-                return null; // no track playing
+                return null;
 
             return item.Source.CustomProperties[BackgroundAudioConstants.TrackId] as string;
         }
