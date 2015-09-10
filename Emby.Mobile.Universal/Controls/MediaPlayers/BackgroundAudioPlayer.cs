@@ -39,7 +39,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             get
             {
                 if (_isAudioBackgroundTaskRunning)
+                {
                     return true;
+                }
 
                 string value = BackgroundAudioCommunicationSettings.ReadAndRemoveSettingsValue(BackgroundAudioCommunicationSettings.BackgroundAudioTaskState) as string;
                 if (value == null)
@@ -110,6 +112,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void ForegroundApp_Suspending(object sender, SuspendingEventArgs e)
         {
+            _postionChangedTimer.Stop();
             var deferral = e.SuspendingOperation.GetDeferral();
 
             if (IsAudioBackgroundTaskRunning)
@@ -212,7 +215,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }, _streamInfo);
         }
 
-        async void BackgroundMediaPlayer_MessageReceivedFromBackground(object sender, MediaPlayerDataReceivedEventArgs e)
+        private async void BackgroundMediaPlayer_MessageReceivedFromBackground(object sender, MediaPlayerDataReceivedEventArgs e)
         {
             TrackChangedMessage trackChangedMessage;
             if (MessageService.TryParseMessage(e.Data, out trackChangedMessage))
@@ -251,12 +254,12 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public void DecreaseVolume()
         {
-            _player.Volume -= 1;
+            _player.Volume--;
         }
 
         public void IncreaseVolume()
         {
-            _player.Volume += 1;
+            _player.Volume++;
         }
 
         public void Pause()
@@ -271,8 +274,10 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         {
             _playlist = new List<PlaylistItem> { item };
             if (position > 0)
+            {
                 BackgroundAudioCommunicationSettings.SaveSettingsValue(BackgroundAudioCommunicationSettings.Position, TimeSpan.FromTicks((long)position));
-            SendListToBackgroundPlayer(new List<TrackModel> { await GetTrackModel(item) }, true);
+            }
+                SendListToBackgroundPlayer(new List<TrackModel> { await GetTrackModel(item) }, true);
         }
 
         public async Task Play(List<PlaylistItem> items, double position = 0)
@@ -285,7 +290,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }
 
             if (position > 0)
+            {
                 BackgroundAudioCommunicationSettings.SaveSettingsValue(BackgroundAudioCommunicationSettings.Position, TimeSpan.FromTicks((long)position));
+            }
 
             SendListToBackgroundPlayer(list, true);
         }
@@ -404,9 +411,13 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         {
             object value = BackgroundAudioCommunicationSettings.ReadAndRemoveSettingsValue(BackgroundAudioCommunicationSettings.TrackId);
             if (value != null)
+            {
                 return (string)value;
+            }
             else
+            {
                 return null;
+            }
         }
 
         //Not supported stuff

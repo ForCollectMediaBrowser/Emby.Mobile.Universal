@@ -4,6 +4,8 @@ namespace Emby.Mobile.Universal.BackgroundAudio.Messages
 {
     public class AppSuspendedMessage
     {
+        public DateTime Timestamp { get; }
+
         public AppSuspendedMessage()
         {
             Timestamp = DateTime.Now;
@@ -13,7 +15,5 @@ namespace Emby.Mobile.Universal.BackgroundAudio.Messages
         {
             Timestamp = timestamp;
         }
-
-        public DateTime Timestamp;
     }
 }

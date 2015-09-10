@@ -7,7 +7,6 @@
         public RemoveTrackMessage(string trackId)
         {
             Id = trackId;
-        }
-        
+        }        
     }
 }

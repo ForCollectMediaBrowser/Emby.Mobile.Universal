@@ -5,6 +5,8 @@ namespace Emby.Mobile.Universal.BackgroundAudio.Messages
 {
     public class AppResumedMessage
     {
+        public DateTime Timestamp { get; }
+
         public AppResumedMessage()
         {
             Timestamp = DateTime.Now;
@@ -14,7 +16,5 @@ namespace Emby.Mobile.Universal.BackgroundAudio.Messages
         {
             Timestamp = timestamp;
         }
-
-        public DateTime Timestamp;
     }
 }

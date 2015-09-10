@@ -9,7 +9,7 @@ namespace Emby.Mobile.Universal.BackgroundAudio.Messages
 
         public UpdatePlaylistMessage(List<TrackModel> tracks, bool clearCurrentList)
         {
-            Tracks = tracks;
+            Tracks = tracks ?? new List<TrackModel>();
             ClearCurrentList = clearCurrentList;
         }
     }
