@@ -222,7 +222,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                         var playlistItem = _playlist?.FirstOrDefault(t => t.Item.Id == trackChangedMessage.Id);
                         if (playlistItem != null)
                         {
-                            foreach(var track in _playlist.Where(p => p.State == PlaylistState.Playing))
+                            foreach (var track in _playlist.Where(p => p.State == PlaylistState.Playing))
                             {
                                 track.State = PlaylistState.Played;
                             }
@@ -267,6 +267,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public async Task Play(PlaylistItem item, double position = 0)
         {
+            _playlist = new List<PlaylistItem> { item };
             if (position > 0)
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.Position, TimeSpan.FromTicks((long)position));
             SendListToBackgroundPlayer(new List<TrackModel> { await GetTrackModel(item) }, true);
@@ -274,6 +275,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public async Task Play(List<PlaylistItem> items, double position = 0)
         {
+            _playlist = items;
             var list = new List<TrackModel>();
             foreach (var item in items)
             {
@@ -288,6 +290,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public async Task Add(List<PlaylistItem> items)
         {
+            _playlist?.AddRange(items);
             var list = new List<TrackModel>();
             foreach (var item in items)
             {
@@ -299,7 +302,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public Task Remove(PlaylistItem item)
         {
-            if (_playlist.Contains(item))
+            if (_playlist != null && _playlist.Contains(item))
             {
                 _playlist.Remove(item);
                 MessageService.SendMessageToBackground(new RemoveTrackMessage(item.Item.Id));
