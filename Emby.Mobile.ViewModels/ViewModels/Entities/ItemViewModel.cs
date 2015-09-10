@@ -20,10 +20,13 @@ namespace Emby.Mobile.ViewModels.Entities
         public string Name => ItemInfo?.Name;
         public string MaterialIcon => ItemInfo.GetMaterialIcon();
         public string Type => ItemInfo?.Type;
+
         public string PrimaryImageLarge => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryLarge): "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string PrimaryImageMedium => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string PrimaryImageSmall => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimarySmall) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string BackdropImage => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdrop) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+
+        public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
 
         public RelayCommand NavigateToItem
         {
