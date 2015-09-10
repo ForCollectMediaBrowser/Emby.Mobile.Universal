@@ -18,7 +18,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <mediaPlayers:MediaFoundationAudioPlayer Grid.Row="1" />
+                        <mediaPlayers:MediaFoundationVideoPlayer Grid.Row="1" />
                         <controls:HeaderControl x:Name="Header"
                                                 VerticalAlignment="Top" />
 

@@ -23,6 +23,7 @@ using Emby.Mobile.Universal.Core.Implementations.Sync;
 using Emby.Mobile.Universal.Core.Implementations.Security;
 using MediaBrowser.ApiInteraction.Cryptography;
 using MediaBrowser.ApiInteraction.Playback;
+using Emby.Mobile.Universal.Controls.MediaPlayers;
 
 namespace Emby.Mobile.Universal.Services
 {
@@ -101,6 +102,7 @@ namespace Emby.Mobile.Universal.Services
 
             await AddConnectionServices(device, mbLogger, network, credentials);
 
+            RegisterBackgroundPlayer();
         }
 
         private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network, ICredentialProvider credentialProvider)
@@ -113,6 +115,11 @@ namespace Emby.Mobile.Universal.Services
         {
             var playbackManager = new PlaybackManager(assetManager, device, logger, network);
             SimpleIoc.Default.RegisterIf<IPlaybackManager>(() => playbackManager);
+        }
+
+        private static void RegisterBackgroundPlayer()
+        {
+            SimpleIoc.Default.GetInstance<IPlaybackService>().RegisterPlayer(new BackgroundAudioPlayer(SimpleIoc.Default.GetInstance<IConnectionManager>()));
         }
 
         private static void AddDesignTimeServices()
@@ -142,6 +149,7 @@ namespace Emby.Mobile.Universal.Services
         public static ILogger Log => ServiceLocator.Current.GetInstance<ILogger>();
         public static IAnalyticsService Anayltics => ServiceLocator.Current.GetInstance<IAnalyticsService>();
         public static IDeviceInfoService DeviceInfo => ServiceLocator.Current.GetInstance<IDeviceInfoService>();
+        public static IDispatcherService DispatcherService => ServiceLocator.Current.GetInstance<IDispatcherService>();
         public static ILauncherService LauncherService => ServiceLocator.Current.GetInstance<ILauncherService>();
         public static IPlaybackService PlaybackService => ServiceLocator.Current.GetInstance<IPlaybackService>();
     }

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Core", "Emby.Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.ViewModels", "Emby.Mobile.ViewModels\Emby.Mobile.ViewModels.csproj", "{0DC9CCEF-0C7D-4923-811B-D84293A5F708}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Universal.BackgroundAudio", "Emby.Mobile.Universal.BackgroundAudio\Emby.Mobile.Universal.BackgroundAudio.csproj", "{A301BC15-8288-4452-86E4-CDEA607ACF5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Mobile.Universal.BackgroundAudioShared", "Emby.Mobile.Universal.BackgroundAudioShared\Emby.Mobile.Universal.BackgroundAudioShared.csproj", "{99841098-5265-40D2-AF6E-4015DA24CB35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +139,54 @@ Global
 		{0DC9CCEF-0C7D-4923-811B-D84293A5F708}.Xbox|x64.Build.0 = Release|Any CPU
 		{0DC9CCEF-0C7D-4923-811B-D84293A5F708}.Xbox|x86.ActiveCfg = Release|Any CPU
 		{0DC9CCEF-0C7D-4923-811B-D84293A5F708}.Xbox|x86.Build.0 = Release|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|ARM.Build.0 = Debug|ARM
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|x64.ActiveCfg = Debug|x64
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|x64.Build.0 = Debug|x64
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|x86.ActiveCfg = Debug|x86
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Debug|x86.Build.0 = Debug|x86
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|ARM.ActiveCfg = Release|ARM
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|ARM.Build.0 = Release|ARM
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|x64.ActiveCfg = Release|x64
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|x64.Build.0 = Release|x64
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|x86.ActiveCfg = Release|x86
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Release|x86.Build.0 = Release|x86
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|Any CPU.ActiveCfg = Release|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|Any CPU.Build.0 = Release|Any CPU
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|ARM.ActiveCfg = Release|ARM
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|ARM.Build.0 = Release|ARM
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|x64.ActiveCfg = Release|x64
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|x64.Build.0 = Release|x64
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|x86.ActiveCfg = Release|x86
+		{A301BC15-8288-4452-86E4-CDEA607ACF5E}.Xbox|x86.Build.0 = Release|x86
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|ARM.ActiveCfg = Debug|ARM
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|ARM.Build.0 = Debug|ARM
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|x64.ActiveCfg = Debug|x64
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|x64.Build.0 = Debug|x64
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|x86.ActiveCfg = Debug|x86
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Debug|x86.Build.0 = Debug|x86
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|ARM.ActiveCfg = Release|ARM
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|ARM.Build.0 = Release|ARM
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|x64.ActiveCfg = Release|x64
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|x64.Build.0 = Release|x64
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|x86.ActiveCfg = Release|x86
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Release|x86.Build.0 = Release|x86
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|Any CPU.ActiveCfg = Release|Any CPU
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|Any CPU.Build.0 = Release|Any CPU
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|ARM.ActiveCfg = Release|ARM
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|ARM.Build.0 = Release|ARM
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|x64.ActiveCfg = Release|x64
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|x64.Build.0 = Release|x64
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|x86.ActiveCfg = Release|x86
+		{99841098-5265-40D2-AF6E-4015DA24CB35}.Xbox|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

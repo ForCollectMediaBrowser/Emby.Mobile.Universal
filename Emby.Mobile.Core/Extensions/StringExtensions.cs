@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Emby.Mobile.Core.Extensions
 {
@@ -37,6 +38,13 @@ namespace Emby.Mobile.Core.Extensions
         public static bool IsValidEmail(this string emailAddress)
         {
             return EmailRegex.IsMatch(emailAddress);
+        }
+
+        public static T ToEnum<T>(this string value) where T : struct
+        {
+            var result = default(T);
+            Enum.TryParse<T>(value, out result);
+            return result;            
         }
     }
 }

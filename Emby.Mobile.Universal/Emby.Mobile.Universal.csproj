@@ -167,6 +167,7 @@
     <Compile Include="Controls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MediaPlayers\BackgroundAudioPlayer.cs" />
     <Compile Include="Controls\ProfilePicture.cs" />
     <Compile Include="Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
@@ -188,7 +189,7 @@
     <Compile Include="Interfaces\INavigatedToFromViewModel.cs" />
     <Compile Include="Interfaces\INavigatedToViewModel.cs" />
     <Compile Include="Mdl2\Mdl2.cs" />
-    <Compile Include="Controls\MediaPlayers\MediaFoundationAudioPlayer.cs" />
+    <Compile Include="Controls\MediaPlayers\MediaFoundationVideoPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppServices.cs" />
     <Compile Include="Services\ListType.cs" />
@@ -411,6 +412,14 @@
     <ProjectReference Include="..\Emby.Mobile.Core\Emby.Mobile.Core.csproj">
       <Project>{34fc5818-9221-4081-91ec-f3bc7328202f}</Project>
       <Name>Emby.Mobile.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Emby.Mobile.Universal.BackgroundAudioShared\Emby.Mobile.Universal.BackgroundAudioShared.csproj">
+      <Project>{99841098-5265-40d2-af6e-4015da24cb35}</Project>
+      <Name>Emby.Mobile.Universal.BackgroundAudioShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Emby.Mobile.Universal.BackgroundAudio\Emby.Mobile.Universal.BackgroundAudio.csproj">
+      <Project>{a301bc15-8288-4452-86e4-cdea607acf5e}</Project>
+      <Name>Emby.Mobile.Universal.BackgroundAudio</Name>
     </ProjectReference>
     <ProjectReference Include="..\Emby.Mobile.Universal.Core\Emby.Mobile.Universal.Core.csproj">
       <Project>{769c228b-06a9-4765-83c7-49682c84d5e1}</Project>

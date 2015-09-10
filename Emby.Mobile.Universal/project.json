@@ -2,15 +2,15 @@
   "dependencies": {
     "Cimbalino.Toolkit": "2.0.0-beta3",
     "Cimbalino.Toolkit.Core": "2.0.0-beta3",
-    "Coding4Fun.Toolkit.Controls": "2.1.3",
+    "Coding4Fun.Toolkit.Controls": "2.1.5",
     "GoogleAnalyticsSDK": "1.3.0",
-    "MediaBrowser.ApiClient": "3.0.0.625",
-    "MediaBrowser.Common": "3.0.631",
+    "MediaBrowser.ApiClient": "3.0.0.626",
+    "MediaBrowser.Common": "3.0.633",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "MvvmLightLibs": "5.1.1",
-    "PropertyChanged.Fody": "1.50.1",
+    "MvvmLightLibs": "5.2.0",
+    "PropertyChanged.Fody": "1.50.3",
     "ThemeManagerRt": "1.1.0",
-    "Win2D.uwp": "1.0.0"
+    "Win2D.uwp": "1.3.0"
   },
   "frameworks": {
     "uap10.0": {}

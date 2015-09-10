@@ -23,8 +23,8 @@ namespace Emby.Mobile.Universal.Core.Helpers
         const string ProfileFilename = "StreamingProfile.xml";
 
         public async static Task<IConnectionManager> CreateConnectionManager(
-            IDevice device, 
-            ILogger logger, 
+            IDevice device,
+            ILogger logger,
             INetworkConnection networkConnection,
             ICredentialProvider credentialProvider)
         {
@@ -86,9 +86,10 @@ namespace Emby.Mobile.Universal.Core.Helpers
             };
         }
 
-        private static async Task<DeviceProfile> GetProfileAsync()
+        public static async Task<DeviceProfile> GetProfileAsync()
         {
-
+            return new Windows10Profile();
+            //TODO Enable this when we get further on down the road.
             DeviceProfile profile = null;
 
             try
@@ -101,8 +102,9 @@ namespace Emby.Mobile.Universal.Core.Helpers
                 {
                     using (IInputStream inStream = await file.OpenSequentialReadAsync())
                     {
-                        var serializer = new XmlSerializer(typeof (DeviceProfile));
-                        profile = (DeviceProfile) serializer.Deserialize(inStream.AsStreamForRead());
+                        var serializer = new XmlSerializer(typeof(DeviceProfile));
+                        profile = (DeviceProfile)serializer.Deserialize(inStream.AsStreamForRead());
+                        return profile;
                     }
 
                     if (profile == null)
@@ -110,8 +112,6 @@ namespace Emby.Mobile.Universal.Core.Helpers
                         throw new SerializationException();
                     }
                 }
-
-                return profile;
             }
             catch (FileNotFoundException)
             {

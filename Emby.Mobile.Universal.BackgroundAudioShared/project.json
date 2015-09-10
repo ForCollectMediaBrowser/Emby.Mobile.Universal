@@ -1,11 +1,7 @@
 ﻿{
   "dependencies": {
-    "Cimbalino.Toolkit.Core": "2.0.0-beta3",
-    "GoogleAnalyticsSDK": "1.3.0",
-    "MediaBrowser.ApiClient": "3.0.0.626",
-    "MediaBrowser.Common": "3.0.633",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "PropertyChanged.Fody": "1.50.3"
+    "Newtonsoft.Json": "6.0.8"
   },
   "frameworks": {
     "uap10.0": {}

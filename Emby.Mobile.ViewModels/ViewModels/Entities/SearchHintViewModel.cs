@@ -13,7 +13,7 @@ namespace Emby.Mobile.ViewModels.Entities
             if (!string.IsNullOrEmpty(SearchHint?.PrimaryImageTag))
             {
                 ImageUrl = ApiClient?.GetImageUrl(searchHint.ItemId, ImageOptionsHelper.SearchHint);
-            }           
+            }
         }
 
         public SearchHint SearchHint { get; set; }
@@ -23,21 +23,21 @@ namespace Emby.Mobile.ViewModels.Entities
         public string Name => SearchHint?.Name;
 
         public string Type => SearchHint?.Type; //TODO Translations needed for Types.
-        
+
         public RelayCommand SearchHintTappedCommand
         {
             get
             {
                 return new RelayCommand(() =>
-                {                    
-                    switch(SearchHint?.Type)
+                {
+                    switch (SearchHint?.Type)
                     {
                         //TODO Navigate to TypeDetails-view;
-                        default:                            
+                        default:
                             break;
                     }
                 });
             }
-        }       
+        }
     }
 }

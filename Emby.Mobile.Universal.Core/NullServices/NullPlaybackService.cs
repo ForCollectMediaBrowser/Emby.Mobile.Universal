@@ -164,6 +164,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public void ReportPlayerState(PlayerState state)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ReportPlaylistStatus(IList<PlaylistItem> playlist)
         {
             throw new NotImplementedException();
