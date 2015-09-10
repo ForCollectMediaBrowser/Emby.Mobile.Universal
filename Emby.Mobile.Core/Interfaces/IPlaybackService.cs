@@ -22,7 +22,6 @@ namespace Emby.Mobile.Core.Interfaces
         PlaylistItem UpcomingItem { get; }
         List<PlaylistItem> Playlist { get; }
         List<IMediaPlayer> AvailablePlayers { get; }
-
         bool RegisterPlayer(IMediaPlayer player);
         void AddToPlaylist(BaseItemDto item);
         void AddToPlaylist(IList<BaseItemDto> items);
@@ -48,5 +47,6 @@ namespace Emby.Mobile.Core.Interfaces
         void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo);
         void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo);
         void ReportPlaylistStatus(IList<PlaylistItem> playlist);
+        void ReportPlayerState(PlayerState state);
     }
 }

@@ -22,7 +22,7 @@ using Emby.Mobile.Universal.Core.Helpers;
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
     [TemplatePart(Name = "Player", Type = typeof(MediaElement))]
-    public class MediaFoundationAudioPlayer : Control, IMediaPlayer
+    public class MediaFoundationVideoPlayer : Control, IMediaPlayer
     {
         private DispatcherTimer _postionChangedTimer;
         private StreamInfo _streamInfo;
@@ -36,14 +36,22 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public bool IsPlaying => _player?.PlaybackRate > 0;
 
-        public PlayerType PlayerType => PlayerType.Audio;
+        public PlayerType PlayerType => PlayerType.Video;
 
-        public MediaFoundationAudioPlayer()
+        public PlayerState PlayerState
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public MediaFoundationVideoPlayer()
         {
             _postionChangedTimer = new DispatcherTimer();
             _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
             _postionChangedTimer.Tick += PostionChangedTimer_Tick;
-            DefaultStyleKey = typeof(MediaFoundationAudioPlayer);
+            DefaultStyleKey = typeof(MediaFoundationVideoPlayer);
         }
 
         private void PostionChangedTimer_Tick(object sender, object e)

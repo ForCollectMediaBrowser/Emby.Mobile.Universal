@@ -16,7 +16,7 @@ namespace Emby.Mobile.Core.Interfaces
         bool CanSeek { get; }
         bool CanPause { get; }
         bool IsPlaying { get; }
-
+        PlayerState PlayerState { get; }
         Task Play(PlaylistItem item, double position = 0);
         Task Play(List<PlaylistItem> items, double position = 0);
         Task Add(List<PlaylistItem> items);

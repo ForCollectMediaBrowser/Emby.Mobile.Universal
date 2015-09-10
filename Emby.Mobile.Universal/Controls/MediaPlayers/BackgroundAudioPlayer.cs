@@ -61,14 +61,11 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         }
 
         public bool CanPause => _player?.CanPause == true;
-
         public bool CanSeek => _player?.CanSeek == true;
-
         public Guid Id { get; } = Guid.NewGuid();
-
         public bool IsPlaying => _player?.PlaybackRate > 0;
-
         public PlayerType PlayerType => PlayerType.Audio;
+        public PlayerState PlayerState { get; private set; } = PlayerState.Unknown;
 
         #region Ctors and LifeCycle management
 
@@ -176,7 +173,24 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void Player_CurrentStateChanged(MediaPlayer sender, object args)
         {
-            
+            AppServices.DispatcherService.RunAsync(() =>
+            {
+                switch (sender.CurrentState)
+                {
+                    case MediaPlayerState.Playing:
+                        PlayerState = PlayerState.Playing;
+                        AppServices.PlaybackService.ReportPlayerState(PlayerState);
+                        break;
+                    case MediaPlayerState.Stopped:
+                        PlayerState = PlayerState.Stopped;
+                        AppServices.PlaybackService.ReportPlayerState(PlayerState);
+                        break;
+                    case MediaPlayerState.Paused:
+                        PlayerState = PlayerState.Paused;
+                        AppServices.PlaybackService.ReportPlayerState(PlayerState);
+                        break;
+                }
+            });
         }
 
         #endregion

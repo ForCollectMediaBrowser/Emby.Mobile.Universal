@@ -274,7 +274,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="mediaPlayers:MediaFoundationAudioPlayer">
+    <Style TargetType="mediaPlayers:MediaFoundationVideoPlayer">
         <Setter Property="Height"
                 Value="0" />
         <Setter Property="Width"
@@ -283,7 +283,7 @@
                 Value="0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="mediaPlayers:MediaFoundationAudioPlayer">
+                <ControlTemplate TargetType="mediaPlayers:MediaFoundationVideoPlayer">
                     <MediaElement x:Name="Player"
                                   Height="{TemplateBinding Height}"
                                   Width="{TemplateBinding Width}"

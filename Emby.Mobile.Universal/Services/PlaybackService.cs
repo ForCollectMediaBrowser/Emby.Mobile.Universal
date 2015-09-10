@@ -245,5 +245,10 @@ namespace Emby.Mobile.Universal.Services
             Playlist.Clear();
             Playlist.AddRange(playlist);
         }
+
+        public void ReportPlayerState(PlayerState state)
+        {
+            PlaystateChanged?.Invoke(this, new PlayStateChangedEventArgs(state));
+        }
     }
 }

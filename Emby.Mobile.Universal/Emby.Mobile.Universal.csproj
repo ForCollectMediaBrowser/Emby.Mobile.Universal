@@ -189,7 +189,7 @@
     <Compile Include="Interfaces\INavigatedToFromViewModel.cs" />
     <Compile Include="Interfaces\INavigatedToViewModel.cs" />
     <Compile Include="Mdl2\Mdl2.cs" />
-    <Compile Include="Controls\MediaPlayers\MediaFoundationAudioPlayer.cs" />
+    <Compile Include="Controls\MediaPlayers\MediaFoundationVideoPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppServices.cs" />
     <Compile Include="Services\ListType.cs" />
