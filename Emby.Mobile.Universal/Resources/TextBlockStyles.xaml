@@ -16,6 +16,13 @@
         <Setter Property="OpticalMarginAlignment"
                 Value="TrimSideBearings" />
     </Style>
+    
+    <Style x:Key="EmbySubtleTextBlockStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource EmbyBaseTextBlockStyle}">
+        <Setter Property="Foreground"
+                Value="{ThemeResource SubtleBrush}"/>
+    </Style>
 
     <Style x:Key="EmbyThinBaseTextBlockStyle"
            TargetType="TextBlock"

@@ -108,6 +108,18 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        public RelayCommand GoHomeCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Services.NavigationService.NavigateToHome();
+                    Services.NavigationService.ClearBackStack();
+                });
+            }
+        }
+
         public void Start()
         {
             SetUsernameAndProfilePicture();

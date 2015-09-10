@@ -1,0 +1,33 @@
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.GenericItemView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   mc:Ignorable="d"
+                   d:DataContext="{Binding Generic, Source={StaticResource Locator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="SubTitle" />
+            <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}" 
+                       Foreground="{ThemeResource SubtleBrush}"
+                       x:Name="Title"
+                       RelativePanel.Below="SubTitle"/>
+            <Image x:Name="PrimaryImage" 
+                   Source="{x:Bind Generic.Item.PrimaryImageMedium, Mode=OneWay}"
+                   MaxHeight="200"
+                   MaxWidth="200"
+                   Stretch="Uniform"
+                   RelativePanel.Below="Title"/>
+            <Button Content="Play"
+                    RelativePanel.Below="PrimaryImage"
+                    RelativePanel.AlignLeftWith="PrimaryImage"
+                    RelativePanel.AlignRightWith="PrimaryImage"
+                    Command="{x:Bind Generic.Item.PlayItemCommand}"/>
+        </RelativePanel>
+    </Grid>
+</controls:EmbyPage>

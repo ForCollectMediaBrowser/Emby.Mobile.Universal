@@ -43,7 +43,7 @@ namespace Emby.Mobile.Universal.Services
             }
         }
 
-        public static void Create()
+        public static async Task Create()
         {
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -53,13 +53,13 @@ namespace Emby.Mobile.Universal.Services
             else
             {
                 // Create run time view services and models
-                AddRuntimeServices();
+                await AddRuntimeServices();
             }
 
             SimpleIoc.Default.RegisterIf<IServices, ServicesContainer>();
         }
 
-        private async static void AddRuntimeServices()
+        public async static Task AddRuntimeServices()
         {
             var logger = new WinLogger("Emby.Universal");
             var mbLogger = new MBLogger(logger);
