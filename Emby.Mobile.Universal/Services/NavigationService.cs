@@ -91,56 +91,56 @@ namespace Emby.Mobile.Universal.Services
         {
             var value = false;
 
-            //var type = item.Type.ToLower();
-            //if (type.Contains("collectionfolder")) type = "collectionfolder";
-            //if (type.StartsWith("genre")) type = "genre";
-            //switch (type)
-            //{
-            //    case "collectionfolder":
-            //    case "genre":
-            //    case "trailercollectionfolder":
-            //    case "playlistsfolder":
-            //    case "userview":
-            //        value = HandleCollectionNavigation(item);
-            //        break;
-            //    case "photoalbum":
-            //    case "folder":
-            //    case "boxset":
-            //        break;
-            //    case "movie":
-            //        break;
-            //    case "series":
-            //        break;
-            //    case "season":
-            //        break;
-            //    case "episode":
-            //        break;
-            //    case "trailer":
-            //        break;
-            //    case "musicartist":
-            //    case "artist":
-            //        break;
-            //    case "musicalbum":
-            //        break;
-            //    case "channel":
-            //    case "channelfolderitem":
-            //        break;
-            //    case "playlist":
-            //        break;
-            //    case "person":
-            //        var actor = new BaseItemPerson
-            //        {
-            //            Name = item.Name,
-            //            Id = item.Id,
-            //            PrimaryImageTag = item.HasPrimaryImage ? item.ImageTags.FirstOrDefault(x => x.Key == ImageType.Primary).Value : string.Empty
-            //        };
+            var type = item.Type.ToLower();
+            if (type.Contains("collectionfolder")) type = "collectionfolder";
+            if (type.StartsWith("genre")) type = "genre";
+            switch (type)
+            {
+                //    case "collectionfolder":
+                //    case "genre":
+                //    case "trailercollectionfolder":
+                //    case "playlistsfolder":
+                //    case "userview":
+                //        value = HandleCollectionNavigation(item);
+                //        break;
+                //    case "photoalbum":
+                //    case "folder":
+                //    case "boxset":
+                //        break;
+                case "movie":
+                    value = Navigate<MovieView>(item);
+                    break;
+                //    case "series":
+                //        break;
+                //    case "season":
+                //        break;
+                //    case "episode":
+                //        break;
+                //    case "trailer":
+                //        break;
+                //    case "musicartist":
+                //    case "artist":
+                //        break;
+                //    case "musicalbum":
+                //        break;
+                //    case "channel":
+                //    case "channelfolderitem":
+                //        break;
+                //    case "playlist":
+                //        break;
+                //    case "person":
+                //        var actor = new BaseItemPerson
+                //        {
+                //            Name = item.Name,
+                //            Id = item.Id,
+                //            PrimaryImageTag = item.HasPrimaryImage ? item.ImageTags.FirstOrDefault(x => x.Key == ImageType.Primary).Value : string.Empty
+                //        };
 
-            //        break;
-            //    default:
-            //        break;
-            //}
-
-            value = Navigate<GenericItemView>(item);
+                //        break;
+                default:
+                    value = Navigate<GenericItemView>(item);
+                    break;
+            }
 
             return value;
         }

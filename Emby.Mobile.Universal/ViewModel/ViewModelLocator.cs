@@ -33,6 +33,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<HeaderMenuViewModel>();
             Register<SearchViewModel>();
             Register<GenericItemViewModel>();
+            Register<MovieViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -48,6 +49,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public HeaderMenuViewModel Header => Get<HeaderMenuViewModel>();
         public SearchViewModel Search => Get<SearchViewModel>();
         public GenericItemViewModel Generic => Get<GenericItemViewModel>();
+        public MovieViewModel Movie => Get<MovieViewModel>();
         
         public static void Cleanup()
         {
@@ -67,7 +69,6 @@ namespace Emby.Mobile.Universal.ViewModel
         }
 
         internal static T Get<T>(string id)
-            where T : class
         {
             return ServiceLocator.Current.GetInstance<T>(id);
         }

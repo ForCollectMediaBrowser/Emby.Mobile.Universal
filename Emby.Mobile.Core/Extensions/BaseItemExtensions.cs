@@ -1,4 +1,7 @@
-﻿using MediaBrowser.Model.Dto;
+﻿using System;
+using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Library;
 
 namespace Emby.Mobile.Core.Extensions
 {
@@ -50,6 +53,42 @@ namespace Emby.Mobile.Core.Extensions
             }
 
             return icon;
+        }
+
+        public static bool CanStream(this BaseItemDto item, UserDto user)
+        {
+            var canStream = false;
+
+            if (user.Policy.EnableMediaPlayback)
+            {
+                if (IsPlayable(item))
+                {
+                    canStream = true;
+                }
+            }
+
+            return canStream;
+        }
+
+        private static bool IsPlayable(BaseItemDto item)
+        {
+            return item != null 
+                && (item.LocationType != LocationType.Virtual && item.Type != "Program") // This line might not be right *shrugs*
+                   && (item.IsVideo || item.IsAudio)
+                   && item.PlayAccess == PlayAccess.Full
+                   && IsValidProgram(item);
+        }
+
+        private static bool IsValidProgram(BaseItemDto programme)
+        {
+            if (programme.Type != "Program")
+            {
+                // If not a TV programme then we don't care, so just return true.
+                return true;
+            }
+
+            var now = DateTime.Now;
+            return programme.StartDate.HasValue && programme.EndDate.HasValue && programme.StartDate.Value.ToLocalTime() < now && programme.EndDate.Value.ToLocalTime() > now;
         }
     }
 }

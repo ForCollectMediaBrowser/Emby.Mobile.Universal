@@ -4,9 +4,9 @@ using MediaBrowser.Model.Dto;
 
 namespace Emby.Mobile.ViewModels
 {
-    public class GenericItemViewModel : PageViewModelBase, IItemSettable
+    public class MovieViewModel : PageViewModelBase, IItemSettable
     {
-        public GenericItemViewModel(IServices services) : base(services)
+        public MovieViewModel(IServices services) : base(services)
         {
         }
 
