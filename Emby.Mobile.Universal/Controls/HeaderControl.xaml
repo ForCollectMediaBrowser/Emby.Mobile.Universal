@@ -127,9 +127,12 @@
         <Border Grid.ColumnSpan="4"
                 Background="{StaticResource BackgroundBrush}"
                 Opacity="0.85" />
-        <Image Stretch="UniformToFill"
-               Margin="5"
-               Source="{ThemeResource EmbyLogo}" />
+        <Button Style="{StaticResource EmptyButtonStyle}"
+                Command="{x:Bind Header.GoHomeCommand}">
+            <Image Stretch="UniformToFill"
+                   Margin="5"
+                   Source="{ThemeResource EmbyLogo}" />
+        </Button>
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="2"
