@@ -10,6 +10,7 @@ namespace Emby.Mobile.Universal.Views
     public partial class GenericItemView
     {
         private GenericItemViewModel Generic => DataContext as GenericItemViewModel;
+        private IItemSettable Item => DataContext as IItemSettable;
 
         public GenericItemView()
         {

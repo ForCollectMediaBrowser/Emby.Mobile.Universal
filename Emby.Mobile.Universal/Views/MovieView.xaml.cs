@@ -9,6 +9,9 @@ namespace Emby.Mobile.Universal.Views
     /// </summary>
     public sealed partial class MovieView
     {
+        private MovieViewModel Movie => DataContext as MovieViewModel;
+        private IItemSettable Item => DataContext as IItemSettable;
+
         public MovieView()
         {
             InitializeComponent();

@@ -9,16 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
-            <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
+            <TextBlock Text="{x:Bind Item.Item.Name, Mode=OneWay}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       x:Name="SubTitle" />
-            <TextBlock Text="{x:Bind Generic.Item.Name, Mode=OneWay}"
-                       Style="{StaticResource SubheaderTextBlockStyle}" 
-                       Foreground="{ThemeResource SubtleBrush}"
-                       x:Name="Title"
-                       RelativePanel.Below="SubTitle"/>
+                       x:Name="Title" />
             <Image x:Name="PrimaryImage" 
-                   Source="{x:Bind Generic.Item.PrimaryImageMedium, Mode=OneWay}"
+                   Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
                    MaxHeight="200"
                    MaxWidth="200"
                    Stretch="Uniform"
@@ -27,7 +22,7 @@
                     RelativePanel.Below="PrimaryImage"
                     RelativePanel.AlignLeftWith="PrimaryImage"
                     RelativePanel.AlignRightWith="PrimaryImage"
-                    Command="{x:Bind Generic.Item.PlayItemCommand}"/>
+                    Command="{x:Bind Item.Item.PlayItemCommand}"/>
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>
