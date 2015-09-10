@@ -361,7 +361,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                                                    profile);
 
             var url = _streamInfo.ToUrl(client.GetApiUrl("/"), client.AccessToken);
-            var artUri = _item.HasPrimaryImage ? new Uri(client.GetImageUrl(_item, ImageOptionsHelper.ItemPrimary)) : null;
+            var artUri = _item.HasPrimaryImage ? new Uri(client.GetImageUrl(_item, ImageOptionsHelper.ItemPrimaryMedium)) : null;
             return new TrackModel
             {
                 Id = _item.Id,
