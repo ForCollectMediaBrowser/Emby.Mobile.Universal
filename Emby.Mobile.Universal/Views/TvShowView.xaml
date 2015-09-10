@@ -7,6 +7,21 @@
                    mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <RelativePanel>
+            <TextBlock Text="{x:Bind Item.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="Title" />
+            <TextBlock Text="(TV Show)"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="MovieText"
+                       Margin="12,0"
+                       RelativePanel.RightOf="Title" />
+            <Image x:Name="PrimaryImage"
+                   Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
+                   MaxHeight="200"
+                   MaxWidth="200"
+                   Stretch="Uniform"
+                   RelativePanel.Below="Title" />
+        </RelativePanel>
     </Grid>
 </controls:EmbyPage>
