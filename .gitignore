@@ -180,3 +180,4 @@ pip-log.txt
 lib
 Emby.Mobile.Universal.Core/Emby.Mobile.Universal.Core.nuget.targets
 .gitignore
+.vs/
