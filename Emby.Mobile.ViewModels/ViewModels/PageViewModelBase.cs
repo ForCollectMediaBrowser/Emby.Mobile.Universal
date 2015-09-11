@@ -23,7 +23,23 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
+        public RelayCommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await Refresh();
+                });
+            }
+        }
+
         protected virtual Task PageLoaded()
+        {
+            return Task.FromResult(0);
+        }
+
+        protected virtual Task Refresh()
         {
             return Task.FromResult(0);
         }
