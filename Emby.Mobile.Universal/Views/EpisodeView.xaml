@@ -1,0 +1,23 @@
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.EpisodeView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   mc:Ignorable="d"
+                   d:DataContext="{Binding Season.Episodes[0], Source={StaticResource Locator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <TextBlock Text="{x:Bind Season.SelectedEpisode.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="Title" />
+            <Image x:Name="PrimaryImage"
+                   Source="{x:Bind Season.SelectedEpisode.PrimaryImageMedium, Mode=OneWay}"
+                   MaxHeight="200"
+                   MaxWidth="200"
+                   Stretch="Uniform"
+                   RelativePanel.Below="Title" />
+        </RelativePanel>
+    </Grid>
+</controls:EmbyPage>

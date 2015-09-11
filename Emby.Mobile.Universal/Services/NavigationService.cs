@@ -116,8 +116,9 @@ namespace Emby.Mobile.Universal.Services
                 case "season":
                     value = Navigate<SeasonView>(item);
                     break;
-                //    case "episode":
-                //        break;
+                case "episode":
+                    value = Navigate<EpisodeView>(item);
+                    break;
                 //    case "trailer":
                 //        break;
                 //    case "musicartist":
