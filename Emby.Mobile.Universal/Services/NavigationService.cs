@@ -110,8 +110,9 @@ namespace Emby.Mobile.Universal.Services
                 case "movie":
                     value = Navigate<MovieView>(item);
                     break;
-                //    case "series":
-                //        break;
+                case "series":
+                    value = Navigate<TvShowView>();
+                    break;
                 //    case "season":
                 //        break;
                 //    case "episode":

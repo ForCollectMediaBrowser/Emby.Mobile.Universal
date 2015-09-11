@@ -1,0 +1,27 @@
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.TvShowView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <TextBlock Text="{x:Bind Item.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="Title" />
+            <TextBlock Text="(TV Show)"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       x:Name="MovieText"
+                       Margin="12,0"
+                       RelativePanel.RightOf="Title" />
+            <Image x:Name="PrimaryImage"
+                   Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
+                   MaxHeight="200"
+                   MaxWidth="200"
+                   Stretch="Uniform"
+                   RelativePanel.Below="Title" />
+        </RelativePanel>
+    </Grid>
+</controls:EmbyPage>

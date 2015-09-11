@@ -8,12 +8,12 @@ namespace Emby.Mobile.Universal.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public partial class GenericItemView : ICanHasHeaderMenu
+    public sealed partial class TvShowView : ICanHasHeaderMenu
     {
-        private GenericItemViewModel Generic => DataContext as GenericItemViewModel;
         private IItemSettable Item => DataContext as IItemSettable;
+        private TvShowViewModel TvShow => DataContext as TvShowViewModel;
 
-        public GenericItemView()
+        public TvShowView()
         {
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace Emby.Mobile.Universal.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var item = e.Parameter as BaseItemDto;
-            SetItem<GenericItemViewModel>(item);
+            SetItem<TvShowViewModel>(item);
 
             base.OnNavigatedTo(e);
         }
