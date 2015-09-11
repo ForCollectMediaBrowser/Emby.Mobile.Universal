@@ -116,6 +116,7 @@
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\SerialisationExtensions.cs" />
     <Compile Include="Extensions\StorageServiceExtensions.cs" />
+    <Compile Include="Extensions\UIElementExtensions.cs" />
     <Compile Include="Helpers\ConnectionManagerFactory.cs" />
     <Compile Include="Implementations\Connection\CredentialProvider.cs" />
     <Compile Include="Implementations\Connection\WebSocketClient.cs" />
