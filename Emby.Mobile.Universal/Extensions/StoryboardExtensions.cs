@@ -150,5 +150,35 @@ namespace Emby.Mobile.Universal.Extensions
             Storyboard.SetTarget(visibility, element);
             storyboard.Children.Add(visibility);
         }
+
+        public static void AddHeightAnim(this Storyboard storyboard, UIElement element, double from, double to, double duration = AnimationDuration)
+        {            
+            var anim = new DoubleAnimation
+            {
+                From = from,
+                To = to,
+                Duration = TimeSpan.FromMilliseconds(duration),
+                EnableDependentAnimation = true,
+                AutoReverse = false
+            };
+            Storyboard.SetTarget(anim, element);
+            Storyboard.SetTargetProperty(anim, "(UIElement.Height)");
+            storyboard.Children.Add(anim);
+        }
+
+        public static void AddWidthAnim(this Storyboard storyboard, UIElement element, double from, double to, double duration = AnimationDuration)
+        {
+            var anim = new DoubleAnimation
+            {
+                From = from,
+                To = to,
+                Duration = TimeSpan.FromMilliseconds(duration),
+                EnableDependentAnimation = true,
+                AutoReverse = false
+            };
+            Storyboard.SetTarget(anim, element);
+            Storyboard.SetTargetProperty(anim, "(UIElement.Width)");
+            storyboard.Children.Add(anim);
+        }
     }
 }
