@@ -18,16 +18,6 @@ namespace Emby.Mobile.ViewModels
         private bool _profilesLoaded;
 
         public ObservableCollection<UserDtoViewModel> UserProfiles { get; set; }
-        public RelayCommand RefreshCommand
-        {
-            get
-            {
-                return new RelayCommand(async () =>
-                {
-                    await LoadData(true);
-                });
-            }
-        }
 
         public RelayCommand ManualUserProfileEntryCommand
         {
@@ -84,9 +74,14 @@ namespace Emby.Mobile.ViewModels
             return base.OnSignOut();
         }
 
-        protected override async Task PageLoaded()
+        protected override Task PageLoaded()
         {
-            await LoadData(false);
+            return LoadData(false);
+        }
+
+        protected override Task Refresh()
+        {
+            return LoadData(true);
         }
 
         private async Task LoadData(bool isRefresh)

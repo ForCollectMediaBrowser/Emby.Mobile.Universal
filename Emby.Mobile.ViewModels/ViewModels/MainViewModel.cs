@@ -25,17 +25,6 @@ namespace Emby.Mobile.ViewModels
 
         public ObservableCollection<UserViewViewModel> UserViews { get; set; }
 
-        public RelayCommand RefreshCommand
-        {
-            get
-            {
-                return new RelayCommand(async () =>
-                {
-                    await LoadData(true);
-                });
-            }
-        }
-
         public RelayCommand SignOutCommand
         {
             get
@@ -47,10 +36,14 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        protected override async Task PageLoaded()
+        protected override Task PageLoaded()
         {
-            await LoadData(false);
-            await base.PageLoaded();
+            return LoadData(false);
+        }
+
+        protected override Task Refresh()
+        {
+            return LoadData(true);
         }
 
         private async Task LoadData(bool isRefresh)

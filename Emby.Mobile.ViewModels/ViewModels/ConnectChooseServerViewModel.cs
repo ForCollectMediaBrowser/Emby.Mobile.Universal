@@ -43,17 +43,6 @@ namespace Emby.Mobile.ViewModels
 
         public ObservableCollection<ServerInfoViewModel> Servers { get; set; }
 
-        public RelayCommand RefreshCommand
-        {
-            get
-            {
-                return new RelayCommand(async () =>
-                {
-                    await LoadData(true);
-                });
-            }
-        }
-
         public RelayCommand ManualServerEntryCommand
         {
             get
@@ -67,9 +56,14 @@ namespace Emby.Mobile.ViewModels
 
         public RelayCommand SignOutCommand => new RelayCommand(async () => { await SignOutHelper.SignOut(Services); });
 
-        protected override async Task PageLoaded()
+        protected override Task PageLoaded()
         {
-            await LoadData(false);
+            return LoadData(false);
+        }
+
+        protected override Task Refresh()
+        {
+            return LoadData(true);
         }
 
         protected override void WireMessages()
