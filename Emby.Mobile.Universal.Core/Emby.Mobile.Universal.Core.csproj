@@ -144,6 +144,7 @@
     <Compile Include="NullServices\NullNavigationService.cs" />
     <Compile Include="NullServices\NullPlaybackService.cs" />
     <Compile Include="NullServices\NullServerInfoService.cs" />
+    <Compile Include="NullServices\NullSettingsService.cs" />
     <Compile Include="NullServices\NullStartUpService.cs" />
     <Compile Include="NullServices\NullStatusBarService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Services\DeviceInfoService.cs" />
     <Compile Include="Services\DispatcherService.cs" />
     <Compile Include="NullServices\NullAnalyticsService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Streaming\Windows10Profile.cs" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Emby.Universal.Core.rd.xml" />

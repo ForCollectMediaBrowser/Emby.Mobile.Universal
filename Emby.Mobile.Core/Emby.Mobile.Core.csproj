@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Playback\PlayerType.cs" />
     <Compile Include="Playback\PlaylistItem.cs" />
     <Compile Include="Playback\PlaylistState.cs" />
