@@ -22,5 +22,6 @@ namespace Emby.Mobile.Core.Interfaces
         IPlaybackService Playback { get; }
         IStartUpService StartUp { get; }
         IStatusBarService StatusBar { get; }
+        ISettingsService Settings { get; }
     }
 }

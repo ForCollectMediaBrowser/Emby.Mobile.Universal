@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
@@ -39,6 +40,8 @@ namespace Emby.Mobile.ViewModels
             // TODO: Check to see if OOBE has happened.
 
             // TODO: Load specific app settings
+            var settings = Services.Settings.Load();
+            settings.CopyItem(Services.Settings);
 
             // TODO: Load photo upload settings
 

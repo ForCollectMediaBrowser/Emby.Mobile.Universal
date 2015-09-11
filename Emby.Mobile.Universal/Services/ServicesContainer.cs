@@ -25,7 +25,8 @@ namespace Emby.Mobile.Universal.Services
             IAnalyticsService analytics,
             IPlaybackService playback,
             IStartUpService startUp,
-            IStatusBarService statusBar)
+            IStatusBarService statusBar,
+            ISettingsService settings)
         {
             Log = log;
             NavigationService = navigationService;
@@ -43,6 +44,7 @@ namespace Emby.Mobile.Universal.Services
             Playback = playback;
             StartUp = startUp;
             StatusBar = statusBar;
+            Settings = settings;
         }
 
         public ILogger Log { get; }
@@ -61,5 +63,6 @@ namespace Emby.Mobile.Universal.Services
         public IPlaybackService Playback { get; }
         public IStartUpService StartUp { get; }
         public IStatusBarService StatusBar { get; }
+        public ISettingsService Settings { get; set; }
     }
 }

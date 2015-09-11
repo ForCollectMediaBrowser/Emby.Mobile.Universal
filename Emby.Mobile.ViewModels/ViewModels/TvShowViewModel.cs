@@ -60,9 +60,8 @@ namespace Emby.Mobile.ViewModels
                         ItemFields.MediaSources,
                         ItemFields.SyncInfo
                     },
-                    // TODO: When we have settings we need to sort this out
-                    //IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                    //IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
+                    IsMissing = Services.Settings.ShowMissingEpisodes,
+                    IsVirtualUnaired = Services.Settings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting seasons for TV Show [{0}] ({1})", Item.Name, Item.ItemInfo.Id);

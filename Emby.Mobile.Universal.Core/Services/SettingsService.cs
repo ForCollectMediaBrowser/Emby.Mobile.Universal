@@ -7,12 +7,10 @@ namespace Emby.Mobile.Universal.Core.Services
     public class SettingsService : ISettingsService
     {
         private const string SettingsServiceKey = "SettingsServiceKey";
-        private readonly IApplicationSettingsService _settings;
         private readonly IApplicationSettingsServiceHandler _roamingSettings;
 
         public SettingsService(IApplicationSettingsService settings)
         {
-            _settings = settings;
             _roamingSettings = settings.Roaming;
         }
 
