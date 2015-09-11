@@ -4,6 +4,7 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
                    mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -12,16 +13,41 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        x:Name="Title" />
             <TextBlock Text="(TV Show)"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Style="{StaticResource BodyTextBlockStyle}"
                        x:Name="MovieText"
                        Margin="12,0"
-                       RelativePanel.RightOf="Title" />
+                       RelativePanel.RightOf="Title"
+                       RelativePanel.AlignVerticalCenterWith="Title"/>
             <Image x:Name="PrimaryImage"
                    Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
                    MaxHeight="200"
                    MaxWidth="200"
                    Stretch="Uniform"
                    RelativePanel.Below="Title" />
+            <GridView ItemsSource="{x:Bind TvShow.Seasons, Mode=OneWay}"
+                      RelativePanel.Below="PrimaryImage">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:ItemViewModel">
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                Command="{x:Bind NavigateToItem}"
+                                ClickMode="Release">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{x:Bind PrimaryImageMedium}"
+                                       Height="150"
+                                       Stretch="Uniform"/>
+                                <TextBlock Text="{x:Bind Name}"
+                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>
