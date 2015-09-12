@@ -96,21 +96,29 @@ namespace Emby.Mobile.Universal.Services
         public async Task<bool> PlayItems(string[] itemIds, long? position)
         {
             var playlist = new List<PlaylistItem>();
-            foreach (string item in itemIds)
+            var tasks = itemIds.Select(item => GetAndAddItem(item, playlist)).ToList();
+
+            await Task.WhenAll(tasks);
+
+            var resultList = playlist.ToLookup(x => x.Id.ToString());
+            var sortedPlaylist = itemIds.SelectMany(id => resultList[id]).ToList();
+
+            return await PlayItems(sortedPlaylist, position ?? 0);
+        }
+
+        private async Task GetAndAddItem(string item, IList<PlaylistItem> playlist)
+        {
+            var dto = await _apiClient.GetItemAsync(item, _serverInfo?.ServerInfo?.Id);
+            if (dto != null)
             {
-                var dto = await _apiClient.GetItemAsync(item, _serverInfo?.ServerInfo?.Id);
-                if (dto != null)
-                {
-                    playlist.Add(new PlaylistItem(dto));
-                }
+                playlist.Add(new PlaylistItem(dto));
             }
-            return await PlayItems(playlist, position ?? 0);
         }
 
         public bool RegisterPlayer(IMediaPlayer player)
         {
             bool registrationSucceded = false;
-            if (!AvailablePlayers.Any(p => p.Id == player.Id))
+            if (AvailablePlayers.All(p => p.PlayerType != player.PlayerType))
             {
                 AvailablePlayers.Add(player);
                 registrationSucceded = true;

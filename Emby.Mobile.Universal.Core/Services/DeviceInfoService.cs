@@ -2,6 +2,8 @@
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using Windows.Foundation.Metadata;
+using Emby.Mobile.Universal.Core.Implementations;
+using MediaBrowser.Model.ApiClient;
 
 namespace Emby.Mobile.Universal.Core.Services
 {
@@ -11,9 +13,20 @@ namespace Emby.Mobile.Universal.Core.Services
         public bool SupportsVibrate => ApiInformation.IsTypePresent("Windows.Phone.Devices.Notification.VibrationDevice");
         public bool SupportsStatusBar => ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar");
 
-        public DeviceInfoService()
+        public DeviceInfoService(IDevice device)
         {
+            Device = device;
             DeviceFamily = GetDeviceFamily();
+        }
+
+        public IDevice Device { get; }
+        public void SetName(string name)
+        {
+            var device = Device as Device;
+            if (device != null)
+            {
+                device.DeviceName = name;
+            }
         }
 
         public DeviceFamily DeviceFamily { get; }

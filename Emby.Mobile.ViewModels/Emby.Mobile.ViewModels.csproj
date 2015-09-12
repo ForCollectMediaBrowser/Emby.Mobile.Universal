@@ -76,6 +76,7 @@
     <Compile Include="ViewModels\ManualLocalUserSignInViewModel.cs" />
     <Compile Include="ViewModels\ManualServerEntryViewModel.cs" />
     <Compile Include="ViewModels\SeasonViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StartupViewModel.cs" />
     <Compile Include="ViewModels\Entities\ServerInfoViewModel.cs" />
     <Compile Include="ViewModels\TvShowViewModel.cs" />

@@ -85,8 +85,6 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             _player.MediaEnded += Player_MediaEnded;
             _player.MediaFailed += Player_MediaFailed;
 
-            AppServices.PlaybackService.RegisterPlayer(this);
-
             Application.Current.Suspending += ForegroundApp_Suspending;
             Application.Current.Resuming += ForegroundApp_Resuming;
             BackgroundAudioCommunicationSettings.SaveSettingsValue(BackgroundAudioCommunicationSettings.AppState, AppState.Active.ToString());
