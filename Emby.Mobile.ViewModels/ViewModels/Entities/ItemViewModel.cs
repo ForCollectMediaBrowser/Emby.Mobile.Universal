@@ -45,7 +45,8 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(() =>
                 {
-                    
+                    //HACK Change this to the real deal.
+                    Services.Playback.PlayItem(ItemInfo);
                 });
             }
         }

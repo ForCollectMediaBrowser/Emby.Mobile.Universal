@@ -281,13 +281,18 @@
                 Value="0" />
         <Setter Property="Opacity"
                 Value="0" />
+        <Setter Property="Background"
+                Value="{ThemeResource  EmbyDarkGrayColor}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="mediaPlayers:MediaFoundationVideoPlayer">
-                    <MediaElement x:Name="Player"
+                    <Grid Background="{TemplateBinding Background}">
+                    <MediaElement x:Name="Player"                              
                                   Height="{TemplateBinding Height}"
                                   Width="{TemplateBinding Width}"
-                                  Opacity="{TemplateBinding Opacity}" />
+                                  Opacity="{TemplateBinding Opacity}"
+                                  AudioCategory="Movie" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

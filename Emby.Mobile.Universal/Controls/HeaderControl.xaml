@@ -115,7 +115,7 @@
             </core:DataTriggerBehavior>
             <core:DataTriggerBehavior Binding="{x:Bind Header.IsVisible, Mode=OneWay}"
                                       Value="False">
-                <core:GoToStateAction StateName="Normal" />
+                <core:GoToStateAction StateName="Hide" />
             </core:DataTriggerBehavior>
         </interactivity:Interaction.Behaviors>
         <Grid.ColumnDefinitions>

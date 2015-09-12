@@ -178,6 +178,7 @@
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Data\UserViewDataTemplateSelector.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\MediaElementStateExtensions.cs" />
     <Compile Include="Extensions\NavigationModeExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\NavigationParameters.cs" />
@@ -238,6 +239,9 @@
     </Compile>
     <Compile Include="Views\ManualServerEntryView.xaml.cs">
       <DependentUpon>ManualServerEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaFoundationVideoPlaybackView.xaml.cs">
+      <DependentUpon>MediaFoundationVideoPlaybackView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MovieView.xaml.cs">
       <DependentUpon>MovieView.xaml</DependentUpon>
@@ -397,6 +401,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ManualServerEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediaFoundationVideoPlaybackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

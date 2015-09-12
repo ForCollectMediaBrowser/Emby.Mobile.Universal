@@ -18,5 +18,17 @@
         /// Player is paused
         /// </summary>
         Paused = 3,
+        /// <summary>
+        /// Player is opening stream
+        /// </summary>
+        Opening = 4,
+        /// <summary>
+        /// Stream is closed
+        /// </summary>
+        Closed = 5,
+        /// <summary>
+        /// Player is buffering
+        /// </summary>
+        Buffering = 6,
     }
 }
