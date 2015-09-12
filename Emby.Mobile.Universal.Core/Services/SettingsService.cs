@@ -2,6 +2,7 @@
 using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Emby.Mobile.Universal.Core.Services
 {
@@ -10,6 +11,9 @@ namespace Emby.Mobile.Universal.Core.Services
         private const string SettingsServiceKey = "SettingsServiceKey";
         private readonly IApplicationSettingsServiceHandler _roamingSettings;
 
+        public SettingsService() { }
+
+        [PreferredConstructor]
         public SettingsService(IApplicationSettingsService settings)
         {
             _roamingSettings = settings.Roaming;
@@ -24,7 +28,7 @@ namespace Emby.Mobile.Universal.Core.Services
         public ISettingsService Load()
         {
             var settings = _roamingSettings.SafeGet<SettingsService>(SettingsServiceKey);
-            settings.CopyItem(this);
+            settings?.CopyItem(this);
             return this;
         }
 

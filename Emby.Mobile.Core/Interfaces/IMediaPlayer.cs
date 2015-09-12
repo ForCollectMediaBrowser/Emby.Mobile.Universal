@@ -1,8 +1,4 @@
 ﻿using Emby.Mobile.Core.Playback;
-using MediaBrowser.Model.Dlna;
-using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
-using MediaBrowser.Model.Net;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

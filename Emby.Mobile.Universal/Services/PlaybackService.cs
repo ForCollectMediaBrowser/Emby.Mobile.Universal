@@ -110,7 +110,7 @@ namespace Emby.Mobile.Universal.Services
         public bool RegisterPlayer(IMediaPlayer player)
         {
             bool registrationSucceded = false;
-            if (!AvailablePlayers.Any(p => p.Id == player.Id))
+            if (!AvailablePlayers.Any(p => p.PlayerType == player.PlayerType))
             {
                 AvailablePlayers.Add(player);
                 registrationSucceded = true;

@@ -79,7 +79,7 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToSettings()
         {
-            return false;
+            return Navigate<SettingsView>();
         }
 
         public bool NavigateToPreferences()

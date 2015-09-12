@@ -5,6 +5,7 @@
     "MediaBrowser.ApiClient": "3.0.0.626",
     "MediaBrowser.Common": "3.0.633",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "MvvmLightLibs": "5.2.0",
     "PropertyChanged.Fody": "1.50.3"
   },
   "frameworks": {
