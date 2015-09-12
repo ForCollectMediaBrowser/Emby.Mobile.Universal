@@ -40,6 +40,8 @@ namespace Emby.Mobile.ViewModels
                     {
                         Services.Settings.DeviceNames.Add(deviceId, DeviceName);
                     }
+
+                    Services.Device.SetName(DeviceName);
                 });
             }
         }
