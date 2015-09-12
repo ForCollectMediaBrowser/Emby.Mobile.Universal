@@ -12,45 +12,45 @@ namespace Emby.Mobile.Helpers
             switch (result.State)
             {
                 case ConnectionState.Unavailable:
-                    await services.MessageBox.ShowAsync("Could not find server");
-                    services.NavigationService.NavigateToConnectFirstRun();
+                    await services.UiInteractions.MessageBox.ShowAsync("Could not find server");
+                    services.UiInteractions.NavigationService.NavigateToConnectFirstRun();
                     break;
                 case ConnectionState.ServerSelection:
-                    services.NavigationService.NavigateToServerSelection();
+                    services.UiInteractions.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
-                    if (services.Authentication.SignedInUser == null)
+                    if (services.ServerInteractions.Authentication.SignedInUser == null)
                     {                        
-                        services.NavigationService.NavigateToChooseProfile();
+                        services.UiInteractions.NavigationService.NavigateToChooseProfile();
                     }
                     else
                     {
-                        services.Authentication.SetAuthenticationInfo();
+                        services.ServerInteractions.Authentication.SetAuthenticationInfo();
                         await services.StartUp.Startup();
 
-                        services.NavigationService.NavigateToHome();
+                        services.UiInteractions.NavigationService.NavigateToHome();
                     }
                     break;
                 case ConnectionState.SignedIn:
-                    if (services.Authentication.SignedInUser == null)
+                    if (services.ServerInteractions.Authentication.SignedInUser == null)
                     {
                         var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
-                        services.Authentication.SetUser(user);
-                        services.Authentication.SetAccessToken(apiClient.AccessToken);
+                        services.ServerInteractions.Authentication.SetUser(user);
+                        services.ServerInteractions.Authentication.SetAccessToken(apiClient.AccessToken);
                     }
 
-                    if (services.Authentication.AuthenticationResult == null)
+                    if (services.ServerInteractions.Authentication.AuthenticationResult == null)
                     {
-                        services.Authentication.SetAccessToken(apiClient.AccessToken);
+                        services.ServerInteractions.Authentication.SetAccessToken(apiClient.AccessToken);
                     }
 
                     await services.StartUp.Startup();
 
-                    services.NavigationService.NavigateToHome();
-                    services.NavigationService.ClearBackStack();
+                    services.UiInteractions.NavigationService.NavigateToHome();
+                    services.UiInteractions.NavigationService.ClearBackStack();
                     break;
                 case ConnectionState.ConnectSignIn:
-                    services.NavigationService.NavigateToConnectFirstRun();
+                    services.UiInteractions.NavigationService.NavigateToConnectFirstRun();
                     break;
             }
         }

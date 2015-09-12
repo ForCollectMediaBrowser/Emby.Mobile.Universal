@@ -32,6 +32,13 @@ namespace Emby.Mobile.Universal
         {
             AppServices.Log.ErrorException("UnhandledException", e.Exception);
             AppServices.Anayltics.SendUnhandledException(e.Exception);
+
+            SaveSettings();
+        }
+
+        private static void SaveSettings()
+        {
+            SimpleIoc.Default.GetInstance<ISettingsService>().Save();
         }
 
         /// <summary>
@@ -110,7 +117,9 @@ namespace Emby.Mobile.Universal
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            
+            SaveSettings();
+            
             deferral.Complete();
         }
     }

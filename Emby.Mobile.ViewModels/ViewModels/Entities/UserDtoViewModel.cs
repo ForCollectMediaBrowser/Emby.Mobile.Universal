@@ -112,8 +112,8 @@ namespace Emby.Mobile.ViewModels.Entities
                 if (await AuthenticationService.SignIn(username, password))
                 {
                     success = true;
-                    Services.NavigationService.NavigateToHome();
-                    Services.NavigationService.ClearBackStack();
+                    Services.UiInteractions.NavigationService.NavigateToHome();
+                    Services.UiInteractions.NavigationService.ClearBackStack();
                 }
             }
             catch (HttpException ex)

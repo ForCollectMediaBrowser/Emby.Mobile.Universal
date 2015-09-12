@@ -38,12 +38,12 @@ namespace Emby.Mobile.ViewModels.Entities
                 {
                     SetProgressBar(Resources.SysTrayConnecting);
 
-                    var result = await Services.ConnectionManager.Connect(ServerInfo);
+                    var result = await Services.ServerInteractions.ConnectionManager.Connect(ServerInfo);
 
                     if (result.State == ConnectionState.Unavailable)
                     {
                         Log.Info("Invalid connection details");
-                        await Services.MessageBox.ShowAsync(Resources.ErrorUnableToConnect);
+                        await Services.UiInteractions.MessageBox.ShowAsync(Resources.ErrorUnableToConnect);
                     }
                     else
                     {
@@ -74,8 +74,8 @@ namespace Emby.Mobile.ViewModels.Entities
 
         private void SaveServer(ServerInfo server)
         {
-            Services.ServerInfo.SetServerInfo(server);
-            Services.ServerInfo.Save();
+            Services.ServerInteractions.ServerInfo.SetServerInfo(server);
+            Services.ServerInteractions.ServerInfo.Save();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Emby.Mobile.ViewModels
                 return new RelayCommand(() =>
                 {
                     Cancel();
-                    Services.NavigationService.NavigateToManualServerEntry();
+                    Services.UiInteractions.NavigationService.NavigateToManualServerEntry();
                 });
             }
         }
@@ -47,7 +47,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.Launcher.LaunchUriAsync("http://emby.media/pin");
+                    Services.UiInteractions.Launcher.LaunchUriAsync("http://emby.media/pin");
                 });
             }
         }
@@ -92,7 +92,7 @@ namespace Emby.Mobile.ViewModels
                         break;
 
                     case PinResult.Success:
-                        var connectResult = await Services.ConnectionManager.Connect();
+                        var connectResult = await Services.ServerInteractions.ConnectionManager.Connect();
 
                         AuthenticationService.SetConnectUser(connectResult.ConnectUser);
 

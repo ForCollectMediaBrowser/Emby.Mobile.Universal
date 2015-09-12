@@ -46,7 +46,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToManualServerEntry();
+                    Services.UiInteractions.NavigationService.NavigateToManualServerEntry();
                 });
             }
         }
@@ -78,7 +78,7 @@ namespace Emby.Mobile.ViewModels
 
             try
             {
-                var servers = await Services.ConnectionManager.GetAvailableServers();
+                var servers = await Services.ServerInteractions.ConnectionManager.GetAvailableServers();
 
                 if (servers.IsNullOrEmpty())
                 {

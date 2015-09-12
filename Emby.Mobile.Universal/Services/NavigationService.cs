@@ -89,7 +89,7 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToItem(BaseItemDto item)
         {
-            var value = false;
+            bool value;
 
             var type = item.Type.ToLower();
             if (type.Contains("collectionfolder")) type = "collectionfolder";
@@ -111,12 +111,14 @@ namespace Emby.Mobile.Universal.Services
                     value = Navigate<MovieView>(item);
                     break;
                 case "series":
-                    value = Navigate<TvShowView>();
+                    value = Navigate<TvShowView>(item);
                     break;
-                //    case "season":
-                //        break;
-                //    case "episode":
-                //        break;
+                case "season":
+                    value = Navigate<SeasonView>(item);
+                    break;
+                case "episode":
+                    value = Navigate<EpisodeView>(item);
+                    break;
                 //    case "trailer":
                 //        break;
                 //    case "musicartist":

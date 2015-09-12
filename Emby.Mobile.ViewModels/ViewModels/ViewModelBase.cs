@@ -35,17 +35,17 @@ namespace Emby.Mobile.ViewModels
 
         protected void ShowStatusBarWarning(string text)
         {            
-            Services.StatusBar.DisplayWarning(text);            
+            Services.UiInteractions.StatusBar.DisplayWarning(text);            
         }
 
         protected void ShowStatusBarError(string text)
         {
-            Services.StatusBar.DisplayError(text);
+            Services.UiInteractions.StatusBar.DisplayError(text);
         }
 
         protected void ShowStatusBarMessage(string text)
         {
-            Services.StatusBar.DisplayMessage(text);
+            Services.UiInteractions.StatusBar.DisplayMessage(text);
         }
 
         protected void SetProgressBar(string text)
@@ -54,7 +54,7 @@ namespace Emby.Mobile.ViewModels
             ProgressText = text;
             if (UseSystemForProgress)
             {
-                Services.StatusBar.DisplayIndeterminateStatus(text);
+                Services.UiInteractions.StatusBar.DisplayIndeterminateStatus(text);
             }
 
             UpdateProperties();
@@ -66,7 +66,7 @@ namespace Emby.Mobile.ViewModels
             ProgressText = string.Empty;
             if (UseSystemForProgress)
             {
-                Services.StatusBar.DisplayIndeterminateStatus(string.Empty);
+                Services.UiInteractions.StatusBar.DisplayIndeterminateStatus(string.Empty);
             }
 
             UpdateProperties();
@@ -82,8 +82,8 @@ namespace Emby.Mobile.ViewModels
         public bool ProgressIsVisible { get; set; }
         public string ProgressText { get; set; }
         
-        protected IApiClient ApiClient => Services.ConnectionManager.GetApiClient(Services?.ServerInfo?.ServerInfo?.Id);
-        protected IAuthenticationService AuthenticationService => Services.Authentication;
+        protected IApiClient ApiClient => Services.ServerInteractions.ConnectionManager.GetApiClient(Services.ServerInteractions.ServerInfo.ServerInfo?.Id);
+        protected IAuthenticationService AuthenticationService => Services.ServerInteractions.Authentication;
         protected IAnalyticsService Analytics => Services.Analytics;
     }
 }

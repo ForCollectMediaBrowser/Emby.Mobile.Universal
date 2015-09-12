@@ -57,12 +57,13 @@ namespace Emby.Mobile.Universal.Controls
             base.OnNavigatedFrom(e);
         }
 
-        protected virtual void SetItem<TViewModelType>(BaseItemDto item)
+        protected virtual void SetItem<TViewModelType>(BaseItemDto item, string itemKey = null)
             where TViewModelType : IItemSettable
         {
             if (item != null)
             {
-                var vm = ViewModelLocator.Get<TViewModelType>(item.Id);
+                var id = itemKey ?? item.Id;
+                var vm = ViewModelLocator.Get<TViewModelType>(id);
                 if (vm.Item == null)
                 {
                     vm.SetItem(item);

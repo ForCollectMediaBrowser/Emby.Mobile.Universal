@@ -34,7 +34,7 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToItem(ItemInfo);
+                    Services.UiInteractions.NavigationService.NavigateToItem(ItemInfo);
                 });
             }
         }
