@@ -4,8 +4,15 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                   xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                    mc:Ignorable="d"
                    DataContext="{Binding Settings, Source={StaticResource Locator}}">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
