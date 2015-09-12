@@ -13,6 +13,7 @@ namespace Emby.Mobile.Universal.Core.Services
         public SettingsService(IApplicationSettingsService settings)
         {
             _roamingSettings = settings.Roaming;
+            DeviceNames = new Dictionary<string, string>();
         }
 
         public bool ShowMissingEpisodes { get; set; }
