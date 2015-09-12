@@ -23,6 +23,8 @@ using MediaBrowser.Model.Entities;
 using Windows.Media.Playback;
 using Windows.UI.Xaml.Media;
 using System.Linq;
+using Emby.Mobile.Universal.Views;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -226,6 +228,8 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         public void Stop()
         {
             _player?.Stop();
+            AppServices.NavigationService.GoBack();
+            HidePlayer();
         }
 
         public void UnPause()
@@ -280,13 +284,8 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 return false;
             }
 
-            Width = double.NaN;
-            Height = double.NaN;
-            Opacity = 1;
-            HorizontalAlignment = HorizontalAlignment.Stretch;
-            VerticalAlignment = VerticalAlignment.Stretch;
-
-            _player.AreTransportControlsEnabled = true;
+            NavigateToPlaybackView();
+            ShowPlayer();
 
             var client = SimpleIoc.Default.GetInstance<IConnectionManager>().GetApiClient(item.Item);
             var profile = await ConnectionManagerFactory.GetProfileAsync();
@@ -390,5 +389,43 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }
             return previousItem;
         }
+
+        private void NavigateToPlaybackView()
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.CurrentSourcePageType != typeof(MediaFoundationVideoPlaybackView))
+            {
+                AppServices.NavigationService.Navigate<MediaFoundationVideoPlaybackView>();
+            }
+        }
+
+        private void ShowPlayer()
+        {
+            if (Opacity < 1)
+            {
+                var sb = new Storyboard();
+                sb.AddFadeAnim(this);
+                sb.Begin();
+                Width = double.NaN;
+                Height = double.NaN;
+                HorizontalAlignment = HorizontalAlignment.Stretch;
+                VerticalAlignment = VerticalAlignment.Stretch;
+                _player.AreTransportControlsEnabled = true;
+            }
+        }
+
+        private void HidePlayer()
+        {
+            if (Opacity > 0)
+            {
+                var sb = new Storyboard();
+                sb.AddFadeAnim(this, 0, 300);
+                sb.AddWidthAnim(this, ActualWidth, 0, 300);
+                sb.AddHeightAnim(this, ActualHeight, 0, 300);
+                sb.Begin();
+                _player.AreTransportControlsEnabled = false;
+            }
+        }
+
     }
 }

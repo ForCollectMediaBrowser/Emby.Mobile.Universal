@@ -235,6 +235,9 @@
     <Compile Include="Views\ManualServerEntryView.xaml.cs">
       <DependentUpon>ManualServerEntryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MediaFoundationVideoPlaybackView.xaml.cs">
+      <DependentUpon>MediaFoundationVideoPlaybackView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MovieView.xaml.cs">
       <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
@@ -383,6 +386,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ManualServerEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediaFoundationVideoPlaybackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
