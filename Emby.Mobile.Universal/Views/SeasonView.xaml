@@ -4,6 +4,7 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
                    mc:Ignorable="d"
                    d:DataContext="{Binding Season, Source={StaticResource Locator}}">
 
@@ -18,6 +19,30 @@
                    MaxWidth="200"
                    Stretch="Uniform"
                    RelativePanel.Below="Title" />
+            <GridView ItemsSource="{x:Bind Season.Episodes, Mode=OneWay}"
+                      RelativePanel.Below="PrimaryImage">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:ItemViewModel">
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                Command="{x:Bind NavigateToItem}"
+                                ClickMode="Release">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{x:Bind PrimaryImageMedium}"
+                                       Height="150"
+                                       Stretch="Uniform" />
+                                <TextBlock Text="{x:Bind Name}"
+                                           Style="{StaticResource BodyTextBlockStyle}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>

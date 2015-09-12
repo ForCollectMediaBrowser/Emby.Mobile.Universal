@@ -26,6 +26,7 @@ namespace Emby.Mobile.ViewModels
         public void SetItem(BaseItemDto item)
         {
             Item = new ItemViewModel(Services, item);
+            _seasonsLoaded = false;
         }
 
         protected override Task PageLoaded()
