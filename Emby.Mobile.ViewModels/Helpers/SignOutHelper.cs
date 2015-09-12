@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Emby.Mobile.Core.Interfaces;
-using Emby.Mobile.Helpers;
 
-namespace Emby.Mobile.Universal.Core.Helpers
+namespace Emby.Mobile.Helpers
 {
     public static class SignOutHelper
     {
@@ -16,19 +15,19 @@ namespace Emby.Mobile.Universal.Core.Helpers
                     services.ServerInfo.Clear();
                     if (ConnectHelper.UsePinLogin(services.Device.DeviceFamily))
                     {
-                        services.NavigationService.NavigateToPinLogin();
+                        services.UiInteractions.NavigationService.NavigateToPinLogin();
                     }
                     else
                     {
-                        services.NavigationService.NavigateToEmbyConnect();
+                        services.UiInteractions.NavigationService.NavigateToEmbyConnect();
                     }
                 }
                 else
                 {
-                    services.NavigationService.NavigateToChooseProfile();
+                    services.UiInteractions.NavigationService.NavigateToChooseProfile();
                 }
 
-                services.NavigationService.ClearBackStack();
+                services.UiInteractions.NavigationService.ClearBackStack();
             }
         }
     }

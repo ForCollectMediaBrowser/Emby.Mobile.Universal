@@ -43,7 +43,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToLocalServerSelection();
+                    Services.UiInteractions.NavigationService.NavigateToLocalServerSelection();
                 });
             }
         }
@@ -54,7 +54,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToEmbyConnectSignUp();
+                    Services.UiInteractions.NavigationService.NavigateToEmbyConnectSignUp();
                 });
             }
         }
@@ -85,7 +85,7 @@ namespace Emby.Mobile.ViewModels
 
                     await ConnectHelper.HandleConnectState(result, Services, ApiClient);
 
-                    Services.NavigationService.RemoveBackEntry();
+                    Services.UiInteractions.NavigationService.RemoveBackEntry();
                 }
             }
             catch (HttpException hex)

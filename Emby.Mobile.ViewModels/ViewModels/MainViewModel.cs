@@ -5,7 +5,7 @@ using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Core.Strings;
-using Emby.Mobile.Universal.Core.Helpers;
+using Emby.Mobile.Helpers;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;

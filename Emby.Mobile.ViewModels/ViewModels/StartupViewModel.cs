@@ -55,20 +55,20 @@ namespace Emby.Mobile.ViewModels
             {
                 if (AuthenticationService.LoggedInConnectUser != null)
                 {
-                    Services.NavigationService.NavigateToServerSelection();
+                    Services.UiInteractions.NavigationService.NavigateToServerSelection();
                 }
                 else
                 {
                     if (ConnectHelper.UsePinLogin(Services.Device.DeviceFamily))
                     {
-                        Services.NavigationService.NavigateToPinLogin();
+                        Services.UiInteractions.NavigationService.NavigateToPinLogin();
                     }
                     else
                     {
-                        Services.NavigationService.NavigateToFirstRun();
+                        Services.UiInteractions.NavigationService.NavigateToFirstRun();
                     }
 
-                    Services.NavigationService.RemoveBackEntry();
+                    Services.UiInteractions.NavigationService.RemoveBackEntry();
                 }
             }
 

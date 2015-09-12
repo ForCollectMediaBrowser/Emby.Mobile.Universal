@@ -4,7 +4,6 @@ using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Helpers;
-using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
@@ -70,7 +69,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToSettings();
+                    Services.UiInteractions.NavigationService.NavigateToSettings();
                 });
             }
         }
@@ -81,7 +80,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToPreferences();
+                    Services.UiInteractions.NavigationService.NavigateToPreferences();
                 });
             }
         }
@@ -114,8 +113,8 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToHome();
-                    Services.NavigationService.ClearBackStack();
+                    Services.UiInteractions.NavigationService.NavigateToHome();
+                    Services.UiInteractions.NavigationService.ClearBackStack();
                 });
             }
         }

@@ -11,28 +11,28 @@ namespace Emby.Mobile.Helpers
             var isConnectUser = services.Authentication.SignedInUsingConnect;
             if (isConnectUser)
             {
-                services.NavigationService.NavigateToServerSelection();
-                services.NavigationService.ClearBackStack();
+                services.UiInteractions.NavigationService.NavigateToServerSelection();
+                services.UiInteractions.NavigationService.ClearBackStack();
             }
             else
             {
                 if (services.Authentication.IsSignedIn)
                 {
-                    var result = await services.MessageBox.ShowAsync(Resources.MessageSignOutOfCurrentUser, Resources.MessageAreYouSureTitle, new[] {Resources.LabelYes, Resources.LabelNo});
+                    var result = await services.UiInteractions.MessageBox.ShowAsync(Resources.MessageSignOutOfCurrentUser, Resources.MessageAreYouSureTitle, new[] {Resources.LabelYes, Resources.LabelNo});
                     if (result == 0)
                     {
                         if (await services.Authentication.SignOut(true))
                         {
-                            services.NavigationService.NavigateToManualServerEntry();
-                            services.NavigationService.ClearBackStack();
+                            services.UiInteractions.NavigationService.NavigateToManualServerEntry();
+                            services.UiInteractions.NavigationService.ClearBackStack();
                         }
                     }
                 }
                 else
                 {
                     services.ServerInfo.Clear();
-                    services.NavigationService.NavigateToManualServerEntry();
-                    services.NavigationService.ClearBackStack();
+                    services.UiInteractions.NavigationService.NavigateToManualServerEntry();
+                    services.UiInteractions.NavigationService.ClearBackStack();
                 }
             }
         }

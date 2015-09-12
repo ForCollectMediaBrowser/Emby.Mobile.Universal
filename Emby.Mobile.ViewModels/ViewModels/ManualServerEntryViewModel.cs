@@ -69,7 +69,7 @@ namespace Emby.Mobile.ViewModels
                     {
                         if (!success)
                         {
-                            await Services.MessageBox.ShowAsync("ErrorUnableToConnect");
+                            await Services.UiInteractions.MessageBox.ShowAsync("ErrorUnableToConnect");
                         }
 
                         SetProgressBar();
@@ -86,7 +86,7 @@ namespace Emby.Mobile.ViewModels
                 {
                     if (Uri.IsWellFormedUriString(DisplayUrl, UriKind.Absolute))
                     {
-                        Services.Launcher.LaunchUriAsync(DisplayUrl);
+                        Services.UiInteractions.Launcher.LaunchUriAsync(DisplayUrl);
                     }
                 });
             }
@@ -98,7 +98,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToEmbyConnect();
+                    Services.UiInteractions.NavigationService.NavigateToEmbyConnect();
                 });
             }
         }

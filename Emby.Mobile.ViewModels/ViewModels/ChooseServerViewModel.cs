@@ -46,7 +46,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToManualServerEntry();
+                    Services.UiInteractions.NavigationService.NavigateToManualServerEntry();
                 });
             }
         }

@@ -43,7 +43,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     if (result.State == ConnectionState.Unavailable)
                     {
                         Log.Info("Invalid connection details");
-                        await Services.MessageBox.ShowAsync(Resources.ErrorUnableToConnect);
+                        await Services.UiInteractions.MessageBox.ShowAsync(Resources.ErrorUnableToConnect);
                     }
                     else
                     {

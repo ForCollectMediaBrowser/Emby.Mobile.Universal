@@ -7,62 +7,74 @@ using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 
 namespace Emby.Mobile.Universal.Services
 {
+    // ReSharper disable once InconsistentNaming
+    public class UIInteractions
+    {
+        public UIInteractions(
+            INavigationService navigationService,
+            IMessageBoxService messageBox,
+            ILauncherService launcher,
+            IStatusBarService statusBar)
+        {
+            NavigationService = navigationService;
+            MessageBox = messageBox;
+            Launcher = launcher;
+            StatusBar = statusBar;
+        }
+
+        public INavigationService NavigationService { get; }
+        public ILauncherService Launcher { get; }
+        public IMessageBoxService MessageBox { get; }
+        public IStatusBarService StatusBar { get; }
+    }
+
     public class ServicesContainer : IServices
     {
         public ServicesContainer(
             ILogger log,
-            INavigationService navigationService,
             IConnectionManager connectionManager,
-            IMessageBoxService messageBox,
             IServerInfoService serverInfo,
             IApplicationSettingsService applicationSettings,
             IStorageService storage,
             IAuthenticationService authentication,
             IMessengerService messenger,
             IDispatcherService dispatcher,
-            ILauncherService launcher,
             IDeviceInfoService device,
             IAnalyticsService analytics,
             IPlaybackService playback,
             IStartUpService startUp,
-            IStatusBarService statusBar,
-            ISettingsService settings)
+            ISettingsService settings,
+            IUIInteractions uiInteractions)
         {
             Log = log;
-            NavigationService = navigationService;
             ConnectionManager = connectionManager;
-            MessageBox = messageBox;
             ServerInfo = serverInfo;
             ApplicationSettings = applicationSettings;
             Storage = storage;
             Authentication = authentication;
             Messenger = messenger;
             Dispatcher = dispatcher;
-            Launcher = launcher;
             Device = device;
             Analytics = analytics;
             Playback = playback;
             StartUp = startUp;
-            StatusBar = statusBar;
             Settings = settings;
+            UiInteractions = uiInteractions;
         }
 
+        public IUIInteractions UiInteractions { get; }
         public ILogger Log { get; }
-        public INavigationService NavigationService { get; }
         public IConnectionManager ConnectionManager { get; }
         public IAuthenticationService Authentication { get; }
-        public IMessageBoxService MessageBox { get; }
         public IServerInfoService ServerInfo { get; }
         public IApplicationSettingsService ApplicationSettings { get; }
         public IStorageService Storage { get; }
         public IDispatcherService Dispatcher { get; }
         public IMessengerService Messenger { get; }    
-        public ILauncherService Launcher { get; }
         public IDeviceInfoService Device { get; }
         public IAnalyticsService Analytics { get; }
         public IPlaybackService Playback { get; }
         public IStartUpService StartUp { get; }
-        public IStatusBarService StatusBar { get; }
         public ISettingsService Settings { get; set; }
     }
 }

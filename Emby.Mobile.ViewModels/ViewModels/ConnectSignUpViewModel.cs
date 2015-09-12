@@ -55,9 +55,9 @@ namespace Emby.Mobile.ViewModels
                         switch (response)
                         {
                             case ConnectSignupResponse.Success:
-                                await Services.MessageBox.ShowAsync(Resources.MessageSignUpSuccessful, Resources.MessageTitleSuccess, new[] { Resources.ButtonOk });
-                                Services.NavigationService.NavigateToEmbyConnect();
-                                Services.NavigationService.ClearBackStack();
+                                await Services.UiInteractions.MessageBox.ShowAsync(Resources.MessageSignUpSuccessful, Resources.MessageTitleSuccess, new[] { Resources.ButtonOk });
+                                Services.UiInteractions.NavigationService.NavigateToEmbyConnect();
+                                Services.UiInteractions.NavigationService.ClearBackStack();
                                 Reset();
                                 break;
                             case ConnectSignupResponse.EmailInUse:

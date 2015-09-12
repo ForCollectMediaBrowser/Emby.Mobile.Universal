@@ -12,23 +12,23 @@ namespace Emby.Mobile.Helpers
             switch (result.State)
             {
                 case ConnectionState.Unavailable:
-                    await services.MessageBox.ShowAsync("Could not find server");
-                    services.NavigationService.NavigateToConnectFirstRun();
+                    await services.UiInteractions.MessageBox.ShowAsync("Could not find server");
+                    services.UiInteractions.NavigationService.NavigateToConnectFirstRun();
                     break;
                 case ConnectionState.ServerSelection:
-                    services.NavigationService.NavigateToServerSelection();
+                    services.UiInteractions.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
                     if (services.Authentication.SignedInUser == null)
                     {                        
-                        services.NavigationService.NavigateToChooseProfile();
+                        services.UiInteractions.NavigationService.NavigateToChooseProfile();
                     }
                     else
                     {
                         services.Authentication.SetAuthenticationInfo();
                         await services.StartUp.Startup();
 
-                        services.NavigationService.NavigateToHome();
+                        services.UiInteractions.NavigationService.NavigateToHome();
                     }
                     break;
                 case ConnectionState.SignedIn:
@@ -46,11 +46,11 @@ namespace Emby.Mobile.Helpers
 
                     await services.StartUp.Startup();
 
-                    services.NavigationService.NavigateToHome();
-                    services.NavigationService.ClearBackStack();
+                    services.UiInteractions.NavigationService.NavigateToHome();
+                    services.UiInteractions.NavigationService.ClearBackStack();
                     break;
                 case ConnectionState.ConnectSignIn:
-                    services.NavigationService.NavigateToConnectFirstRun();
+                    services.UiInteractions.NavigationService.NavigateToConnectFirstRun();
                     break;
             }
         }
