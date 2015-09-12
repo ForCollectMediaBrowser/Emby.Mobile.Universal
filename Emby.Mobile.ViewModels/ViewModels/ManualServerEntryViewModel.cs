@@ -47,7 +47,7 @@ namespace Emby.Mobile.ViewModels
                     {
                         SetProgressBar(Resources.SysTrayConnecting);
 
-                        var result = await Services.ConnectionManager.Connect(DisplayUrl);
+                        var result = await Services.ServerInteractions.ConnectionManager.Connect(DisplayUrl);
 
                         if (result.State != ConnectionState.Unavailable)
                         {
@@ -55,7 +55,7 @@ namespace Emby.Mobile.ViewModels
                             var server = result.Servers.FirstOrDefault();
                             if (server != null)
                             {
-                                Services.ServerInfo.SetServerInfo(server);
+                                Services.ServerInteractions.ServerInfo.SetServerInfo(server);
                             }
 
                             await ConnectHelper.HandleConnectState(result, Services, ApiClient);

@@ -92,7 +92,7 @@ namespace Emby.Mobile.ViewModels
                         break;
 
                     case PinResult.Success:
-                        var connectResult = await Services.ConnectionManager.Connect();
+                        var connectResult = await Services.ServerInteractions.ConnectionManager.Connect();
 
                         AuthenticationService.SetConnectUser(connectResult.ConnectUser);
 

@@ -74,11 +74,11 @@ namespace Emby.Mobile.ViewModels
 
                 if (success)
                 {
-                    var result = await Services.ConnectionManager.Connect();
+                    var result = await Services.ServerInteractions.ConnectionManager.Connect();
                     if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
                     {
-                        Services.ServerInfo.SetServerInfo(result.Servers[0]);
-                        Services.ServerInfo.Save();
+                        Services.ServerInteractions.ServerInfo.SetServerInfo(result.Servers[0]);
+                        Services.ServerInteractions.ServerInfo.Save();
                     }
 
                     AuthenticationService.SetConnectUser(result.ConnectUser);

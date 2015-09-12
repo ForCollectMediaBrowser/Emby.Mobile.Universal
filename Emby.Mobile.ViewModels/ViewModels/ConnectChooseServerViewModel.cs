@@ -93,7 +93,7 @@ namespace Emby.Mobile.ViewModels
 
             try
             {
-                var connect = await Services.ConnectionManager.Connect();
+                var connect = await Services.ServerInteractions.ConnectionManager.Connect();
                 var servers = connect.Servers;
 
                 if (servers.IsNullOrEmpty())

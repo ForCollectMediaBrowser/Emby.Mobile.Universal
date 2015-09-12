@@ -8,7 +8,7 @@ namespace Emby.Mobile.Helpers
     {
         public static async Task ChangeServer(IServices services)
         {
-            var isConnectUser = services.Authentication.SignedInUsingConnect;
+            var isConnectUser = services.ServerInteractions.Authentication.SignedInUsingConnect;
             if (isConnectUser)
             {
                 services.UiInteractions.NavigationService.NavigateToServerSelection();
@@ -16,12 +16,12 @@ namespace Emby.Mobile.Helpers
             }
             else
             {
-                if (services.Authentication.IsSignedIn)
+                if (services.ServerInteractions.Authentication.IsSignedIn)
                 {
                     var result = await services.UiInteractions.MessageBox.ShowAsync(Resources.MessageSignOutOfCurrentUser, Resources.MessageAreYouSureTitle, new[] {Resources.LabelYes, Resources.LabelNo});
                     if (result == 0)
                     {
-                        if (await services.Authentication.SignOut(true))
+                        if (await services.ServerInteractions.Authentication.SignOut(true))
                         {
                             services.UiInteractions.NavigationService.NavigateToManualServerEntry();
                             services.UiInteractions.NavigationService.ClearBackStack();
@@ -30,7 +30,7 @@ namespace Emby.Mobile.Helpers
                 }
                 else
                 {
-                    services.ServerInfo.Clear();
+                    services.ServerInteractions.ServerInfo.Clear();
                     services.UiInteractions.NavigationService.NavigateToManualServerEntry();
                     services.UiInteractions.NavigationService.ClearBackStack();
                 }

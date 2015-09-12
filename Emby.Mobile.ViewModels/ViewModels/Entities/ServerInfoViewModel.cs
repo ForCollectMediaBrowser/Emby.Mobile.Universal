@@ -38,7 +38,7 @@ namespace Emby.Mobile.ViewModels.Entities
                 {
                     SetProgressBar(Resources.SysTrayConnecting);
 
-                    var result = await Services.ConnectionManager.Connect(ServerInfo);
+                    var result = await Services.ServerInteractions.ConnectionManager.Connect(ServerInfo);
 
                     if (result.State == ConnectionState.Unavailable)
                     {
@@ -74,8 +74,8 @@ namespace Emby.Mobile.ViewModels.Entities
 
         private void SaveServer(ServerInfo server)
         {
-            Services.ServerInfo.SetServerInfo(server);
-            Services.ServerInfo.Save();
+            Services.ServerInteractions.ServerInfo.SetServerInfo(server);
+            Services.ServerInteractions.ServerInfo.Save();
         }
     }
 }

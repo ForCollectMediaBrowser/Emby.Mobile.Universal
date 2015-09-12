@@ -19,29 +19,29 @@ namespace Emby.Mobile.Helpers
                     services.UiInteractions.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
-                    if (services.Authentication.SignedInUser == null)
+                    if (services.ServerInteractions.Authentication.SignedInUser == null)
                     {                        
                         services.UiInteractions.NavigationService.NavigateToChooseProfile();
                     }
                     else
                     {
-                        services.Authentication.SetAuthenticationInfo();
+                        services.ServerInteractions.Authentication.SetAuthenticationInfo();
                         await services.StartUp.Startup();
 
                         services.UiInteractions.NavigationService.NavigateToHome();
                     }
                     break;
                 case ConnectionState.SignedIn:
-                    if (services.Authentication.SignedInUser == null)
+                    if (services.ServerInteractions.Authentication.SignedInUser == null)
                     {
                         var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
-                        services.Authentication.SetUser(user);
-                        services.Authentication.SetAccessToken(apiClient.AccessToken);
+                        services.ServerInteractions.Authentication.SetUser(user);
+                        services.ServerInteractions.Authentication.SetAccessToken(apiClient.AccessToken);
                     }
 
-                    if (services.Authentication.AuthenticationResult == null)
+                    if (services.ServerInteractions.Authentication.AuthenticationResult == null)
                     {
-                        services.Authentication.SetAccessToken(apiClient.AccessToken);
+                        services.ServerInteractions.Authentication.SetAccessToken(apiClient.AccessToken);
                     }
 
                     await services.StartUp.Startup();

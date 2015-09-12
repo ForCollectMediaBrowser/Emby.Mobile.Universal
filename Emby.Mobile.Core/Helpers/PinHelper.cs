@@ -35,7 +35,7 @@ namespace Emby.Mobile.Core.Helpers
 
             try
             {
-                _pinInfo = await services.ConnectionManager.CreatePin();
+                _pinInfo = await services.ServerInteractions.ConnectionManager.CreatePin();
                 pinAcquired?.Invoke(_pinInfo.Pin);
 
                 _tcs = new TaskCompletionSource<PinResult>();
@@ -79,12 +79,12 @@ namespace Emby.Mobile.Core.Helpers
                 var services = state as IServices;
                 if (services == null) return;
 
-                var pinInfo = await services.ConnectionManager.GetPinStatus(_pinInfo);
+                var pinInfo = await services.ServerInteractions.ConnectionManager.GetPinStatus(_pinInfo);
                 if (pinInfo.IsConfirmed)
                 {
                     _timer.Dispose();
 
-                    await services.ConnectionManager.ExchangePin(_pinInfo);
+                    await services.ServerInteractions.ConnectionManager.ExchangePin(_pinInfo);
                     SetResult(PinResult.Success);
                 }
                 else if (pinInfo.IsExpired)

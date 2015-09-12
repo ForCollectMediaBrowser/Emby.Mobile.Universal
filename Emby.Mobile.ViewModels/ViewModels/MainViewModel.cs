@@ -21,7 +21,7 @@ namespace Emby.Mobile.ViewModels
             UserViews = new ObservableCollection<UserViewViewModel>();
         }
 
-        public string ConnectedTo => string.Format(Resources.LabelServerConnected, Services.ServerInfo?.ServerInfo?.Name);
+        public string ConnectedTo => string.Format(Resources.LabelServerConnected, Services.ServerInteractions.ServerInfo?.ServerInfo?.Name);
 
         public ObservableCollection<UserViewViewModel> UserViews { get; set; }
 

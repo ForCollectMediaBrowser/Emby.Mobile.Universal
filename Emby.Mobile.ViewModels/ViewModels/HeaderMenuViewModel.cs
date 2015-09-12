@@ -23,7 +23,7 @@ namespace Emby.Mobile.ViewModels
                     Start();
                 };
 
-                Services.ServerInfo.ServerInfoChanged += (sender, info) =>
+                Services.ServerInteractions.ServerInfo.ServerInfoChanged += (sender, info) =>
                 {
                     RaisePropertyChanged(() => ConnectedToServerAddress);
                     RaisePropertyChanged(() => ConnectedToServerName);
@@ -36,25 +36,25 @@ namespace Emby.Mobile.ViewModels
         public bool IsVisible { get; set; } = true;
         public string SearchText { get; set; }
         public bool CanChangeServer => AuthenticationService.SignedInUsingConnect;
-        public string ConnectedToServerName => Services.ServerInfo?.ServerInfo?.Name;
+        public string ConnectedToServerName => Services.ServerInteractions.ServerInfo?.ServerInfo?.Name;
         public string ConnectedToServerAddress => CreateToolTip();
 
         private string CreateToolTip()
         {
             var sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(Services.ServerInfo?.ServerInfo?.ManualAddress))
+            if (!string.IsNullOrEmpty(Services.ServerInteractions.ServerInfo?.ServerInfo?.ManualAddress))
             {
-                sb.AppendLine($"{Resources.LabelManualAddress}: {Services.ServerInfo?.ServerInfo?.ManualAddress}");
+                sb.AppendLine($"{Resources.LabelManualAddress}: {Services.ServerInteractions.ServerInfo?.ServerInfo?.ManualAddress}");
             }
             else
             {
-                if (!string.IsNullOrEmpty(Services.ServerInfo?.ServerInfo?.LocalAddress))
+                if (!string.IsNullOrEmpty(Services.ServerInteractions.ServerInfo?.ServerInfo?.LocalAddress))
                 {
-                    sb.AppendLine($"{Resources.LabelLocalAddress}: {Services.ServerInfo?.ServerInfo?.LocalAddress}");
+                    sb.AppendLine($"{Resources.LabelLocalAddress}: {Services.ServerInteractions.ServerInfo?.ServerInfo?.LocalAddress}");
                 }
-                if (!string.IsNullOrEmpty(Services.ServerInfo?.ServerInfo?.RemoteAddress))
+                if (!string.IsNullOrEmpty(Services.ServerInteractions.ServerInfo?.ServerInfo?.RemoteAddress))
                 {
-                    sb.AppendLine($"{Resources.LabelRemoteAddress}: {Services.ServerInfo?.ServerInfo?.RemoteAddress}");
+                    sb.AppendLine($"{Resources.LabelRemoteAddress}: {Services.ServerInteractions.ServerInfo?.ServerInfo?.RemoteAddress}");
                 }
             }
 
