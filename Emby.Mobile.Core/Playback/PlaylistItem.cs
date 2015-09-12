@@ -28,7 +28,13 @@ namespace Emby.Mobile.Core.Playback
                 streamInfo.StartPositionTicks = startPositionTicks;
                 return streamInfo;
             }
-
+            else if (Item.IsVideo)
+            {
+                var videoOptions = GetVideoOptions(Item, null, null, profile, apiClient.DeviceId);
+                var streamInfo = await playbackManager.GetVideoStreamInfo(Item.ServerId, videoOptions, isOffline, apiClient);
+                streamInfo.StartPositionTicks = startPositionTicks;
+                return streamInfo;
+            }
             throw new NotImplementedException();
         }
 
@@ -52,6 +58,22 @@ namespace Emby.Mobile.Core.Playback
         {
             //TODO Use application Transcode settings, if null default to 2512000
             return 2512000;
+        }
+
+        private VideoOptions GetVideoOptions(BaseItemDto item, int? videoBitrate, int? audioBitrate, DeviceProfile profile, string deviceId)
+        {
+            var options = new VideoOptions()
+            {
+                Profile = profile,
+                ItemId = item.Id,
+                DeviceId = deviceId,
+                MaxBitrate = videoBitrate,
+                AudioTranscodingBitrate = audioBitrate,
+                MediaSources = item.MediaSources
+            };
+
+            options.MediaSourceId = item.MediaSources?[0]?.Id;
+            return options;
         }
     }
 }

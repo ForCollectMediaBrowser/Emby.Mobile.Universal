@@ -18,10 +18,9 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <mediaPlayers:MediaFoundationVideoPlayer Grid.Row="1" />
+                        
                         <controls:HeaderControl x:Name="Header"
                                                 VerticalAlignment="Top" />
-
                         <ContentControl x:Name="Content"
                                         Grid.Row="1"
                                         Content="{TemplateBinding Content}"
@@ -29,6 +28,7 @@
                                         VerticalContentAlignment="Stretch"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch" />
+                        <mediaPlayers:MediaFoundationVideoPlayer Grid.Row="1" />
                         <controls:StatusBarControl VerticalAlignment="Top"
                                                    x:Name="StatusBar"
                                                    Grid.RowSpan="2" />
