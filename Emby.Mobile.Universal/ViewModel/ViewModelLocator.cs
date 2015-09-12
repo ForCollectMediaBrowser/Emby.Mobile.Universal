@@ -36,6 +36,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<MovieViewModel>();
             Register<TvShowViewModel>();
             Register<SeasonViewModel>();
+            Register<SettingsViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -54,6 +55,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public MovieViewModel Movie => Get<MovieViewModel>();
         public TvShowViewModel TvShow => Get<TvShowViewModel>();
         public SeasonViewModel Season => Get<SeasonViewModel>();
+        public SettingsViewModel Settings => Get<SettingsViewModel>();
         
         public static void Cleanup()
         {

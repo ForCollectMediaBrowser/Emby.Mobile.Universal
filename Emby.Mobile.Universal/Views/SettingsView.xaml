@@ -4,9 +4,15 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                   mc:Ignorable="d">
+                   mc:Ignorable="d"
+                   DataContext="{Binding Settings, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Orientation="Vertical">
+            <TextBox Text="{Binding DeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Header="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=WatermarkDeviceName}"/>
+            <Button Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSetDeviceName}"
+                    Command="{x:Bind Settings.SaveDeviceNameCommand}"/>
+        </StackPanel>
     </Grid>
 </controls:EmbyPage>

@@ -1405,4 +1405,10 @@
   <data name="LabelRemoteAddress" xml:space="preserve">
     <value>Remote address</value>
   </data>
+  <data name="WatermarkDeviceName" xml:space="preserve">
+    <value>Device name</value>
+  </data>
+  <data name="LabelSetDeviceName" xml:space="preserve">
+    <value>Set device name</value>
+  </data>
 </root>

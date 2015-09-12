@@ -2429,6 +2429,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set device name.
+        /// </summary>
+        public static string LabelSetDeviceName {
+            get {
+                return ResourceManager.GetString("LabelSetDeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to show all items....
         /// </summary>
         public static string LabelShowAllItems {
@@ -3866,6 +3875,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string Unpin {
             get {
                 return ResourceManager.GetString("Unpin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device name.
+        /// </summary>
+        public static string WatermarkDeviceName {
+            get {
+                return ResourceManager.GetString("WatermarkDeviceName", resourceCulture);
             }
         }
         
