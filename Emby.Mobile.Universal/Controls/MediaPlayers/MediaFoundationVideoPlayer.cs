@@ -392,6 +392,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void NavigateToPlaybackView()
         {
+            //TODO Part of this should moved to NavigationService
             var rootFrame = Window.Current.Content as Frame;
             if (rootFrame != null && rootFrame.CurrentSourcePageType != typeof(MediaFoundationVideoPlaybackView))
             {
@@ -426,6 +427,5 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 _player.AreTransportControlsEnabled = false;
             }
         }
-
     }
 }
