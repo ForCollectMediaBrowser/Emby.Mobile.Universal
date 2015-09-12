@@ -56,6 +56,8 @@ namespace Emby.Mobile.Universal.Services
                 await AddRuntimeServices();
             }
 
+            SimpleIoc.Default.RegisterIf<IUIInteractions, UIInteractions>();
+            SimpleIoc.Default.RegisterIf<IServerInteractions, ServerInteractions>();
             SimpleIoc.Default.RegisterIf<IServices, ServicesContainer>();
         }
 

@@ -45,7 +45,7 @@ namespace Emby.Mobile.ViewModels
 
             // TODO: Load photo upload settings
 
-            _serverInfo = Services.ServerInfo.Load();
+            _serverInfo = Services.ServerInteractions.ServerInfo.Load();
 
             if (_serverInfo != null)
             {
@@ -55,20 +55,20 @@ namespace Emby.Mobile.ViewModels
             {
                 if (AuthenticationService.LoggedInConnectUser != null)
                 {
-                    Services.NavigationService.NavigateToServerSelection();
+                    Services.UiInteractions.NavigationService.NavigateToServerSelection();
                 }
                 else
                 {
                     if (ConnectHelper.UsePinLogin(Services.Device.DeviceFamily))
                     {
-                        Services.NavigationService.NavigateToPinLogin();
+                        Services.UiInteractions.NavigationService.NavigateToPinLogin();
                     }
                     else
                     {
-                        Services.NavigationService.NavigateToFirstRun();
+                        Services.UiInteractions.NavigationService.NavigateToFirstRun();
                     }
 
-                    Services.NavigationService.RemoveBackEntry();
+                    Services.UiInteractions.NavigationService.RemoveBackEntry();
                 }
             }
 
@@ -86,7 +86,7 @@ namespace Emby.Mobile.ViewModels
 
             if (_serverInfo != null)
             {
-                result = await Services.ConnectionManager.Connect(_serverInfo);
+                result = await Services.ServerInteractions.ConnectionManager.Connect(_serverInfo);
             }
 
             if (result != null && result.State == ConnectionState.Unavailable && _serverInfo != null)
@@ -99,7 +99,7 @@ namespace Emby.Mobile.ViewModels
 
             if (result == null || result.State == ConnectionState.Unavailable)
             {
-                result = await Services.ConnectionManager.Connect();
+                result = await Services.ServerInteractions.ConnectionManager.Connect();
             }
 
             var tcs = new TaskCompletionSource<int>();

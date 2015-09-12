@@ -9,8 +9,8 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using Emby.Mobile.Core.Strings;
+using Emby.Mobile.Helpers;
 using Emby.Mobile.Messages;
-using Emby.Mobile.Universal.Core.Helpers;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.Mobile.ViewModels
@@ -49,7 +49,7 @@ namespace Emby.Mobile.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Services.NavigationService.NavigateToManualServerEntry();
+                    Services.UiInteractions.NavigationService.NavigateToManualServerEntry();
                 });
             }
         }
@@ -93,7 +93,7 @@ namespace Emby.Mobile.ViewModels
 
             try
             {
-                var connect = await Services.ConnectionManager.Connect();
+                var connect = await Services.ServerInteractions.ConnectionManager.Connect();
                 var servers = connect.Servers;
 
                 if (servers.IsNullOrEmpty())

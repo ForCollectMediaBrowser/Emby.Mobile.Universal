@@ -197,9 +197,11 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\PlaybackService.cs" />
     <Compile Include="Services\ServerInfoService.cs" />
+    <Compile Include="Services\ServerInteractions.cs" />
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="Services\StartUpService.cs" />
     <Compile Include="Services\StatusBarService.cs" />
+    <Compile Include="Services\UIInteractions.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChooseLocalServerView.xaml.cs">
       <DependentUpon>ChooseLocalServerView.xaml</DependentUpon>

@@ -38,8 +38,8 @@ namespace Emby.Mobile.ViewModels
 
                         if (await AuthenticationService.SignIn(Username, Password))
                         {
-                            Services.NavigationService.NavigateToHome();
-                            Services.NavigationService.ClearBackStack();
+                            Services.UiInteractions.NavigationService.NavigateToHome();
+                            Services.UiInteractions.NavigationService.ClearBackStack();
                         }
                     }
                     catch (HttpException ex)
