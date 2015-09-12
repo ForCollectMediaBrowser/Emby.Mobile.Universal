@@ -40,8 +40,9 @@ namespace Emby.Mobile.ViewModels
             // TODO: Check to see if OOBE has happened.
 
             // TODO: Load specific app settings
-            var settings = Services.Settings.Load();
-            settings.CopyItem(Services.Settings);
+            Services.Settings.Load();
+
+            SetDeviceName();
 
             // TODO: Load photo upload settings
 
@@ -75,6 +76,16 @@ namespace Emby.Mobile.ViewModels
             SetProgressBar();
 
             return task;
+        }
+
+        private void SetDeviceName()
+        {
+            var deviceId = Services.Device.Device.DeviceId;
+            var name = Services.Settings.DeviceNames.ContainsKey(deviceId)
+                ? Services.Settings.DeviceNames[deviceId]
+                : Services.Device.Device.DeviceName;
+
+            Services.Device.SetName(name);
         }
 
         private async Task<int> ConnectToServer()

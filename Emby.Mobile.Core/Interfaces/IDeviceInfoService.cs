@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.Core.Helpers;
+using MediaBrowser.Model.ApiClient;
 
 namespace Emby.Mobile.Core.Interfaces
 {
@@ -8,5 +9,7 @@ namespace Emby.Mobile.Core.Interfaces
         bool SupportsVibrate { get; }
         bool SupportsStatusBar { get; }
         DeviceFamily DeviceFamily { get; }
+        IDevice Device { get; }
+        void SetName(string name);
     }
 }

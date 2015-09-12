@@ -18,7 +18,7 @@ namespace Emby.Mobile.Universal.Core.Implementations
     {
         public string DeviceId { get; }
 
-        public string DeviceName { get; }
+        public string DeviceName { get; set; }
 
         public event EventHandler<EventArgs> ResumeFromSleep;
 
