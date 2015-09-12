@@ -99,7 +99,11 @@ namespace Emby.Mobile.Universal.Services
             var tasks = itemIds.Select(item => GetAndAddItem(item, playlist)).ToList();
 
             await Task.WhenAll(tasks);
-            return await PlayItems(playlist, position ?? 0);
+
+            var resultList = playlist.ToLookup(x => x.Id.ToString());
+            var sortedPlaylist = itemIds.SelectMany(id => resultList[id]).ToList();
+
+            return await PlayItems(sortedPlaylist, position ?? 0);
         }
 
         private async Task GetAndAddItem(string item, IList<PlaylistItem> playlist)
