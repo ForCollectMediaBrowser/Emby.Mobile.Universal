@@ -1,11 +1,12 @@
 ﻿using Cimbalino.Toolkit.Services;
+using Emby.Mobile.Core.Interfaces;
 using INavigationService = Emby.Mobile.Core.Interfaces.INavigationService;
 using IStatusBarService = Emby.Mobile.Core.Interfaces.IStatusBarService;
 
 namespace Emby.Mobile.Universal.Services
 {
     // ReSharper disable once InconsistentNaming
-    public class UIInteractions
+    public class UIInteractions : IUIInteractions
     {
         public UIInteractions(
             INavigationService navigationService,
