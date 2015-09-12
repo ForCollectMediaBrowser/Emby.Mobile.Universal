@@ -375,7 +375,6 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private PlaylistItem GetPreviousItem()
         {
-
             var currentItem = _playlist.FirstOrDefault(x => x.State == PlaylistState.Playing);
             if (currentItem != null)
             {
