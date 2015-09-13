@@ -169,6 +169,7 @@ namespace Emby.Mobile.Universal.Services
                 case "livetv":
                     break;
                 case "playlists":
+                    value = Navigate<PlaylistUserView>(item);
                     break;
                 default:
                     break;

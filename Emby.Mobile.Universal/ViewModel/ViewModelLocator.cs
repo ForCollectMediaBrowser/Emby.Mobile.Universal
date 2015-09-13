@@ -42,6 +42,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<MovieUserViewModel>();
             Register<TvUserViewModel>();
             Register<MusicUserViewModel>();
+            Register<PlaylistUserViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -64,6 +65,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public MovieUserViewModel MovieUserView => Get<MovieUserViewModel>();
         public TvUserViewModel TvUserView => Get<TvUserViewModel>();
         public MusicUserViewModel MusicUserView => Get<MusicUserViewModel>();
+        public PlaylistUserViewModel PlaylistUserView => Get<PlaylistUserViewModel>();
         
         public static void Cleanup()
         {

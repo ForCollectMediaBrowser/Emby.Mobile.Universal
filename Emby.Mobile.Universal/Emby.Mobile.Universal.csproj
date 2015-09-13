@@ -264,6 +264,9 @@
     <Compile Include="Views\UserViews\MusicUserView.xaml.cs">
       <DependentUpon>MusicUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserViews\PlaylistUserView.xaml.cs">
+      <DependentUpon>PlaylistUserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserViews\TvUserView.xaml.cs">
       <DependentUpon>TvUserView.xaml</DependentUpon>
     </Compile>
@@ -442,6 +445,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserViews\MusicUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\PlaylistUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
