@@ -19,8 +19,10 @@
     <SolidColorBrush x:Key="EmbyGrayButtonBrush"
                      Color="{StaticResource EmbyGrayColor}" />
     <SolidColorBrush x:Key="SmokeBrush"
+                     Opacity="0.5"
                      Color="{StaticResource EmbyLightSmokeColor}" />
-    <SolidColorBrush x:Key="SmokeContrastBrush"
+    <SolidColorBrush x:Key="SmokeContrastBrush" 
+                     Opacity="0.5"
                      Color="{StaticResource EmbyDarkSmokeColor}" />
 
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
