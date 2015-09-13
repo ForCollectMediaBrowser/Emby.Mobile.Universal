@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.ViewModels;
+using Emby.Mobile.ViewModels.Connect;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.Mobile.Universal.Views.Connect

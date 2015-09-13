@@ -1,4 +1,5 @@
 ﻿using Emby.Mobile.ViewModels;
+using Emby.Mobile.ViewModels.Connect;
 
 namespace Emby.Mobile.Universal.Views.Connect
 {

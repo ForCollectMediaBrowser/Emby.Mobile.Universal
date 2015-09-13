@@ -1,5 +1,6 @@
 using Emby.Mobile.Universal.Services;
 using Emby.Mobile.ViewModels;
+using Emby.Mobile.ViewModels.Connect;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
