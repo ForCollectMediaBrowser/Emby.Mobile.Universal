@@ -261,6 +261,9 @@
     <Compile Include="Views\UserViews\MovieUserView.xaml.cs">
       <DependentUpon>MovieUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserViews\TvUserView.xaml.cs">
+      <DependentUpon>TvUserView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -432,6 +435,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserViews\MovieUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\TvUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
