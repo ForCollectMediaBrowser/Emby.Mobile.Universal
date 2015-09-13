@@ -353,8 +353,15 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private Uri GetSubtitleUri(StreamInfo info, IApiClient client, MediaStream caption)
         {
-            //TODO Add this functionality to the IApiClient instead
-            return new Uri(string.Format("{0}/mediabrowser/Videos/{1}/{2}/Subtitles/{3}/Stream.vtt", client.ServerAddress, info.ItemId, info.MediaSourceId, caption.Index));
+            var url = client.GetSubtitleUrl(new SubtitleDownloadOptions
+            {
+                Format = "vtt",
+                ItemId = info.ItemId,
+                MediaSourceId = info.MediaSourceId,
+                StreamIndex = caption.Index
+            });
+
+            return new Uri(url);
         }
 
         private PlaylistItem GetNextItem()
