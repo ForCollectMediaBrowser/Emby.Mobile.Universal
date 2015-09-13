@@ -3,6 +3,7 @@ using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
 using Emby.Mobile.Universal.Views.FirstRun;
+using Emby.Mobile.Universal.Views.UserViews;
 using MediaBrowser.Model.Dto;
 
 namespace Emby.Mobile.Universal.Services
@@ -96,13 +97,13 @@ namespace Emby.Mobile.Universal.Services
             if (type.StartsWith("genre")) type = "genre";
             switch (type)
             {
-                //    case "collectionfolder":
-                //    case "genre":
-                //    case "trailercollectionfolder":
-                //    case "playlistsfolder":
-                //    case "userview":
-                //        value = HandleCollectionNavigation(item);
-                //        break;
+                case "collectionfolder":
+                case "genre":
+                case "trailercollectionfolder":
+                case "playlistsfolder":
+                case "userview":
+                    value = HandleCollectionNavigation(item);
+                    break;
                 //    case "photoalbum":
                 //    case "folder":
                 //    case "boxset":
@@ -155,16 +156,25 @@ namespace Emby.Mobile.Universal.Services
             switch (viewType)
             {
                 case "movies":
+                    value = Navigate<MovieUserView>(item);
                     break;
                 case "tvshows":
+                    value = Navigate<TvUserView>(item);
                     break;
                 case "music":
+                    value = Navigate<MusicUserView>(item);
                     break;
                 case "channels":
+                    value = Navigate<ChannelsUserView>(item);
                     break;
                 case "livetv":
+                    value = Navigate<LiveTvUserView>(item);
                     break;
                 case "playlists":
+                    value = Navigate<PlaylistUserView>(item);
+                    break;
+                case "photos":
+                    value = Navigate<PhotosUserView>(item);
                     break;
                 default:
                     break;

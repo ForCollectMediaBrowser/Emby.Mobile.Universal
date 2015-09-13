@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 
-namespace Emby.Mobile.ViewModels
+namespace Emby.Mobile.ViewModels.Connect
 {
     public class ConnectSignUpViewModel : PageViewModelBase
     {

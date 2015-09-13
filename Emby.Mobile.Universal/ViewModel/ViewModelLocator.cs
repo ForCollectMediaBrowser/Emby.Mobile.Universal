@@ -1,5 +1,7 @@
 using Emby.Mobile.Universal.Services;
 using Emby.Mobile.ViewModels;
+using Emby.Mobile.ViewModels.Connect;
+using Emby.Mobile.ViewModels.UserViews;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
@@ -37,6 +39,13 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<TvShowViewModel>();
             Register<SeasonViewModel>();
             Register<SettingsViewModel>();
+            Register<MovieUserViewModel>();
+            Register<TvUserViewModel>();
+            Register<MusicUserViewModel>();
+            Register<PlaylistUserViewModel>();
+            Register<ChannelsUserViewModel>();
+            Register<PhotosUserViewModel>();
+            Register<LiveTvUserViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -56,6 +65,13 @@ namespace Emby.Mobile.Universal.ViewModel
         public TvShowViewModel TvShow => Get<TvShowViewModel>();
         public SeasonViewModel Season => Get<SeasonViewModel>();
         public SettingsViewModel Settings => Get<SettingsViewModel>();
+        public MovieUserViewModel MovieUserView => Get<MovieUserViewModel>();
+        public TvUserViewModel TvUserView => Get<TvUserViewModel>();
+        public MusicUserViewModel MusicUserView => Get<MusicUserViewModel>();
+        public PlaylistUserViewModel PlaylistUserView => Get<PlaylistUserViewModel>();
+        public ChannelsUserViewModel ChannelsUserView => Get<ChannelsUserViewModel>();
+        public PhotosUserViewModel PhotosUserView => Get<PhotosUserViewModel>();
+        public LiveTvUserViewModel LiveTvUserView => Get<LiveTvUserViewModel>();
         
         public static void Cleanup()
         {

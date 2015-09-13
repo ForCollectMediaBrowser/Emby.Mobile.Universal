@@ -6,7 +6,7 @@ using Emby.Mobile.Core.Strings;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
 
-namespace Emby.Mobile.ViewModels
+namespace Emby.Mobile.ViewModels.Connect
 {
     public class ConnectPinEntryViewModel : PageViewModelBase
     {

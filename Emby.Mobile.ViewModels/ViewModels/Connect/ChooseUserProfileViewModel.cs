@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
-using Emby.Mobile.ViewModels.Entities;
-using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model.Net;
-using MediaBrowser.Model.Dto;
 using Emby.Mobile.Core.Strings;
 using Emby.Mobile.Helpers;
+using Emby.Mobile.ViewModels.Entities;
+using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 
-namespace Emby.Mobile.ViewModels
+namespace Emby.Mobile.ViewModels.Connect
 {
     public class ChooseUserProfileViewModel : PageViewModelBase
     {

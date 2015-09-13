@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Strings;
 using Emby.Mobile.Helpers;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
-using Emby.Mobile.Core.Strings;
 
-namespace Emby.Mobile.ViewModels
+namespace Emby.Mobile.ViewModels.Connect
 {
     public class ConnectViewModel : PageViewModelBase, ICanSignIn
     {

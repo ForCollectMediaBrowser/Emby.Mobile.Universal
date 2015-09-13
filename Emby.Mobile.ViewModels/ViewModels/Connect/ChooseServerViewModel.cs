@@ -4,22 +4,19 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Strings;
+using Emby.Mobile.Messages;
 using Emby.Mobile.ViewModels.Entities;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
-using Emby.Mobile.Core.Strings;
-using Emby.Mobile.Helpers;
-using Emby.Mobile.Messages;
-using GalaSoft.MvvmLight.Messaging;
 
-namespace Emby.Mobile.ViewModels
+namespace Emby.Mobile.ViewModels.Connect
 {
-    public class ConnectChooseServerViewModel : PageViewModelBase
+    public class ChooseServerViewModel : PageViewModelBase
     {
-        private bool _serversLoaded;
-
-        public ConnectChooseServerViewModel(IServices services) : base(services)
+        public ChooseServerViewModel(IServices services) : base(services)
         {
             if (IsInDesignMode)
             {
@@ -54,16 +51,9 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        public RelayCommand SignOutCommand => new RelayCommand(async () => { await SignOutHelper.SignOut(Services); });
-
-        protected override Task PageLoaded()
+        protected override async Task PageLoaded()
         {
-            return LoadData(false);
-        }
-
-        protected override Task Refresh()
-        {
-            return LoadData(true);
+            await LoadData();
         }
 
         protected override void WireMessages()
@@ -82,19 +72,13 @@ namespace Emby.Mobile.ViewModels
             base.WireMessages();
         }
 
-        private async Task LoadData(bool isRefresh)
+        private async Task LoadData()
         {
-            if (_serversLoaded && !isRefresh)
-            {
-                return;
-            }
-
-            SetProgressBar(Resources.SysTrayGettingServers);
+            SetProgressBar(Resources.SysTrayFindingServer);
 
             try
             {
-                var connect = await Services.ServerInteractions.ConnectionManager.Connect();
-                var servers = connect.Servers;
+                var servers = await Services.ServerInteractions.ConnectionManager.GetAvailableServers();
 
                 if (servers.IsNullOrEmpty())
                 {
@@ -102,9 +86,7 @@ namespace Emby.Mobile.ViewModels
                 }
 
                 Servers = servers.Select(x => new ServerInfoViewModel(Services, x)).ToObservableCollection();
-                Servers.Add(new ServerInfoViewModel(Services, null) {IsDummyServer = true});
-
-                _serversLoaded = !Servers.IsNullOrEmpty();
+                Servers.Add(new ServerInfoViewModel(Services, null) { IsDummyServer = true });
             }
             catch (HttpException ex)
             {
@@ -112,7 +94,14 @@ namespace Emby.Mobile.ViewModels
             }
             finally
             {
-                SetProgressBar();
+                if (Servers?.Any() != true)
+                {
+                    ShowStatusBarWarning(Resources.ErrorCouldNotFindServer);
+                }
+                else
+                {
+                    SetProgressBar();
+                }
             }
         }
     }

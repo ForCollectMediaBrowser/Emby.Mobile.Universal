@@ -258,6 +258,28 @@
     <Compile Include="Views\TvShowView.xaml.cs">
       <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserViews\ChannelsUserView.xaml.cs">
+      <DependentUpon>ChannelsUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\LiveTvUserView.xaml.cs">
+      <DependentUpon>LiveTvUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\MovieUserView.xaml.cs">
+      <DependentUpon>MovieUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\MusicUserView.xaml.cs">
+      <DependentUpon>MusicUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\PhotosUserView.xaml.cs">
+      <DependentUpon>PhotosUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\PlaylistUserView.xaml.cs">
+      <DependentUpon>PlaylistUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\TvUserView.xaml.cs">
+      <DependentUpon>TvUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\UserViewBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -425,6 +447,34 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TvShowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\ChannelsUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\LiveTvUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\MovieUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\MusicUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\PhotosUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\PlaylistUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\TvUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
