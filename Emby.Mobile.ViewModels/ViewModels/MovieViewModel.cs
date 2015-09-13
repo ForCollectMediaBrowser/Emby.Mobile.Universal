@@ -14,6 +14,7 @@ namespace Emby.Mobile.ViewModels
         public void SetItem(BaseItemDto item)
         {
             Item = new ItemViewModel(Services, item);
+            Item.LoadAllData();
         }
     }
 }
