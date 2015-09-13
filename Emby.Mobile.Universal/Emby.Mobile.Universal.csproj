@@ -261,6 +261,9 @@
     <Compile Include="Views\UserViews\ChannelsUserView.xaml.cs">
       <DependentUpon>ChannelsUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserViews\LiveTvUserView.xaml.cs">
+      <DependentUpon>LiveTvUserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserViews\MovieUserView.xaml.cs">
       <DependentUpon>MovieUserView.xaml</DependentUpon>
     </Compile>
@@ -447,6 +450,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserViews\ChannelsUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\LiveTvUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
