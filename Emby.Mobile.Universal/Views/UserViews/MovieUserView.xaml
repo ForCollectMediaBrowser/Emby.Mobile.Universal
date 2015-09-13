@@ -1,14 +1,14 @@
-﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.UserViews.MovieUserView"
-                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                   mc:Ignorable="d"
-                   DataContext="{Binding MovieUserView, Source={StaticResource Locator}}">
+﻿<userViews:UserViewBase x:Class="Emby.Mobile.Universal.Views.UserViews.MovieUserView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:userViews="using:Emby.Mobile.Universal.Views.UserViews"
+                        mc:Ignorable="d"
+                        DataContext="{Binding MovieUserView, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="{x:Bind Movie.UserView.Name, Mode=OneWay}"
-                   Style="{StaticResource HeaderTextBlockStyle}"/>
+        <TextBlock Text="{x:Bind View.UserView.Name, Mode=OneWay}"
+                   Style="{StaticResource HeaderTextBlockStyle}" />
     </Grid>
-</controls:EmbyPage>
+</userViews:UserViewBase>

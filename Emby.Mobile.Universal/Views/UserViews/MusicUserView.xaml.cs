@@ -1,28 +1,13 @@
-﻿using Windows.UI.Xaml.Navigation;
-using Emby.Mobile.Universal.Extensions;
-using Emby.Mobile.ViewModels.UserViews;
-using MediaBrowser.Model.Dto;
-
-namespace Emby.Mobile.Universal.Views.UserViews
+﻿namespace Emby.Mobile.Universal.Views.UserViews
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MusicUserView
     {
-        private MusicUserViewModel Music => DataContext as MusicUserViewModel;
-
         public MusicUserView()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var item = e.Parameter as BaseItemDto;
-            Music?.OnNavigatedTo(e.NavigationMode.ExchangeMode(), item);
-
-            base.OnNavigatedTo(e);
         }
     }
 }
