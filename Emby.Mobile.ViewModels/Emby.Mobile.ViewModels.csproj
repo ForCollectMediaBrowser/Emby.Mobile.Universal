@@ -80,6 +80,8 @@
     <Compile Include="ViewModels\StartupViewModel.cs" />
     <Compile Include="ViewModels\Entities\ServerInfoViewModel.cs" />
     <Compile Include="ViewModels\TvShowViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModelBase.cs" />
+    <Compile Include="ViewModels\UserViews\MovieUserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
