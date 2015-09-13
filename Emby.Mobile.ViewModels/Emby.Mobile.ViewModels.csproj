@@ -81,6 +81,7 @@
     <Compile Include="ViewModels\Entities\ServerInfoViewModel.cs" />
     <Compile Include="ViewModels\TvShowViewModel.cs" />
     <Compile Include="ViewModels\UserViewModelBase.cs" />
+    <Compile Include="ViewModels\UserViews\ChannelsUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\MovieUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\MusicUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\PlaylistUserViewModel.cs" />
