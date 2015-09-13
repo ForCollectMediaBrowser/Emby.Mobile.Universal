@@ -172,6 +172,9 @@ namespace Emby.Mobile.Universal.Services
                 case "playlists":
                     value = Navigate<PlaylistUserView>(item);
                     break;
+                case "photos":
+                    value = Navigate<PhotosUserView>(item);
+                    break;
                 default:
                     break;
             }

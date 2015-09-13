@@ -84,6 +84,7 @@
     <Compile Include="ViewModels\UserViews\ChannelsUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\MovieUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\MusicUserViewModel.cs" />
+    <Compile Include="ViewModels\UserViews\PhotosUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\PlaylistUserViewModel.cs" />
     <Compile Include="ViewModels\UserViews\TvUserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
