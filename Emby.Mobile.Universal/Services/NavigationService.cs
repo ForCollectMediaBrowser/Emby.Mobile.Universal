@@ -162,6 +162,7 @@ namespace Emby.Mobile.Universal.Services
                     value = Navigate<TvUserView>(item);
                     break;
                 case "music":
+                    value = Navigate<MusicUserView>(item);
                     break;
                 case "channels":
                     break;
