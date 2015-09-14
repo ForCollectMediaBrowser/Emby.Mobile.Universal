@@ -171,6 +171,7 @@
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MediaPlayers\BackgroundAudioPlayer.cs" />
+    <Compile Include="Controls\MediaPlayers\EmbyTransportControls.cs" />
     <Compile Include="Controls\ProfilePicture.cs" />
     <Compile Include="Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>

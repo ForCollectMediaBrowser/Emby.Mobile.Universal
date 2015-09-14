@@ -25,6 +25,7 @@ using Windows.UI.Xaml.Media;
 using System.Linq;
 using Emby.Mobile.Universal.Views;
 using Windows.UI.Xaml.Media.Animation;
+using Emby.Mobile.Core.Helpers;
 using GalaSoft.MvvmLight;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
@@ -303,6 +304,13 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
             var audio = _playbackManager.GetInPlaybackSelectableAudioStreams(_streamInfo);
             var captions = _playbackManager.GetInPlaybackSelectableSubtitleStreams(_streamInfo);
+
+            var controls = (EmbyTransportControls) _player?.TransportControls;
+            if (controls != null)
+            {
+                controls.VideoTitle = _item?.Name;
+                controls.LogoImageUrl = _item?.HasLogo ?? false ? client?.GetImageUrl(_item, ImageOptionsHelper.ItemLogo) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+            }
 
             IMediaPlaybackSource source;
             if (_streamInfo.PlayMethod == PlayMethod.DirectPlay && _streamInfo.MediaSource?.Protocol == MediaProtocol.File)
