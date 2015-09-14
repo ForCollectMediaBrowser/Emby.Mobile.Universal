@@ -25,6 +25,8 @@ using Windows.UI.Xaml.Media;
 using System.Linq;
 using Emby.Mobile.Universal.Views;
 using Windows.UI.Xaml.Media.Animation;
+using Emby.Mobile.Core.Helpers;
+using GalaSoft.MvvmLight;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -56,8 +58,12 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             _postionChangedTimer = new DispatcherTimer();
             _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
             _postionChangedTimer.Tick += PostionChangedTimer_Tick;
-            _connectionManager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-            _playbackManager = SimpleIoc.Default.GetInstance<IPlaybackManager>();
+            if (!ViewModelBase.IsInDesignModeStatic)
+            {
+                _connectionManager = SimpleIoc.Default.GetInstance<IConnectionManager>();
+                _playbackManager = SimpleIoc.Default.GetInstance<IPlaybackManager>();
+            }
+
             _playlist = new List<PlaylistItem>();
             DefaultStyleKey = typeof(MediaFoundationVideoPlayer);
         }
@@ -82,22 +88,32 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             base.OnApplyTemplate();
 
             _player = GetTemplateChild("Player") as MediaElement;
-            _player.CurrentStateChanged += Player_CurrentStateChanged;
-            _player.MediaOpened += Player_MediaOpened;
-            _player.MediaEnded += Player_MediaEnded;
-            _player.MediaFailed += Player_MediaFailed;
+            if (_player != null)
+            {
+                _player.CurrentStateChanged += Player_CurrentStateChanged;
+                _player.MediaOpened += Player_MediaOpened;
+                _player.MediaEnded += Player_MediaEnded;
+                _player.MediaFailed += Player_MediaFailed;
+            }
 
             AppServices.PlaybackService.RegisterPlayer(this);
         }
 
         private void Player_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            _postionChangedTimer.Stop();
+            if (_postionChangedTimer.IsEnabled)
+            {
+                _postionChangedTimer.Stop();
+            }
         }
 
         private void Player_MediaEnded(object sender, RoutedEventArgs e)
         {
-            _postionChangedTimer.Stop();
+            if (_postionChangedTimer.IsEnabled)
+            {
+                _postionChangedTimer.Stop();
+            }
+
             AppServices.DispatcherService.RunAsync(() =>
             {
                 AppServices.PlaybackService.ReportPlaybackStopped(new PlaybackStopInfo
@@ -298,6 +314,13 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
             var audio = _playbackManager.GetInPlaybackSelectableAudioStreams(_streamInfo);
             var captions = _playbackManager.GetInPlaybackSelectableSubtitleStreams(_streamInfo);
+
+            var controls = (EmbyTransportControls) _player?.TransportControls;
+            if (controls != null)
+            {
+                controls.VideoTitle = _item?.Name;
+                controls.LogoImageUrl = _item?.HasLogo ?? false ? client?.GetImageUrl(_item, ImageOptionsHelper.ItemLogo) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+            }
 
             IMediaPlaybackSource source;
             if (_streamInfo.PlayMethod == PlayMethod.DirectPlay && _streamInfo.MediaSource?.Protocol == MediaProtocol.File)

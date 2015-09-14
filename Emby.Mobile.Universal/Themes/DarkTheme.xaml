@@ -27,4 +27,9 @@
 
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                      Color="{StaticResource EmbyDarkGrayColor}"/>
+
+    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush"
+                     Color="{StaticResource EmbyGreenColor}"/>
+    <SolidColorBrush x:Key="SystemControlForegroundAccentBrush"
+                     Color="{StaticResource EmbyGreenColor}" />
 </ResourceDictionary>

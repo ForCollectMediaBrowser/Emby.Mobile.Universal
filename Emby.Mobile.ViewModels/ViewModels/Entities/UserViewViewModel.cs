@@ -52,7 +52,7 @@ namespace Emby.Mobile.ViewModels.Entities
                     //Filters = new[] { ItemFilter.IsUnplayed },
                     Recursive = true,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, ImageType.Logo }
                 };
 
                 var response = await ApiClient.GetItemsAsync(query);
