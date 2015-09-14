@@ -149,6 +149,9 @@
     <Compile Include="Controls\BlurredImageControl.cs" />
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
+    <Compile Include="Controls\FadingImages.xaml.cs">
+      <DependentUpon>FadingImages.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,7 @@
     </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Controls\VariableGridView.cs" />
+    <Compile Include="Converters\ParallaxConverter.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Data\UserViewDataTemplateSelector.cs" />
@@ -302,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\FadingImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\HeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

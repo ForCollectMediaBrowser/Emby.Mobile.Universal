@@ -25,6 +25,7 @@ namespace Emby.Mobile.ViewModels.Entities
         public string PrimaryImageMedium => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string PrimaryImageSmall => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimarySmall) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string BackdropImage => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdrop) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+        public string[] BackdropImages => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetBackdropImageUrls(ItemInfo, ImageOptionsHelper.ItemBackdrop) : new string[0];
 
         public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
 
@@ -49,6 +50,12 @@ namespace Emby.Mobile.ViewModels.Entities
                     Services.Playback.PlayItem(ItemInfo);
                 });
             }
+        }
+
+        public async void LoadAllData()
+        {
+            //TODO Do we want to show progress here?
+            ItemInfo = await ApiClient.GetItemAsync(ItemInfo.Id, AuthenticationService.SignedInUserId);
         }
     }
 }

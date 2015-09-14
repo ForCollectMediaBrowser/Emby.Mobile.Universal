@@ -100,7 +100,7 @@
                     <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLogIn}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Style="{StaticResource ExtraLargeThinTextBlockStyle}" />
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
                 </StackPanel>
             </Button>
             <TextBlock x:Name="SignUpText"
@@ -155,7 +155,7 @@
                     <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarNext}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Style="{StaticResource ExtraLargeThinTextBlockStyle}" />
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
                 </StackPanel>
             </Button>
             <Button x:Name="ManualConnectButton"
@@ -183,7 +183,7 @@
                     <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSkip}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Style="{StaticResource ExtraLargeThinTextBlockStyle}" />
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
                 </StackPanel>
             </Button>
         </RelativePanel>
