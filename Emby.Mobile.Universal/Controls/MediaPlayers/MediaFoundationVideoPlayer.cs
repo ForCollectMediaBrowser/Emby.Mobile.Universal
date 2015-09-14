@@ -88,10 +88,13 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             base.OnApplyTemplate();
 
             _player = GetTemplateChild("Player") as MediaElement;
-            _player.CurrentStateChanged += Player_CurrentStateChanged;
-            _player.MediaOpened += Player_MediaOpened;
-            _player.MediaEnded += Player_MediaEnded;
-            _player.MediaFailed += Player_MediaFailed;
+            if (_player != null)
+            {
+                _player.CurrentStateChanged += Player_CurrentStateChanged;
+                _player.MediaOpened += Player_MediaOpened;
+                _player.MediaEnded += Player_MediaEnded;
+                _player.MediaFailed += Player_MediaFailed;
+            }
 
             AppServices.PlaybackService.RegisterPlayer(this);
         }
