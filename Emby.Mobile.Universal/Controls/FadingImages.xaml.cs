@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Emby.Mobile.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -79,11 +78,11 @@ namespace Emby.Mobile.Universal.Controls
             {
                 _updateTimer.Stop();
             }
-            if (ImageSources != null && ImageSources.Any())
+            if (ImageSources != null && ImageSources.Length > 0)
             {
                 _index = -1;
                 ToggleState();
-                if (ImageSources.Count() > 1)
+                if (ImageSources.Length > 1)
                 {
                     _updateTimer.Start();
                 }
@@ -96,23 +95,29 @@ namespace Emby.Mobile.Universal.Controls
             var state = VisualStateGroup.CurrentState;
 
             if (state == null || state.Name == SecondState)
+            {
                 VisualStateManager.GoToState(this, FirstState, true);
+            }
             else
+            {
                 VisualStateManager.GoToState(this, SecondState, true);
+            }
         }
 
         private void SetupNextImage()
         {
             var source = GetImageSource();
-            if (ImageSources == null || ImageSources.Count() == 0)
+            if (ImageSources == null || ImageSources.Length == 0)
             {
                 source.UriSource = null;
             }
             else
             {
                 _index++;
-                if (_index > ImageSources.Count() - 1)
+                if (_index > ImageSources.Length - 1)
+                {
                     _index = 0;
+                }
 
                 source.UriSource = new Uri(ImageSources[_index]);
             }
@@ -121,15 +126,21 @@ namespace Emby.Mobile.Universal.Controls
         private static bool AreValuesEqual(string[] newValue, string[] oldValue)
         {
             if (oldValue == null || newValue == null)
+            {
                 return false;
+            }
 
-            if (newValue.Count() != oldValue.Count())
+            if (newValue.Length != oldValue.Length)
+            {
                 return false;
+            }
 
-            for (int i = 0; i < newValue.Count(); i++)
+            for (int i = 0; i < newValue.Length; i++)
             {
                 if (string.Compare(newValue[i], oldValue[i]) != 0)
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -139,7 +150,9 @@ namespace Emby.Mobile.Universal.Controls
             var state = VisualStateGroup.CurrentState;
 
             if (state == null || state.Name == "Second")
+            {
                 return _imageSource1;
+            }
             return _imageSource2;
         }
 
