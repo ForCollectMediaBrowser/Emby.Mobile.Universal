@@ -26,6 +26,7 @@
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch" />
                         <mediaPlayers:MediaFoundationVideoPlayer Grid.Row="1" />
+                        <mediaPlayers:PhotoPlayer Grid.Row="1"/>
                         <controls:HeaderControl x:Name="Header"
                                                 VerticalAlignment="Top" />
                         <controls:StatusBarControl VerticalAlignment="Top"

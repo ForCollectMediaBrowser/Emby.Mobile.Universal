@@ -35,6 +35,7 @@ namespace Emby.Mobile.Core.Playback
                 streamInfo.StartPositionTicks = startPositionTicks;
                 return streamInfo;
             }
+            
             throw new NotImplementedException();
         }
 

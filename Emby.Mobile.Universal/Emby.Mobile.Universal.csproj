@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="Controls\MediaPlayers\BackgroundAudioPlayer.cs" />
     <Compile Include="Controls\MediaPlayers\EmbyTransportControls.cs" />
+    <Compile Include="Controls\MediaPlayers\PhotoPlayer.cs" />
     <Compile Include="Controls\ProfilePicture.cs" />
     <Compile Include="Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
@@ -208,6 +209,9 @@
     <Compile Include="Services\StartUpService.cs" />
     <Compile Include="Services\StatusBarService.cs" />
     <Compile Include="Services\UIInteractions.cs" />
+    <Compile Include="Themes\Generic.xaml.cs">
+      <DependentUpon>Generic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChooseLocalServerView.xaml.cs">
       <DependentUpon>ChooseLocalServerView.xaml</DependentUpon>
