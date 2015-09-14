@@ -287,11 +287,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="mediaPlayers:MediaFoundationVideoPlayer">
                     <Grid Background="{TemplateBinding Background}">
-                    <MediaElement x:Name="Player"                              
-                                  Height="{TemplateBinding Height}"
-                                  Width="{TemplateBinding Width}"
-                                  Opacity="{TemplateBinding Opacity}"
-                                  AudioCategory="Movie" />
+                        <MediaElement x:Name="Player"                              
+                                      Height="{TemplateBinding Height}"
+                                      Width="{TemplateBinding Width}"
+                                      Opacity="{TemplateBinding Opacity}"
+                                      AudioCategory="Movie" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -25,6 +25,7 @@ using Windows.UI.Xaml.Media;
 using System.Linq;
 using Emby.Mobile.Universal.Views;
 using Windows.UI.Xaml.Media.Animation;
+using GalaSoft.MvvmLight;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -56,8 +57,12 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             _postionChangedTimer = new DispatcherTimer();
             _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
             _postionChangedTimer.Tick += PostionChangedTimer_Tick;
-            _connectionManager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-            _playbackManager = SimpleIoc.Default.GetInstance<IPlaybackManager>();
+            if (!ViewModelBase.IsInDesignModeStatic)
+            {
+                _connectionManager = SimpleIoc.Default.GetInstance<IConnectionManager>();
+                _playbackManager = SimpleIoc.Default.GetInstance<IPlaybackManager>();
+            }
+
             _playlist = new List<PlaylistItem>();
             DefaultStyleKey = typeof(MediaFoundationVideoPlayer);
         }
