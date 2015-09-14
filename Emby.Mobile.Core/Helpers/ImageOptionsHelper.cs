@@ -12,7 +12,9 @@ namespace Emby.Mobile.Core.Helpers
         public static ImageOptions ItemPrimaryLarge { get; } = GetOptions(ImageType.Primary);
         public static ImageOptions ItemPrimaryMedium { get; } = GetOptions(ImageType.Primary, height: 200);
         public static ImageOptions ItemPrimarySmall { get; } = GetOptions(ImageType.Primary, height: 100);
-        public static ImageOptions ItemBackdrop { get; } = GetOptions(ImageType.Backdrop);
+        public static ImageOptions ItemBackdropLarge { get; } = GetOptions(ImageType.Backdrop, height: 500);
+        public static ImageOptions ItemBackdropMedium { get; } = GetOptions(ImageType.Backdrop, height: 200);
+        public static ImageOptions ItemBackdropMax { get; } = GetOptions(ImageType.Backdrop);
 
         private static ImageOptions GetOptions(
             ImageType imageType, 
