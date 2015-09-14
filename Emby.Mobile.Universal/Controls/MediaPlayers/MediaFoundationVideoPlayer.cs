@@ -101,12 +101,19 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void Player_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            _postionChangedTimer.Stop();
+            if (_postionChangedTimer.IsEnabled)
+            {
+                _postionChangedTimer.Stop();
+            }
         }
 
         private void Player_MediaEnded(object sender, RoutedEventArgs e)
         {
-            _postionChangedTimer.Stop();
+            if (_postionChangedTimer.IsEnabled)
+            {
+                _postionChangedTimer.Stop();
+            }
+
             AppServices.DispatcherService.RunAsync(() =>
             {
                 AppServices.PlaybackService.ReportPlaybackStopped(new PlaybackStopInfo
