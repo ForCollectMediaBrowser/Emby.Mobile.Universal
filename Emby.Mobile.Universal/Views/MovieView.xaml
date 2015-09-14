@@ -11,6 +11,28 @@
         <converters:ParallaxConverter x:Key="ParallaxConverter" />
     </controls:EmbyPage.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WideNarrowGroup">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="521" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Title.Style"
+                                Value="{StaticResource HeaderTextBlockStyle}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Title.Style"
+                                Value="{StaticResource SubheaderTextBlockStyle}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <controls:FadingImages ImageSources="{x:Bind Item.Item.BackdropImages, Mode=OneWay}"
                                Height="500"
                                VerticalAlignment="Top"
@@ -19,19 +41,22 @@
                 <CompositeTransform TranslateY="{Binding ElementName=ContentScrollViewer, Path=VerticalOffset, Converter={StaticResource ParallaxConverter}}" />
             </controls:FadingImages.RenderTransform>
         </controls:FadingImages>
-        
+
         <ScrollViewer x:Name="ContentScrollViewer">
             <RelativePanel Padding="0,400,0,0">
-                <Border x:Name="OpacLayer" RelativePanel.AlignTopWithPanel="True"
+                <Border x:Name="OpacLayer"
+                        RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
-                        Height="100"
-                        Background="{ThemeResource SmokeContrastBrush}" />
-                <TextBlock  Text="{x:Bind Item.Item.Name, Mode=OneWay}"
-                            Style="{StaticResource ExtraLargeThinTextBlockStyle}"
-                            x:Name="Title"
-                            RelativePanel.AlignVerticalCenterWith="OpacLayer"/>
-               <!-- This border is just for debug, remove this once we have some content-->
+                        Background="{ThemeResource SmokeContrastBrush}">
+                    <TextBlock  Text="{x:Bind Item.Item.Name, Mode=OneWay}"
+                                Style="{StaticResource ExtraLargeThinTextBlockStyle}"
+                                x:Name="Title"
+                                Margin="15" 
+                                VerticalAlignment="Center"/>
+                </Border>
+                
+                <!-- This border is just for debug, remove this once we have some content-->
                 <Border Height="1200"
                         Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                         RelativePanel.AlignLeftWithPanel="True"

@@ -903,6 +903,31 @@
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="WideNarrowGroup">
+                                <VisualState x:Name="Wide">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="521" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="VideoTitle.Style"
+                                                Value="{StaticResource HeaderTextBlockStyle}" />
+                                        <Setter Target="LogoImage.MaxHeight"
+                                                Value="150" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Narrow">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="0" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="VideoTitle.Style"
+                                                Value="{StaticResource SubheaderTextBlockStyle}" />
+                                        <Setter Target="LogoImage.MaxHeight"
+                                                Value="40" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
                         <Grid x:Name='ControlPanel_ControlPanelVisibilityStates_Border'>
@@ -911,17 +936,23 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Grid Grid.Row="0"
-                                  VerticalAlignment="Top">
+                            <RelativePanel Grid.Row="0"
+                                           VerticalAlignment="Top">
                                 <TextBlock Text="{TemplateBinding VideoTitle}"
                                            Style="{StaticResource HeaderTextBlockStyle}"
-                                           HorizontalAlignment="Left"/>
+                                           HorizontalAlignment="Left"
+                                           x:Name="VideoTitle" 
+                                           RelativePanel.AlignLeftWithPanel="True"
+                                           RelativePanel.LeftOf="LogoImage"
+                                           RelativePanel.AlignVerticalCenterWith="LogoImage"/>
                                 <Image Tag="{TemplateBinding LogoImageUrl}"
+                                       x:Name="LogoImage"
                                        Source="{Binding Tag, RelativeSource={RelativeSource Self}}"
                                        HorizontalAlignment="Right"
                                        MaxHeight="150"
-                                       Margin="20"/>
-                            </Grid>
+                                       Margin="20" 
+                                       RelativePanel.AlignRightWithPanel="True"/>
+                            </RelativePanel>
 
                             <Border Grid.Row="1">
                                 <Grid x:Name='ControlPanelGrid'
