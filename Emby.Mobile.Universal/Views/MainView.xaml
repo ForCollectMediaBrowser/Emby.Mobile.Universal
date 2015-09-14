@@ -7,7 +7,6 @@
                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                    xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
-                   xmlns:coding4Fun="using:Coding4Fun.Toolkit.Controls"
                    mc:Ignorable="d"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
     <interactivity:Interaction.Behaviors>
@@ -15,13 +14,13 @@
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-    
+
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Refresh"
                               Icon="Refresh"
-                              Command="{x:Bind Main.RefreshCommand}"/>
+                              Command="{x:Bind Main.RefreshCommand}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -68,11 +67,10 @@
                                                     Command="{x:Bind NavigateToItem}">
                                                 <Grid HorizontalAlignment="Stretch"
                                                       VerticalAlignment="Stretch">
-                                                    <coding4Fun:SuperImage Background="Red"
-                                                                           Source="{x:Bind BackdropImage, Mode=OneWay}"
-                                                                           Stretch="UniformToFill"
-                                                                           HorizontalAlignment="Stretch"
-                                                                           VerticalAlignment="Top" />
+                                                    <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
+                                                           Stretch="UniformToFill"
+                                                           HorizontalAlignment="Stretch"
+                                                           VerticalAlignment="Top" />
                                                 </Grid>
                                             </Button>
                                         </DataTemplate>
