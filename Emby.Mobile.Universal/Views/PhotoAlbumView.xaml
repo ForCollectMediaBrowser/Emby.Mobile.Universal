@@ -1,0 +1,30 @@
+﻿<controls:EmbyPage x:Class="Emby.Mobile.Universal.Views.PhotoAlbumView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+                   mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <GridView ItemsSource="{x:Bind PhotoAlbum.Photos, Mode=OneWay}">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="entities:PhotoViewModel">
+                    <Button Style="{StaticResource EmptyButtonStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Image Source="{x:Bind PrimaryImageLarge}" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</controls:EmbyPage>

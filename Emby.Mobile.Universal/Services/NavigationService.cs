@@ -108,6 +108,9 @@ namespace Emby.Mobile.Universal.Services
                 //    case "folder":
                 //    case "boxset":
                 //        break;
+                case "photoalbum":
+                    value = Navigate<PhotoAlbumView>(item);
+                    break;
                 case "movie":
                     value = Navigate<MovieView>(item);
                     break;

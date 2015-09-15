@@ -16,7 +16,7 @@ namespace Emby.Mobile.ViewModels
 
         public override void OnNavigatedTo(NavigationMode mode, BaseItemDto item)
         {
-            if (UserView == null)
+            if (UserView == null || item.Id != UserView?.ItemInfo.Id)
             {
                 UserView = new ItemViewModel(Services, item);
             }
