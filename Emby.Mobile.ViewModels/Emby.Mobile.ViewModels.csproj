@@ -62,6 +62,7 @@
     <Compile Include="ViewModels\IItemSettable.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\PageViewModelBase.cs" />
+    <Compile Include="ViewModels\PhotoAlbumViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\HeaderMenuViewModel.cs" />
     <Compile Include="ViewModels\Connect\ChooseUserProfileViewModel.cs" />
