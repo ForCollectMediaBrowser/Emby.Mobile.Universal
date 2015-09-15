@@ -170,6 +170,8 @@
     <Compile Include="Controls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LoopingFlipview.cs" />
+    <Compile Include="Controls\LoopingItemsPanel.cs" />
     <Compile Include="Controls\MediaPlayers\BackgroundAudioPlayer.cs" />
     <Compile Include="Controls\MediaPlayers\EmbyTransportControls.cs" />
     <Compile Include="Controls\MediaPlayers\PhotoPlayer.cs" />
