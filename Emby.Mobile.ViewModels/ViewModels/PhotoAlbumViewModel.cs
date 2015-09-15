@@ -19,7 +19,7 @@ namespace Emby.Mobile.ViewModels
         {
         }
 
-        public List<ItemViewModel> Photos { get; set; }
+        public List<PhotoViewModel> Photos { get; set; }
 
         public ItemViewModel PhotoAlbum { get; set; }
 
@@ -27,7 +27,7 @@ namespace Emby.Mobile.ViewModels
         {
             if (PhotoAlbum == null || item.Id != PhotoAlbum?.ItemInfo.Id)
             {
-                Photos = new List<ItemViewModel>();
+                Photos = new List<PhotoViewModel>();
                 PhotoAlbum = new ItemViewModel(Services, item);
             }
 
@@ -69,7 +69,7 @@ namespace Emby.Mobile.ViewModels
                 var response = await ApiClient.GetItemsAsync(query);
                 if (response != null && !response.Items.IsNullOrEmpty())
                 {
-                    var items = response.Items.Select(x => new ItemViewModel(Services, x)).ToList();
+                    var items = response.Items.Select(x => new PhotoViewModel(Services, x)).ToList();
 
                     Photos = items;
                     _photosLoaded = Photos.Any();
