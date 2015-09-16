@@ -9,26 +9,27 @@ using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Core.Playback;
 using Emby.Mobile.Universal.Extensions;
 using Emby.Mobile.Universal.Services;
+using Emby.Mobile.ViewModels.Entities;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
     public class PhotoPlayer : Control, IMediaPlayer
     {
         public static readonly DependencyProperty PhotosProperty = DependencyProperty.Register(
-            "Photos", typeof (List<PlaylistItem>), typeof (PhotoPlayer), new PropertyMetadata(default(List<PlaylistItem>)));
+            "Photos", typeof (List<PhotoViewModel>), typeof (PhotoPlayer), new PropertyMetadata(default(List<PlaylistItem>)));
 
-        public List<PlaylistItem> Photos
+        public List<PhotoViewModel> Photos
         {
-            get { return (List<PlaylistItem>) GetValue(PhotosProperty); }
+            get { return (List<PhotoViewModel>) GetValue(PhotosProperty); }
             set { SetValue(PhotosProperty, value); }
         }
 
         public static readonly DependencyProperty SelectedPhotoProperty = DependencyProperty.Register(
-            "SelectedPhoto", typeof (PlaylistItem), typeof (PhotoPlayer), new PropertyMetadata(default(PlaylistItem)));
+            "SelectedPhoto", typeof (PhotoViewModel), typeof (PhotoPlayer), new PropertyMetadata(default(PlaylistItem)));
 
-        public PlaylistItem SelectedPhoto
+        public PhotoViewModel SelectedPhoto
         {
-            get { return (PlaylistItem) GetValue(SelectedPhotoProperty); }
+            get { return (PhotoViewModel) GetValue(SelectedPhotoProperty); }
             set { SetValue(SelectedPhotoProperty, value); }
         }
 
@@ -52,7 +53,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public Task Play(List<PlaylistItem> items, double position = 0D, int? startingItem = null)
         {
-            Photos = items;
+            Photos = CreatePhotoList(items);
             SelectedPhoto = startingItem.HasValue ? Photos[startingItem.Value] : Photos.First();
 
             ShowPlayer();
@@ -63,21 +64,27 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             return Task.FromResult(0);
         }
 
+        private static List<PhotoViewModel> CreatePhotoList(List<PlaylistItem> items)
+        {
+            return items.Select(x => new PhotoViewModel(AppServices.Services, x.Item)).ToList();
+        }
+
         public Task Add(List<PlaylistItem> items)
         {
-            Photos.AddRange(items);
+            Photos.AddRange(CreatePhotoList(items));
             return Task.FromResult(0);
         }
 
         public Task Remove(PlaylistItem item)
         {
-            Photos.Remove(item);
+            var itemToRemove = Photos.FirstOrDefault(x => x.ItemInfo.Id == item.Item.Id);
+            Photos.Remove(itemToRemove);
             return Task.FromResult(0);
         }
 
         public Task SkipToItem(PlaylistItem item)
         {
-            SelectedPhoto = Photos.FirstOrDefault(x => x.Id == item.Id);
+            SelectedPhoto = Photos.FirstOrDefault(x => x.ItemInfo.Id == item.Id.ToString());
             return Task.FromResult(0);
         }
 

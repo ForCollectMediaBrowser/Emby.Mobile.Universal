@@ -156,5 +156,6 @@ namespace Emby.Mobile.Universal.Services
         public static IDispatcherService DispatcherService => ServiceLocator.Current.GetInstance<IDispatcherService>();
         public static ILauncherService LauncherService => ServiceLocator.Current.GetInstance<ILauncherService>();
         public static IPlaybackService PlaybackService => ServiceLocator.Current.GetInstance<IPlaybackService>();
+        public static IServices Services => ServiceLocator.Current.GetInstance<IServices>();
     }
 }
