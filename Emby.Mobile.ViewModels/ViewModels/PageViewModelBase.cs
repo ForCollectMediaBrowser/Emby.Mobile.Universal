@@ -39,11 +39,6 @@ namespace Emby.Mobile.ViewModels
             return Task.FromResult(0);
         }
 
-        protected virtual Task Refresh()
-        {
-            return Task.FromResult(0);
-        }
-
         public virtual void OnNavigatedTo(NavigationMode mode, BaseItemDto item)
         {
         }

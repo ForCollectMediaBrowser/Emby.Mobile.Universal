@@ -62,6 +62,7 @@
     <Compile Include="ViewModels\Entities\UserViewViewModel.cs" />
     <Compile Include="Helpers\NavigationMode.cs" />
     <Compile Include="ViewModels\GenericItemViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IItemSettable.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\MusicArtistViewModel.cs" />

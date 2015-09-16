@@ -78,7 +78,12 @@ namespace Emby.Mobile.ViewModels
         }
 
         protected virtual void UpdateProperties() { }
-        
+
+        protected virtual Task Refresh()
+        {
+            return Task.FromResult(0);
+        }
+
         public bool ProgressIsVisible { get; set; }
         public string ProgressText { get; set; }
         
