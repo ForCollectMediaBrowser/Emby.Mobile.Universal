@@ -29,7 +29,7 @@ namespace Emby.Mobile.Core.Interfaces
         void IncreaseVolume();
         void Pause();
         Task<bool> PlayItem(BaseItemDto item, long position = 0);
-        Task<bool> PlayItems(IList<BaseItemDto> items);
+        Task<bool> PlayItems(IList<BaseItemDto> items, int? startingItem = null);
         Task<bool> PlayItems(string[] itemIds, long? position);
         void RemoveFromPlaylist(string itemId);
         void RemoveFromPlaylist(PlaylistItem item);

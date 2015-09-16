@@ -3,6 +3,7 @@ using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
 using Emby.Mobile.Universal.Views.FirstRun;
+using Emby.Mobile.Universal.Views.Players;
 using Emby.Mobile.Universal.Views.UserViews;
 using MediaBrowser.Model.Dto;
 
@@ -86,6 +87,16 @@ namespace Emby.Mobile.Universal.Services
         public bool NavigateToPreferences()
         {
             return false;
+        }
+
+        public bool NavigateToVideoPlayer()
+        {
+            return Navigate<MediaFoundationVideoPlaybackView>();
+        }
+
+        public bool NavigateToPhotoPlayer()
+        {
+            return Navigate<PhotoPlayerView>();
         }
 
         public bool NavigateToItem(BaseItemDto item)

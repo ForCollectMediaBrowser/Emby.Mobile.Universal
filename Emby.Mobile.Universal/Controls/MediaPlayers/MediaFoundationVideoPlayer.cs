@@ -27,6 +27,7 @@ using Emby.Mobile.Universal.Views;
 using Windows.UI.Xaml.Media.Animation;
 using Emby.Mobile.Core.Helpers;
 using GalaSoft.MvvmLight;
+using MediaFoundationVideoPlaybackView = Emby.Mobile.Universal.Views.Players.MediaFoundationVideoPlaybackView;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -181,7 +182,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             return PlayItem(GetNextItem(), (int)position);
         }
 
-        public Task Play(List<PlaylistItem> items, double position = 0)
+        public Task Play(List<PlaylistItem> items, double position = 0D, int? startingItem = null)
         {
             _playlist.Clear();
             _playlist.AddRange(items);
@@ -315,7 +316,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             var audio = _playbackManager.GetInPlaybackSelectableAudioStreams(_streamInfo);
             var captions = _playbackManager.GetInPlaybackSelectableSubtitleStreams(_streamInfo);
 
-            var controls = (EmbyTransportControls) _player?.TransportControls;
+            var controls =  _player?.TransportControls as EmbyTransportControls;
             if (controls != null)
             {
                 controls.VideoTitle = _item?.Name;
@@ -421,12 +422,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void NavigateToPlaybackView()
         {
-            //TODO Part of this should moved to NavigationService
-            var rootFrame = Window.Current.Content as Frame;
-            if (rootFrame != null && rootFrame.CurrentSourcePageType != typeof(MediaFoundationVideoPlaybackView))
-            {
-                AppServices.NavigationService.Navigate<MediaFoundationVideoPlaybackView>();
-            }
+            AppServices.NavigationService.NavigateToVideoPlayer();
         }
 
         private void ShowPlayer()

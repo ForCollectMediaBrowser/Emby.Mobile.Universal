@@ -14,7 +14,7 @@ namespace Emby.Mobile.Core.Interfaces
         bool IsPlaying { get; }
         PlayerState PlayerState { get; }
         Task Play(PlaylistItem item, double position = 0);
-        Task Play(List<PlaylistItem> items, double position = 0);
+        Task Play(List<PlaylistItem> items, double position = 0, int? startingItem = null);
         Task Add(List<PlaylistItem> items);
         Task Remove(PlaylistItem item);
         Task SkipToItem(PlaylistItem item);

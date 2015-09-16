@@ -249,7 +249,7 @@
     <Compile Include="Views\ManualServerEntryView.xaml.cs">
       <DependentUpon>ManualServerEntryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MediaFoundationVideoPlaybackView.xaml.cs">
+    <Compile Include="Views\Players\MediaFoundationVideoPlaybackView.xaml.cs">
       <DependentUpon>MediaFoundationVideoPlaybackView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MovieView.xaml.cs">
@@ -257,6 +257,9 @@
     </Compile>
     <Compile Include="Views\PhotoAlbumView.xaml.cs">
       <DependentUpon>PhotoAlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Players\PhotoPlayerView.xaml.cs">
+      <DependentUpon>PhotoPlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
@@ -442,7 +445,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MediaFoundationVideoPlaybackView.xaml">
+    <Page Include="Views\Players\MediaFoundationVideoPlaybackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -451,6 +454,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PhotoAlbumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Players\PhotoPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

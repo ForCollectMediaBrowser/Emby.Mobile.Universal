@@ -86,11 +86,11 @@ namespace Emby.Mobile.Universal.Services
             return PlayItems(playlist, position);
         }
 
-        public Task<bool> PlayItems(IList<BaseItemDto> items)
+        public Task<bool> PlayItems(IList<BaseItemDto> items, int? startingItem = null)
         {
             var playlist = new List<PlaylistItem>();
             playlist.AddRange(items.Select(x => new PlaylistItem(x)));
-            return PlayItems(playlist, 0);
+            return PlayItems(playlist, 0, startingItem);
         }
 
         public async Task<bool> PlayItems(string[] itemIds, long? position)
@@ -209,7 +209,7 @@ namespace Emby.Mobile.Universal.Services
             _currentPlayer?.Stop();
         }
 
-        private async Task<bool> PlayItems(List<PlaylistItem> items, long position)
+        private async Task<bool> PlayItems(List<PlaylistItem> items, long position, int? startingItem = null)
         {
             if (!items.IsNullOrEmpty())
             {
@@ -218,7 +218,7 @@ namespace Emby.Mobile.Universal.Services
                 {
                     _currentPlayer?.Stop();
                     _currentPlayer = player;
-                    await player.Play(items, position);
+                    await player.Play(items, position, startingItem);
                     return true;
                 }
             }
@@ -237,15 +237,24 @@ namespace Emby.Mobile.Universal.Services
 
         private IMediaPlayer GetPlayerForItem(BaseItemDto item)
         {
+            IMediaPlayer player = null;
             //Very basic solution, we will have to improve on this to get different players depending on codecs and containers etc
             if (item.IsAudio)
             {
-                return AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Audio || p.PlayerType == PlayerType.AudioAndVideo);
+                player = AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Audio || p.PlayerType == PlayerType.AudioAndVideo);
             }
-            else
+            
+            if(item.IsVideo)
             {
-                return AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Video || p.PlayerType == PlayerType.AudioAndVideo);
+                player = AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Video || p.PlayerType == PlayerType.AudioAndVideo);
             }
+
+            if (item.Type == "Photo")
+            {
+                player = AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Image);
+            }
+
+            return player;
         }
 
         public void ReportPlaylistStatus(IList<PlaylistItem> playlist)
