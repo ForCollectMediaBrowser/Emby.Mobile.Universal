@@ -317,7 +317,6 @@
                             <FlipView.ItemTemplate>
                                 <DataTemplate x:DataType="playback:PlaylistItem">
                                     <Grid>
-                                        
                                     </Grid>
                                 </DataTemplate>
                             </FlipView.ItemTemplate>

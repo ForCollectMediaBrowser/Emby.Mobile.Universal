@@ -62,17 +62,24 @@
 
                                     <controls:VariableGridView.ItemTemplate>
                                         <DataTemplate x:DataType="entities:ItemViewModel">
-                                            <Button Style="{StaticResource EmptyButtonStyle}"
-                                                    ClickMode="Release"
-                                                    Command="{x:Bind NavigateToItem}">
-                                                <Grid HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Stretch">
-                                                    <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
-                                                           Stretch="UniformToFill"
-                                                           HorizontalAlignment="Stretch"
-                                                           VerticalAlignment="Top" />
-                                                </Grid>
-                                            </Button>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                
+                                                <Button Style="{StaticResource EmptyButtonStyle}"
+                                                        ClickMode="Release"
+                                                        Command="{x:Bind NavigateToItem}">
+                                                    <Grid HorizontalAlignment="Stretch"
+                                                          VerticalAlignment="Stretch"
+                                                          Background="{StaticResource EmbyGreenBrush}">
+                                                        <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
+                                                               Stretch="UniformToFill"
+                                                               HorizontalAlignment="Stretch"
+                                                               VerticalAlignment="Top" />
+                                                    </Grid>
+                                                </Button>
+                                            </Grid>
                                         </DataTemplate>
                                     </controls:VariableGridView.ItemTemplate>
                                 </controls:VariableGridView>

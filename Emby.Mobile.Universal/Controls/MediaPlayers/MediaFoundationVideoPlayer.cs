@@ -320,7 +320,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             if (controls != null)
             {
                 controls.VideoTitle = _item?.Name;
-                controls.LogoImageUrl = _item?.HasLogo ?? false ? client?.GetImageUrl(_item, ImageOptionsHelper.ItemLogo) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+                controls.LogoImageUrl = _item?.HasLogo ?? false ? client?.GetImageUrl(_item, ImageOptionsHelper.ItemLogo) : "ms-appx:///Assets/Tiles/Square150x150.png";
             }
 
             IMediaPlaybackSource source;

@@ -115,12 +115,15 @@ namespace Emby.Mobile.Universal.Services
                 case "userview":
                     value = HandleCollectionNavigation(item);
                     break;
-                //    case "photoalbum":
                 //    case "folder":
                 //    case "boxset":
                 //        break;
                 case "photoalbum":
                     value = Navigate<PhotoAlbumView>(item);
+                    break;
+                case "photo":
+                    AppServices.PlaybackService.PlayItem(item);
+                    value = true;
                     break;
                 case "movie":
                     value = Navigate<MovieView>(item);

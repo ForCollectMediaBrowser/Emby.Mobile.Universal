@@ -35,6 +35,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         public PhotoPlayer()
         {
             DefaultStyleKey = typeof (PhotoPlayer);
+            AppServices.PlaybackService.RegisterPlayer(this);
         }
 
         public Guid Id { get; } = Guid.NewGuid();
@@ -43,6 +44,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         public bool CanPause { get; } = false;
         public bool IsPlaying => PlayerState == PlayerState.Playing;
         public PlayerState PlayerState { get; private set; }
+
         public Task Play(PlaylistItem item, double position = 0)
         {
             return Play(new List<PlaylistItem> { item }, position);
@@ -167,12 +169,6 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             SelectedPhoto = Photos[nextIndex];
 
             return Task.FromResult(true);
-        }
-
-        protected override void OnApplyTemplate()
-        {
-            AppServices.PlaybackService.RegisterPlayer(this);
-            base.OnApplyTemplate();
         }
 
         private void ShowPlayer()
