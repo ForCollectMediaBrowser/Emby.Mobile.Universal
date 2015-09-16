@@ -305,6 +305,10 @@
     </Style>
 
     <Style TargetType="mediaPlayers:PhotoPlayer">
+        <Setter Property="Opacity"
+                Value="0"/>
+        <Setter Property="Visibility"
+                Value="Collapsed"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="mediaPlayers:PhotoPlayer">

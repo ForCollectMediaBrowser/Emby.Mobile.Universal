@@ -193,6 +193,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         {
             if (Opacity > 0)
             {
+                this.Visibility = Visibility.Collapsed;
                 var sb = new Storyboard();
                 sb.AddFadeAnim(this, 0, 300);
                 sb.AddWidthAnim(this, ActualWidth, 0, 300);
