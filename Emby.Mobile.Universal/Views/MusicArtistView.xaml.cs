@@ -9,6 +9,8 @@ namespace Emby.Mobile.Universal.Views
     /// </summary>
     public sealed partial class MusicArtistView
     {
+        private MusicArtistViewModel Artist => DataContext as MusicArtistViewModel;
+
         public MusicArtistView()
         {
             InitializeComponent();
