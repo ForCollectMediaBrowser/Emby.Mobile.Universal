@@ -182,7 +182,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             return PlayItem(GetNextItem(), (int)position);
         }
 
-        public Task Play(List<PlaylistItem> items, double position = 0D, int? startingItem = null)
+        public Task Play(List<PlaylistItem> items, double position = 0d, int? startingItem = null)
         {
             _playlist.Clear();
             _playlist.AddRange(items);

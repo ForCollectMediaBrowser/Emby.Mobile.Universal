@@ -51,7 +51,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             return Play(new List<PlaylistItem> { item }, position);
         }
 
-        public Task Play(List<PlaylistItem> items, double position = 0D, int? startingItem = null)
+        public Task Play(List<PlaylistItem> items, double position = 0d, int? startingItem = null)
         {
             Photos = CreatePhotoList(items);
             SelectedPhoto = startingItem.HasValue ? Photos[startingItem.Value] : Photos.First();
