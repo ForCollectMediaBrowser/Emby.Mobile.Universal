@@ -13,10 +13,15 @@ namespace Emby.Mobile.Universal.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
         public ViewModelLocator()
+        {
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                RegisterEverything();
+            }
+        }
+
+        public static void RegisterEverything()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 

@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Extensions;
+using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.ViewModel;
+using Emby.Mobile.ViewModels;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Emby.Mobile.Universal.Views
 {
@@ -12,11 +16,28 @@ namespace Emby.Mobile.Universal.Views
         public StartupView()
         {
             InitializeComponent();
+
+            Loaded += StartupView_Loaded;
+        }
+
+        private async void StartupView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await AppServices.Create();
+
+            ViewModelLocator.RegisterEverything();
+
+            SetServices(AppServices.Anayltics, AppServices.NavigationService);
+
+            SimpleIoc.Default.GetInstance<IAuthenticationService>().Start();
+
+            var vm = ViewModelLocator.Get<StartupViewModel>();
+            DataContext = vm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HideSystemTrayAsync().DontAwait("Just get on with it, don't need to hold up the navigation");
+
             base.OnNavigatedTo(e);
         }
 
