@@ -32,6 +32,7 @@ namespace Emby.Mobile.Universal.Views
 
             var vm = ViewModelLocator.Get<StartupViewModel>();
             DataContext = vm;
+            vm.PageLoadedCommand.Execute(null);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

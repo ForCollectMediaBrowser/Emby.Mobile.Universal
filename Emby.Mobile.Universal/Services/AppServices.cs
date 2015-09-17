@@ -31,6 +31,8 @@ namespace Emby.Mobile.Universal.Services
     {
         static AppServices()
         {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 AddDesignTimeServices();
