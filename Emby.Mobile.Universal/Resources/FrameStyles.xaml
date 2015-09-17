@@ -18,6 +18,11 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
+                        
+                        <controls:HeaderControl x:Name="Header"
+                                                VerticalAlignment="Top"
+                                                x:DeferLoadStrategy="Lazy" />
+                        
                         <ContentControl x:Name="Content"
                                         Grid.Row="1"
                                         Content="{TemplateBinding Content}"
@@ -25,13 +30,17 @@
                                         VerticalContentAlignment="Stretch"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch" />
-                        <mediaPlayers:MediaFoundationVideoPlayer Grid.Row="1"/>
-                        <mediaPlayers:PhotoPlayer Grid.Row="1"/>
-                        <controls:HeaderControl x:Name="Header"
-                                                VerticalAlignment="Top" />
+                        <mediaPlayers:MediaFoundationVideoPlayer Grid.Row="1"
+                                                                 x:Name="VideoPlayer"
+                                                                 x:DeferLoadStrategy="Lazy" />
+                        <mediaPlayers:PhotoPlayer Grid.Row="1"
+                                                  x:Name="PhotoPlayer"
+                                                  x:DeferLoadStrategy="Lazy" />
+
                         <controls:StatusBarControl VerticalAlignment="Top"
                                                    x:Name="StatusBar"
-                                                   Grid.RowSpan="2" />
+                                                   Grid.RowSpan="2"
+                                                   x:DeferLoadStrategy="Lazy" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

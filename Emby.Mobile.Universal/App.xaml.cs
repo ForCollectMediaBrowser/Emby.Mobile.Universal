@@ -28,6 +28,8 @@ namespace Emby.Mobile.Universal
             UnhandledException += OnUnhandledException;
         }
 
+        internal static EmbyApplicationFrame Frame => Window.Current.Content as EmbyApplicationFrame;
+
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             AppServices.Log.ErrorException("UnhandledException", e.Exception);
@@ -48,7 +50,6 @@ namespace Emby.Mobile.Universal
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            await AppServices.Create();
 #if DEBUG
             if (Debugger.IsAttached)
             {
@@ -81,20 +82,14 @@ namespace Emby.Mobile.Universal
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                AppServices.NavigationService.Navigate<StartupView>(e.Arguments);
-                //rootFrame.Navigate(typeof (StartupView), e.Arguments);
+                //AppServices.NavigationService.Navigate<StartupView>(e.Arguments);
+                rootFrame.Navigate(typeof(StartupView), e.Arguments);
             }
 
             AppStarted();
 
             // Ensure the current window is active
             Window.Current.Activate();
-        }
-
-        public override void AppStarted()
-        {
-            base.AppStarted();
-            SimpleIoc.Default.GetInstance<IAuthenticationService>().Start();
         }
 
         /// <summary>

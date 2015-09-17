@@ -7,14 +7,18 @@ using Emby.Mobile.Universal.Interfaces;
 namespace Emby.Mobile.Universal.Controls
 {
     public class EmbyApplicationFrame : Frame
-    {        
-
-        public EmbyApplicationFrame()
+    {
+        public void LoadLazyItems()
         {
+            GetTemplateChild("VideoPlayer");
+            GetTemplateChild("PhotoPlayer");
+            GetTemplateChild("Header");
+            GetTemplateChild("StatusBar");
+
             Navigated += OnNavigated;
         }
 
-        private void OnNavigated(object sender, NavigationEventArgs e)
+        private static void OnNavigated(object sender, NavigationEventArgs e)
         {
             var hasHeader = e.Content as ICanHasHeaderMenu;
             var show = hasHeader != null;

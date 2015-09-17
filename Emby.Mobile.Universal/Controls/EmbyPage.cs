@@ -12,25 +12,19 @@ namespace Emby.Mobile.Universal.Controls
 {
     public class EmbyPage : BasePage
     {
+        private INavigationService _navigationService;
         public EmbyPage()
         {
             this.ThemeEnableThisElement();
-            Analytics = SimpleIoc.Default.GetInstance<IAnalyticsService>();
-            Loaded += (sender, args) =>
-            {
-                Header = ViewModelLocator.Get<HeaderMenuViewModel>();
-            };
         }
 
-        public override INavigationService NavigationService { get; } = AppServices.NavigationService;
+        public override INavigationService NavigationService => _navigationService;
 
-        protected IAnalyticsService Analytics { get; }
-
-        protected HeaderMenuViewModel Header { get; private set; } 
+        protected IAnalyticsService Analytics { get; private set; }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Analytics.PageLoad(GetType().Name);
+            Analytics?.PageLoad(GetType().Name);
 
             var vm = DataContext as PageViewModelBase;
             vm?.OnNavigatedTo(e.NavigationMode.ExchangeMode(), e.Parameter as BaseItemDto);
@@ -75,6 +69,12 @@ namespace Emby.Mobile.Universal.Controls
             {
                 AppServices.NavigationService.GoBack();
             }
+        }
+
+        protected void SetServices(IAnalyticsService analytics, INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+            Analytics = analytics;
         }
     }
 }

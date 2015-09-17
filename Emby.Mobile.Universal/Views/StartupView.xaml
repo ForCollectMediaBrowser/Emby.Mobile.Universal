@@ -7,7 +7,7 @@
                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                    mc:Ignorable="d"
-                   DataContext="{Binding Startup, Source={StaticResource Locator}}">
+                   d:DataContext="{Binding Startup, Source={StaticResource Locator}}">
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
