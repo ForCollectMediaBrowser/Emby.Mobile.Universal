@@ -18,17 +18,20 @@
         <RelativePanel>
             <Image x:Name="SplashScreenImage"
                    Source="/Assets/SplashScreen.png"
-                   Height="300"
+                   MaxHeight="300"
                    RelativePanel.AlignHorizontalCenterWithPanel="True"
                    RelativePanel.AlignVerticalCenterWithPanel="True" />
             <ProgressRing x:Name="ProgressRing"
                           Visibility="Visible"
+                          Height="75"
+                          Width="75"
+                          Foreground="White"
                           RelativePanel.Below="SplashScreenImage"
                           RelativePanel.AlignHorizontalCenterWithPanel="True"
                           IsActive="{Binding ProgressIsVisible}"/>
             <TextBlock Text="{Binding ProgressText}"
                        RelativePanel.Below="ProgressRing"
-                       RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                       RelativePanel.AlignHorizontalCenterWith="ProgressRing" />
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>

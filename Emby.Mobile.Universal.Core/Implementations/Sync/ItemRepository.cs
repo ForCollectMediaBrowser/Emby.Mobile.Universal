@@ -162,9 +162,14 @@ namespace Emby.Mobile.Universal.Core.Implementations.Sync
         {
             try
             {
-                return await _storageService.ReadAllTextAsync(path);
+                if (await _storageService.FileExistsAsync(path))
+                {
+                    return await _storageService.ReadAllTextAsync(path);
+                }
+
+                return string.Empty;
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
                 return string.Empty;
             }
