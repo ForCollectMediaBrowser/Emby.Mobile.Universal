@@ -38,6 +38,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<ManualLocalUserSignInViewModel>();
             Register<ConnectPinEntryViewModel>();
             Register<HeaderMenuViewModel>();
+            Register<HomeViewModel>();
             Register<SearchViewModel>();
             Register<GenericItemViewModel>();
             Register<MovieViewModel>();
@@ -58,6 +59,7 @@ namespace Emby.Mobile.Universal.ViewModel
         }
 
         public MainViewModel Main => Get<MainViewModel>();
+        public HomeViewModel Home => Get<HomeViewModel>();
         public StartupViewModel Startup => Get<StartupViewModel>();
         public ConnectViewModel Connect => Get<ConnectViewModel>();
         public ConnectChooseServerViewModel ConnectChooseServer => Get<ConnectChooseServerViewModel>();

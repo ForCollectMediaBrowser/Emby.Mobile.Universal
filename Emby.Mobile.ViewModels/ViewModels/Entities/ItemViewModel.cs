@@ -25,13 +25,14 @@ namespace Emby.Mobile.ViewModels.Entities
         public string PrimaryImageLarge => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryLarge) : "ms-appx:///Assets/Tiles/Square150x150.png";
         public string PrimaryImageMedium => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryMedium) : "ms-appx:///Assets/Tiles/Square150x150.png";
         public string PrimaryImageSmall => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimarySmall) : "ms-appx:///Assets/Tiles/Square150x150.png";
-        public string BackdropImage => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMax) : "ms-appx:///Assets/Tiles/Square150x150.png";
-        public string BackdropImageMedium => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/Square150x150.png";
-
+        public string BackdropImage =>  ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMax) ?? "ms-appx:///Assets/Tiles/Square150x150.png";
+        public string BackdropImageMedium => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMedium) : ParentBackdropImageMedium;
         public string[] BackdropImages => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetBackdropImageUrls(ItemInfo, ImageOptionsHelper.ItemBackdropLarge) : new string[0];
-        public string ThumbImage => ItemInfo?.HasThumb ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
-        public bool HasThumb => ItemInfo?.HasThumb ?? false;
+        public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+        public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
 
+        public bool HasThumb => !string.IsNullOrEmpty(GetThumbId());
+        public bool HasBackdrop => ItemInfo?.BackdropCount > 0;
         public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
 
         public RelayCommand NavigateToItem
@@ -40,6 +41,7 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(() =>
                 {
+                    
                     Services.UiInteractions.NavigationService.NavigateToItem(ItemInfo);
                 });
             }
@@ -61,6 +63,24 @@ namespace Emby.Mobile.ViewModels.Entities
         {
             //TODO Do we want to show progress here?
             ItemInfo = await ApiClient.GetItemAsync(ItemInfo.Id, AuthenticationService.SignedInUserId);
+        }
+
+        private string GetThumbId()
+        {
+            if (ItemInfo?.HasThumb == true)
+            {
+                return ItemInfo.Id;
+            }
+            if (!string.IsNullOrEmpty(ItemInfo?.SeriesId) && !string.IsNullOrEmpty(ItemInfo?.SeriesThumbImageTag))
+            {
+                return ItemInfo.SeriesId;
+            }
+            if (!string.IsNullOrEmpty(ItemInfo?.ParentThumbItemId))
+            {
+                return ItemInfo?.ParentThumbItemId;
+            }
+
+            return null;
         }
     }
 }

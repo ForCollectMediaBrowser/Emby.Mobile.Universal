@@ -79,7 +79,7 @@ namespace Emby.Mobile.ViewModels
 
         protected virtual void UpdateProperties() { }
 
-        protected virtual Task Refresh()
+        public virtual Task Refresh()
         {
             return Task.FromResult(0);
         }

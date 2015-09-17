@@ -20,33 +20,50 @@ namespace Emby.Mobile.ViewModels
         public HomeViewModel(IServices services) : base(services)
         {
             ResumableItems = new ObservableCollection<ItemViewModel>();
-            LatestVideo = new ObservableCollection<ItemViewModel>();
-            LatestMusic = new ObservableCollection<ItemViewModel>();
-            WhatsOn = new ObservableCollection<ItemViewModel>();
-        }        
+            LatestVideoItems = new ObservableCollection<ItemViewModel>();
+            LatestMusicItems = new ObservableCollection<ItemViewModel>();
+            WhatsOnItems = new ObservableCollection<ItemViewModel>();
+        }
 
-        public bool HasLatestVideo => LatestVideo.Any();
-        public bool HasLatestMusic => LatestMusic.Any();
+        public override Task Refresh()
+        {
+            return LoadData();
+        }
+
+        public bool HasLatestVideoItems => LatestVideoItems.Any();
+        public bool HasLatestMusicItems => LatestMusicItems.Any();
         public bool HasResumableItems => ResumableItems.Any();
-        public bool HasWhatsOn => WhatsOn.Any();        
+        public bool HasWhatsOnItems => WhatsOnItems.Any();
 
         public ObservableCollection<ItemViewModel> ResumableItems { get; set; }
 
-        public ObservableCollection<ItemViewModel> LatestVideo { get; set; }
+        public ObservableCollection<ItemViewModel> LatestVideoItems { get; set; }
 
-        public ObservableCollection<ItemViewModel> LatestMusic { get; set; }
+        public ObservableCollection<ItemViewModel> LatestMusicItems { get; set; }
 
-        public ObservableCollection<ItemViewModel> WhatsOn { get; set; }
+        public ObservableCollection<ItemViewModel> WhatsOnItems { get; set; }
 
         private async Task LoadData()
-        {            
-            await LoadResumableItems();
-            await LoadLatestVideo();
-            await LoadLatestMusic();
-            await LoadWhatsOn();           
+        {
+            string parentId = null;
+            try
+            {
+                var response = await ApiClient.GetRootFolderAsync(AuthenticationService.SignedInUserId);
+                if (response != null)
+                {
+                    parentId = response.Id;
+                }
+            }
+            catch (HttpException e)
+            { }
+
+            await LoadResumableItems(parentId);
+            await LoadLatestVideo(parentId);
+            await LoadLatestMusic(parentId);
+            await LoadWhatsOn();
         }
 
-        private async Task LoadResumableItems()
+        private async Task LoadResumableItems(string parentId)
         {
             try
             {
@@ -59,8 +76,9 @@ namespace Emby.Mobile.ViewModels
                     IncludeItemTypes = new[] { "Movie", "Episode" },
                     CollapseBoxSetItems = false,
                     Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines },
-                    EnableImageTypes = new[] { ImageType.Banner, ImageType.Backdrop, ImageType.Primary, ImageType.Thumb },
+                    
                     Limit = 6,
+                    ParentId = parentId,
                     Recursive = true
                 });
                 if (response != null && !response.Items.IsNullOrEmpty())
@@ -75,26 +93,24 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        private async Task LoadLatestVideo()
+        private async Task LoadLatestVideo(string parentId)
         {
             try
             {
-                var response = await ApiClient.GetItemsAsync(new ItemQuery
+                var response = await ApiClient.GetLatestItems(new LatestItemsQuery
                 {
                     UserId = AuthenticationService.SignedInUserId,
-                    SortBy = new[] { ItemSortBy.DateLastContentAdded },
-                    SortOrder = SortOrder.Descending,
-                    Filters = new[] { ItemFilter.IsNotFolder, ItemFilter.IsUnplayed },
+                    GroupItems = true,
+                    IsPlayed = false,
                     IncludeItemTypes = new[] { "Movie", "Episode" },
-                    CollapseBoxSetItems = true,
                     Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines },
                     EnableImageTypes = new[] { ImageType.Banner, ImageType.Backdrop, ImageType.Primary, ImageType.Thumb },
                     Limit = 10,
-                    Recursive = true
+                    ParentId = parentId
                 });
-                if (response != null && !response.Items.IsNullOrEmpty())
+                if (!response.IsNullOrEmpty())
                 {
-                    LatestVideo = response.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
+                    LatestVideoItems = response.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
                 }
             }
             catch (HttpException he)
@@ -103,26 +119,27 @@ namespace Emby.Mobile.ViewModels
             }
         }
 
-        private async Task LoadLatestMusic()
+        private async Task LoadLatestMusic(string parentId)
         {
             try
             {
                 var response = await ApiClient.GetItemsAsync(new ItemQuery
                 {
                     UserId = AuthenticationService.SignedInUserId,
-                    SortBy = new[] { ItemSortBy.DateLastContentAdded },
+                    SortBy = new[] { ItemSortBy.DateCreated },
                     SortOrder = SortOrder.Descending,
-                    Filters = new[] { ItemFilter.IsNotFolder, ItemFilter.IsUnplayed },
-                    IncludeItemTypes = new[] { "Album" },
-                    CollapseBoxSetItems = true,
-                    Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines },
+                    Filters = new[] { ItemFilter.IsUnplayed },
+                    IncludeItemTypes = new[] { "MusicAlbum" },
+                    Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources },
                     EnableImageTypes = new[] { ImageType.Banner, ImageType.Backdrop, ImageType.Primary, ImageType.Thumb },
-                    Limit = 10,
-                    Recursive = true
+                    Limit = 6,
+                    Recursive = true,
+                    ParentId = parentId
+                    
                 });
                 if (response != null && !response.Items.IsNullOrEmpty())
                 {
-                    LatestMusic = response.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
+                    LatestMusicItems = response.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
                 }
             }
             catch (HttpException he)
@@ -146,7 +163,7 @@ namespace Emby.Mobile.ViewModels
 
                     if (response != null && !response.Items.IsNullOrEmpty())
                     {
-                        WhatsOn = response.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
+                        WhatsOnItems = response.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
                     }
                 }
                 catch (HttpException he)
