@@ -13,6 +13,8 @@ namespace Emby.Mobile.Universal.Views
 {
     public sealed partial class StartupView
     {
+        private StartupViewModel Startup => DataContext as StartupViewModel;
+
         public StartupView()
         {
             InitializeComponent();
@@ -34,6 +36,9 @@ namespace Emby.Mobile.Universal.Views
 
             var vm = ViewModelLocator.Get<StartupViewModel>();
             DataContext = vm;
+
+            Bindings.Update();
+
             vm.PageLoadedCommand.Execute(null);
         }
 

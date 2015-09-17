@@ -6,6 +6,7 @@
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                   xmlns:converters="using:Emby.Mobile.Universal.Converters"
                    mc:Ignorable="d"
                    d:DataContext="{Binding Startup, Source={StaticResource Locator}}">
     <interactivity:Interaction.Behaviors>
@@ -23,13 +24,12 @@
                    RelativePanel.AlignVerticalCenterWithPanel="True" />
             <ProgressRing x:Name="ProgressRing"
                           Visibility="Visible"
-                          Height="75"
-                          Width="75"
-                          Foreground="White"
+                          Height="50"
+                          Width="50"
                           RelativePanel.Below="SplashScreenImage"
-                          RelativePanel.AlignHorizontalCenterWithPanel="True"
-                          IsActive="{Binding ProgressIsVisible}"/>
-            <TextBlock Text="{Binding ProgressText}"
+                          RelativePanel.AlignHorizontalCenterWith="SplashScreenImage"
+                          IsActive="{x:Bind Startup.ProgressIsVisible, Mode=OneWay}"/>
+            <TextBlock Text="{x:Bind Startup.ProgressText, Mode=OneWay}"
                        RelativePanel.Below="ProgressRing"
                        RelativePanel.AlignHorizontalCenterWith="ProgressRing" />
         </RelativePanel>
