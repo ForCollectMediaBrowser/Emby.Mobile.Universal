@@ -139,9 +139,10 @@ namespace Emby.Mobile.Universal.Services
                     break;
                 //    case "trailer":
                 //        break;
-                //    case "musicartist":
-                //    case "artist":
-                //        break;
+                case "musicartist":
+                case "artist":
+                    value = Navigate<MusicArtistView>(item);
+                    break;
                 case "musicalbum":
                     value = Navigate<MusicAlbumView>(item);
                     break;

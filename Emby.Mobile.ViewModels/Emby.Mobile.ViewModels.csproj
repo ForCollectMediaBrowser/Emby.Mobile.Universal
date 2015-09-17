@@ -64,6 +64,7 @@
     <Compile Include="ViewModels\GenericItemViewModel.cs" />
     <Compile Include="ViewModels\IItemSettable.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
+    <Compile Include="ViewModels\MusicArtistViewModel.cs" />
     <Compile Include="ViewModels\PageViewModelBase.cs" />
     <Compile Include="ViewModels\PhotoAlbumViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
