@@ -24,6 +24,8 @@ namespace Emby.Mobile.Universal.Views
         {
             await AppServices.Create();
 
+            HideSystemTrayAsync().DontAwait("Just get on with it, don't need to hold up the navigation");
+
             ViewModelLocator.RegisterEverything();
 
             SetServices(AppServices.Anayltics, AppServices.NavigationService);
@@ -33,13 +35,6 @@ namespace Emby.Mobile.Universal.Views
             var vm = ViewModelLocator.Get<StartupViewModel>();
             DataContext = vm;
             vm.PageLoadedCommand.Execute(null);
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            HideSystemTrayAsync().DontAwait("Just get on with it, don't need to hold up the navigation");
-
-            base.OnNavigatedTo(e);
         }
 
         private static async Task HideSystemTrayAsync()
