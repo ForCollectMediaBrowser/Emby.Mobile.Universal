@@ -1,7 +1,7 @@
-﻿using Emby.Mobile.Universal.Services;
-using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Navigation;
+using Emby.Mobile.Universal.Services;
 
-namespace Emby.Mobile.Universal.Views
+namespace Emby.Mobile.Universal.Views.Players
 {
     public sealed partial class MediaFoundationVideoPlaybackView
     {

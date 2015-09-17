@@ -286,7 +286,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 SendListToBackgroundPlayer(new List<TrackModel> { await GetTrackModel(item) }, true);
         }
 
-        public async Task Play(List<PlaylistItem> items, double position = 0)
+        public async Task Play(List<PlaylistItem> items, double position = 0d, int? startingItem = null)
         {
             _playlist = items;
             var list = new List<TrackModel>();

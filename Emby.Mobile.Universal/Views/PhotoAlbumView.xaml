@@ -11,7 +11,9 @@
         <GridView ItemsSource="{x:Bind PhotoAlbum.Photos, Mode=OneWay}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:PhotoViewModel">
-                    <Button Style="{StaticResource EmptyButtonStyle}">
+                    <Button Style="{StaticResource EmptyButtonStyle}"
+                            Command="{Binding PhotoAlbum.LaunchPhotoViewerCommand, Source={StaticResource Locator}}"
+                            CommandParameter="{Binding}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

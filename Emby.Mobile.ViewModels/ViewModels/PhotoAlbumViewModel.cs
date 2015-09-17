@@ -3,8 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Playback;
 using Emby.Mobile.Helpers;
 using Emby.Mobile.ViewModels.Entities;
+using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
@@ -22,6 +24,20 @@ namespace Emby.Mobile.ViewModels
         public List<PhotoViewModel> Photos { get; set; }
 
         public ItemViewModel PhotoAlbum { get; set; }
+
+        public RelayCommand<PhotoViewModel> LaunchPhotoViewerCommand
+        {
+            get
+            {
+                return new RelayCommand<PhotoViewModel>(startingPhoto =>
+                {
+                    var items = Photos.Select(x => x.ItemInfo).ToList();
+                    var startingItem = items.IndexOf(startingPhoto.ItemInfo);
+
+                    Services.Playback.PlayItems(items, startingItem);
+                });
+            }
+        }
 
         public override void OnNavigatedTo(NavigationMode mode, BaseItemDto item)
         {

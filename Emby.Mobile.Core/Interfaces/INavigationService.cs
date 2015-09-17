@@ -19,6 +19,8 @@ namespace Emby.Mobile.Core.Interfaces
         bool NavigateToPinLogin();
         bool NavigateToSettings();
         bool NavigateToPreferences();
+        bool NavigateToVideoPlayer();
+        bool NavigateToPhotoPlayer();
         bool NavigateToItem(BaseItemDto item);
     }
 }

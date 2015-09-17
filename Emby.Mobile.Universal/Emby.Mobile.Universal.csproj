@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="Controls\MediaPlayers\BackgroundAudioPlayer.cs" />
     <Compile Include="Controls\MediaPlayers\EmbyTransportControls.cs" />
+    <Compile Include="Controls\MediaPlayers\PhotoPlayer.cs" />
     <Compile Include="Controls\ProfilePicture.cs" />
     <Compile Include="Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
@@ -208,6 +209,9 @@
     <Compile Include="Services\StartUpService.cs" />
     <Compile Include="Services\StatusBarService.cs" />
     <Compile Include="Services\UIInteractions.cs" />
+    <Compile Include="Themes\Generic.xaml.cs">
+      <DependentUpon>Generic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChooseLocalServerView.xaml.cs">
       <DependentUpon>ChooseLocalServerView.xaml</DependentUpon>
@@ -245,7 +249,7 @@
     <Compile Include="Views\ManualServerEntryView.xaml.cs">
       <DependentUpon>ManualServerEntryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MediaFoundationVideoPlaybackView.xaml.cs">
+    <Compile Include="Views\Players\MediaFoundationVideoPlaybackView.xaml.cs">
       <DependentUpon>MediaFoundationVideoPlaybackView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MovieView.xaml.cs">
@@ -253,6 +257,9 @@
     </Compile>
     <Compile Include="Views\PhotoAlbumView.xaml.cs">
       <DependentUpon>PhotoAlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Players\PhotoPlayerView.xaml.cs">
+      <DependentUpon>PhotoPlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
@@ -438,7 +445,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MediaFoundationVideoPlaybackView.xaml">
+    <Page Include="Views\Players\MediaFoundationVideoPlaybackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -447,6 +454,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PhotoAlbumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Players\PhotoPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

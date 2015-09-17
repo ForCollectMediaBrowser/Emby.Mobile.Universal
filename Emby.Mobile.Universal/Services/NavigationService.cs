@@ -3,6 +3,7 @@ using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Views;
 using Emby.Mobile.Universal.Views.Connect;
 using Emby.Mobile.Universal.Views.FirstRun;
+using Emby.Mobile.Universal.Views.Players;
 using Emby.Mobile.Universal.Views.UserViews;
 using MediaBrowser.Model.Dto;
 
@@ -88,6 +89,16 @@ namespace Emby.Mobile.Universal.Services
             return false;
         }
 
+        public bool NavigateToVideoPlayer()
+        {
+            return Navigate<MediaFoundationVideoPlaybackView>();
+        }
+
+        public bool NavigateToPhotoPlayer()
+        {
+            return Navigate<PhotoPlayerView>();
+        }
+
         public bool NavigateToItem(BaseItemDto item)
         {
             bool value;
@@ -104,12 +115,15 @@ namespace Emby.Mobile.Universal.Services
                 case "userview":
                     value = HandleCollectionNavigation(item);
                     break;
-                //    case "photoalbum":
                 //    case "folder":
                 //    case "boxset":
                 //        break;
                 case "photoalbum":
                     value = Navigate<PhotoAlbumView>(item);
+                    break;
+                case "photo":
+                    AppServices.PlaybackService.PlayItem(item);
+                    value = true;
                     break;
                 case "movie":
                     value = Navigate<MovieView>(item);

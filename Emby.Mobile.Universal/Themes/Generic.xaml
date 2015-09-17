@@ -1,7 +1,9 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                    xmlns:mediaPlayers="using:Emby.Mobile.Universal.Controls.MediaPlayers">
+                    xmlns:mediaPlayers="using:Emby.Mobile.Universal.Controls.MediaPlayers"
+                    xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+                    x:Class="Emby.Mobile.Universal.Themes.Generic">
 
     <Style TargetType="controls:ProfilePicture">
         <Setter Property="ShowBackground"
@@ -296,6 +298,33 @@
                                 <mediaPlayers:EmbyTransportControls />
                             </MediaElement.TransportControls>
                         </MediaElement>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="mediaPlayers:PhotoPlayer">
+        <Setter Property="Opacity"
+                Value="0"/>
+        <Setter Property="Visibility"
+                Value="Collapsed"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mediaPlayers:PhotoPlayer">
+                    <Grid>
+                        <FlipView ItemsSource="{TemplateBinding Photos}">
+                            <FlipView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{Binding PrimaryImageLarge}"
+                                               HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Stretch"
+                                               Stretch="Uniform"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </FlipView.ItemTemplate>
+                        </FlipView>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

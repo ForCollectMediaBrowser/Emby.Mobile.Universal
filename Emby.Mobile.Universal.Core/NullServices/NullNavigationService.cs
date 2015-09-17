@@ -130,6 +130,16 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
+        public bool NavigateToVideoPlayer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToPhotoPlayer()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool NavigateToItem(BaseItemDto item)
         {
             throw new NotImplementedException();

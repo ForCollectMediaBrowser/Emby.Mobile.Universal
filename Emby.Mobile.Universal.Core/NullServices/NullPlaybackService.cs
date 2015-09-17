@@ -124,7 +124,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
             throw new NotImplementedException();
         }
 
-        public Task<bool> PlayItems(IList<BaseItemDto> items)
+        public Task<bool> PlayItems(IList<BaseItemDto> items, int? startingItem = null)
         {
             throw new NotImplementedException();
         }
