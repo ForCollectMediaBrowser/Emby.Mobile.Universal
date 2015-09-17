@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Navigation;
+using Emby.Mobile.Core.Extensions;
 
 namespace Emby.Mobile.Universal.Views
 {
@@ -13,9 +14,9 @@ namespace Emby.Mobile.Universal.Views
             InitializeComponent();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await HideSystemTrayAsync();
+            HideSystemTrayAsync().DontAwait("Just get on with it, don't need to hold up the navigation");
             base.OnNavigatedTo(e);
         }
 

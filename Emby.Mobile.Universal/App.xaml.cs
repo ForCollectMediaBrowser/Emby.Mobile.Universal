@@ -28,6 +28,8 @@ namespace Emby.Mobile.Universal
             UnhandledException += OnUnhandledException;
         }
 
+        internal static EmbyApplicationFrame Frame => Window.Current.Content as EmbyApplicationFrame;
+
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             AppServices.Log.ErrorException("UnhandledException", e.Exception);

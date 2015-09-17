@@ -86,7 +86,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<ILauncherService, LauncherService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, DeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();
-            SimpleIoc.Default.RegisterIf<IStartUpService, StartUpService>();
+            SimpleIoc.Default.RegisterIf<IStartUpService, StartupService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
             SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
 
