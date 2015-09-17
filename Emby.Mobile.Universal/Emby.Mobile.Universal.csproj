@@ -257,6 +257,9 @@
     </Compile>
     <Compile Include="Views\MusicAlbumView.xaml.cs">
       <DependentUpon>MusicAlbumView.xaml</DependentUpon>
+      </Compile>
+    <Compile Include="Views\MusicArtistView.xaml.cs">
+      <DependentUpon>MusicArtistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PhotoAlbumView.xaml.cs">
       <DependentUpon>PhotoAlbumView.xaml</DependentUpon>
@@ -453,6 +456,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicArtistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
