@@ -4,10 +4,61 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
+                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
                    mc:Ignorable="d"
                    d:DataContext="{Binding MusicAlbum, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <TextBlock x:Name="AlbumTitle"
+                       Text="{x:Bind Album.Item.Name, Mode=OneWay}"
+                       Style="{StaticResource HeaderTextBlockStyle}" />
+            <ListView ItemsSource="{x:Bind Album.Tracks, Mode=OneWay}"
+                      RelativePanel.Below="AlbumTitle"
+                      HorizontalAlignment="Stretch"
+                      RelativePanel.AlignRightWithPanel="True"
+                      RelativePanel.AlignLeftWithPanel="True">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:MusicTrackViewModel">
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                Command="{x:Bind PlayItemCommand}"
+                                CommandParameter="{Binding}"
+                                VerticalContentAlignment="Stretch"
+                                Height="100">
+                            <RelativePanel>
+                                <Image Source="{x:Bind PrimaryImageLarge}"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"
+                                       Stretch="Uniform"
+                                       Width="75"
+                                       Height="75"
+                                       x:Name="Artwork"
+                                       RelativePanel.AlignVerticalCenterWithPanel="True"/>
 
+                                <StackPanel RelativePanel.RightOf="Artwork"
+                                            RelativePanel.AlignVerticalCenterWith="Artwork"
+                                            Margin="12,0">
+                                    <TextBlock Text="{x:Bind Name}"
+                                               Style="{StaticResource SubtitleTextBlockStyle}"
+                                               Foreground="White"
+                                               
+                                               x:Name="TrackName"/>
+                                    <TextBlock Text="{x:Bind TrackRuntime, Mode=OneWay}"
+                                               Style="{StaticResource BodyTextBlockStyle}"
+                                               Foreground="{ThemeResource SubtleBrush}"
+                                               RelativePanel.Below="TrackName"/>
+                                </StackPanel>
+                            </RelativePanel>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativePanel>
     </Grid>
 </controls:EmbyPage>
