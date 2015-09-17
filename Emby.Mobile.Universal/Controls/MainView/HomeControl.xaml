@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Emby.Mobile.Universal.Controls.MainView.HomeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:Emby.Mobile.Universal.Controls.MainView"
+             xmlns:seven="using:Seven.Controls"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Home, Source={StaticResource Locator}}">
+
+    <Grid>
+        <ScrollViewer>
+            <RelativePanel>
+                <StackPanel x:Name="LatestVideoStack"
+                            Visibility="{x:Bind Home.HasLatestVideoItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="LatestTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLatestUnseen}"
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
+                    <seven:LoopingFlipview x:Name="LatestVideoFlipview"
+                                           ItemsSource="{x:Bind Home.LatestVideoItems, Mode=OneWay}"
+                                           ContextIndicatorVisiblity="Collapsed"
+                                           Interval="5">
+                        <seven:LoopingFlipview.ItemTemplate>
+                            <DataTemplate x:DataType="entities:ItemViewModel">
+                                <Grid Height="255"
+                                      Width="450"
+                                      IsTapEnabled="True">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="Tapped">
+                                            <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
+                                    
+                                    <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
+                                           Stretch="UniformToFill"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Top" 
+                                           />
+                                    <Border Background="#33000000"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch" />
+                                    <StackPanel VerticalAlignment="Center"
+                                                Margin="5,0,5,20">
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                                   Style="{StaticResource LargeTextBlockStyle}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Bottom"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Margin="0,10" 
+                                                   Foreground="White"/>
+                                        <TextBlock Text="{x:Bind Tagline}"
+                                                   Style="{StaticResource MediumTextBlockStyle}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Bottom"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Foreground="White"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </seven:LoopingFlipview.ItemTemplate>
+                    </seven:LoopingFlipview>
+                </StackPanel>
+                <StackPanel x:Name="ResumableStack"
+                            Visibility="{x:Bind Home.HasResumableItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.Below="LatestVideoStack"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="ResumeTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelResume}"
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
+                    <seven:LoopingFlipview x:Name="ResumableFlipview"
+                                           ItemsSource="{x:Bind Home.ResumableItems, Mode=OneWay}"
+                                           Interval="7"
+                                           ContextIndicatorVisiblity="Collapsed">
+                        <seven:LoopingFlipview.ItemTemplate>
+                            <DataTemplate x:DataType="entities:ItemViewModel">
+                                <Grid HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      IsTapEnabled="True">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="Tapped">
+                                            <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
+                                    <Image Source="{x:Bind ThumbImage, Mode=OneWay}"
+                                           Stretch="UniformToFill"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Top" />
+                                    <StackPanel VerticalAlignment="Bottom"
+                                                Margin="5,0,5,20"
+                                                Visibility="{x:Bind HasThumb, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}">
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                                   Style="{StaticResource MediumTextBlockStyle}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Bottom"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Margin="0,10" />
+                                        <TextBlock Text="{x:Bind Tagline}"
+                                                   Style="{StaticResource ExtraSmallTextBlockStyle}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Bottom"
+                                                   TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </seven:LoopingFlipview.ItemTemplate>
+                    </seven:LoopingFlipview>
+                </StackPanel>
+                <StackPanel x:Name="LatestMusicStack"
+                            Visibility="{x:Bind Home.HasLatestMusicItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.Below="ResumableStack"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="LatestMusicTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLatestMusic}"
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
+                    <ListView ScrollViewer.HorizontalScrollMode="Auto"
+                              VerticalAlignment="Top"
+                              ItemsSource="{x:Bind Home.LatestMusicItems, Mode=OneWay}"
+                              RelativePanel.Below="LatestMusicTextBlock"
+                              RelativePanel.AlignLeftWithPanel="True"
+                              RelativePanel.AlignBottomWithPanel="True"
+                              RelativePanel.AlignRightWithPanel="True"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              ScrollViewer.ZoomMode="Disabled"
+                              SelectionMode="None"
+                              Padding="0,0,0,0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="entities:ItemViewModel">
+                                <Grid Height="170"
+                                      Width="170"
+                                      IsTapEnabled="True">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="Tapped">
+                                            <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
+                                    <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                           Stretch="UniformToFill"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Top" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </RelativePanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

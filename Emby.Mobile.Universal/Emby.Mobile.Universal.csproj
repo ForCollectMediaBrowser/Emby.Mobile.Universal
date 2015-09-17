@@ -172,6 +172,9 @@
     </Compile>
     <Compile Include="Controls\LoopingFlipview.cs" />
     <Compile Include="Controls\LoopingItemsPanel.cs" />
+    <Compile Include="Controls\MainView\HomeControl.xaml.cs">
+      <DependentUpon>HomeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MediaPlayers\BackgroundAudioPlayer.cs" />
     <Compile Include="Controls\MediaPlayers\EmbyTransportControls.cs" />
     <Compile Include="Controls\MediaPlayers\PhotoPlayer.cs" />
@@ -353,6 +356,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainView\HomeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
