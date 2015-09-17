@@ -84,6 +84,7 @@
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StartupViewModel.cs" />
     <Compile Include="ViewModels\Entities\ServerInfoViewModel.cs" />
+    <Compile Include="ViewModels\TrailerViewModel.cs" />
     <Compile Include="ViewModels\TvShowViewModel.cs" />
     <Compile Include="ViewModels\UserViewModelBase.cs" />
     <Compile Include="ViewModels\UserViews\ChannelsUserViewModel.cs" />
