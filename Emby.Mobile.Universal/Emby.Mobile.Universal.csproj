@@ -276,6 +276,9 @@
     <Compile Include="Views\StartupView.xaml.cs">
       <DependentUpon>StartupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TrailerView.xaml.cs">
+      <DependentUpon>TrailerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TvShowView.xaml.cs">
       <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
@@ -484,6 +487,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StartupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrailerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
