@@ -32,4 +32,7 @@
                      Color="{StaticResource EmbyGreenColor}"/>
     <SolidColorBrush x:Key="SystemControlForegroundAccentBrush"
                      Color="{StaticResource EmbyGreenColor}" />
+    <Color x:Key="TransparentBackgroundColor">#C4000000</Color>
+    <SolidColorBrush x:Key="TransparentBackgroundBrush"
+                     Color="{StaticResource TransparentBackgroundColor}" />
 </ResourceDictionary>

@@ -53,6 +53,7 @@ local.properties
 *.user
 *.sln.docstates
 *.nupkg
+*.nuget.targets
 
 # Build results
 [Dd]ebug/
