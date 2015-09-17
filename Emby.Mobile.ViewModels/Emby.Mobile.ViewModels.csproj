@@ -55,6 +55,8 @@
     <Compile Include="Messages\ServerInfoMessage.cs" />
     <Compile Include="Messages\SignOutAppMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Entities\MusicTrackViewModel.cs" />
+    <Compile Include="ViewModels\MusicAlbumViewModel.cs" />
     <Compile Include="ViewModels\Entities\PhotoViewModel.cs" />
     <Compile Include="ViewModels\Entities\SearchHintViewModel.cs" />
     <Compile Include="ViewModels\Entities\UserViewViewModel.cs" />

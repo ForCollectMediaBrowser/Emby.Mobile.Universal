@@ -255,6 +255,9 @@
     <Compile Include="Views\MovieView.xaml.cs">
       <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicAlbumView.xaml.cs">
+      <DependentUpon>MusicAlbumView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PhotoAlbumView.xaml.cs">
       <DependentUpon>PhotoAlbumView.xaml</DependentUpon>
     </Compile>
@@ -450,6 +453,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicAlbumView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
