@@ -12,15 +12,12 @@ namespace Emby.Mobile.Universal.Controls
 {
     public class EmbyPage : BasePage
     {
-        private INavigationService _navigationService;
         public EmbyPage()
         {
             this.ThemeEnableThisElement();
         }
 
-        public override INavigationService NavigationService => _navigationService;
-
-        protected IAnalyticsService Analytics { get; private set; }
+        protected static IAnalyticsService Analytics { get; private set; }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -73,8 +70,8 @@ namespace Emby.Mobile.Universal.Controls
 
         protected void SetServices(IAnalyticsService analytics, INavigationService navigationService)
         {
-            _navigationService = navigationService;
             Analytics = analytics;
+            NavigationService = navigationService;
         }
     }
 }
