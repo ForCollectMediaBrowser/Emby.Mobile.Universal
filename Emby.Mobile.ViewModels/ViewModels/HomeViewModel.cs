@@ -30,6 +30,8 @@ namespace Emby.Mobile.ViewModels
             return LoadData();
         }
 
+        public string ArtistBackdrop => GetAlbumArtistBackdrop();
+
         public bool HasLatestVideoItems => LatestVideoItems.Any();
         public bool HasLatestMusicItems => LatestMusicItems.Any();
         public bool HasResumableItems => ResumableItems.Any();
@@ -171,6 +173,17 @@ namespace Emby.Mobile.ViewModels
 
                 }
             }
+        }
+
+        private string GetAlbumArtistBackdrop()
+        {
+            var item = LatestMusicItems?.FirstOrDefault(x => !string.IsNullOrEmpty(x.ItemInfo.ParentBackdropItemId));
+            if (item != null)
+            {
+                return item.ParentBackdropImageMedium;
+            }
+            //TODO Replace with other image
+            return "ms-appx:///Assets/Backdrops/Splash_Screen_Landscape_1920x1080_nologo.png";
         }
     }
 }
