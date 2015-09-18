@@ -54,7 +54,10 @@ namespace Seven.Controls
             _updateTimer = new DispatcherTimer();
             _updateTimer.Tick += (s, e) =>
             {
-                SetNextItem();
+                if (Items?.Count > 1)
+                {
+                    SetNextItem();
+                }
             };
 
             DefaultStyleKey = typeof(LoopingFlipview);
@@ -62,7 +65,7 @@ namespace Seven.Controls
             {
                 InitializePanel();
             };
-            ManipulationMode = ManipulationModes.TranslateX;
+            
         }
 
         protected override void OnApplyTemplate()
@@ -150,6 +153,13 @@ namespace Seven.Controls
         private void SetNextItem()
         {
             var index = SelectedIndex;
+
+            if (index == -1 && Items?.Count > 0)
+            {
+                //We've lost the selected index, reset to 0
+                index = 0;
+            }
+
             if (index > -1)
             {
                 index++;

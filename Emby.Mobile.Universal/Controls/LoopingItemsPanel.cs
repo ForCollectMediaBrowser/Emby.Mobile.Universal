@@ -21,7 +21,7 @@ namespace Seven.Controls.Panels
 
         public LoopingItemsPanel()
         {
-            ManipulationMode = ManipulationModes.TranslateX;
+            //ManipulationMode = ManipulationModes.TranslateX;
             SizeChanged += OnSizeChanged;
             _animationSlider = new Slider
             {
@@ -200,13 +200,16 @@ namespace Seven.Controls.Panels
 
         private void UpdatePosition(int startIndex, int endIndex, double offset)
         {
-            for (var i = startIndex; i < endIndex; i++)
+            if (startIndex > -1)
             {
-                var loopListItem = Children[i];
-                TranslateTransform compositeTransform = loopListItem.RenderTransform as TranslateTransform;
-                if (compositeTransform != null)
+                for (var i = startIndex; i < endIndex; i++)
                 {
-                    compositeTransform.X = offset;
+                    var loopListItem = Children[i];
+                    TranslateTransform compositeTransform = loopListItem.RenderTransform as TranslateTransform;
+                    if (compositeTransform != null)
+                    {
+                        compositeTransform.X = offset;
+                    }
                 }
             }
         }
