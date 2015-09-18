@@ -3,6 +3,7 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
                    xmlns:mainviewControls="using:Emby.Mobile.Universal.Controls.MainView"
                    mc:Ignorable="d"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -19,10 +20,12 @@
     <Grid>
         <Pivot>
             <PivotItem Header="**Home"
+                       Margin="0"
                        ManipulationMode="None">
                 <mainviewControls:HomeControl />
             </PivotItem>
             <PivotItem Header="**UserViews"
+                       Margin="0"
                        ManipulationMode="None">
                 <mainviewControls:UserViewsControl />
             </PivotItem>

@@ -138,6 +138,7 @@
     <Content Include="Fonts\MaterialIcons-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Microsoft.NetNative.targets" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -363,12 +364,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainView\HomeControl.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\MainView\UserViewsControl.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SearchControl.xaml">
       <SubType>Designer</SubType>
