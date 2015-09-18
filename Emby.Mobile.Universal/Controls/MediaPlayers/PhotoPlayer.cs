@@ -202,7 +202,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 sb.AddFadeAnim(this, 0, 300);
                 sb.AddWidthAnim(this, ActualWidth, 0, 300);
                 sb.AddHeightAnim(this, ActualHeight, 0, 300);
-                sb.AddCollapseAnimation(this);
+                sb.AddCollapseAnimation(this, 300);
                 sb.Begin();
             }
         }
