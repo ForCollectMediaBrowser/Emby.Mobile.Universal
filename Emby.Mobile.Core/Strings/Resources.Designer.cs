@@ -341,7 +341,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to resume.
+        ///   Looks up a localized string similar to Resume.
         /// </summary>
         public static string AppBarResume {
             get {
@@ -350,7 +350,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to resume on.
+        ///   Looks up a localized string similar to Resume on.
         /// </summary>
         public static string AppBarResumeOn {
             get {
@@ -1538,7 +1538,25 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to latest unseen.
+        ///   Looks up a localized string similar to Latest.
+        /// </summary>
+        public static string LabelLatest {
+            get {
+                return ResourceManager.GetString("LabelLatest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest music.
+        /// </summary>
+        public static string LabelLatestMusic {
+            get {
+                return ResourceManager.GetString("LabelLatestMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest unseen.
         /// </summary>
         public static string LabelLatestUnseen {
             get {
@@ -2272,6 +2290,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelRestartNow {
             get {
                 return ResourceManager.GetString("LabelRestartNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        public static string LabelResume {
+            get {
+                return ResourceManager.GetString("LabelResume", resourceCulture);
             }
         }
         
