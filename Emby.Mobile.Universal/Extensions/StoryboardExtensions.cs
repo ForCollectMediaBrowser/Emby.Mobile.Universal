@@ -50,40 +50,11 @@ namespace Emby.Mobile.Universal.Extensions
                 EasingFunction = easing,
                 AutoReverse = false
             };
-            var visibilityAnim = new ObjectAnimationUsingKeyFrames
-            {
-                BeginTime = TimeSpan.FromSeconds(0),
-                KeyFrames =
-                {
-                    new DiscreteObjectKeyFrame
-                    {
-                        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0)),
-                        Value = targetOpacity > 0 ? Visibility.Visible : Visibility.Collapsed
-                    }
-                }
-            };
 
             Storyboard.SetTargetProperty(anim, "Opacity");
-            Storyboard.SetTargetProperty(visibilityAnim, "Visibility");
-
             Storyboard.SetTarget(anim, element);
-            Storyboard.SetTarget(visibilityAnim, element);
-
-            // If targetOpacity is > 0 (ie, 1), then we are trying to show the element, which means we
-            // should set its visibility *before* the opacity animation.
-            if (targetOpacity > 0)
-            {
-                storyboard.Children.Add(visibilityAnim);
-            }
 
             storyboard.Children.Add(anim);
-
-            // If targetOpacity is < 1 (ie, 0), then we are trying to hide the element, which means we
-            // should set its visibility *after* the opacity animation.
-            if (targetOpacity < 1)
-            {
-                storyboard.Children.Add(visibilityAnim);
-            }
         }
 
         public static void AddTransformXAnim(this Storyboard storyboard, UIElement element, double fromOffsetX, double toOffsetX, double duration = AnimationDuration)
