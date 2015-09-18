@@ -18,6 +18,11 @@ namespace Emby.Mobile.ViewModels
             UserViews = new ObservableCollection<UserViewViewModel>();
         }
 
+        public override Task Refresh()
+        {
+            return LoadData(true);
+        }
+
         public ObservableCollection<UserViewViewModel> UserViews { get; set; }
 
         private async Task LoadData(bool isRefresh)
