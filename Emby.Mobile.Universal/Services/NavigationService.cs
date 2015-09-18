@@ -51,7 +51,8 @@ namespace Emby.Mobile.Universal.Services
 
         public bool NavigateToConnectFirstRun()
         {
-            throw new NotImplementedException();
+            //TODO Is this the correct view
+            return Navigate<ConnectView>();
         }
 
         public bool NavigateToChooseProfile()
