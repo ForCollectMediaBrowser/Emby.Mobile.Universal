@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Playback;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Dto;
 
@@ -32,6 +34,8 @@ namespace Emby.Mobile.ViewModels.Entities
         public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(ItemInfo), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
 
+        public bool CanResume => ItemInfo?.UserData?.PlaybackPositionTicks > 0;
+
         public bool HasThumb => !string.IsNullOrEmpty(GetThumbId(ItemInfo));
         public bool HasBackdrop => ItemInfo?.BackdropCount > 0;
         public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
@@ -56,7 +60,23 @@ namespace Emby.Mobile.ViewModels.Entities
                 {
                     //HACK Change this to the real deal.
                     Services.Playback.PlayItem(ItemInfo);
+                    Services.Playback.PlaybackInfoChanged += PlaybackOnPlaybackInfoChanged;
                 });
+            }
+        }
+
+        private void PlaybackOnPlaybackInfoChanged(object sender, PlaybackInfoEventArgs e)
+        {
+            if (e.ItemId == ItemInfo.Id)
+            {
+                Services.Playback.PlaybackInfoChanged -= PlaybackOnPlaybackInfoChanged;
+                if (ItemInfo.UserData == null)
+                {
+                    ItemInfo.UserData = new UserItemDataDto();
+                }
+
+                ItemInfo.UserData.PlaybackPositionTicks = e.PlaybackTicks ?? 0;
+                RaisePropertyChanged(() => CanResume);
             }
         }
 

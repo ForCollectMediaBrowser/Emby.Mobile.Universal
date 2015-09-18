@@ -56,13 +56,13 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public MediaFoundationVideoPlayer()
         {
-            _postionChangedTimer = new DispatcherTimer();
-            _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
-            _postionChangedTimer.Tick += PostionChangedTimer_Tick;
             if (!ViewModelBase.IsInDesignModeStatic)
             {
                 _connectionManager = SimpleIoc.Default.GetInstance<IConnectionManager>();
                 _playbackManager = SimpleIoc.Default.GetInstance<IPlaybackManager>();
+                _postionChangedTimer = new DispatcherTimer();
+                _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
+                _postionChangedTimer.Tick += PostionChangedTimer_Tick;
             }
 
             _playlist = new List<PlaylistItem>();
@@ -76,7 +76,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 ItemId = _item.Id,
                 CanSeek = CanSeek,
                 AudioStreamIndex = null,
-                IsPaused = _player.PlaybackRate == 0,
+                IsPaused = _player.CurrentState == MediaElementState.Paused,
                 IsMuted = _player.IsMuted,
                 VolumeLevel = Convert.ToInt32(_player.Volume),
                 PositionTicks = _player.Position.Ticks,
@@ -134,7 +134,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                     ItemId = _item.Id,
                     CanSeek = CanSeek,
                     AudioStreamIndex = null,
-                    IsPaused = _player.PlaybackRate == 0,
+                    IsPaused = _player.CurrentState == MediaElementState.Paused,
                     IsMuted = _player.IsMuted,
                     VolumeLevel = Convert.ToInt32(_player.Volume),
                     PositionTicks = _player.Position.Ticks
@@ -147,7 +147,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         {
             AppServices.DispatcherService.RunAsync(() =>
             {
-                AppServices.PlaybackService.ReportPlayerState(MediaElementState.Playing.ToPlayerState());
+                AppServices.PlaybackService.ReportPlayerState(_player.CurrentState.ToPlayerState());
             });
         }
 

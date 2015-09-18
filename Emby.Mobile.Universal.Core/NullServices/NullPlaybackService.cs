@@ -35,6 +35,8 @@ namespace Emby.Mobile.Universal.Core.NullServices
             }
         }
 
+        public event EventHandler<PlaybackInfoEventArgs> PlaybackInfoChanged;
+
         public long? CurrentPositionTicks
         {
             get
@@ -92,7 +94,7 @@ namespace Emby.Mobile.Universal.Core.NullServices
         }
 
         public event EventHandler<PlayerPositionEventArgs> PlayerPositionChanged;
-        public event EventHandler<PlayStateChangedEventArgs> PlaystateChanged;
+        public event EventHandler<PlayStateChangedEventArgs> PlayStateChanged;
 
         public void AddToPlaylist(IList<BaseItemDto> items)
         {

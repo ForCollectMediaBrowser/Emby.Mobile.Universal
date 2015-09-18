@@ -30,6 +30,7 @@ namespace Emby.Mobile.Universal.Services
 
         public PlaylistItem CurrentItem => Playlist?.FirstOrDefault(p => p.State == PlaylistState.Playing);
 
+        public event EventHandler<PlaybackInfoEventArgs> PlaybackInfoChanged;
         public long? CurrentPositionTicks { get; }
 
         public bool HasCurrentItem => CurrentItem != null;
@@ -45,7 +46,7 @@ namespace Emby.Mobile.Universal.Services
         public PlaylistItem UpcomingItem => Playlist?.FirstOrDefault(p => p.State == PlaylistState.Queued);
 
         public event EventHandler<PlayerPositionEventArgs> PlayerPositionChanged;
-        public event EventHandler<PlayStateChangedEventArgs> PlaystateChanged;
+        public event EventHandler<PlayStateChangedEventArgs> PlayStateChanged;
 
         public PlaybackService(IConnectionManager connectionManager, IServerInfoService serverInfo, IAuthenticationService authenticationService, IPlaybackManager playbackManager)
         {
@@ -136,28 +137,30 @@ namespace Emby.Mobile.Universal.Services
             Playlist.Remove(item);
         }
 
-        public async void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo)
+        public void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo)
         {
             if (DateTime.UtcNow > _lastProgressReportTimeStamp.AddSeconds(5))
             {
                 _lastProgressReportTimeStamp = DateTime.UtcNow;
-                await _playbackManager.ReportPlaybackProgress(info, streamInfo, _serverInfo.IsOffline, _apiClient);
+                _playbackManager.ReportPlaybackProgress(info, streamInfo, _serverInfo.IsOffline, _apiClient);
             }
         }
 
-        public async void ReportPlaybackStarted(PlaybackStartInfo info)
+        public void ReportPlaybackStarted(PlaybackStartInfo info)
         {
-            await _playbackManager.ReportPlaybackStart(info, _serverInfo.IsOffline, _apiClient);
+            _playbackManager.ReportPlaybackStart(info, _serverInfo.IsOffline, _apiClient);
         }
 
-        public async void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo)
+        public void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo)
         {
-            await _playbackManager.ReportPlaybackStopped(info,
-                                                         streamInfo,
-                                                         _serverInfo.ServerInfo.Id,
-                                                         _authenticationService.SignedInUserId,
-                                                         _serverInfo.IsOffline,
-                                                         _apiClient);
+            _playbackManager.ReportPlaybackStopped(info,
+                streamInfo,
+                _serverInfo.ServerInfo.Id,
+                _authenticationService.SignedInUserId,
+                _serverInfo.IsOffline,
+                _apiClient);
+
+            ReportProgressChanged(info.ItemId, info.PositionTicks);
         }
 
         public void ResumeFromPause()
@@ -207,6 +210,7 @@ namespace Emby.Mobile.Universal.Services
         public void Stop()
         {
             _currentPlayer?.Stop();
+            ReportPlaybackInfo(CurrentItem?.Item.Id, CurrentPositionTicks);
         }
 
         private async Task<bool> PlayItems(List<PlaylistItem> items, long position, int? startingItem = null)
@@ -243,8 +247,8 @@ namespace Emby.Mobile.Universal.Services
             {
                 player = AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Audio || p.PlayerType == PlayerType.AudioAndVideo);
             }
-            
-            if(item.IsVideo)
+
+            if (item.IsVideo)
             {
                 player = AvailablePlayers.FirstOrDefault(p => p.PlayerType == PlayerType.Video || p.PlayerType == PlayerType.AudioAndVideo);
             }
@@ -265,7 +269,13 @@ namespace Emby.Mobile.Universal.Services
 
         public void ReportPlayerState(PlayerState state)
         {
-            PlaystateChanged?.Invoke(this, new PlayStateChangedEventArgs(state));
+            PlayStateChanged?.Invoke(this, new PlayStateChangedEventArgs(state));
+        }
+
+        private void ReportPlaybackInfo(string itemId, long? positionTicks)
+        {
+            var eventHandler = PlaybackInfoChanged;
+            eventHandler?.Invoke(this, new PlaybackInfoEventArgs(itemId, positionTicks));
         }
     }
 }
