@@ -15,11 +15,12 @@ namespace Emby.Mobile.Universal.Controls.MainView
                     if (Home != null)
                     {
                         await Home.Refresh();
+                        Bindings.Update();
                     }
+                    
                 };
             }
-        }
-        
+        }        
 
         private HomeViewModel Home => DataContext as HomeViewModel;
     }

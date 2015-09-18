@@ -3,18 +3,9 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                   xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+                   xmlns:mainviewControls="using:Emby.Mobile.Universal.Controls.MainView"
                    mc:Ignorable="d"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
-
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
@@ -26,90 +17,15 @@
     </Page.BottomAppBar>
 
     <Grid>
-        <GridView ItemsSource="{x:Bind Main.UserViews, Mode=OneWay}">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="entities:UserViewViewModel">
-                    <Grid BorderBrush="{ThemeResource ContrastBackgroundBrush}"
-                          BorderThickness="1"
-                          Background="{ThemeResource BackgroundBrush}"
-                          Height="250"
-                          Width="360">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="1"
-                              HorizontalAlignment="Left">
-                            <ProgressRing IsActive="{x:Bind ProgressIsVisible, Mode=OneWay}"
-                                          Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
-                            <Viewbox Stretch="Uniform"
-                                     StretchDirection="DownOnly"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Top"
-                                     Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}">
-                                <controls:VariableGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
-                                                           VerticalAlignment="Top"
-                                                           HorizontalAlignment="Stretch"
-                                                           Width="700">
-                                    <controls:VariableGridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid ItemHeight="119"
-                                                                   ItemWidth="230"
-                                                                   Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </controls:VariableGridView.ItemsPanel>
-
-                                    <controls:VariableGridView.ItemTemplate>
-                                        <DataTemplate x:DataType="entities:ItemViewModel">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                
-                                                <Button Style="{StaticResource EmptyButtonStyle}"
-                                                        ClickMode="Release"
-                                                        Command="{x:Bind NavigateToItem}">
-                                                    <Grid HorizontalAlignment="Stretch"
-                                                          VerticalAlignment="Stretch"
-                                                          Background="{StaticResource EmbyGreenBrush}">
-                                                        <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
-                                                               Stretch="UniformToFill"
-                                                               HorizontalAlignment="Stretch"
-                                                               VerticalAlignment="Top" />
-                                                    </Grid>
-                                                </Button>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </controls:VariableGridView.ItemTemplate>
-                                </controls:VariableGridView>
-                            </Viewbox>
-                        </Grid>
-
-                        <Button Style="{StaticResource EmptyButtonStyle}"
-                                ClickMode="Release"
-                                Command="{x:Bind NavigateToItem}"
-                                Grid.Row="0"
-                                VerticalAlignment="Top">
-                            <StackPanel Background="{ThemeResource ContrastBackgroundBrush}"
-                                        VerticalAlignment="Top"
-                                        Orientation="Horizontal">
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                           Style="{StaticResource HeaderTextBlockStyle}"
-                                           Margin="12,0"
-                                           TextWrapping="NoWrap"
-                                           TextTrimming="CharacterEllipsis" />
-                                <TextBlock Text="{StaticResource ChevronRight}"
-                                           Style="{StaticResource SubheaderTextBlockStyle}"
-                                           FontFamily="Segoe MDL2 Assets"
-                                           VerticalAlignment="Bottom"
-                                           Margin="-7,0,0,11"
-                                           FontSize="24" />
-                            </StackPanel>
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+        <Pivot>
+            <PivotItem Header="**Home"
+                       ManipulationMode="None">
+                <mainviewControls:HomeControl />
+            </PivotItem>
+            <PivotItem Header="**UserViews"
+                       ManipulationMode="None">
+                <mainviewControls:UserViewsControl />
+            </PivotItem>
+        </Pivot>
     </Grid>
 </controls:EmbyPage>
