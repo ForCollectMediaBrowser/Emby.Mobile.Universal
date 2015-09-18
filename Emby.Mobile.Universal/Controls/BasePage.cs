@@ -17,7 +17,7 @@ namespace Emby.Mobile.Universal.Controls
         
         protected virtual ApplicationViewBoundsMode Mode => ApplicationViewBoundsMode.UseCoreWindow;
 
-        public abstract INavigationService NavigationService { get; }
+        protected static INavigationService NavigationService { get; set; }
 
         protected virtual NavigationCacheMode NavCacheMode => NavigationCacheMode.Required;
 
