@@ -35,6 +35,7 @@ namespace Emby.Mobile.ViewModels
 
         private Task LoadSettings()
         {
+            SetProgressBar(" ");
             var task = Task.FromResult(0);
             RetryButtonIsVisible = false;
             // TODO: Check to see if OOBE has happened.
@@ -71,9 +72,9 @@ namespace Emby.Mobile.ViewModels
 
                     Services.UiInteractions.NavigationService.RemoveBackEntry();
                 }
-            }
 
-            SetProgressBar();
+                SetProgressBar();
+            }
 
             return task;
         }
@@ -124,6 +125,8 @@ namespace Emby.Mobile.ViewModels
             });
 
             await tcs.Task;
+
+            SetProgressBar();
 
             return 0;
         }
