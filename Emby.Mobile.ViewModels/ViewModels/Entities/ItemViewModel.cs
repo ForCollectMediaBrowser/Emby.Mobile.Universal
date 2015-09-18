@@ -27,6 +27,7 @@ namespace Emby.Mobile.ViewModels.Entities
         public string PrimaryImageSmall => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimarySmall) : "ms-appx:///Assets/Tiles/Square150x150.png";
         public string BackdropImage =>  ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMax) ?? "ms-appx:///Assets/Tiles/Square150x150.png";
         public string BackdropImageMedium => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMedium) : ParentBackdropImageMedium;
+        public string BackdropImageLarge => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropLarge) : ParentBackdropImageMedium;
         public string[] BackdropImages => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetBackdropImageUrls(ItemInfo, ImageOptionsHelper.ItemBackdropLarge) : new string[0];
         public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
