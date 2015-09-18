@@ -16,8 +16,7 @@ namespace Emby.Mobile.Universal.Controls.MainView
                     {
                         await Home.Refresh();
                         Bindings.Update();
-                    }
-                    
+                    }                    
                 };
             }
         }        
