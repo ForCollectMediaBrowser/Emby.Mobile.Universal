@@ -242,7 +242,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to play.
+        ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string AppBarPlay {
             get {
