@@ -61,8 +61,9 @@ namespace Emby.Mobile.ViewModels.Entities
                     {
                         return;
                     }
+
                     ErrorMessage = string.Empty;
-                    UpdateProperties();
+                    SetProgressBar("**Signing in...");
 
                     if (await Authenticate(Username, Password))
                     {
@@ -72,8 +73,9 @@ namespace Emby.Mobile.ViewModels.Entities
                     {
                         ErrorMessage = Resources.ErrorUnableToSignIn;
                     }
+
                     Password = string.Empty;
-                    UpdateProperties();
+                    SetProgressBar();
                 });
             }
         }
@@ -114,6 +116,8 @@ namespace Emby.Mobile.ViewModels.Entities
                     success = true;
                     Services.UiInteractions.NavigationService.NavigateToHome();
                     Services.UiInteractions.NavigationService.ClearBackStack();
+
+                    await Services.StartUp.Startup();
                 }
             }
             catch (HttpException ex)
