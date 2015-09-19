@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
@@ -60,6 +59,23 @@ namespace Emby.Mobile.ViewModels.Entities
                 {
                     //HACK Change this to the real deal.
                     Services.Playback.PlayItem(ItemInfo);
+                    Services.Playback.PlaybackInfoChanged += PlaybackOnPlaybackInfoChanged;
+                });
+            }
+        }
+
+        public RelayCommand ResumeItemCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (!CanResume)
+                    {
+                        return;
+                    }
+
+                    Services.Playback.PlayItem(ItemInfo, ItemInfo.UserData.PlaybackPositionTicks);
                     Services.Playback.PlaybackInfoChanged += PlaybackOnPlaybackInfoChanged;
                 });
             }

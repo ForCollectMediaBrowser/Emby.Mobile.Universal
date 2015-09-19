@@ -307,9 +307,9 @@
 
     <Style TargetType="mediaPlayers:PhotoPlayer">
         <Setter Property="Opacity"
-                Value="0"/>
+                Value="0" />
         <Setter Property="Visibility"
-                Value="Collapsed"/>
+                Value="Collapsed" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="mediaPlayers:PhotoPlayer">
@@ -321,7 +321,7 @@
                                         <Image Source="{Binding PrimaryImageLarge}"
                                                HorizontalAlignment="Stretch"
                                                VerticalAlignment="Stretch"
-                                               Stretch="Uniform"/>
+                                               Stretch="Uniform" />
                                     </Grid>
                                 </DataTemplate>
                             </FlipView.ItemTemplate>
@@ -971,17 +971,17 @@
                                 <TextBlock Text="{TemplateBinding VideoTitle}"
                                            Style="{StaticResource HeaderTextBlockStyle}"
                                            HorizontalAlignment="Left"
-                                           x:Name="VideoTitle" 
+                                           x:Name="VideoTitle"
                                            RelativePanel.AlignLeftWithPanel="True"
                                            RelativePanel.LeftOf="LogoImage"
-                                           RelativePanel.AlignVerticalCenterWith="LogoImage"/>
+                                           RelativePanel.AlignVerticalCenterWith="LogoImage" />
                                 <Image Tag="{TemplateBinding LogoImageUrl}"
                                        x:Name="LogoImage"
                                        Source="{Binding Tag, RelativeSource={RelativeSource Self}}"
                                        HorizontalAlignment="Right"
                                        MaxHeight="150"
-                                       Margin="20" 
-                                       RelativePanel.AlignRightWithPanel="True"/>
+                                       Margin="20"
+                                       RelativePanel.AlignRightWithPanel="True" />
                             </RelativePanel>
 
                             <Border Grid.Row="1">
@@ -1471,6 +1471,34 @@
                             </ListBox.Style>
                         </ListBox>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:PlayButton">
+        <Setter Property="Height"
+                Value="50"/>
+        <Setter Property="Width"
+                Value="50"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PlayButton">
+                    <Button Style="{StaticResource EmptyButtonStyle}">
+                        <Grid x:Name="ContainingGrid">
+                            <FlyoutBase.AttachedFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="**Play"
+                                                    Command="{TemplateBinding PlayCommand}"/>
+                                    <MenuFlyoutItem Text="**Resume"
+                                                    Command="{TemplateBinding ResumeCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.AttachedFlyout>
+                            
+                            <FontIcon Style="{StaticResource Mdl2FontStyle}"
+                                      Glyph="{StaticResource MediaPlay}"/>
+                        </Grid>
+                    </Button>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

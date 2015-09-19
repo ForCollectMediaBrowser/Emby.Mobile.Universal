@@ -26,12 +26,12 @@ namespace Emby.Mobile.Universal.Services
 
         public List<IMediaPlayer> AvailablePlayers { get; } = new List<IMediaPlayer>();
 
-        public long? CurrentDurationTicks { get; }
+        public long? CurrentDurationTicks { get; private set; }
 
         public PlaylistItem CurrentItem => Playlist?.FirstOrDefault(p => p.State == PlaylistState.Playing);
 
         public event EventHandler<PlaybackInfoEventArgs> PlaybackInfoChanged;
-        public long? CurrentPositionTicks { get; }
+        public long? CurrentPositionTicks { get; private set; }
 
         public bool HasCurrentItem => CurrentItem != null;
 
@@ -139,6 +139,7 @@ namespace Emby.Mobile.Universal.Services
 
         public void ReportPlaybackProgress(PlaybackProgressInfo info, StreamInfo streamInfo)
         {
+            CurrentPositionTicks = info.PositionTicks;
             if (DateTime.UtcNow > _lastProgressReportTimeStamp.AddSeconds(5))
             {
                 _lastProgressReportTimeStamp = DateTime.UtcNow;
@@ -148,19 +149,19 @@ namespace Emby.Mobile.Universal.Services
 
         public void ReportPlaybackStarted(PlaybackStartInfo info)
         {
+            CurrentPositionTicks = info.PositionTicks;
             _playbackManager.ReportPlaybackStart(info, _serverInfo.IsOffline, _apiClient);
         }
 
         public void ReportPlaybackStopped(PlaybackStopInfo info, StreamInfo streamInfo)
         {
+            CurrentPositionTicks = info.PositionTicks;
             _playbackManager.ReportPlaybackStopped(info,
                 streamInfo,
                 _serverInfo.ServerInfo.Id,
                 _authenticationService.SignedInUserId,
                 _serverInfo.IsOffline,
                 _apiClient);
-
-            ReportProgressChanged(info.ItemId, info.PositionTicks);
         }
 
         public void ResumeFromPause()
