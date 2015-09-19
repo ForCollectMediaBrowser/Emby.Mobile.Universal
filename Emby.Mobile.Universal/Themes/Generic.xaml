@@ -1488,9 +1488,9 @@
                         <Grid x:Name="ContainingGrid">
                             <FlyoutBase.AttachedFlyout>
                                 <MenuFlyout>
-                                    <MenuFlyoutItem Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarPlay}"
+                                    <MenuFlyoutItem Text="{Binding Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarPlay}"
                                                     Command="{TemplateBinding PlayCommand}"/>
-                                    <MenuFlyoutItem Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarResume}"
+                                    <MenuFlyoutItem Text="{Binding Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarResume}"
                                                     Command="{TemplateBinding ResumeCommand}"/>
                                 </MenuFlyout>
                             </FlyoutBase.AttachedFlyout>

@@ -23,11 +23,9 @@ using MediaBrowser.Model.Entities;
 using Windows.Media.Playback;
 using Windows.UI.Xaml.Media;
 using System.Linq;
-using Emby.Mobile.Universal.Views;
 using Windows.UI.Xaml.Media.Animation;
 using Emby.Mobile.Core.Helpers;
 using GalaSoft.MvvmLight;
-using MediaFoundationVideoPlaybackView = Emby.Mobile.Universal.Views.Players.MediaFoundationVideoPlaybackView;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -71,17 +69,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void PostionChangedTimer_Tick(object sender, object e)
         {
-            AppServices.PlaybackService.ReportPlaybackProgress(new PlaybackProgressInfo
-            {
-                ItemId = _item.Id,
-                CanSeek = CanSeek,
-                AudioStreamIndex = null,
-                IsPaused = _player.CurrentState == MediaElementState.Paused,
-                IsMuted = _player.IsMuted,
-                VolumeLevel = Convert.ToInt32(_player.Volume),
-                PositionTicks = _player.Position.Ticks,
-                PlayMethod = _streamInfo.PlayMethod
-            }, _streamInfo);
+            ReportPlaybackProgress();
         }
 
         protected override void OnApplyTemplate()
@@ -95,9 +83,30 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 _player.MediaOpened += Player_MediaOpened;
                 _player.MediaEnded += Player_MediaEnded;
                 _player.MediaFailed += Player_MediaFailed;
+                _player.SeekCompleted += PlayerOnSeekCompleted;
             }
 
             AppServices.PlaybackService.RegisterPlayer(this);
+        }
+
+        private void PlayerOnSeekCompleted(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ReportPlaybackProgress();
+        }
+
+        private void ReportPlaybackProgress()
+        {
+            AppServices.PlaybackService.ReportPlaybackProgress(new PlaybackProgressInfo
+            {
+                ItemId = _item.Id,
+                CanSeek = CanSeek,
+                AudioStreamIndex = null,
+                IsPaused = _player.CurrentState == MediaElementState.Paused,
+                IsMuted = _player.IsMuted,
+                VolumeLevel = Convert.ToInt32(_player.Volume),
+                PositionTicks = _player.Position.Ticks,
+                PlayMethod = _streamInfo.PlayMethod
+            }, _streamInfo);
         }
 
         private void Player_MediaFailed(object sender, ExceptionRoutedEventArgs e)
