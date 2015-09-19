@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
@@ -96,7 +97,7 @@ namespace Emby.Mobile.ViewModels.Entities
             }
         }
 
-        public async void LoadAllData()
+        public async Task LoadAllData()
         {
             //TODO Do we want to show progress here?
             ItemInfo = await ApiClient.GetItemAsync(ItemInfo.Id, AuthenticationService.SignedInUserId);
