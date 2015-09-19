@@ -46,12 +46,12 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         public bool IsPlaying => PlayerState == PlayerState.Playing;
         public PlayerState PlayerState { get; private set; }
 
-        public Task Play(PlaylistItem item, double position = 0)
+        public Task Play(PlaylistItem item, long position = 0)
         {
             return Play(new List<PlaylistItem> { item }, position);
         }
 
-        public Task Play(List<PlaylistItem> items, double position = 0d, int? startingItem = null)
+        public Task Play(List<PlaylistItem> items, long position = 0, int? startingItem = null)
         {
             Photos = CreatePhotoList(items);
             SelectedPhoto = startingItem.HasValue ? Photos[startingItem.Value] : Photos.First();

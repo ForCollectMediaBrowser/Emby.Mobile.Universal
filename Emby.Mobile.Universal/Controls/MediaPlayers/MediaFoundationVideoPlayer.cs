@@ -39,6 +39,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         private StreamInfo _streamInfo;
         private BaseItemDto _item;
         private MediaElement _player;
+        private long _startingPosition;
 
         public bool CanPause => _player?.CanPause == true;
 
@@ -136,6 +137,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void Player_MediaOpened(object sender, RoutedEventArgs e)
         {
+            var position = TimeSpan.FromTicks(_startingPosition);
+            _player.Position = position;
+
             AppServices.DispatcherService.RunAsync(() =>
             {
                 AppServices.PlaybackService.ReportPlaybackStarted(new PlaybackStartInfo
@@ -184,18 +188,18 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }
         }
 
-        public Task Play(PlaylistItem item, double position = 0)
+        public Task Play(PlaylistItem item, long position = 0)
         {
             _playlist.Clear();
             _playlist.Add(item);
-            return PlayItem(GetNextItem(), (int)position);
+            return PlayItem(GetNextItem(), position);
         }
 
-        public Task Play(List<PlaylistItem> items, double position = 0d, int? startingItem = null)
+        public Task Play(List<PlaylistItem> items, long position = 0, int? startingItem = null)
         {
             _playlist.Clear();
             _playlist.AddRange(items);
-            return PlayItem(GetNextItem(), (int)position);
+            return PlayItem(GetNextItem(), position);
         }
 
         public Task Add(List<PlaylistItem> items)
@@ -295,7 +299,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }
         }
 
-        private async Task<bool> PlayItem(PlaylistItem item, int positionTicks)
+        private async Task<bool> PlayItem(PlaylistItem item, long positionTicks)
         {
             if (_player == null)
             {
@@ -312,6 +316,8 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
             NavigateToPlaybackView();
             ShowPlayer();
+
+            _startingPosition = positionTicks;
 
             var client = SimpleIoc.Default.GetInstance<IConnectionManager>().GetApiClient(item.Item);
             var profile = await ConnectionManagerFactory.GetProfileAsync();

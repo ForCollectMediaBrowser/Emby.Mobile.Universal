@@ -34,7 +34,7 @@ namespace Emby.Mobile.ViewModels.Entities
         public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(ItemInfo), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
 
-        public bool CanResume => ItemInfo?.UserData?.PlaybackPositionTicks > 0;
+        public bool CanResume => ItemInfo?.CanResume == true;
 
         public bool HasThumb => !string.IsNullOrEmpty(GetThumbId(ItemInfo));
         public bool HasBackdrop => ItemInfo?.BackdropCount > 0;
