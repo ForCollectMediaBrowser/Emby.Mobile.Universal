@@ -59,10 +59,14 @@ namespace Emby.Mobile.ViewModels
             catch (HttpException e)
             { }
 
-            await LoadResumableItems(parentId);
-            await LoadLatestVideo(parentId);
-            await LoadLatestMusic(parentId);
-            await LoadWhatsOn();
+            var tasks = new List<Task>
+            {
+                LoadResumableItems(parentId),
+                LoadLatestVideo(parentId),
+                LoadLatestMusic(parentId),
+                LoadWhatsOn()
+            };
+            await Task.WhenAll(tasks);
         }
 
         private async Task LoadResumableItems(string parentId)
@@ -78,7 +82,7 @@ namespace Emby.Mobile.ViewModels
                     IncludeItemTypes = new[] { "Movie", "Episode" },
                     CollapseBoxSetItems = false,
                     Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines },
-                    
+
                     Limit = 6,
                     ParentId = parentId,
                     Recursive = true
@@ -86,7 +90,6 @@ namespace Emby.Mobile.ViewModels
                 if (response != null && !response.Items.IsNullOrEmpty())
                 {
                     ResumableItems = response.Items.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
-
                 }
             }
             catch (HttpException he)
@@ -137,7 +140,7 @@ namespace Emby.Mobile.ViewModels
                     Limit = 6,
                     Recursive = true,
                     ParentId = parentId
-                    
+
                 });
                 if (response != null && !response.Items.IsNullOrEmpty())
                 {

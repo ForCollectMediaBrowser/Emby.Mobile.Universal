@@ -30,9 +30,9 @@ namespace Emby.Mobile.ViewModels.Entities
         public string BackdropImageLarge => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropLarge) : ParentBackdropImageMedium;
         public string[] BackdropImages => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetBackdropImageUrls(ItemInfo, ImageOptionsHelper.ItemBackdropLarge) : new string[0];
         public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
-        public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
+        public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(ItemInfo), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
 
-        public bool HasThumb => !string.IsNullOrEmpty(GetThumbId());
+        public bool HasThumb => !string.IsNullOrEmpty(GetThumbId(ItemInfo));
         public bool HasBackdrop => ItemInfo?.BackdropCount > 0;
         public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
 
@@ -66,19 +66,19 @@ namespace Emby.Mobile.ViewModels.Entities
             ItemInfo = await ApiClient.GetItemAsync(ItemInfo.Id, AuthenticationService.SignedInUserId);
         }
 
-        private string GetThumbId()
+        private static string GetThumbId(BaseItemDto itemInfo)
         {
-            if (ItemInfo?.HasThumb == true)
+            if (itemInfo?.HasThumb == true)
             {
-                return ItemInfo.Id;
+                return itemInfo.Id;
             }
-            if (!string.IsNullOrEmpty(ItemInfo?.SeriesId) && !string.IsNullOrEmpty(ItemInfo?.SeriesThumbImageTag))
+            if (!string.IsNullOrEmpty(itemInfo?.SeriesId) && !string.IsNullOrEmpty(itemInfo?.SeriesThumbImageTag))
             {
-                return ItemInfo.SeriesId;
+                return itemInfo.SeriesId;
             }
-            if (!string.IsNullOrEmpty(ItemInfo?.ParentThumbItemId))
+            if (!string.IsNullOrEmpty(itemInfo?.ParentThumbItemId))
             {
-                return ItemInfo?.ParentThumbItemId;
+                return itemInfo?.ParentThumbItemId;
             }
 
             return null;

@@ -116,7 +116,9 @@ namespace Seven.Controls.Panels
         private void ScrollIntoView(UIElement item, Rect rect, bool animate = true)
         {
             if (!_templateApplied)
+            {
                 return;
+            }
 
             var transform = item.RenderTransform as TranslateTransform;
             if (transform != null)
@@ -189,7 +191,6 @@ namespace Seven.Controls.Panels
                 offsetBefore = _offset;
                 offsetAfter = maxLogicalWidth + offsetBefore;
             }
-
 
             // Left of selected item
             UpdatePosition(nextItemIndex, ItemsCount, offsetBefore);
