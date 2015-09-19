@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.Foundation;
-using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
@@ -81,8 +80,10 @@ namespace Emby.Mobile.Universal.Extensions
                 EasingFunction = easingFunction,
                 AutoReverse = false
             };
+
             Storyboard.SetTarget(anim, element);
             Storyboard.SetTargetProperty(anim, "(UIElement.RenderTransform).(TranslateTransform.X)");
+
             storyboard.Children.Add(anim);
         }
 
@@ -113,6 +114,7 @@ namespace Emby.Mobile.Universal.Extensions
 
             Storyboard.SetTarget(anim, element);
             Storyboard.SetTargetProperty(anim, "(UIElement.RenderTransform).(TranslateTransform.Y)");
+
             storyboard.Children.Add(anim);
         }
 
@@ -132,6 +134,7 @@ namespace Emby.Mobile.Universal.Extensions
 
             Storyboard.SetTargetProperty(visibility, "(FrameworkElement.Visibility)");
             Storyboard.SetTarget(visibility, element);
+
             storyboard.Children.Add(visibility);
         }
 
@@ -151,6 +154,7 @@ namespace Emby.Mobile.Universal.Extensions
 
             Storyboard.SetTargetProperty(visibility, "(FrameworkElement.Visibility)");
             Storyboard.SetTarget(visibility, element);
+
             storyboard.Children.Add(visibility);
         }
 
@@ -164,8 +168,10 @@ namespace Emby.Mobile.Universal.Extensions
                 EnableDependentAnimation = true,
                 AutoReverse = false
             };
+
             Storyboard.SetTarget(anim, element);
             Storyboard.SetTargetProperty(anim, "(UIElement.Height)");
+
             storyboard.Children.Add(anim);
         }
 
@@ -179,8 +185,10 @@ namespace Emby.Mobile.Universal.Extensions
                 EnableDependentAnimation = true,
                 AutoReverse = false
             };
+
             Storyboard.SetTarget(anim, element);
             Storyboard.SetTargetProperty(anim, "(UIElement.Width)");
+
             storyboard.Children.Add(anim);
         }
     }

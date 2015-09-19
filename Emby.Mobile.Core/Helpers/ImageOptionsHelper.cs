@@ -16,6 +16,8 @@ namespace Emby.Mobile.Core.Helpers
         public static ImageOptions ItemBackdropMedium { get; } = GetOptions(ImageType.Backdrop, height: 200);
         public static ImageOptions ItemBackdropMax { get; } = GetOptions(ImageType.Backdrop);
         public static ImageOptions ItemLogo { get; } = GetOptions(ImageType.Logo);
+        public static ImageOptions ItemThumbMedium { get; } = GetOptions(ImageType.Thumb, height: 200);
+        public static ImageOptions ItemBannerMedium { get; } = GetOptions(ImageType.Banner, height: 200);
 
         private static ImageOptions GetOptions(
             ImageType imageType, 

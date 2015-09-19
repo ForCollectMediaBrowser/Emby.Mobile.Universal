@@ -20,14 +20,20 @@ namespace Emby.Mobile.ViewModels.Entities
         public string Name => ItemInfo?.Name;
         public string MaterialIcon => ItemInfo.GetMaterialIcon();
         public string Type => ItemInfo?.Type;
+        public string Tagline => ItemInfo?.Taglines?.Count > 0 ? ItemInfo.Taglines[0] : "";
 
-        public string PrimaryImageLarge => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryLarge): "ms-appx:///Assets/Tiles/Square150x150.png";
+        public string PrimaryImageLarge => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryLarge) : "ms-appx:///Assets/Tiles/Square150x150.png";
         public string PrimaryImageMedium => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimaryMedium) : "ms-appx:///Assets/Tiles/Square150x150.png";
         public string PrimaryImageSmall => ItemInfo?.HasPrimaryImage ?? false ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemPrimarySmall) : "ms-appx:///Assets/Tiles/Square150x150.png";
-        public string BackdropImage => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMax) : "ms-appx:///Assets/Tiles/Square150x150.png";
-        public string BackdropImageMedium => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/Square150x150.png";
+        public string BackdropImage =>  ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMax) ?? "ms-appx:///Assets/Tiles/Square150x150.png";
+        public string BackdropImageMedium => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropMedium) : ParentBackdropImageMedium;
+        public string BackdropImageLarge => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetImageUrl(ItemInfo.Id, ImageOptionsHelper.ItemBackdropLarge) : ParentBackdropImageMedium;
         public string[] BackdropImages => ItemInfo?.BackdropCount > 0 ? ApiClient?.GetBackdropImageUrls(ItemInfo, ImageOptionsHelper.ItemBackdropLarge) : new string[0];
+        public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
+        public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(ItemInfo), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
 
+        public bool HasThumb => !string.IsNullOrEmpty(GetThumbId(ItemInfo));
+        public bool HasBackdrop => ItemInfo?.BackdropCount > 0;
         public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
 
         public RelayCommand NavigateToItem
@@ -36,6 +42,7 @@ namespace Emby.Mobile.ViewModels.Entities
             {
                 return new RelayCommand(() =>
                 {
+                    
                     Services.UiInteractions.NavigationService.NavigateToItem(ItemInfo);
                 });
             }
@@ -57,6 +64,24 @@ namespace Emby.Mobile.ViewModels.Entities
         {
             //TODO Do we want to show progress here?
             ItemInfo = await ApiClient.GetItemAsync(ItemInfo.Id, AuthenticationService.SignedInUserId);
+        }
+
+        private static string GetThumbId(BaseItemDto itemInfo)
+        {
+            if (itemInfo?.HasThumb == true)
+            {
+                return itemInfo.Id;
+            }
+            if (!string.IsNullOrEmpty(itemInfo?.SeriesId) && !string.IsNullOrEmpty(itemInfo?.SeriesThumbImageTag))
+            {
+                return itemInfo.SeriesId;
+            }
+            if (!string.IsNullOrEmpty(itemInfo?.ParentThumbItemId))
+            {
+                return itemInfo?.ParentThumbItemId;
+            }
+
+            return null;
         }
     }
 }

@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Mdl2/Mdl2Resources.xaml" />
+                <ResourceDictionary Source="/Resources/StandardControlsResources.xaml" />
                 <ResourceDictionary Source="/Resources/ImplicitStyles.xaml" />
                 <ResourceDictionary Source="/Resources/EmbyColorResources.xaml" />
                 <ResourceDictionary Source="/Resources/TextBlockStyles.xaml" />
@@ -31,7 +32,7 @@
                                  xmlns:vm="using:Emby.Mobile.Universal.ViewModel" />
 
             <x:Double x:Key="NarrowAdaptiveWidth">0</x:Double>
-            <x:Double x:Key="WideAdaptiveWidth">360</x:Double>
+            <x:Double x:Key="WideAdaptiveWidth">500</x:Double>
             <x:Double x:Key="ExtraWideAdaptiveWidth">1366</x:Double>
 
             <!-- #region Converters -->

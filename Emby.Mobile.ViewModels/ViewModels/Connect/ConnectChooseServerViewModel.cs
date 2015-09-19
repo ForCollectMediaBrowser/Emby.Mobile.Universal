@@ -61,7 +61,7 @@ namespace Emby.Mobile.ViewModels.Connect
             return LoadData(false);
         }
 
-        protected override Task Refresh()
+        public override Task Refresh()
         {
             return LoadData(true);
         }

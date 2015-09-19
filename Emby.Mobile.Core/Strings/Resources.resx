@@ -230,7 +230,7 @@
     <value>remote</value>
   </data>
   <data name="AppBarResume" xml:space="preserve">
-    <value>resume</value>
+    <value>Resume</value>
   </data>
   <data name="AppBarSearch" xml:space="preserve">
     <value>Search</value>
@@ -431,7 +431,7 @@
     <value>Just show the list of items, not a media folder view</value>
   </data>
   <data name="LabelLatestUnseen" xml:space="preserve">
-    <value>latest unseen</value>
+    <value>Latest unseen</value>
   </data>
   <data name="LabelLiveTv" xml:space="preserve">
     <value>Live TV</value>
@@ -1267,7 +1267,7 @@
     <value>Use HTTPS</value>
   </data>
   <data name="AppBarResumeOn" xml:space="preserve">
-    <value>resume on</value>
+    <value>Resume on</value>
   </data>
   <data name="MessagePlaceholder" xml:space="preserve">
     <value>This item is just a placeholder item in the library and cannot be played.</value>
@@ -1410,5 +1410,14 @@
   </data>
   <data name="LabelSetDeviceName" xml:space="preserve">
     <value>Set device name</value>
+  </data>
+  <data name="LabelLatest" xml:space="preserve">
+    <value>Latest</value>
+  </data>
+  <data name="LabelResume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="LabelLatestMusic" xml:space="preserve">
+    <value>Latest music</value>
   </data>
 </root>
