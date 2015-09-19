@@ -19,10 +19,6 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         
-                        <controls:HeaderControl x:Name="Header"
-                                                VerticalAlignment="Top"
-                                                x:DeferLoadStrategy="Lazy" />
-                        
                         <ContentControl x:Name="Content"
                                         Grid.Row="1"
                                         Content="{TemplateBinding Content}"
@@ -36,7 +32,9 @@
                         <mediaPlayers:PhotoPlayer Grid.Row="1"
                                                   x:Name="PhotoPlayer"
                                                   x:DeferLoadStrategy="Lazy" />
-
+                        <controls:HeaderControl x:Name="Header"
+                                                VerticalAlignment="Top"
+                                                x:DeferLoadStrategy="Lazy" />
                         <controls:StatusBarControl VerticalAlignment="Top"
                                                    x:Name="StatusBar"
                                                    Grid.RowSpan="2"

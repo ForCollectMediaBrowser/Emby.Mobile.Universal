@@ -54,6 +54,7 @@
     <Compile Include="Interfaces\IServerInteractions.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\UIInteractions.cs" />
+    <Compile Include="Playback\PlaybackInfoEventArgs.cs" />
     <Compile Include="Playback\PlayerType.cs" />
     <Compile Include="Playback\PlaylistItem.cs" />
     <Compile Include="Playback\PlaylistState.cs" />

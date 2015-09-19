@@ -19,7 +19,7 @@ namespace Emby.Mobile.Core.Playback
             State = PlaylistState.Queued;
         }
 
-        public async Task<StreamInfo> GetStreamInfoAsync(int startPositionTicks, bool isOffline, IPlaybackManager playbackManager, IApiClient apiClient, DeviceProfile profile)
+        public async Task<StreamInfo> GetStreamInfoAsync(long startPositionTicks, bool isOffline, IPlaybackManager playbackManager, IApiClient apiClient, DeviceProfile profile)
         {
             if (Item.IsAudio)
             {

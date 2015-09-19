@@ -52,10 +52,10 @@
                     <TextBlock  Text="{x:Bind Item.Item.Name, Mode=OneWay}"
                                 Style="{StaticResource ExtraLargeThinTextBlockStyle}"
                                 x:Name="Title"
-                                Margin="15" 
-                                VerticalAlignment="Center"/>
+                                Margin="15"
+                                VerticalAlignment="Center" />
                 </Border>
-                
+
                 <!-- This border is just for debug, remove this once we have some content-->
                 <Border Height="1200"
                         Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
@@ -68,11 +68,12 @@
                        MaxWidth="200"
                        Stretch="Uniform"
                        RelativePanel.Below="OpacLayer" />
-                <Button Content="Play"
-                        RelativePanel.Below="PrimaryImage"
-                        RelativePanel.AlignLeftWith="PrimaryImage"
-                        RelativePanel.AlignRightWith="PrimaryImage"
-                        Command="{x:Bind Item.Item.PlayItemCommand}" />
+                <controls:PlayButton RelativePanel.Below="PrimaryImage"
+                                     RelativePanel.AlignLeftWith="PrimaryImage"
+                                     RelativePanel.AlignRightWith="PrimaryImage"
+                                     PlayCommand="{x:Bind Item.Item.PlayItemCommand}" 
+                                     ResumeCommand="{x:Bind Item.Item.ResumeItemCommand}"
+                                     CanResume="{x:Bind Item.Item.CanResume, Mode=OneWay}"/>
             </RelativePanel>
         </ScrollViewer>
     </Grid>

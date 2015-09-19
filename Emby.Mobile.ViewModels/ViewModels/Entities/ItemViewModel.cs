@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Core.Playback;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Dto;
 
@@ -32,6 +34,8 @@ namespace Emby.Mobile.ViewModels.Entities
         public string ParentBackdropImageMedium => !string.IsNullOrEmpty(ItemInfo?.ParentBackdropItemId) ? ApiClient?.GetImageUrl(ItemInfo.ParentBackdropItemId, ImageOptionsHelper.ItemBackdropMedium) : "ms-appx:///Assets/Tiles/150x150Logo.png";
         public string ThumbImage => HasThumb ? ApiClient?.GetImageUrl(GetThumbId(ItemInfo), ImageOptionsHelper.ItemThumbMedium) : BackdropImageMedium;
 
+        public bool CanResume => ItemInfo?.CanResume == true;
+
         public bool HasThumb => !string.IsNullOrEmpty(GetThumbId(ItemInfo));
         public bool HasBackdrop => ItemInfo?.BackdropCount > 0;
         public bool CanStream => ItemInfo.CanStream(AuthenticationService.SignedInUser);
@@ -56,11 +60,44 @@ namespace Emby.Mobile.ViewModels.Entities
                 {
                     //HACK Change this to the real deal.
                     Services.Playback.PlayItem(ItemInfo);
+                    Services.Playback.PlaybackInfoChanged += PlaybackOnPlaybackInfoChanged;
                 });
             }
         }
 
-        public async void LoadAllData()
+        public RelayCommand ResumeItemCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (!CanResume)
+                    {
+                        return;
+                    }
+
+                    Services.Playback.PlayItem(ItemInfo, ItemInfo.UserData.PlaybackPositionTicks);
+                    Services.Playback.PlaybackInfoChanged += PlaybackOnPlaybackInfoChanged;
+                });
+            }
+        }
+
+        private void PlaybackOnPlaybackInfoChanged(object sender, PlaybackInfoEventArgs e)
+        {
+            if (e.ItemId == ItemInfo.Id)
+            {
+                Services.Playback.PlaybackInfoChanged -= PlaybackOnPlaybackInfoChanged;
+                if (ItemInfo.UserData == null)
+                {
+                    ItemInfo.UserData = new UserItemDataDto();
+                }
+
+                ItemInfo.UserData.PlaybackPositionTicks = e.PlaybackTicks ?? 0;
+                RaisePropertyChanged(() => CanResume);
+            }
+        }
+
+        public async Task LoadAllData()
         {
             //TODO Do we want to show progress here?
             ItemInfo = await ApiClient.GetItemAsync(ItemInfo.Id, AuthenticationService.SignedInUserId);

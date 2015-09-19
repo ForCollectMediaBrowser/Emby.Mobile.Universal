@@ -23,11 +23,9 @@ using MediaBrowser.Model.Entities;
 using Windows.Media.Playback;
 using Windows.UI.Xaml.Media;
 using System.Linq;
-using Emby.Mobile.Universal.Views;
 using Windows.UI.Xaml.Media.Animation;
 using Emby.Mobile.Core.Helpers;
 using GalaSoft.MvvmLight;
-using MediaFoundationVideoPlaybackView = Emby.Mobile.Universal.Views.Players.MediaFoundationVideoPlaybackView;
 
 namespace Emby.Mobile.Universal.Controls.MediaPlayers
 {
@@ -41,6 +39,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         private StreamInfo _streamInfo;
         private BaseItemDto _item;
         private MediaElement _player;
+        private long _startingPosition;
 
         public bool CanPause => _player?.CanPause == true;
 
@@ -56,13 +55,13 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         public MediaFoundationVideoPlayer()
         {
-            _postionChangedTimer = new DispatcherTimer();
-            _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
-            _postionChangedTimer.Tick += PostionChangedTimer_Tick;
             if (!ViewModelBase.IsInDesignModeStatic)
             {
                 _connectionManager = SimpleIoc.Default.GetInstance<IConnectionManager>();
                 _playbackManager = SimpleIoc.Default.GetInstance<IPlaybackManager>();
+                _postionChangedTimer = new DispatcherTimer();
+                _postionChangedTimer.Interval = TimeSpan.FromSeconds(1);
+                _postionChangedTimer.Tick += PostionChangedTimer_Tick;
             }
 
             _playlist = new List<PlaylistItem>();
@@ -71,17 +70,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void PostionChangedTimer_Tick(object sender, object e)
         {
-            AppServices.PlaybackService.ReportPlaybackProgress(new PlaybackProgressInfo
-            {
-                ItemId = _item.Id,
-                CanSeek = CanSeek,
-                AudioStreamIndex = null,
-                IsPaused = _player.PlaybackRate == 0,
-                IsMuted = _player.IsMuted,
-                VolumeLevel = Convert.ToInt32(_player.Volume),
-                PositionTicks = _player.Position.Ticks,
-                PlayMethod = _streamInfo.PlayMethod
-            }, _streamInfo);
+            ReportPlaybackProgress();
         }
 
         protected override void OnApplyTemplate()
@@ -95,9 +84,30 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                 _player.MediaOpened += Player_MediaOpened;
                 _player.MediaEnded += Player_MediaEnded;
                 _player.MediaFailed += Player_MediaFailed;
+                _player.SeekCompleted += PlayerOnSeekCompleted;
             }
 
             AppServices.PlaybackService.RegisterPlayer(this);
+        }
+
+        private void PlayerOnSeekCompleted(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ReportPlaybackProgress();
+        }
+
+        private void ReportPlaybackProgress()
+        {
+            AppServices.PlaybackService.ReportPlaybackProgress(new PlaybackProgressInfo
+            {
+                ItemId = _item.Id,
+                CanSeek = CanSeek,
+                AudioStreamIndex = null,
+                IsPaused = _player.CurrentState == MediaElementState.Paused,
+                IsMuted = _player.IsMuted,
+                VolumeLevel = Convert.ToInt32(_player.Volume),
+                PositionTicks = _player.Position.Ticks,
+                PlayMethod = _streamInfo.PlayMethod
+            }, _streamInfo);
         }
 
         private void Player_MediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -127,6 +137,9 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
         private void Player_MediaOpened(object sender, RoutedEventArgs e)
         {
+            var position = TimeSpan.FromTicks(_startingPosition);
+            _player.Position = position;
+
             AppServices.DispatcherService.RunAsync(() =>
             {
                 AppServices.PlaybackService.ReportPlaybackStarted(new PlaybackStartInfo
@@ -134,7 +147,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
                     ItemId = _item.Id,
                     CanSeek = CanSeek,
                     AudioStreamIndex = null,
-                    IsPaused = _player.PlaybackRate == 0,
+                    IsPaused = _player.CurrentState == MediaElementState.Paused,
                     IsMuted = _player.IsMuted,
                     VolumeLevel = Convert.ToInt32(_player.Volume),
                     PositionTicks = _player.Position.Ticks
@@ -147,7 +160,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
         {
             AppServices.DispatcherService.RunAsync(() =>
             {
-                AppServices.PlaybackService.ReportPlayerState(MediaElementState.Playing.ToPlayerState());
+                AppServices.PlaybackService.ReportPlayerState(_player.CurrentState.ToPlayerState());
             });
         }
 
@@ -175,18 +188,18 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }
         }
 
-        public Task Play(PlaylistItem item, double position = 0)
+        public Task Play(PlaylistItem item, long position = 0)
         {
             _playlist.Clear();
             _playlist.Add(item);
-            return PlayItem(GetNextItem(), (int)position);
+            return PlayItem(GetNextItem(), position);
         }
 
-        public Task Play(List<PlaylistItem> items, double position = 0d, int? startingItem = null)
+        public Task Play(List<PlaylistItem> items, long position = 0, int? startingItem = null)
         {
             _playlist.Clear();
             _playlist.AddRange(items);
-            return PlayItem(GetNextItem(), (int)position);
+            return PlayItem(GetNextItem(), position);
         }
 
         public Task Add(List<PlaylistItem> items)
@@ -286,7 +299,7 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
             }
         }
 
-        private async Task<bool> PlayItem(PlaylistItem item, int positionTicks)
+        private async Task<bool> PlayItem(PlaylistItem item, long positionTicks)
         {
             if (_player == null)
             {
@@ -303,6 +316,8 @@ namespace Emby.Mobile.Universal.Controls.MediaPlayers
 
             NavigateToPlaybackView();
             ShowPlayer();
+
+            _startingPosition = positionTicks;
 
             var client = SimpleIoc.Default.GetInstance<IConnectionManager>().GetApiClient(item.Item);
             var profile = await ConnectionManagerFactory.GetProfileAsync();

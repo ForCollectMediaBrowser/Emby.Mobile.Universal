@@ -200,7 +200,7 @@
     <value>pause</value>
   </data>
   <data name="AppBarPlay" xml:space="preserve">
-    <value>play</value>
+    <value>Play</value>
   </data>
   <data name="AppBarPlayAll" xml:space="preserve">
     <value>play all</value>

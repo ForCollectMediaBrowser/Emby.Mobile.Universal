@@ -10,8 +10,9 @@ namespace Emby.Mobile.Core.Interfaces
 {
     public interface IPlaybackService
     {
-        event EventHandler<PlayStateChangedEventArgs> PlaystateChanged;
+        event EventHandler<PlayStateChangedEventArgs> PlayStateChanged;
         event EventHandler<PlayerPositionEventArgs> PlayerPositionChanged;
+        event EventHandler<PlaybackInfoEventArgs> PlaybackInfoChanged;
         long? CurrentPositionTicks { get; }
         long? CurrentDurationTicks { get; }
         bool HasPlaylistItems { get; }
