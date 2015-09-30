@@ -66,6 +66,8 @@
                                 Value="40" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="25" />
+                        <Setter Target="LayoutRoot.Background"
+                                Value="{x:Null}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -85,6 +87,8 @@
                                 Value="35" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="20" />
+                        <Setter Target="LayoutRoot.Background"
+                                Value="{x:Null}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -104,6 +108,8 @@
                                 Value="30" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="15" />
+                        <Setter Target="LayoutRoot.Background"
+                                Value="{ThemeResource BackgroundBrush}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
