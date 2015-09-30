@@ -223,6 +223,13 @@
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Pivot Grid.Row="1"
