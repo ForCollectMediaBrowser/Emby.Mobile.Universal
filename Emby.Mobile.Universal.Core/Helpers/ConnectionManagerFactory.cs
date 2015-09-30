@@ -82,7 +82,7 @@ namespace Emby.Mobile.Universal.Core.Helpers
                 SupportsOfflineAccess = true,
                 DeviceProfile = await GetProfileAsync(),
                 AppStoreUrl = "http://apps.microsoft.com/windows/app/media-browser/ad55a2f0-9897-47bd-8944-bed3aefd5d06",
-                IconUrl = "https://raw.githubusercontent.com/MediaBrowser/Emby.WindowsRT/master/Resources/DashboardIcon.png"
+                IconUrl = "https://raw.githubusercontent.com/MediaBrowser/Emby.Mobile.Universal/feature/Home_View_Tweaks/Windows10Logo.png" // TODO: This will need changing to dev URL when merged.
             };
         }
 
