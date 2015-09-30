@@ -217,7 +217,9 @@
                  BorderThickness="0,0,0,1"
                  BorderBrush="{ThemeResource EmbyGreenBrush}"
                  Background="Transparent"
-                 ItemsSource="{x:Bind HeaderList}">
+                 ItemsSource="{x:Bind HeaderList}"
+                 Margin="0,-40,0,0"
+                 Padding="150,0,0,0">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />

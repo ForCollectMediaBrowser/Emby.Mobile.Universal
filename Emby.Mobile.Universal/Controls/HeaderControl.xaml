@@ -11,7 +11,7 @@
              d:DesignWidth="384"
              DataContext="{Binding Header, Source={StaticResource Locator}}">
 
-    <Grid Background="Transparent"
+    <Grid Background="{x:Null}"
           x:Name="LayoutRoot"
           Height="35"
           Opacity="1">
@@ -124,14 +124,12 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Border Grid.ColumnSpan="4"
-                Background="{StaticResource BackgroundBrush}"
-                Opacity="0.85" />
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Command="{x:Bind Header.GoHomeCommand}">
             <Image Stretch="UniformToFill"
                    Margin="5"
-                   Source="{ThemeResource EmbyLogo}" />
+                   Tag="{ThemeResource EmbyLogo}"
+                   Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
         </Button>
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"
