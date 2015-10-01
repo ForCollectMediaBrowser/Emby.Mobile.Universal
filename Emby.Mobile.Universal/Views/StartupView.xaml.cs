@@ -3,13 +3,13 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI;
-using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
@@ -18,33 +18,14 @@ namespace Emby.Mobile.Universal.Views
 {
     public sealed partial class StartupView
     {
-        private readonly SplashScreen _splashScreen;
+        private SplashScreen _splashScreen;
         private StartupViewModel Startup => DataContext as StartupViewModel;
 
-        public StartupView(SplashScreen splashScreen)
+        public StartupView()
         {
             InitializeComponent();
 
             Loaded += StartupView_Loaded;
-
-            Window.Current.SizeChanged += CurrentOnSizeChanged;
-
-            _splashScreen = splashScreen;
-            if (_splashScreen != null)
-            {
-                _splashScreen.Dismissed += SplashScreenOnDismissed;
-                PositionImage();
-            }
-        }
-
-        private void SplashScreenOnDismissed(SplashScreen sender, object args)
-        {
-            //PositionImage();
-        }
-
-        private void CurrentOnSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
-        {
-            
         }
 
         private async void StartupView_Loaded(object sender, RoutedEventArgs e)
@@ -104,11 +85,19 @@ namespace Emby.Mobile.Universal.Views
         {
             base.OnNavigatedFrom(e);
             NavigationService.RemoveBackEntry();
+        }
 
-            Window.Current.SizeChanged -= CurrentOnSizeChanged;
-            if (_splashScreen != null)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            var startupNavigationParemeters = e.Parameter as StartupNavigationParameter;
+            if (startupNavigationParemeters != null)
             {
-                _splashScreen.Dismissed -= SplashScreenOnDismissed;
+                _splashScreen = startupNavigationParemeters.SplashScreen;
+                if (_splashScreen != null)
+                {
+                    PositionImage();
+                }
             }
         }
     }

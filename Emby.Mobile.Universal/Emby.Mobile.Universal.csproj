@@ -198,6 +198,7 @@
     <Compile Include="Extensions\NavigationModeExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\NavigationParameters.cs" />
+    <Compile Include="Helpers\StartupNavigationParameter.cs" />
     <Compile Include="Helpers\StatusType.cs" />
     <Compile Include="Interfaces\ICanHasHeaderMenu.cs" />
     <Compile Include="Interfaces\ICanHasHomeButton.cs" />

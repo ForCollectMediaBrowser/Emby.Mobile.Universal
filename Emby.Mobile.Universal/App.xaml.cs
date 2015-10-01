@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Controls;
+using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.Services;
 using Emby.Mobile.Universal.Views;
 using GalaSoft.MvvmLight.Ioc;
@@ -29,24 +30,6 @@ namespace Emby.Mobile.Universal
         }
 
         internal static EmbyApplicationFrame Frame => Window.Current.Content as EmbyApplicationFrame;
-
-        internal void CreateFrame()
-        {
-            var rootFrame = Window.Current.Content as EmbyApplicationFrame;
-
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
-            {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new EmbyApplicationFrame();
-
-                rootFrame.NavigationFailed += OnNavigationFailed;
-                
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
-            }
-        }
 
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
@@ -75,11 +58,36 @@ namespace Emby.Mobile.Universal
             }
 #endif
 
-            if (e.PreviousExecutionState != ApplicationExecutionState.Running)
+            var rootFrame = Window.Current.Content as EmbyApplicationFrame;
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (rootFrame == null)
             {
-                var splashScreen = new StartupView(e.SplashScreen);
-                Window.Current.Content = splashScreen;
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new EmbyApplicationFrame();
+
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
+                    //TODO: Load state from previously suspended application
+                }
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
             }
+
+            if (rootFrame.Content == null)
+            {
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                //AppServices.NavigationService.Navigate<StartupView>(e.Arguments);
+                rootFrame.Navigate(typeof(StartupView), new StartupNavigationParameter(e.Arguments, e.SplashScreen));
+            }
+
+            AppStarted();
 
             // Ensure the current window is active
             Window.Current.Activate();
