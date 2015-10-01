@@ -11,7 +11,7 @@
              d:DesignWidth="384"
              DataContext="{Binding Header, Source={StaticResource Locator}}">
 
-    <Grid Background="Transparent"
+    <Grid Background="{x:Null}"
           x:Name="LayoutRoot"
           Height="35"
           Opacity="1">
@@ -66,6 +66,8 @@
                                 Value="40" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="25" />
+                        <Setter Target="LayoutRoot.Background"
+                                Value="{x:Null}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -85,6 +87,8 @@
                                 Value="35" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="20" />
+                        <Setter Target="LayoutRoot.Background"
+                                Value="{x:Null}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -104,6 +108,8 @@
                                 Value="30" />
                         <Setter Target="SearchIcon.FontSize"
                                 Value="15" />
+                        <Setter Target="LayoutRoot.Background"
+                                Value="{ThemeResource BackgroundBrush}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -124,14 +130,12 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Border Grid.ColumnSpan="4"
-                Background="{StaticResource BackgroundBrush}"
-                Opacity="0.85" />
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Command="{x:Bind Header.GoHomeCommand}">
             <Image Stretch="UniformToFill"
                    Margin="5"
-                   Source="{ThemeResource EmbyLogo}" />
+                   Tag="{ThemeResource EmbyLogo}"
+                   Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
         </Button>
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"

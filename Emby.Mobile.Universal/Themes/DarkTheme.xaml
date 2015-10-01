@@ -4,10 +4,14 @@
     <x:String x:Key="EmbyLogo">ms-appx:///Assets/LogoLight.png</x:String>
 
     <Color x:Key="SubtleColor">#7FFFFFFF</Color>
-
+    <Color x:Key="TransparentBackgroundColor">#C4000000</Color>
+    <Color x:Key="TransparentImageOverlayColor">#55000000</Color>
+    <Color x:Key="TitleBarForegroundColor">Black</Color>
+    <Color x:Key="TitleBarButtonForegroundColor">White</Color>
+    <Color x:Key="TitleBarButtonHoverColor">#0D7700</Color>
+    
     <SolidColorBrush x:Key="SubtleBrush"
                      Color="{StaticResource SubtleColor}"/>
-
     <SolidColorBrush x:Key="EmbyGreenBrush"
                      Color="{StaticResource EmbyGreenColor}" />
     <SolidColorBrush x:Key="EmbyLightGreenBrush"
@@ -24,19 +28,22 @@
     <SolidColorBrush x:Key="SmokeContrastBrush" 
                      Opacity="0.5"
                      Color="{StaticResource EmbyDarkSmokeColor}" />
-
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                      Color="{StaticResource EmbyDarkGrayColor}"/>
-
     <SolidColorBrush x:Key="SystemControlHighlightAccentBrush"
                      Color="{StaticResource EmbyGreenColor}"/>
     <SolidColorBrush x:Key="SystemControlForegroundAccentBrush"
                      Color="{StaticResource EmbyGreenColor}" />
-    <Color x:Key="TransparentBackgroundColor">#C4000000</Color>
-    <Color x:Key="TransparentImageOverlayColor">#55000000</Color>
+    
     <SolidColorBrush x:Key="TransparentBackgroundBrush"
                      Color="{StaticResource TransparentBackgroundColor}" />
     <SolidColorBrush x:Key="TransparentImageOverlayBrush"
                      Color="{StaticResource TransparentImageOverlayColor}" />
+    <SolidColorBrush x:Key="TitleBarForegroundBrush"
+                     Color="{StaticResource TitleBarForegroundColor}"/>
+    <SolidColorBrush x:Key="TitleBarButtonForegroundBrush"
+                     Color="{StaticResource TitleBarButtonForegroundColor}"/>
+    <SolidColorBrush x:Key="TitleBarButtonHoverBrush"
+                     Color="{StaticResource TitleBarButtonHoverColor}"/>
     
 </ResourceDictionary>

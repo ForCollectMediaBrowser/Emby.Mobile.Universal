@@ -218,6 +218,7 @@
     <Compile Include="Services\ServicesContainer.cs" />
     <Compile Include="Services\StartUpService.cs" />
     <Compile Include="Services\StatusBarService.cs" />
+    <Compile Include="Services\TitleBarService.cs" />
     <Compile Include="Services\UIInteractions.cs" />
     <Compile Include="Themes\Generic.xaml.cs">
       <DependentUpon>Generic.xaml</DependentUpon>

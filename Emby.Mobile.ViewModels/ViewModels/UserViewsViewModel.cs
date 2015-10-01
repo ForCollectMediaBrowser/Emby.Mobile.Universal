@@ -27,7 +27,7 @@ namespace Emby.Mobile.ViewModels
 
         private async Task LoadData(bool isRefresh)
         {
-            if (_viewsLoaded && !isRefresh)
+            if ((_viewsLoaded && !isRefresh) || IsInDesignMode)
             {
                 return;
             }

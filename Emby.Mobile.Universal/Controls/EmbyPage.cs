@@ -4,9 +4,9 @@ using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Universal.Extensions;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.ViewModels;
-using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.Dto;
 using ThemeManagerRt;
+using ViewModelBase = GalaSoft.MvvmLight.ViewModelBase;
 
 namespace Emby.Mobile.Universal.Controls
 {
@@ -14,7 +14,10 @@ namespace Emby.Mobile.Universal.Controls
     {
         public EmbyPage()
         {
-            this.ThemeEnableThisElement();
+            if (!ViewModelBase.IsInDesignModeStatic)
+            {
+                this.ThemeEnableThisElement();
+            }
         }
 
         protected static IAnalyticsService Analytics { get; private set; }

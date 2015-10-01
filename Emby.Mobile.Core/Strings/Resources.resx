@@ -1420,4 +1420,13 @@
   <data name="LabelLatestMusic" xml:space="preserve">
     <value>Latest music</value>
   </data>
+  <data name="HeaderFavourites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="HeaderHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HeaderWatchList" xml:space="preserve">
+    <value>Watch List</value>
+  </data>
 </root>

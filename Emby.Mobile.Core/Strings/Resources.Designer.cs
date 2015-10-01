@@ -863,11 +863,29 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Favorites.
+        /// </summary>
+        public static string HeaderFavourites {
+            get {
+                return ResourceManager.GetString("HeaderFavourites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From collection (where applicable):.
         /// </summary>
         public static string HeaderFromCollection {
             get {
                 return ResourceManager.GetString("HeaderFromCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string HeaderHome {
+            get {
+                return ResourceManager.GetString("HeaderHome", resourceCulture);
             }
         }
         
@@ -1003,6 +1021,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string HeaderUnwatchedItems {
             get {
                 return ResourceManager.GetString("HeaderUnwatchedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watch List.
+        /// </summary>
+        public static string HeaderWatchList {
+            get {
+                return ResourceManager.GetString("HeaderWatchList", resourceCulture);
             }
         }
         
