@@ -9,6 +9,8 @@ namespace Emby.Mobile.Helpers
     {
         public async static Task HandleConnectState(ConnectionResult result, IServices services, IApiClient apiClient)
         {
+            services.StartUp.EnsureFrameCreation();
+
             switch (result.State)
             {
                 case ConnectionState.Unavailable:
