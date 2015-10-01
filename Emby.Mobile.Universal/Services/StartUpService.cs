@@ -17,10 +17,5 @@ namespace Emby.Mobile.Universal.Services
 
             return Task.FromResult(9);
         }
-
-        public void EnsureFrameCreation()
-        {
-            ((App)Application.Current)?.CreateFrame();
-        }
     }
 }

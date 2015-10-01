@@ -55,8 +55,6 @@ namespace Emby.Mobile.ViewModels
             }
             else
             {
-                Services.StartUp.EnsureFrameCreation();
-
                 if (AuthenticationService.LoggedInConnectUser != null)
                 {
                     Services.UiInteractions.NavigationService.NavigateToServerSelection();
