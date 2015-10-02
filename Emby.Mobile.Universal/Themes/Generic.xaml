@@ -1530,7 +1530,7 @@
         <Setter Property="ScrollViewer.IsDeferredScrollingEnabled"
                 Value="False" />
         <Setter Property="Padding"
-                Value="{ThemeResource TextControlThemePadding}" />
+                Value="0,0,0,6" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -1688,9 +1688,9 @@
                                           Grid.ColumnSpan="2"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           Content="{TemplateBinding Header}"
-                                          Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                           FontWeight="Normal"
-                                          Margin="0,0,0,8"
+                                          Foreground="{ThemeResource EmbyGreenBrush}"
+                                          FontSize="12"
                                           Grid.Row="0"
                                           Visibility="Collapsed"
                                           x:DeferLoadStrategy="Lazy" />
@@ -1702,7 +1702,6 @@
                                       IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
                                       IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
                                       IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                      Margin="{TemplateBinding BorderThickness}"
                                       Padding="{TemplateBinding Padding}"
                                       Grid.Row="1"
                                       VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
@@ -1714,7 +1713,6 @@
                                         Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"
                                         IsHitTestVisible="False"
                                         IsTabStop="False"
-                                        Margin="{TemplateBinding BorderThickness}"
                                         Padding="{TemplateBinding Padding}"
                                         Grid.Row="1" />
                         <Button x:Name="DeleteButton"
@@ -1766,7 +1764,7 @@
                                 <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                                         Value="Hidden" />
                                 <Setter Property="Padding"
-                                        Value="{ThemeResource TextControlThemePadding}" />
+                                        Value="0,0,0,6" />
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="PasswordBox">
@@ -1885,9 +1883,9 @@
                                                                   Grid.ColumnSpan="2"
                                                                   ContentTemplate="{TemplateBinding HeaderTemplate}"
                                                                   Content="{TemplateBinding Header}"
-                                                                  Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                                                  Foreground="{ThemeResource EmbyGreenBrush}"
+                                                                  FontSize="12"
                                                                   FontWeight="Normal"
-                                                                  Margin="0,0,0,8"
                                                                   Grid.Row="0"
                                                                   Visibility="Collapsed"
                                                                   x:DeferLoadStrategy="Lazy" />
@@ -1898,7 +1896,6 @@
                                                               IsTabStop="False"
                                                               IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
                                                               IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                                              Margin="{TemplateBinding BorderThickness}"
                                                               Padding="{TemplateBinding Padding}"
                                                               Grid.Row="1"
                                                               VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
@@ -1910,7 +1907,6 @@
                                                                 Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"
                                                                 IsHitTestVisible="False"
                                                                 IsTabStop="False"
-                                                                Margin="{TemplateBinding BorderThickness}"
                                                                 Padding="{TemplateBinding Padding}"
                                                                 Grid.Row="1" />
                                                 <Button x:Name="RevealButton"

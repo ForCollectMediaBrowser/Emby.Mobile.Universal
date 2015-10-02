@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -20,11 +21,26 @@ namespace Emby.Mobile.Universal.Controls
 
             LostFocus -= OnLostFocus;
             LostFocus += OnLostFocus;
+
+            TextChanged -= OnTextChanged;
+            TextChanged += OnTextChanged;
+
+            MovePlaceholder();
         }
 
-        private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            MovePlaceholder();
+        }
+
+        private void OnLostFocus(object sender, RoutedEventArgs e)
         {
             _storyboard?.Begin();
+        }
+
+        private void MovePlaceholder()
+        {
+            Header = string.IsNullOrEmpty(Text) ? " " : PlaceholderText;
         }
     }
 }

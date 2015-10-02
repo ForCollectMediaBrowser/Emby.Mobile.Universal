@@ -1367,7 +1367,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to please enter your password.
+        ///   Looks up a localized string similar to Password:.
         /// </summary>
         public static string LabelEnterPassword {
             get {
@@ -1376,7 +1376,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to please enter your username.
+        ///   Looks up a localized string similar to User:.
         /// </summary>
         public static string LabelEnterUsername {
             get {

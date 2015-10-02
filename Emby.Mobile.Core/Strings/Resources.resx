@@ -137,10 +137,10 @@
     <value>If you don't already have a Emby account, you can sign up now, it's FREE!</value>
   </data>
   <data name="LabelEnterPassword" xml:space="preserve">
-    <value>please enter your password</value>
+    <value>Password:</value>
   </data>
   <data name="LabelEnterUsername" xml:space="preserve">
-    <value>please enter your username</value>
+    <value>User:</value>
   </data>
   <data name="LabelHostname" xml:space="preserve">
     <value>Hostname</value>
