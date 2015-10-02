@@ -9,9 +9,6 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <UserControl.Resources>
-
-    </UserControl.Resources>
 
     <Grid>
         <VisualStateManager.VisualStateGroups>
@@ -47,9 +44,6 @@
 
         <Grid x:Name="ContainerGrid"
               Padding="5"
-              BorderBrush="Green"
-              BorderThickness="1"
-              CornerRadius="5"
               Background="Transparent">
             <RelativePanel HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"

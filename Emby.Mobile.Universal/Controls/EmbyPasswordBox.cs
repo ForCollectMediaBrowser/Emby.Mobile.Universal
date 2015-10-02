@@ -59,6 +59,11 @@ namespace Emby.Mobile.Universal.Controls
         private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
         {
             VisualStateManager.GoToState(this, FocusedState, true);
+
+            if (_passwordBox != null)
+            {
+                VisualStateManager.GoToState(_passwordBox, FocusedState, true);
+            }
         }
 
         private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs e)
@@ -69,6 +74,10 @@ namespace Emby.Mobile.Universal.Controls
         private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
         {
             VisualStateManager.GoToState(this, LostFocusState, true);
+            if (_passwordBox != null)
+            {
+                VisualStateManager.GoToState(_passwordBox, "Normal", true);
+            }
         }
     }
 }
