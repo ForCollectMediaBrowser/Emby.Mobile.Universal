@@ -62,27 +62,19 @@ namespace Emby.Mobile.Universal.Controls
         {
             VisualStateManager.GoToState(this, FocusedState, true);
 
-            if (_passwordBox != null)
-            {
-                VisualStateManager.GoToState(_passwordBox, FocusedState, true);
-            }
+            _passwordBox?.Focus(FocusState.Programmatic);
         }
 
         private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = _passwordBox.Password;
+            Password = _passwordBox?.Password;
 
             MovePlaceholder();
         }
 
         private void MovePlaceholder()
         {
-            if (_passwordBox == null)
-            {
-                return;
-            }
-
-            _passwordBox.Header = string.IsNullOrEmpty(_passwordBox.Password) ? " " : PlaceholderText;
+            _passwordBox.Header = string.IsNullOrEmpty(_passwordBox?.Password) ? " " : PlaceholderText;
         }
 
         private void OnLostFocus(object sender, RoutedEventArgs e)
