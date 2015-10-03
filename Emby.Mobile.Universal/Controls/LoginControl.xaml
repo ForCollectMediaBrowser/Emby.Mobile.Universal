@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-
+    
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="SizeGroup">
@@ -84,7 +84,8 @@
                         RelativePanel.Below="PasswordBox"
                         IsEnabled="{x:Bind CanSignIn.CanSignIn, Mode=OneWay}"
                         ClickMode="Release"
-                        Command="{x:Bind CanSignIn.SignInCommand}" />
+                        Command="{x:Bind CanSignIn.SignInCommand}"
+                        Style="{StaticResource HeroButtonStyle}" />
                 <HyperlinkButton x:Name="CreateAccountButton"
                                  Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonCreateAccount}"
                                  RelativePanel.Below="LoginButton"
