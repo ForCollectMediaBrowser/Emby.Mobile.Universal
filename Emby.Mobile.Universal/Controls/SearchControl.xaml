@@ -14,15 +14,14 @@
 
     <Grid Background="{ThemeResource BackgroundBrush}">
         <RelativePanel>
-            <TextBox x:Name="TxtSearch"
-                     VerticalAlignment="Top"
-                     Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="10"
-                     RelativePanel.AlignLeftWithPanel="True"
-                     RelativePanel.AlignRightWithPanel="True"
-                     RelativePanel.AlignTopWithPanel="True"
-                     PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSearch}">
-            </TextBox>
+            <local:EmbyTextBox x:Name="TxtSearch"
+                               VerticalAlignment="Top"
+                               Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               Margin="10"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.AlignRightWithPanel="True"
+                               RelativePanel.AlignTopWithPanel="True"
+                               PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSearch}"/>
             <ListView x:Name="ResultBox"
                       RelativePanel.Below="TxtSearch"
                       RelativePanel.AlignLeftWithPanel="True"
