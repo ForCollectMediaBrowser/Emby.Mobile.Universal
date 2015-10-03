@@ -33,53 +33,53 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <RelativePanel HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top"
+                       VerticalAlignment="Center"
                        x:Name="LayoutRoot"
                        MaxWidth="360">
             <HyperlinkButton x:Name="DisplayUrl"
                              ClickMode="Release"
                              Command="{x:Bind ManualServerEntry.TestUrlCommand}"
                              Content="{x:Bind ManualServerEntry.DisplayUrl, Mode=OneWay}"
-                             IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"/>
-            <TextBox x:Name="Hostname"
-                     Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
-                     RelativePanel.AlignRightWithPanel="True"
-                     RelativePanel.AlignLeftWithPanel="True"
-                     RelativePanel.Below="DisplayUrl"
-                     IsSpellCheckEnabled="False"
-                     PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelHostname}"
-                     InputScope="EmailSmtpAddress" />
-            <TextBox x:Name="PortNumber"
-                     Text="{Binding PortNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
-                     RelativePanel.Below="Hostname"
-                     RelativePanel.AlignRightWithPanel="True"
-                     RelativePanel.AlignLeftWithPanel="True"
-                     PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelPortNumber}"
-                     InputScope="AlphanumericPin">
+                             IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}" />
+            <controls:EmbyTextBox x:Name="Hostname"
+                                  Text="{Binding ServerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
+                                  RelativePanel.AlignRightWithPanel="True"
+                                  RelativePanel.AlignLeftWithPanel="True"
+                                  RelativePanel.Below="DisplayUrl"
+                                  IsSpellCheckEnabled="False"
+                                  PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelHostname}"
+                                  InputScope="EmailSmtpAddress" />
+            <controls:EmbyTextBox x:Name="PortNumber"
+                                  Text="{Binding PortNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{x:Bind ManualServerEntry.ProgressIsVisible, Mode=OneWay, Converter={StaticResource NegativeBooleanConverter}}"
+                                  RelativePanel.Below="Hostname"
+                                  RelativePanel.AlignRightWithPanel="True"
+                                  RelativePanel.AlignLeftWithPanel="True"
+                                  PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelPortNumber}"
+                                  InputScope="AlphanumericPin">
                 <interactivity:Interaction.Behaviors>
-                    <behaviors:EnterKeyBehavior Command="{x:Bind ManualServerEntry.ConnectCommand}"/>
+                    <behaviors:EnterKeyBehavior Command="{x:Bind ManualServerEntry.ConnectCommand}" />
                 </interactivity:Interaction.Behaviors>
-            </TextBox>
+            </controls:EmbyTextBox>
             <Button x:Name="ConnectButton"
+                    Style="{StaticResource HeroButtonStyle}"
                     Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelConnect}"
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.Below="PortNumber"
                     HorizontalAlignment="Stretch"
-                    BorderBrush="Green"
-                    Background="Green"
                     IsEnabled="{x:Bind ManualServerEntry.CanConnect, Mode=OneWay}"
                     Margin="20,12,20,0"
                     ClickMode="Release"
-                    Command="{x:Bind ManualServerEntry.ConnectCommand}"/>
-            
+                    Command="{x:Bind ManualServerEntry.ConnectCommand}" />
+
             <HyperlinkButton Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelUseConnectInstead}"
                              RelativePanel.Below="ConnectButton"
                              RelativePanel.AlignHorizontalCenterWith="ConnectButton"
-                             Margin="0,6"
-                             Command="{x:Bind ManualServerEntry.SignIntoConnectCommand}"/>
+                             Margin="0,12"
+                             Padding="2"
+                             Command="{x:Bind ManualServerEntry.SignIntoConnectCommand}" />
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>
