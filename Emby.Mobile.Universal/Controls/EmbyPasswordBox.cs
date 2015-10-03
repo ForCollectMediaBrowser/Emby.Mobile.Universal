@@ -13,6 +13,10 @@ namespace Emby.Mobile.Universal.Controls
         private const string FocusedState = "Focused";
         private const string LostFocusState = "LostFocus";
 
+        private const string WatermarkPositions = "WatermarkPositions";
+        private const string InText = "InText";
+        private const string InHeader = "InHeader";
+
         private PasswordBox _passwordBox;
 
         public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register(
@@ -81,7 +85,8 @@ namespace Emby.Mobile.Universal.Controls
 
         private void MovePlaceholder()
         {
-            _passwordBox.Header = string.IsNullOrEmpty(_passwordBox?.Password) ? " " : PlaceholderText;
+            var state = string.IsNullOrEmpty(_passwordBox?.Password) ? InText : InHeader;
+            VisualStateManager.GoToState(_passwordBox, state, true);
         }
     }
 }
