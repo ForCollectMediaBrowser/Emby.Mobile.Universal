@@ -16,10 +16,10 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
-            <TextBox Text="{Binding DeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Header="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=WatermarkDeviceName}"/>
+            <controls:EmbyTextBox Text="{Binding DeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=WatermarkDeviceName}" />
             <Button Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSetDeviceName}"
-                    Command="{x:Bind Settings.SaveDeviceNameCommand}"/>
+                    Command="{x:Bind Settings.SaveDeviceNameCommand}" />
         </StackPanel>
     </Grid>
 </controls:EmbyPage>
