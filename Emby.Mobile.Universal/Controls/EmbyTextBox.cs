@@ -1,6 +1,6 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace Emby.Mobile.Universal.Controls
@@ -19,23 +19,21 @@ namespace Emby.Mobile.Universal.Controls
             base.OnApplyTemplate();
             _storyboard = GetTemplateChild("LostFocusStory") as Storyboard;
 
-            LostFocus -= OnLostFocus;
-            LostFocus += OnLostFocus;
-
-            TextChanged -= OnTextChanged;
-            TextChanged += OnTextChanged;
-
             MovePlaceholder();
         }
 
-        private void OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            MovePlaceholder();
-        }
-
-        private void OnLostFocus(object sender, RoutedEventArgs e)
+        protected override void OnLostFocus(RoutedEventArgs e)
         {
             _storyboard?.Begin();
+
+            base.OnLostFocus(e);
+        }
+
+        protected override void OnKeyUp(KeyRoutedEventArgs e)
+        {
+            MovePlaceholder();
+
+            base.OnKeyUp(e);
         }
 
         private void MovePlaceholder()

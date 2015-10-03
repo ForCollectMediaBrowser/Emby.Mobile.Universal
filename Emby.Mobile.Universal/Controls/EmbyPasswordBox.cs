@@ -49,20 +49,27 @@ namespace Emby.Mobile.Universal.Controls
                 _passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
             }
 
-            LostFocus -= OnLostFocus;
-            LostFocus += OnLostFocus;
-
-            GotFocus -= OnGotFocus;
-            GotFocus += OnGotFocus;
-
             MovePlaceholder();
         }
 
-        private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+        protected override void OnLostFocus(RoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, LostFocusState, true);
+            if (_passwordBox != null)
+            {
+                VisualStateManager.GoToState(_passwordBox, "Normal", true);
+            }
+
+            base.OnLostFocus(e);
+        }
+
+        protected override void OnGotFocus(RoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, FocusedState, true);
 
             _passwordBox?.Focus(FocusState.Programmatic);
+
+            base.OnGotFocus(e);
         }
 
         private void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs e)
@@ -75,15 +82,6 @@ namespace Emby.Mobile.Universal.Controls
         private void MovePlaceholder()
         {
             _passwordBox.Header = string.IsNullOrEmpty(_passwordBox?.Password) ? " " : PlaceholderText;
-        }
-
-        private void OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            VisualStateManager.GoToState(this, LostFocusState, true);
-            if (_passwordBox != null)
-            {
-                VisualStateManager.GoToState(_passwordBox, "Normal", true);
-            }
         }
     }
 }
