@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -43,44 +44,38 @@
 
         <Grid x:Name="ContainerGrid"
               Padding="5"
-              BorderBrush="Green"
-              BorderThickness="1"
-              CornerRadius="5"
-              Background="LightGreen">
+              Background="Transparent">
             <RelativePanel HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"
-                           Background="LightGreen">
-                <TextBox x:Name="UsernameBox"
-                         Background="White"
-                         Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         IsSpellCheckEnabled="False"
-                         PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterUsername}"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Top"
-                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
-                         RelativePanel.AlignRightWithPanel="True"
-                         RelativePanel.AlignLeftWithPanel="True"
-                         BorderBrush="Green"
-                         Foreground="White"
-                         BorderThickness="1" />
-                <PasswordBox x:Name="PasswordBox"
-                             Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterPassword}"
-                             IsPasswordRevealButtonEnabled="True"
-                             IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
-                             RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignLeftWithPanel="True"
-                             RelativePanel.Below="UsernameBox"
-                             BorderBrush="Green"
-                             BorderThickness="1,0,1,1">
+                           Background="Transparent">
+                <controls:EmbyTextBox x:Name="UsernameBox"
+                                      Background="White"
+                                      Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsSpellCheckEnabled="False"
+                                      PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterUsername}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"
+                                      IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
+                                      RelativePanel.AlignRightWithPanel="True"
+                                      RelativePanel.AlignLeftWithPanel="True"
+                                      Foreground="White"
+                                      BorderThickness="1"
+                                      Margin="0,0,0,6" />
+                <controls:EmbyPasswordBox x:Name="PasswordBox"
+                                          Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterPassword}"
+                                          IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
+                                          RelativePanel.AlignRightWithPanel="True"
+                                          RelativePanel.AlignLeftWithPanel="True"
+                                          RelativePanel.Below="UsernameBox">
                     <interactivity:Interaction.Behaviors>
-                        <behaviors:EnterKeyBehavior Command="{x:Bind CanSignIn.SignInCommand}"/>
+                        <behaviors:EnterKeyBehavior Command="{x:Bind CanSignIn.SignInCommand}" />
                     </interactivity:Interaction.Behaviors>
-                </PasswordBox>
+                </controls:EmbyPasswordBox>
                 <Button x:Name="LoginButton"
                         Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonLogin}"
-                        BorderBrush="Green"
-                        Background="Green"
+                        BorderBrush="{ThemeResource EmbyGreenBrush}"
+                        Background="{ThemeResource EmbyGreenBrush}"
                         Foreground="White"
                         Margin="20,12,20,0"
                         RelativePanel.AlignRightWithPanel="True"
@@ -97,7 +92,7 @@
                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
                                  Command="{x:Bind CanSignIn.SignUpCommand}"
                                  ClickMode="Release"
-                                 Visibility="{x:Bind CanSignIn.IsEmbyConnect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                 Visibility="{x:Bind CanSignIn.IsEmbyConnect, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </RelativePanel>
         </Grid>
     </Grid>

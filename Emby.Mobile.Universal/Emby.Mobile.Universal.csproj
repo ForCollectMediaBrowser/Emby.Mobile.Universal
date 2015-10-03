@@ -150,6 +150,8 @@
     <Compile Include="Controls\BlurredImageControl.cs" />
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
+    <Compile Include="Controls\EmbyPasswordBox.cs" />
+    <Compile Include="Controls\EmbyTextBox.cs" />
     <Compile Include="Controls\FadingImages.xaml.cs">
       <DependentUpon>FadingImages.xaml</DependentUpon>
     </Compile>
