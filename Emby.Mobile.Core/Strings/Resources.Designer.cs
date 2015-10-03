@@ -3942,7 +3942,7 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to enter an email address.
+        ///   Looks up a localized string similar to Email address:.
         /// </summary>
         public static string WatermarkEnterEmailAddress {
             get {

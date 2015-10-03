@@ -1331,7 +1331,7 @@
     <value>Signing up...</value>
   </data>
   <data name="WatermarkEnterEmailAddress" xml:space="preserve">
-    <value>enter an email address</value>
+    <value>Email address:</value>
   </data>
   <data name="SysTrayGettingClients" xml:space="preserve">
     <value>Getting clients...</value>
