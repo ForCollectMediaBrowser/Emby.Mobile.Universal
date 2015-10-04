@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:Emby.Mobile.Universal.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="200"
              d:DesignWidth="360"
@@ -11,6 +12,32 @@
     <Grid Holding="UIElement_OnHolding"
           x:Name="ContainingButton"
           RightTapped="ContainingButton_OnRightTapped">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NotQuiteWideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ServerImage.FontSize"
+                                Value="96" />
+                        <Setter Target="ServerName.Style"
+                                Value="{StaticResource TitleTextBlockStyle}"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ServerImage.FontSize"
+                                Value="70" />
+                        <Setter Target="ServerName.Style"
+                                Value="{StaticResource SubtitleTextBlockStyle}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <FlyoutBase.AttachedFlyout>
             <MenuFlyout>
                 <MenuFlyoutItem Command="{x:Bind ServerInfo.RemoveServerCommand}"

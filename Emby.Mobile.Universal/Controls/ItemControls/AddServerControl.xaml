@@ -3,11 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:Emby.Mobile.Universal.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NotQuiteWideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PlusText.FontSize"
+                                Value="60" />
+                        <Setter Target="PlusText.Padding"
+                                Value="20,5,10,5" />
+                        <Setter Target="AddServerText.Style"
+                                Value="{StaticResource TitleTextBlockStyle}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PlusText.FontSize"
+                                Value="35" />
+                        <Setter Target="PlusText.Padding"
+                                Value="18,0,12,5" />
+                        <Setter Target="AddServerText.Style"
+                                Value="{StaticResource SubtitleTextBlockStyle}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 ClickMode="Release"
                 Command="{Binding ChooseServer.ManualServerEntryCommand, Source={StaticResource Locator}}">
@@ -20,6 +51,7 @@
                            RelativePanel.AlignVerticalCenterWithPanel="True" />
                 <!--<TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelAddServer}"-->
                 <TextBlock Text="Add server"
+                           x:Name="AddServerText"
                            Style="{StaticResource TitleTextBlockStyle}"
                            Foreground="{ThemeResource EmbyGreenBrush}"
                            RelativePanel.RightOf="PlusText"
