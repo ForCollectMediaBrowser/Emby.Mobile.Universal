@@ -1531,6 +1531,8 @@
                 Value="False" />
         <Setter Property="Padding"
                 Value="0,0,0,6" />
+        <Setter Property="Header"
+                Value="Something:" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -1618,11 +1620,6 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-                                                                       Storyboard.TargetName="HeaderContentPresenter">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="ContentElement">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}" />
@@ -1644,6 +1641,65 @@
                                                                   Value="0" />
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.35"
                                                                   Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="WatermarkPositions">
+                                <VisualState x:Name="InText">
+                                    <Storyboard>
+                                        <DoubleAnimation EnableDependentAnimation="True"
+                                                         Duration="0:0:0.2"
+                                                         To="0"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                         Storyboard.TargetName="HeaderContentPresenter">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="InHeader">
+                                    <VisualState.Setters>
+                                        <Setter Target="HeaderContentPresenter.(FrameworkElement.HorizontalAlignment)"
+                                                Value="Left" />
+                                    </VisualState.Setters>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="HeaderContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource EmbyGreenBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation EnableDependentAnimation="True"
+                                                         Duration="0:0:0.3"
+                                                         To="-20"
+                                                         From="0"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                         Storyboard.TargetName="HeaderContentPresenter">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                                                                       Storyboard.TargetName="HeaderContentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="0.75" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                                       Storyboard.TargetName="HeaderContentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="0.75" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+                                                                       Storyboard.TargetName="HeaderContentPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="-5" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1689,11 +1745,17 @@
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           Content="{TemplateBinding Header}"
                                           FontWeight="Normal"
-                                          Foreground="{ThemeResource EmbyGreenBrush}"
-                                          FontSize="12"
-                                          Grid.Row="0"
+                                          Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"
+                                          Grid.Row="1"
+                                          IsHitTestVisible="False"
                                           Visibility="Collapsed"
-                                          x:DeferLoadStrategy="Lazy" />
+                                          Padding="{TemplateBinding Padding}"
+                                          x:DeferLoadStrategy="Lazy"
+                                          RenderTransformOrigin="0.5,0.5">
+                            <ContentPresenter.RenderTransform>
+                                <CompositeTransform />
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
                         <ScrollViewer x:Name="ContentElement"
                                       AutomationProperties.AccessibilityView="Raw"
                                       HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
@@ -1734,7 +1796,7 @@
 
     <Style TargetType="controls:EmbyPasswordBox">
         <Setter Property="Foreground"
-                Value="White"/>
+                Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyPasswordBox">
@@ -1861,7 +1923,7 @@
                                                         </VisualState>
                                                         <VisualState x:Name="Normal" />
                                                         <VisualState x:Name="PointerOver" />
-                                                        <VisualState x:Name="Focused"/>
+                                                        <VisualState x:Name="Focused" />
                                                     </VisualStateGroup>
                                                     <VisualStateGroup x:Name="ButtonStates">
                                                         <VisualState x:Name="ButtonVisible">
@@ -1878,17 +1940,82 @@
                                                         </VisualState>
                                                         <VisualState x:Name="ButtonCollapsed" />
                                                     </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="WatermarkPositions">
+                                                        <VisualState x:Name="InText">
+                                                            <Storyboard>
+                                                                <DoubleAnimation EnableDependentAnimation="True"
+                                                                                 Duration="0:0:0.2"
+                                                                                 To="0"
+                                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                                                 Storyboard.TargetName="HeaderContentPresenter">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <CircleEase EasingMode="EaseOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="InHeader">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="HeaderContentPresenter.(FrameworkElement.HorizontalAlignment)"
+                                                                        Value="Left" />
+                                                            </VisualState.Setters>
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                                               Storyboard.TargetName="HeaderContentPresenter">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                            Value="{ThemeResource EmbyGreenBrush}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <DoubleAnimation EnableDependentAnimation="True"
+                                                                                 Duration="0:0:0.3"
+                                                                                 To="-18"
+                                                                                 From="0"
+                                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                                                 Storyboard.TargetName="HeaderContentPresenter">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <CircleEase EasingMode="EaseOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                                                                                               Storyboard.TargetName="HeaderContentPresenter">
+                                                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                                                          Value="1" />
+                                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                                          Value="0.75" />
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                                                               Storyboard.TargetName="HeaderContentPresenter">
+                                                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                                                          Value="1" />
+                                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                                          Value="0.75" />
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+                                                                                               Storyboard.TargetName="HeaderContentPresenter">
+                                                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                                                          Value="0" />
+                                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                                          Value="-8" />
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
                                                 <ContentPresenter x:Name="HeaderContentPresenter"
                                                                   Grid.ColumnSpan="2"
                                                                   ContentTemplate="{TemplateBinding HeaderTemplate}"
                                                                   Content="{TemplateBinding Header}"
-                                                                  Foreground="{ThemeResource EmbyGreenBrush}"
-                                                                  FontSize="12"
                                                                   FontWeight="Normal"
-                                                                  Grid.Row="0"
+                                                                  Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"
+                                                                  Grid.Row="1"
+                                                                  IsHitTestVisible="False"
                                                                   Visibility="Collapsed"
-                                                                  x:DeferLoadStrategy="Lazy" />
+                                                                  Padding="{TemplateBinding Padding}"
+                                                                  x:DeferLoadStrategy="Lazy"
+                                                                  RenderTransformOrigin="0.5,0.5">
+                                                    <ContentPresenter.RenderTransform>
+                                                        <CompositeTransform />
+                                                    </ContentPresenter.RenderTransform>
+                                                </ContentPresenter>
                                                 <ScrollViewer x:Name="ContentElement"
                                                               AutomationProperties.AccessibilityView="Raw"
                                                               HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
@@ -1955,10 +2082,10 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <PasswordBox PlaceholderText="{TemplateBinding PlaceholderText}"
+                        <PasswordBox Header="{TemplateBinding PlaceholderText}"
                                      IsPasswordRevealButtonEnabled="True"
-                                     x:Name="PasswordBox" 
-                                     Foreground="{TemplateBinding Foreground}"/>
+                                     x:Name="PasswordBox"
+                                     Foreground="{TemplateBinding Foreground}" />
                         <Grid VerticalAlignment="Bottom">
                             <Rectangle Fill="Gray"
                                        HorizontalAlignment="Stretch"

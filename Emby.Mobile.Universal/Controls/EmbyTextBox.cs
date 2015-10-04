@@ -5,8 +5,14 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace Emby.Mobile.Universal.Controls
 {
+    [TemplateVisualState(GroupName = WatermarkPositions, Name = InText)]
+    [TemplateVisualState(GroupName = WatermarkPositions, Name = InHeader)]
     public sealed class EmbyTextBox : TextBox
     {
+        private const string WatermarkPositions = "WatermarkPositions";
+        private const string InText = "InText";
+        private const string InHeader = "InHeader";
+
         private Storyboard _storyboard;
 
         public EmbyTextBox()
@@ -38,7 +44,8 @@ namespace Emby.Mobile.Universal.Controls
 
         private void MovePlaceholder()
         {
-            Header = string.IsNullOrEmpty(Text) ? " " : PlaceholderText;
+            var state = string.IsNullOrEmpty(Text) ? InText : InHeader;
+            VisualStateManager.GoToState(this, state, true);
         }
     }
 }

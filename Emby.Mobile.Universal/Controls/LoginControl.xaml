@@ -52,7 +52,7 @@
                                       Background="White"
                                       Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       IsSpellCheckEnabled="False"
-                                      PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterUsername}"
+                                      Header="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterUsername}"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Top"
                                       IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
@@ -60,7 +60,7 @@
                                       RelativePanel.AlignLeftWithPanel="True"
                                       Foreground="White"
                                       BorderThickness="1"
-                                      Margin="0,0,0,6" />
+                                      Margin="0,0,0,18" />
                 <controls:EmbyPasswordBox x:Name="PasswordBox"
                                           Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                           PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelEnterPassword}"
