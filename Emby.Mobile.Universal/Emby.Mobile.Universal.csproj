@@ -158,6 +158,9 @@
     <Compile Include="Controls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ItemControls\AddServerControl.xaml.cs">
+      <DependentUpon>AddServerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ItemControls\MediaFolderControl.xaml.cs">
       <DependentUpon>MediaFolderControl.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,7 @@
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Data\UserViewDataTemplateSelector.cs" />
+    <Compile Include="Triggers\EmbyAdaptiveTrigger.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\MediaElementStateExtensions.cs" />
     <Compile Include="Extensions\NavigationModeExtensions.cs" />
@@ -345,6 +349,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\HeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemControls\AddServerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

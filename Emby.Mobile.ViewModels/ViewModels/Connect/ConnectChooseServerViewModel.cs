@@ -36,7 +36,11 @@ namespace Emby.Mobile.ViewModels.Connect
                         Name = "7-Server",
                         LocalAddress = "http://192.168.0.2",
                         RemoteAddress = "http://7illusions.server.com"
-                    })
+                    }),
+                    new ServerInfoViewModel(services, null)
+                    {
+                        IsDummyServer = true
+                    }
                 };
             }
         }

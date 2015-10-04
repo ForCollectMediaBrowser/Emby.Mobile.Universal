@@ -8,56 +8,18 @@
              d:DesignWidth="360"
              d:DataContext="{Binding ChooseServer.Servers[0], Source={StaticResource Locator}}">
 
-    <Button ClickMode="Release"
-            Command="{x:Bind ServerInfo.ServerTappedCommand}"
-            Style="{StaticResource EmptyButtonStyle}"
-            >
-        <Grid Holding="UIElement_OnHolding"
-              x:Name="ContainingButton"
-              RightTapped="ContainingButton_OnRightTapped">
-            <FlyoutBase.AttachedFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Command="{x:Bind ServerInfo.RemoveServerCommand}"
-                                    Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarDelete}" />
-                </MenuFlyout>
-            </FlyoutBase.AttachedFlyout>
-            <!--<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ServerImage.FontSize"
-                                Value="128" />
-                        <Setter Target="LocalAddress.(RelativePanel.RightOf)"
-                                Value="{x:Null}" />
-                        <Setter Target="Externaladdress.(RelativePanel.RightOf)"
-                                Value="{x:Null}" />
-                        <Setter Target="ServerName.(RelativePanel.Below)"
-                                Value="ServerImage" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ServerImage.FontSize"
-                                Value="96" />
-                        <Setter Target="ServerName.(RelativePanel.RightOf)"
-                                Value="ServerImage"/>
-                        <Setter Target="ServerName.(RelativePanel.Below)"
-                                Value="{x:Null}" />
-                        <Setter Target="LocalAddress.(RelativePanel.RightOf)"
-                                Value="ServerImage"/>
-                        <Setter Target="Externaladdress.(RelativePanel.RightOf)"
-                                Value="ServerImage" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
-
+    <Grid Holding="UIElement_OnHolding"
+          x:Name="ContainingButton"
+          RightTapped="ContainingButton_OnRightTapped">
+        <FlyoutBase.AttachedFlyout>
+            <MenuFlyout>
+                <MenuFlyoutItem Command="{x:Bind ServerInfo.RemoveServerCommand}"
+                                Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=AppBarDelete}" />
+            </MenuFlyout>
+        </FlyoutBase.AttachedFlyout>
+        <Button ClickMode="Release"
+                Command="{x:Bind ServerInfo.ServerTappedCommand}"
+                Style="{StaticResource EmptyButtonStyle}">
             <RelativePanel>
                 <TextBlock Style="{StaticResource Mdl2Style}"
                            Text="{StaticResource Server}"
@@ -67,6 +29,8 @@
                            Text="{Binding ServerName}"
                            Style="{StaticResource TitleTextBlockStyle}"
                            Foreground="{ThemeResource EmbyGreenBrush}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap"
                            RelativePanel.RightOf="ServerImage"
                            Margin="0,0,0,0" />
                 <TextBlock x:Name="LocalAddress"
@@ -82,6 +46,6 @@
                            RelativePanel.RightOf="ServerImage"
                            RelativePanel.Below="LocalAddress" />
             </RelativePanel>
-        </Grid>
-    </Button>
+        </Button>
+    </Grid>
 </UserControl>

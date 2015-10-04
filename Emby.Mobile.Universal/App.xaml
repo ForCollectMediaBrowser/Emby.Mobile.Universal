@@ -32,7 +32,7 @@
                                  xmlns:vm="using:Emby.Mobile.Universal.ViewModel" />
 
             <x:Double x:Key="NarrowAdaptiveWidth">0</x:Double>
-            <x:Double x:Key="WideAdaptiveWidth">500</x:Double>
+            <x:Double x:Key="WideAdaptiveWidth">433</x:Double>
             <x:Double x:Key="ExtraWideAdaptiveWidth">1366</x:Double>
 
             <!-- #region Converters -->

@@ -8,6 +8,7 @@
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                    xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
                    xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
+                   xmlns:triggers="using:Emby.Mobile.Universal.Triggers"
                    mc:Ignorable="d"
                    DataContext="{Binding ConnectChooseServer, Source={StaticResource Locator}}">
     <interactivity:Interaction.Behaviors>
@@ -39,27 +40,28 @@
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ServerList.ItemsPanel"
-                                Value="{StaticResource HorizontalItemsWrapGrid}" />
+                        <Setter Target="ServerList.Margin"
+                                Value="19" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ServerList.ItemsPanel"
-                                Value="{StaticResource VerticalItemsWrapGrid}" />
+                        <Setter Target="ServerList.Margin"
+                                Value="0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <GridView x:Name="ServerList"
                   ItemsSource="{Binding Servers}"
-                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}">
+                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}"
+                  Margin="19">
             <GridView.ItemContainerStyle>
                 <Style TargetType="GridViewItem">
                     <Setter Property="HorizontalContentAlignment"
@@ -69,24 +71,7 @@
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:ServerInfoViewModel">
                     <Grid>
-                        <Button Style="{StaticResource EmptyButtonStyle}"
-                                ClickMode="Release"
-                                Command="{Binding ChooseServer.ManualServerEntryCommand, Source={StaticResource Locator}}"
-                                Visibility="{Binding IsDummyServer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <RelativePanel VerticalAlignment="Center">
-                                <TextBlock x:Name="PlusText"
-                                           Text="{StaticResource Plus}"
-                                           FontSize="80"
-                                           Style="{StaticResource Mdl2Style}"
-                                           RelativePanel.AlignVerticalCenterWithPanel="True" />
-                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelAddServer}"
-                                           Style="{StaticResource TitleTextBlockStyle}"
-                                           Foreground="{ThemeResource EmbyGreenBrush}"
-                                           RelativePanel.RightOf="PlusText"
-                                           RelativePanel.AlignVerticalCenterWithPanel="True"
-                                           Margin="6,0" />
-                            </RelativePanel>
-                        </Button>
+                        <itemControls:AddServerControl Visibility="{Binding IsDummyServer, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <itemControls:ServerInfoControl Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
                     </Grid>
