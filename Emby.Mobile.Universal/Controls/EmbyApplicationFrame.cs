@@ -1,8 +1,10 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.ViewModels;
 using Emby.Mobile.Universal.Interfaces;
+using Emby.Mobile.Universal.Services;
 
 namespace Emby.Mobile.Universal.Controls
 {
@@ -12,8 +14,13 @@ namespace Emby.Mobile.Universal.Controls
         {
             GetTemplateChild("VideoPlayer");
             GetTemplateChild("PhotoPlayer");
-            GetTemplateChild("Header");
+            var header = GetTemplateChild("Header") as HeaderControl;
             GetTemplateChild("StatusBar");
+
+            if (header != null)
+            {
+                header.Margin = AppServices.DeviceInfo.SupportsStatusBar ? new Thickness(0, 20, 0, 0) : new Thickness(0);
+            }
 
             Navigated += OnNavigated;
         }
