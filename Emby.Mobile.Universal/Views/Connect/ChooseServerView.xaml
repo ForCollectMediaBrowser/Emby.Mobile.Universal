@@ -6,9 +6,6 @@
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                   xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
-                   xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
-                   xmlns:triggers="using:Emby.Mobile.Universal.Triggers"
                    mc:Ignorable="d"
                    DataContext="{Binding ConnectChooseServer, Source={StaticResource Locator}}">
     <interactivity:Interaction.Behaviors>
@@ -16,15 +13,6 @@
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-
-    <Page.Resources>
-        <ItemsPanelTemplate x:Key="HorizontalItemsWrapGrid">
-            <ItemsWrapGrid Orientation="Horizontal" />
-        </ItemsPanelTemplate>
-        <ItemsPanelTemplate x:Key="VerticalItemsWrapGrid">
-            <ItemsWrapGrid Orientation="Vertical" />
-        </ItemsPanelTemplate>
-    </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
@@ -34,49 +22,8 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ServerList.Margin"
-                                Value="19" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ServerList.Margin"
-                                Value="0,32,0,19" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <GridView x:Name="ServerList"
-                  ItemsSource="{Binding Servers}"
-                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}"
-                  Margin="19">
-            <GridView.ItemContainerStyle>
-                <Style TargetType="GridViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </GridView.ItemContainerStyle>
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="entities:ServerInfoViewModel">
-                    <Grid>
-                        <itemControls:AddServerControl Visibility="{Binding IsDummyServer, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                        <itemControls:ServerInfoControl Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+        <controls:ServerListControl/>
     </Grid>
 </controls:EmbyPage>

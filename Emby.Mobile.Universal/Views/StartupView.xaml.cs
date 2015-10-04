@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
-using Emby.Mobile.Universal.Extensions;
 using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.ViewModels;
@@ -33,7 +32,7 @@ namespace Emby.Mobile.Universal.Views
         {
             await AppServices.Create();
 
-            HideSystemTrayAsync().DontAwait("Just get on with it, don't need to hold up the navigation");
+            ShowSystemTrayAsync().DontAwait("Just get on with it, don't need to hold up the navigation");
 
             TitleBarService.SetTitleBarColours();
 
@@ -51,7 +50,7 @@ namespace Emby.Mobile.Universal.Views
             vm.PageLoadedCommand.Execute(null);
         }
 
-        private static async Task HideSystemTrayAsync()
+        private static async Task ShowSystemTrayAsync()
         {
             if (AppServices.DeviceInfo.SupportsStatusBar)
             {
@@ -61,9 +60,7 @@ namespace Emby.Mobile.Universal.Views
                     bar.BackgroundColor = (Color?) Application.Current.Resources["EmbyGreenColor"];
                     bar.ForegroundColor = Colors.White;
                     bar.BackgroundOpacity = 1;
-                    await bar.ShowAsync();//.DontAwait("Just show the status bar");
-                    //By settings a progress value and displaying the Progressindicator, the clock will still be visible.
-                    
+                    await bar.ShowAsync();
                 }
             }
         }

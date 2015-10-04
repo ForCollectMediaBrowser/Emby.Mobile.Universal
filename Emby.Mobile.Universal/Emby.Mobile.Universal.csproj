@@ -192,6 +192,9 @@
     <Compile Include="Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ServerListControl.xaml.cs">
+      <DependentUpon>ServerListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Controls\VariableGridView.cs" />
     <Compile Include="Converters\ParallaxConverter.cs" />
@@ -386,6 +389,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ServerListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
