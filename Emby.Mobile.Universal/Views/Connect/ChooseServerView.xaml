@@ -53,7 +53,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ServerList.Margin"
-                                Value="0,19" />
+                                Value="0,32,0,19" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

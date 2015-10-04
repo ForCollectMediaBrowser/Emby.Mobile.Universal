@@ -198,6 +198,7 @@
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Data\UserViewDataTemplateSelector.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Triggers\EmbyAdaptiveTrigger.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\MediaElementStateExtensions.cs" />

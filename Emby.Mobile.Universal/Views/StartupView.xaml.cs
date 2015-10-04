@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
+using Emby.Mobile.Universal.Extensions;
 using Emby.Mobile.Universal.Helpers;
 using Emby.Mobile.Universal.ViewModel;
 using Emby.Mobile.ViewModels;
@@ -59,10 +60,10 @@ namespace Emby.Mobile.Universal.Views
                 {
                     bar.BackgroundColor = (Color?) Application.Current.Resources["EmbyGreenColor"];
                     bar.ForegroundColor = Colors.White;
+                    bar.BackgroundOpacity = 1;
+                    await bar.ShowAsync();//.DontAwait("Just show the status bar");
                     //By settings a progress value and displaying the Progressindicator, the clock will still be visible.
-                    bar.ProgressIndicator.ProgressValue = 0;
-                    bar.ProgressIndicator.Text = " ";
-                    await bar.ProgressIndicator.ShowAsync();
+                    
                 }
             }
         }

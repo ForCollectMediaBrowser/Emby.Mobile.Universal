@@ -4,7 +4,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
-
 namespace Emby.Mobile.Universal.Extensions
 {
     public static class StoryboardExtensions
