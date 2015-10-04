@@ -51,7 +51,7 @@ namespace Emby.Mobile.Universal.Controls
 
             if (!ViewModelBase.IsInDesignModeStatic)
             {
-                _countText.Text = Item.ChildCount.HasValue ? Item.ChildCount.Value.ToString() : string.Empty;
+                _countText.Text = Item?.UserData?.UnplayedItemCount?.ToString();
                 _layoutRoot.Visibility = Visibility.Visible;
             }
         }
