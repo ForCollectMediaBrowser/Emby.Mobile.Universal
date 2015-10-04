@@ -16,74 +16,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Page.Resources>
-        <ItemsPanelTemplate x:Key="HorizontalItemsWrapGrid">
-            <ItemsWrapGrid Orientation="Horizontal" />
-        </ItemsPanelTemplate>
-        <ItemsPanelTemplate x:Key="VerticalItemsWrapGrid">
-            <ItemsWrapGrid Orientation="Vertical" />
-        </ItemsPanelTemplate>
-    </Page.Resources>
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ServerList.ItemsPanel"
-                                Value="{StaticResource HorizontalItemsWrapGrid}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ServerList.ItemsPanel"
-                                Value="{StaticResource VerticalItemsWrapGrid}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <GridView x:Name="ServerList"
-                  ItemsSource="{Binding Servers}"
-                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}">
-            <GridView.ItemContainerStyle>
-                <Style TargetType="GridViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </GridView.ItemContainerStyle>
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="entities:ServerInfoViewModel">
-                    <Grid>
-                        <Button Style="{StaticResource EmptyButtonStyle}"
-                                ClickMode="Release"
-                                Command="{Binding ChooseServer.ManualServerEntryCommand, Source={StaticResource Locator}}"
-                                Visibility="{Binding IsDummyServer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <RelativePanel VerticalAlignment="Center">
-                                <TextBlock x:Name="PlusText"
-                                           Text="{StaticResource Plus}"
-                                           FontSize="80"
-                                           Style="{StaticResource Mdl2Style}"
-                                           RelativePanel.AlignVerticalCenterWithPanel="True" />
-                                <TextBlock Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelAddServer}"
-                                           Style="{StaticResource TitleTextBlockStyle}"
-                                           Foreground="{ThemeResource EmbyGreenBrush}"
-                                           RelativePanel.RightOf="PlusText"
-                                           RelativePanel.AlignVerticalCenterWithPanel="True"
-                                           Margin="6,0" />
-                            </RelativePanel>
-                        </Button>
-                        
-                            <itemControls:ServerInfoControl Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
-                        
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+        <controls:ServerListControl/>
     </Grid>
 </controls:EmbyPage>

@@ -1,3 +1,4 @@
+using Windows.UI.ViewManagement;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Services;
 using Windows.UI.Xaml.Navigation;
@@ -12,6 +13,8 @@ namespace Emby.Mobile.Universal.Controls
 {
     public class EmbyPage : BasePage
     {
+        protected override ApplicationViewBoundsMode Mode => ApplicationViewBoundsMode.UseCoreWindow;
+
         public EmbyPage()
         {
             if (!ViewModelBase.IsInDesignModeStatic)

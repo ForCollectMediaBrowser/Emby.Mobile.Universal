@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Emby.Mobile.Universal.Controls.ServerListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:Emby.Mobile.Universal.Triggers"
+             xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
+             xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="HorizontalItemsWrapGrid">
+            <ItemsWrapGrid Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ServerList.Margin"
+                                Value="19" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <triggers:EmbyAdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ServerList.Margin"
+                                Value="0,32,0,19" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <GridView x:Name="ServerList"
+                  ItemsSource="{x:Bind ChooseServer.Servers, Mode=OneWay}"
+                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}"
+                  Margin="19">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="entities:ServerInfoViewModel">
+                    <Grid>
+                        <itemControls:AddServerControl Visibility="{Binding IsDummyServer, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <itemControls:ServerInfoControl Visibility="{Binding IsDummyServer, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</UserControl>

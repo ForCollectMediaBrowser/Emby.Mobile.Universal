@@ -1,119 +1,22 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cimbalino.Toolkit.Extensions;
-using Emby.Mobile.Core.Extensions;
 using Emby.Mobile.Core.Interfaces;
-using Emby.Mobile.Core.Strings;
-using Emby.Mobile.Helpers;
-using Emby.Mobile.Messages;
-using Emby.Mobile.ViewModels.Entities;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.ViewModels.Connect
 {
-    public class ConnectChooseServerViewModel : PageViewModelBase
+    public class ConnectChooseServerViewModel : ChooseServerBaseViewModel
     {
-        private bool _serversLoaded;
-
         public ConnectChooseServerViewModel(IServices services) : base(services)
         {
-            if (IsInDesignMode)
-            {
-                Servers = new ObservableCollection<ServerInfoViewModel>
-                {
-                    new ServerInfoViewModel(services, new ServerInfo
-                    {
-                        Name = "Ferret-Server",
-                        LocalAddress = "http://192.168.0.27",
-                        RemoteAddress = "http://scottisafool.server.com"
-                    }),
-                    new ServerInfoViewModel(services, new ServerInfo
-                    {
-                        Name = "7-Server",
-                        LocalAddress = "http://192.168.0.2",
-                        RemoteAddress = "http://7illusions.server.com"
-                    })
-                };
-            }
         }
-
-        public ObservableCollection<ServerInfoViewModel> Servers { get; set; }
-
-        public RelayCommand ManualServerEntryCommand
+        
+        protected override async Task<List<ServerInfo>> GetServers()
         {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    Services.UiInteractions.NavigationService.NavigateToManualServerEntry();
-                });
-            }
-        }
+            var connect = await Services.ServerInteractions.ConnectionManager.Connect();
+            var servers = connect.Servers;
 
-        public RelayCommand SignOutCommand => new RelayCommand(async () => { await SignOutHelper.SignOut(Services); });
-
-        protected override Task PageLoaded()
-        {
-            return LoadData(false);
-        }
-
-        public override Task Refresh()
-        {
-            return LoadData(true);
-        }
-
-        protected override void WireMessages()
-        {
-            Messenger.Default.Register<ServerInfoMessage>(this, m =>
-            {
-                if (m.Notification.Equals(ServerInfoMessage.DeleteServerMsg))
-                {
-                    if (!Servers.IsNullOrEmpty())
-                    {
-                        Servers.Remove(m.Server);
-                    }
-                }
-            });
-
-            base.WireMessages();
-        }
-
-        private async Task LoadData(bool isRefresh)
-        {
-            if (_serversLoaded && !isRefresh)
-            {
-                return;
-            }
-
-            SetProgressBar(Resources.SysTrayGettingServers);
-
-            try
-            {
-                var connect = await Services.ServerInteractions.ConnectionManager.Connect();
-                var servers = connect.Servers;
-
-                if (servers.IsNullOrEmpty())
-                {
-                    return;
-                }
-
-                Servers = servers.Select(x => new ServerInfoViewModel(Services, x)).ToObservableCollection();
-                Servers.Add(new ServerInfoViewModel(Services, null) {IsDummyServer = true});
-
-                _serversLoaded = !Servers.IsNullOrEmpty();
-            }
-            catch (HttpException ex)
-            {
-
-            }
-            finally
-            {
-                SetProgressBar();
-            }
+            return servers;
         }
     }
 }

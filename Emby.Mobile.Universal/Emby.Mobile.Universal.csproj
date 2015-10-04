@@ -158,6 +158,9 @@
     <Compile Include="Controls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ItemControls\AddServerControl.xaml.cs">
+      <DependentUpon>AddServerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ItemControls\MediaFolderControl.xaml.cs">
       <DependentUpon>MediaFolderControl.xaml</DependentUpon>
     </Compile>
@@ -189,12 +192,17 @@
     <Compile Include="Controls\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ServerListControl.xaml.cs">
+      <DependentUpon>ServerListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Controls\VariableGridView.cs" />
     <Compile Include="Converters\ParallaxConverter.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Data\UserViewDataTemplateSelector.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Triggers\EmbyAdaptiveTrigger.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\MediaElementStateExtensions.cs" />
     <Compile Include="Extensions\NavigationModeExtensions.cs" />
@@ -348,6 +356,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemControls\AddServerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemControls\MediaFolderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -377,6 +389,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ServerListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

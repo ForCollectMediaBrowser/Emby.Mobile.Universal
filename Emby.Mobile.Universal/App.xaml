@@ -31,8 +31,12 @@
             <vm:ViewModelLocator x:Key="Locator"
                                  xmlns:vm="using:Emby.Mobile.Universal.ViewModel" />
 
+            <!-- Low res mobiles -->
             <x:Double x:Key="NarrowAdaptiveWidth">0</x:Double>
-            <x:Double x:Key="WideAdaptiveWidth">500</x:Double>
+            <!-- High res mobiles -->
+            <x:Double x:Key="NotQuiteWideAdaptiveWidth">321</x:Double>
+            <!-- Desktop/tablet -->
+            <x:Double x:Key="WideAdaptiveWidth">433</x:Double>
             <x:Double x:Key="ExtraWideAdaptiveWidth">1366</x:Double>
 
             <!-- #region Converters -->
