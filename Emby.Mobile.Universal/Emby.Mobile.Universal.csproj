@@ -135,6 +135,7 @@
     <Content Include="Assets\Tiles\Wide310x150.Scale-150.png" />
     <Content Include="Assets\Tiles\Wide310x150.Scale-200.png" />
     <Content Include="Assets\Tiles\Wide310x150.Scale-400.png" />
+    <Content Include="Assets\UnplayedBackground.png" />
     <Content Include="Fonts\MaterialIcons-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -196,6 +197,7 @@
       <DependentUpon>ServerListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
+    <Compile Include="Controls\UnplayedCountControl.cs" />
     <Compile Include="Controls\VariableGridView.cs" />
     <Compile Include="Converters\ParallaxConverter.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
