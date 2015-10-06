@@ -75,7 +75,7 @@
                 <Button x:Name="LoginButton"
                         Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=ButtonLogin}"
                         Foreground="White"
-                        Margin="20,12,20,0"
+                        Margin="0,12,0,0"
                         RelativePanel.AlignRightWithPanel="True"
                         RelativePanel.AlignLeftWithPanel="True"
                         HorizontalAlignment="Stretch"
