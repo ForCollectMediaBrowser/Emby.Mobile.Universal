@@ -8,6 +8,7 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -85,6 +86,11 @@
                                TextTrimming="CharacterEllipsis"
                                Foreground="White" />
                 </StackPanel>
+                <controls:UnplayedCountControl Item="{x:Bind ItemInfo}"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Right"
+                                               IsHitTestVisible="False"
+                                               Margin="5"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="LargeBackdropTemplate"

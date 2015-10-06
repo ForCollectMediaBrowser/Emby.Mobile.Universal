@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using Emby.Mobile.Core.Extensions;
@@ -110,7 +108,7 @@ namespace Emby.Mobile.ViewModels
                     IncludeItemTypes = new[] { "Movie", "Episode" },
                     Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines },
                     EnableImageTypes = new[] { ImageType.Banner, ImageType.Backdrop, ImageType.Primary, ImageType.Thumb },
-                    Limit = 10,
+                    Limit = 20,
                     ParentId = parentId
                 });
                 if (!response.IsNullOrEmpty())

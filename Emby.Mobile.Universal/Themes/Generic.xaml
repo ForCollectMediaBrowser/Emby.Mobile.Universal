@@ -2107,4 +2107,50 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="controls:UnplayedCountControl">
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:UnplayedCountControl">
+                    <Grid BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}"
+                          x:Name="LayoutRoot"
+                          Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Viewbox HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Stretch="Uniform"
+                                 StretchDirection="DownOnly"
+                                 Height="{TemplateBinding Height}"
+                                 Width="{TemplateBinding Width}">
+                            <Grid Width="100"
+                                  Height="100">
+                                <Grid.Background>
+                                    <ImageBrush Stretch="Uniform"
+                                                ImageSource="ms-appx:///Assets/UnplayedBackground.png" />
+                                </Grid.Background>
+                                <TextBlock x:Name="CountText"
+                                       Text="2"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       FontWeight="SemiBold" />
+                            </Grid>
+                            
+                        </Viewbox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
