@@ -36,19 +36,19 @@
                                      HorizontalAlignment="Stretch"
                                      VerticalAlignment="Top"
                                      Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}">
-                                <controls:VariableGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
-                                                           VerticalAlignment="Top"
-                                                           HorizontalAlignment="Stretch"
-                                                           Width="700">
-                                    <controls:VariableGridView.ItemsPanel>
+                                <controls:EmbyGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Stretch"
+                                                       Width="700">
+                                    <controls:EmbyGridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VariableSizedWrapGrid ItemHeight="119"
                                                                    ItemWidth="230"
                                                                    Orientation="Horizontal" />
                                         </ItemsPanelTemplate>
-                                    </controls:VariableGridView.ItemsPanel>
+                                    </controls:EmbyGridView.ItemsPanel>
 
-                                    <controls:VariableGridView.ItemTemplate>
+                                    <controls:EmbyGridView.ItemTemplate>
                                         <DataTemplate x:DataType="entities:ItemViewModel">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -69,8 +69,8 @@
                                                 </Button>
                                             </Grid>
                                         </DataTemplate>
-                                    </controls:VariableGridView.ItemTemplate>
-                                </controls:VariableGridView>
+                                    </controls:EmbyGridView.ItemTemplate>
+                                </controls:EmbyGridView>
                             </Viewbox>
                         </Grid>
 

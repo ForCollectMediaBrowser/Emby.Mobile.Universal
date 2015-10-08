@@ -2139,16 +2139,249 @@
                                                 ImageSource="ms-appx:///Assets/UnplayedBackground.png" />
                                 </Grid.Background>
                                 <TextBlock x:Name="CountText"
-                                       Text="2"
-                                       Foreground="White"
-                                       HorizontalAlignment="Center"
+                                           Text="2"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiBold" />
+                                           Style="{StaticResource SubheaderTextBlockStyle}"
+                                           FontWeight="SemiBold" />
                             </Grid>
-                            
+
                         </Viewbox>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:EmbyListView">
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="TabNavigation"
+                Value="Once" />
+        <Setter Property="IsSwipeEnabled"
+                Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.IsHorizontalRailEnabled"
+                Value="False" />
+        <Setter Property="ScrollViewer.VerticalScrollMode"
+                Value="Enabled" />
+        <Setter Property="ScrollViewer.IsVerticalRailEnabled"
+                Value="False" />
+        <Setter Property="ScrollViewer.ZoomMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled"
+                Value="False" />
+        <Setter Property="ScrollViewer.BringIntoViewOnFocusChange"
+                Value="True" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="MinHeight"
+                            Value="0" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                    <ContentThemeTransition />
+                    <ReorderThemeTransition />
+                    <EntranceThemeTransition IsStaggeringEnabled="False" />
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="InitialisingContent">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <ProgressRing Height="60"
+                                          Width="60"
+                                          IsActive="{Binding}"
+                                          Background="Transparent" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="EmptyContent">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="Nothing to see here"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="19" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoToTopButtonTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Button Style="{StaticResource EmptyButtonStyle}"
+                            Margin="19">
+                        <Grid>
+                            <Viewbox Stretch="UniformToFill"
+                                     StretchDirection="DownOnly"
+                                     Width="50"
+                                     Height="50">
+                                <Border BorderThickness="1"
+                                        BorderBrush="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="50"
+                                        Height="50"
+                                        CornerRadius="45"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Padding="2">
+                                    <Border CornerRadius="45"
+                                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+                                        <TextBlock Text="Up"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   FontSize="26.667"
+                                                   Margin="1,0,0,3" />
+                                    </Border>
+
+                                </Border>
+                            </Viewbox>
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LoadFailedContent">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="Error loading content."
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="19" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:EmbyListView">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="GoToTopButtonGroup">
+                                <VisualState x:Name="ShowGoToTopButton">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="GoToTopButtonPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="GoToTopButtonPresenter">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HideGoToTopButton" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <ScrollViewer x:Name="ScrollViewer"
+                                          TabNavigation="{TemplateBinding TabNavigation}"
+                                          HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                          HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                          IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}"
+                                          VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                          IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}"
+                                          IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                          IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                          ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                                          IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                          BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                                          AutomationProperties.AccessibilityView="Raw">
+                                <Grid x:Name="LoadFailedGrid">
+                                    <Grid x:Name="InitialisedContent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <ContentControl Content="{TemplateBinding Header}"
+                                                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                        ContentTransitions="{TemplateBinding HeaderTransitions}"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        x:Name="HeaderContent" />
+
+                                        <ItemsPresenter Padding="{TemplateBinding Padding}"
+                                                        Grid.Row="1"
+                                                        x:Name="ItemsPresenter" />
+                                        <ContentControl ContentTemplate="{TemplateBinding EmptyContent}"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                        Style="{TemplateBinding EmptyContentStyle}"
+                                                        Grid.Row="1"
+                                                        x:Name="EmptyContentControl" />
+                                        <ContentControl ContentTemplate="{TemplateBinding LoadFailedContent}"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                        Grid.Row="1"
+                                                        x:Name="LoadFailedContentControl" />
+                                        <ContentControl ContentTemplate="{TemplateBinding InitialisingContent}"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                        Style="{TemplateBinding InitialisingContentStyle}"
+                                                        DataContext="{TemplateBinding IsInitialising}"
+                                                        Grid.Row="1"
+                                                        x:Name="InitialisingContentControl" />
+
+                                        <ContentControl Content="{TemplateBinding Footer}"
+                                                        ContentTemplate="{TemplateBinding FooterTemplate}"
+                                                        ContentTransitions="{TemplateBinding FooterTransitions}"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        Grid.Row="2"
+                                                        x:Name="FooterContent" />
+                                    </Grid>
+                                </Grid>
+                            </ScrollViewer>
+                            <ContentPresenter x:Name="GoToTopButtonPresenter"
+                                              Content="{TemplateBinding GoToTopButton}"
+                                              ContentTemplate="{TemplateBinding GoToTopButtonTemplate}"
+                                              VerticalAlignment="Top"
+                                              HorizontalAlignment="Right"
+                                              Opacity="0"
+                                              Visibility="Collapsed" />
+                            <!---->
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -1,5 +1,4 @@
-﻿using Windows.UI.ViewManagement;
-using Emby.Mobile.Core.Interfaces;
+﻿using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Controls;
 using Emby.Mobile.Universal.Helpers;
 
