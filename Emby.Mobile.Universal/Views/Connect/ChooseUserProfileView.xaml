@@ -20,9 +20,6 @@
         <ItemsPanelTemplate x:Key="HorizontalItemsWrapGrid">
             <ItemsWrapGrid Orientation="Horizontal" />
         </ItemsPanelTemplate>
-        <ItemsPanelTemplate x:Key="VerticalItemsWrapGrid">
-            <ItemsWrapGrid Orientation="Vertical" />
-        </ItemsPanelTemplate>
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -47,8 +44,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="UsersList.ItemsPanel"
-                                Value="{StaticResource HorizontalItemsWrapGrid}" />
+                        <Setter Target="UsersList.Margin"
+                                Value="19" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -56,8 +53,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="UsersList.ItemsPanel"
-                                Value="{StaticResource VerticalItemsWrapGrid}" />
+                        <Setter Target="UsersList.Margin"
+                                Value="0,32,0,19" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -65,12 +62,6 @@
         <GridView x:Name="UsersList"
                   ItemsSource="{x:Bind ChooseUser.UserProfiles, Mode=OneWay}"
                   ItemsPanel="{StaticResource HorizontalItemsWrapGrid}">
-            <GridView.ItemContainerStyle>
-                <Style TargetType="GridViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </GridView.ItemContainerStyle>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:UserDtoViewModel">
                     <Button ClickMode="Release"

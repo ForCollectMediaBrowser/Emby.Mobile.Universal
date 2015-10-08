@@ -10,12 +10,12 @@ namespace Emby.Mobile.Universal.Controls
 {
     public class EmbyApplicationFrame : Frame
     {
-        public void LoadLazyItems()
+        public bool LoadLazyItems()
         {
             GetTemplateChild("VideoPlayer");
             GetTemplateChild("PhotoPlayer");
             var header = GetTemplateChild("Header") as HeaderControl;
-            GetTemplateChild("StatusBar");
+            var status = GetTemplateChild("StatusBar");
 
             if (header != null)
             {
@@ -23,6 +23,8 @@ namespace Emby.Mobile.Universal.Controls
             }
 
             Navigated += OnNavigated;
+
+            return true;
         }
 
         private static void OnNavigated(object sender, NavigationEventArgs e)
