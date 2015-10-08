@@ -42,9 +42,9 @@ namespace Emby.Mobile.Universal.Services
 
         private void SetStatus(string message, StatusType statusType)
         {
-            if (_deviceInfo.SupportsStatusBar)
+            if (_deviceInfo.SupportsStatusBar && statusType == StatusType.Status)
             {
-                _statusBar.ShowAsync(message, true);
+                _statusBar.ShowAsync(message, !string.IsNullOrEmpty(message));
             }
             else
             {
