@@ -345,7 +345,7 @@ namespace Emby.Mobile.Universal.Controls
                 return;
             }
 
-            IsAtTop = _scrollViewer.VerticalOffset == 0;
+            IsAtTop = _scrollViewer.VerticalOffset < 1;
 
             if (IsAtTop)
             {

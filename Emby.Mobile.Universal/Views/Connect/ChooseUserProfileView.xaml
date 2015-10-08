@@ -29,7 +29,7 @@
                               Command="{x:Bind ChooseUser.ChangeServerCommand}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource Server}"
-                                  Style="{StaticResource Mdl2FontStyle}"/>
+                                  Style="{StaticResource Mdl2FontStyle}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
