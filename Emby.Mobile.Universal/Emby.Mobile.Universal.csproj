@@ -199,7 +199,7 @@
     </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Controls\UnplayedCountControl.cs" />
-    <Compile Include="Controls\VariableGridView.cs" />
+    <Compile Include="Controls\EmbyGridView.cs" />
     <Compile Include="Converters\ParallaxConverter.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
