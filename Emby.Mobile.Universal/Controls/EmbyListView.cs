@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Emby.Mobile.Core.Extensions;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace Emby.Mobile.Universal.Controls
 {
@@ -131,7 +132,7 @@ namespace Emby.Mobile.Universal.Controls
         {
             if (_scrollViewer != null)
             {
-                //await _scrollViewer.ScrollToVerticalOffsetWithAnimation(0);
+                await _scrollViewer.ScrollToVerticalOffsetWithAnimation(0);
             }
         }
 
@@ -170,10 +171,7 @@ namespace Emby.Mobile.Universal.Controls
         private static void StateChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var listview = sender as EmbyListView;
-            if (listview != null)
-            {
-                listview.ShowParts();
-            }
+            listview?.ShowParts();
         }
 
         private void ShowParts()
