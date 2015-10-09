@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Media;
 
 namespace Emby.Mobile.Universal.Controls
 {
-    [TemplatePart(Name = TheImage)]
+    //[TemplatePart(Name = TheImage)]
     public sealed class EmbyImage : Control
     {
         private const string TheImage = "TheImage";

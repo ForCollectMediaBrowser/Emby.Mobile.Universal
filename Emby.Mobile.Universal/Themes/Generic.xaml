@@ -2621,17 +2621,21 @@
     </Style>
 
     <Style TargetType="controls:EmbyImage">
-        <Setter Property="Source"
-                Value="ms-appx:///Assets/LogoLight.png"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyImage">
-                    <Image Source="{TemplateBinding Source}"
-                           Stretch="{TemplateBinding Stretch}"
-                           Height="{TemplateBinding Height}"
-                           Width="{TemplateBinding Width}"
-                           MaxWidth="{TemplateBinding MaxWidth}"
-                           MaxHeight="{TemplateBinding MaxHeight}"/>
+                    <Grid Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}"
+                          MaxWidth="{TemplateBinding MaxWidth}"
+                          MaxHeight="{TemplateBinding MaxHeight}">
+                        <Image Source="ms-appx:///Assets/LogoLight.png"
+                               Stretch="{TemplateBinding Stretch}"
+                               Height="{TemplateBinding Height}"
+                               Width="{TemplateBinding Width}"
+                               MaxWidth="{TemplateBinding MaxWidth}"
+                               MaxHeight="{TemplateBinding MaxHeight}"
+                               x:Name="TheImage" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
