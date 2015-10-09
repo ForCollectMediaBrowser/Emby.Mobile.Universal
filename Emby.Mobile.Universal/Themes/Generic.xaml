@@ -2621,6 +2621,8 @@
     </Style>
 
     <Style TargetType="controls:EmbyImage">
+        <Setter Property="Stretch"
+                Value="Uniform"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyImage">
@@ -2628,7 +2630,7 @@
                           Width="{TemplateBinding Width}"
                           MaxWidth="{TemplateBinding MaxWidth}"
                           MaxHeight="{TemplateBinding MaxHeight}">
-                        <Image Source="ms-appx:///Assets/LogoLight.png"
+                        <Image Source="{TemplateBinding Source}"
                                Stretch="{TemplateBinding Stretch}"
                                Height="{TemplateBinding Height}"
                                Width="{TemplateBinding Width}"

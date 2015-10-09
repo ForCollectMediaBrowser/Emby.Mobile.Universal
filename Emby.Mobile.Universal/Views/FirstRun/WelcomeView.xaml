@@ -21,7 +21,6 @@
                         Opacity="0.7" />
                 <controls:EmbyImage Margin="10,30"
                                     MaxHeight="60"
-                                    Stretch="UniformToFill"
                                     Tag="{ThemeResource EmbyLogo}"
                                     Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
             </Grid>
