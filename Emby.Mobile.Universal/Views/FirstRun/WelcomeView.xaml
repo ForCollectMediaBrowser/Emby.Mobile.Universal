@@ -14,15 +14,15 @@
         </Grid.Background>
         <RelativePanel>
             <Grid x:Name="Logo"
-                    
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True">
-                <Border Background="{ThemeResource SmokeContrastBrush}" Opacity="0.7" />
-                <Image 
-                       Margin="10,30"
-                       MaxHeight="60"
-                       Source="{ThemeResource EmbyLogo}" />
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True"
+                  RelativePanel.AlignTopWithPanel="True">
+                <Border Background="{ThemeResource SmokeContrastBrush}"
+                        Opacity="0.7" />
+                <controls:EmbyImage Margin="10,30"
+                                    MaxHeight="60"
+                                    Tag="{ThemeResource EmbyLogo}"
+                                    Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
             </Grid>
             <!-- #region Welcome (Step 0)  -->
             <TextBlock x:Name="WelcomeLabel"
@@ -125,13 +125,13 @@
                              Click="SignUpButton_Click" />
             <!--#endregion-->
 
-            <Image RelativePanel.AlignBottomWithPanel="True"
-                   RelativePanel.AlignLeftWithPanel="True"
-                   RelativePanel.AlignRightWithPanel="True"
-                   Opacity="0.3"
-                   Height="120"
-                   Stretch="UniformToFill"
-                   Source="ms-appx:///Assets/Backdrops/EmbyRandomAvatars.jpg" />
+            <controls:EmbyImage RelativePanel.AlignBottomWithPanel="True"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True"
+                                Opacity="0.3"
+                                Height="120"
+                                Stretch="UniformToFill"
+                                Source="ms-appx:///Assets/Backdrops/EmbyRandomAvatars.jpg" />
             <Button x:Name="NextButton"
                     Style="{StaticResource EmptyButtonStyle}"
                     RelativePanel.AlignBottomWithPanel="True"

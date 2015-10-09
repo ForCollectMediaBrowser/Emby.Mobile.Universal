@@ -17,13 +17,13 @@
                        x:Name="MovieText"
                        Margin="12,0"
                        RelativePanel.RightOf="Title"
-                       RelativePanel.AlignVerticalCenterWith="Title"/>
-            <Image x:Name="PrimaryImage"
-                   Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
-                   MaxHeight="200"
-                   MaxWidth="200"
-                   Stretch="Uniform"
-                   RelativePanel.Below="Title" />
+                       RelativePanel.AlignVerticalCenterWith="Title" />
+            <controls:EmbyImage x:Name="PrimaryImage"
+                                Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
+                                MaxHeight="200"
+                                MaxWidth="200"
+                                Stretch="Uniform"
+                                RelativePanel.Below="Title" />
             <GridView ItemsSource="{x:Bind TvShow.Seasons, Mode=OneWay}"
                       RelativePanel.Below="PrimaryImage">
                 <GridView.ItemContainerStyle>
@@ -40,9 +40,9 @@
                             <StackPanel Orientation="Vertical">
                                 <Image Source="{x:Bind PrimaryImageMedium}"
                                        Height="150"
-                                       Stretch="Uniform"/>
+                                       Stretch="Uniform" />
                                 <TextBlock Text="{x:Bind Name}"
-                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                                           Style="{StaticResource BodyTextBlockStyle}" />
                             </StackPanel>
                         </Button>
                     </DataTemplate>

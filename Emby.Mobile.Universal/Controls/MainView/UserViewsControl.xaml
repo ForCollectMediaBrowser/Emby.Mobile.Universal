@@ -58,10 +58,10 @@
                                                     <Grid HorizontalAlignment="Stretch"
                                                           VerticalAlignment="Stretch"
                                                           Background="{StaticResource EmbyGreenBrush}">
-                                                        <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
-                                                               Stretch="UniformToFill"
-                                                               HorizontalAlignment="Stretch"
-                                                               VerticalAlignment="Top" />
+                                                        <controls:EmbyImage Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
+                                                                            Stretch="UniformToFill"
+                                                                            HorizontalAlignment="Stretch"
+                                                                            VerticalAlignment="Top" />
                                                     </Grid>
                                                 </Button>
                                             </Grid>

@@ -12,12 +12,12 @@
             <TextBlock Text="{x:Bind Season.SelectedEpisode.Name, Mode=OneWay}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        x:Name="Title" />
-            <Image x:Name="PrimaryImage"
-                   Source="{x:Bind Season.SelectedEpisode.PrimaryImageMedium, Mode=OneWay}"
-                   MaxHeight="200"
-                   MaxWidth="200"
-                   Stretch="Uniform"
-                   RelativePanel.Below="Title" />
+            <controls:EmbyImage x:Name="PrimaryImage"
+                                Source="{x:Bind Season.SelectedEpisode.PrimaryImageMedium, Mode=OneWay}"
+                                MaxHeight="200"
+                                MaxWidth="200"
+                                Stretch="Uniform"
+                                RelativePanel.Below="Title" />
         </RelativePanel>
     </Grid>
 </controls:EmbyPage>

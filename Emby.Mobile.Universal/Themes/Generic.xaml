@@ -41,7 +41,8 @@
                                                               Tag="{TemplateBinding ShowBackground}"
                                                               Visibility="{Binding Tag,
                                                                                    RelativeSource={RelativeSource Self},
-                                                                                   Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                                                   Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                              FlowDirection="LeftToRight" />
                                 <Grid Width="{StaticResource ImageSize}"
                                       Height="{StaticResource ImageSize}">
                                     <Ellipse x:Name="Ellipse"
@@ -323,10 +324,10 @@
                             <FlipView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Image HorizontalAlignment="Stretch"
-                                               VerticalAlignment="Stretch"
-                                               Source="{Binding PrimaryImageLarge}"
-                                               Stretch="Uniform" />
+                                        <controls:EmbyImage HorizontalAlignment="Stretch"
+                                                            VerticalAlignment="Stretch"
+                                                            Source="{Binding PrimaryImageLarge}"
+                                                            Stretch="Uniform" />
                                     </Grid>
                                 </DataTemplate>
                             </FlipView.ItemTemplate>
@@ -979,14 +980,14 @@
                                            RelativePanel.LeftOf="LogoImage"
                                            Style="{StaticResource HeaderTextBlockStyle}"
                                            Text="{TemplateBinding VideoTitle}" />
-                                <Image x:Name="LogoImage"
-                                       MaxHeight="150"
-                                       Margin="20"
-                                       HorizontalAlignment="Right"
-                                       RelativePanel.AlignRightWithPanel="True"
-                                       Source="{Binding Tag,
+                                <controls:EmbyImage x:Name="LogoImage"
+                                                    MaxHeight="150"
+                                                    Margin="20"
+                                                    HorizontalAlignment="Right"
+                                                    RelativePanel.AlignRightWithPanel="True"
+                                                    Source="{Binding Tag,
                                                         RelativeSource={RelativeSource Self}}"
-                                       Tag="{TemplateBinding LogoImageUrl}" />
+                                                    Tag="{TemplateBinding LogoImageUrl}" />
                             </RelativePanel>
 
                             <Border Grid.Row="1">
@@ -2620,19 +2621,17 @@
     </Style>
 
     <Style TargetType="controls:EmbyImage">
+        <Setter Property="Source"
+                Value="ms-appx:///Assets/LogoLight.png"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyImage">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Image Source="{TemplateBinding Source}"
-                               Stretch="{TemplateBinding Stretch}"
-                               Height="{TemplateBinding Height}"
-                               Width="{TemplateBinding Width}"
-                               MaxWidth="{TemplateBinding MaxWidth}"
-                               MaxHeight="{TemplateBinding MaxHeight}"/>
-                    </Border>
+                    <Image Source="{TemplateBinding Source}"
+                           Stretch="{TemplateBinding Stretch}"
+                           Height="{TemplateBinding Height}"
+                           Width="{TemplateBinding Width}"
+                           MaxWidth="{TemplateBinding MaxWidth}"
+                           MaxHeight="{TemplateBinding MaxHeight}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
