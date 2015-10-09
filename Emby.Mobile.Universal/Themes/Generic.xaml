@@ -1826,7 +1826,7 @@
                         <PasswordBox x:Name="PasswordBox"
                                      Foreground="{TemplateBinding Foreground}"
                                      Header="{TemplateBinding PlaceholderText}"
-                                     IsPasswordRevealButtonEnabled="True" />
+                                     PasswordRevealMode="Peek" />
                         <Grid VerticalAlignment="Bottom">
                             <Rectangle Height="2"
                                        HorizontalAlignment="Stretch"
