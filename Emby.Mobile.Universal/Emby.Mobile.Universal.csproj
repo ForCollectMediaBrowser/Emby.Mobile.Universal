@@ -150,6 +150,7 @@
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BlurredImageControl.cs" />
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
+    <Compile Include="Controls\EmbyImage.cs" />
     <Compile Include="Controls\EmbyListView.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
     <Compile Include="Controls\EmbyPasswordBox.cs" />
