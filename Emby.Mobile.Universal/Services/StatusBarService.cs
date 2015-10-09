@@ -6,29 +6,50 @@ namespace Emby.Mobile.Universal.Services
 {
     public class StatusBarService : IStatusBarService
     {
+        private readonly IDeviceInfoService _deviceInfo;
+        private readonly Cimbalino.Toolkit.Services.IStatusBarService _statusBar = new Cimbalino.Toolkit.Services.StatusBarService();
+
+        public StatusBarService(IDeviceInfoService deviceInfo)
+        {
+            _deviceInfo = deviceInfo;
+        }
+
         public void DisplayError(string message)
         {
-            StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Error);
+            SetStatus(message, StatusType.Error);
         }
 
         public void DisplayMessage(string message)
         {
-            StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Message);
+            SetStatus(message, StatusType.Message);
         }
 
         public void DisplayIndeterminateStatus(string message)
         {
-            StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Status);
+            SetStatus(message, StatusType.Status);
         }
 
         public void DisplaySuccess(string message)
         {
-            StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Success);
+            SetStatus(message, StatusType.Success);
         }
 
         public void DisplayWarning(string message)
         {
-            StatusBarControl.GetForCurrentView()?.Show(message, StatusType.Warning);
+            SetStatus(message, StatusType.Warning);
+        }
+
+        private void SetStatus(string message, StatusType statusType)
+        {
+            if (_deviceInfo.SupportsStatusBar && statusType == StatusType.Status)
+            {
+                _statusBar.ShowAsync(message, !string.IsNullOrEmpty(message));
+            }
+            else
+            {
+                var statusBar = StatusBarControl.GetForCurrentView();
+                statusBar?.Show(message, statusType);
+            }
         }
     }
 }

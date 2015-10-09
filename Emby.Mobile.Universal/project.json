@@ -9,7 +9,8 @@
     "MvvmLightLibs": "5.2.0",
     "PropertyChanged.Fody": "1.50.3",
     "ThemeManagerRt": "1.1.0",
-    "Win2D.uwp": "1.3.0"
+    "Win2D.uwp": "1.3.0",
+    "WinRTXamlToolkit": "1.6.1.3"
   },
   "frameworks": {
     "uap10.0": {}

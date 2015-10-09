@@ -19,6 +19,7 @@ namespace Emby.Mobile.Helpers
                     services.UiInteractions.NavigationService.NavigateToServerSelection();
                     break;
                 case ConnectionState.ServerSignIn:
+                    services.StartUp.LoadFrame();
                     if (services.ServerInteractions.Authentication.SignedInUser == null)
                     {                        
                         services.UiInteractions.NavigationService.NavigateToChooseProfile();

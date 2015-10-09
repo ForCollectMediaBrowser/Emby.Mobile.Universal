@@ -6,6 +6,7 @@
              xmlns:triggers="using:Emby.Mobile.Universal.Triggers"
              xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
              xmlns:itemControls="using:Emby.Mobile.Universal.Controls.ItemControls"
+             xmlns:controls="using:Emby.Mobile.Universal.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -39,16 +40,10 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <GridView x:Name="ServerList"
-                  ItemsSource="{x:Bind ChooseServer.Servers, Mode=OneWay}"
-                  ItemsPanel="{StaticResource HorizontalItemsWrapGrid}"
-                  Margin="19">
-            <GridView.ItemContainerStyle>
-                <Style TargetType="GridViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </GridView.ItemContainerStyle>
+        <controls:EmbyGridView x:Name="ServerList"
+                               ItemsSource="{x:Bind ChooseServer.Servers, Mode=OneWay}"
+                               ItemsPanel="{StaticResource HorizontalItemsWrapGrid}"
+                               Margin="19">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:ServerInfoViewModel">
                     <Grid>
@@ -58,6 +53,6 @@
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
-        </GridView>
+        </controls:EmbyGridView>
     </Grid>
 </UserControl>

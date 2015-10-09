@@ -150,6 +150,7 @@
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BlurredImageControl.cs" />
     <Compile Include="Controls\EmbyApplicationFrame.cs" />
+    <Compile Include="Controls\EmbyListView.cs" />
     <Compile Include="Controls\EmbyPage.cs" />
     <Compile Include="Controls\EmbyPasswordBox.cs" />
     <Compile Include="Controls\EmbyTextBox.cs" />
@@ -198,7 +199,7 @@
     </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Controls\UnplayedCountControl.cs" />
-    <Compile Include="Controls\VariableGridView.cs" />
+    <Compile Include="Controls\EmbyGridView.cs" />
     <Compile Include="Converters\ParallaxConverter.cs" />
     <Compile Include="Converters\RelativeDateTimeConverter.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />

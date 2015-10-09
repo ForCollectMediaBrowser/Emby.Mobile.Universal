@@ -17,6 +17,30 @@ namespace Emby.Mobile.ViewModels.Connect
     {
         private bool _profilesLoaded;
 
+        public ChooseUserProfileViewModel(IServices services) : base(services)
+        {
+            if (IsInDesignMode)
+            {
+                UserProfiles = new ObservableCollection<UserDtoViewModel>
+                {
+                    new UserDtoViewModel(services, new UserDto
+                    {
+                        Name = "7illusions",
+                        HasPassword = false,
+                        LastActivityDate= System.DateTime.Now.AddMinutes(-30)
+                    }),
+                    new UserDtoViewModel(services, new UserDto
+                    {
+                        Name = "Scott",
+                        HasPassword = true,
+                        LastActivityDate= System.DateTime.Now.AddMinutes(-10)
+                    })
+                };
+            }
+        }
+
+        protected override bool UseSystemForProgress { get; } = true;
+
         public ObservableCollection<UserDtoViewModel> UserProfiles { get; set; }
 
         public RelayCommand ManualUserProfileEntryCommand
@@ -41,27 +65,7 @@ namespace Emby.Mobile.ViewModels.Connect
             }
         }
 
-        public ChooseUserProfileViewModel(IServices services) : base(services)
-        {
-            if (IsInDesignMode)
-            {
-                UserProfiles = new ObservableCollection<UserDtoViewModel>
-                {
-                    new UserDtoViewModel(services, new UserDto
-                    {
-                        Name = "7illusions",
-                        HasPassword = false,
-                        LastActivityDate= System.DateTime.Now.AddMinutes(-30)
-                    }),
-                    new UserDtoViewModel(services, new UserDto
-                    {
-                        Name = "Scott",
-                        HasPassword = true,
-                        LastActivityDate= System.DateTime.Now.AddMinutes(-10)
-                    })
-                };
-            }
-        }
+        
 
         protected override Task OnSignOut()
         {
@@ -109,7 +113,7 @@ namespace Emby.Mobile.ViewModels.Connect
             }
             catch (HttpException ex)
             {
-
+                Log.ErrorException("LoadData", ex);
             }
             finally
             {

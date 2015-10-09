@@ -1,15 +1,12 @@
 ﻿<UserControl x:Class="Emby.Mobile.Universal.Controls.MainView.UserViewsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:Emby.Mobile.Universal.Controls.MainView"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              d:DesignHeight="400"
              d:DesignWidth="200"
              xmlns:controls="using:Emby.Mobile.Universal.Controls"
-             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:entities="using:Emby.Mobile.ViewModels.Entities"
              DataContext="{Binding UserViews, Source={StaticResource Locator}}">
 
@@ -36,19 +33,19 @@
                                      HorizontalAlignment="Stretch"
                                      VerticalAlignment="Top"
                                      Visibility="{x:Bind ProgressIsVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}, Mode=OneWay}">
-                                <controls:VariableGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
-                                                           VerticalAlignment="Top"
-                                                           HorizontalAlignment="Stretch"
-                                                           Width="700">
-                                    <controls:VariableGridView.ItemsPanel>
+                                <controls:EmbyGridView ItemsSource="{x:Bind Items, Mode=OneWay}"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Stretch"
+                                                       Width="700">
+                                    <controls:EmbyGridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VariableSizedWrapGrid ItemHeight="119"
                                                                    ItemWidth="230"
                                                                    Orientation="Horizontal" />
                                         </ItemsPanelTemplate>
-                                    </controls:VariableGridView.ItemsPanel>
+                                    </controls:EmbyGridView.ItemsPanel>
 
-                                    <controls:VariableGridView.ItemTemplate>
+                                    <controls:EmbyGridView.ItemTemplate>
                                         <DataTemplate x:DataType="entities:ItemViewModel">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -69,8 +66,8 @@
                                                 </Button>
                                             </Grid>
                                         </DataTemplate>
-                                    </controls:VariableGridView.ItemTemplate>
-                                </controls:VariableGridView>
+                                    </controls:EmbyGridView.ItemTemplate>
+                                </controls:EmbyGridView>
                             </Viewbox>
                         </Grid>
 
