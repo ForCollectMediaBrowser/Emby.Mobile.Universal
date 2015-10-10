@@ -24,10 +24,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
                 <Border Background="{ThemeResource TransparentImageOverlayBrush}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -61,10 +61,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind BackdropImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
                 <Border Background="{ThemeResource TransparentImageOverlayBrush}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -90,7 +90,7 @@
                                                VerticalAlignment="Top"
                                                HorizontalAlignment="Right"
                                                IsHitTestVisible="False"
-                                               Margin="5"/>
+                                               Margin="5" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="LargeBackdropTemplate"
@@ -103,10 +103,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind BackdropImageLarge, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind BackdropImageLarge, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
                 <Border Background="{ThemeResource TransparentImageOverlayBrush}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -141,10 +141,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind ThumbImage, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind ThumbImage, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
                 <Border Background="{ThemeResource TransparentImageOverlayBrush}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -177,10 +177,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind ThumbImage, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind ThumbImage, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
                 <Border Background="{ThemeResource TransparentImageOverlayBrush}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -213,10 +213,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind ThumbImage, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind ThumbImage, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
                 <Border Background="{ThemeResource TransparentImageOverlayBrush}"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -249,10 +249,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="MediumSquareTemplate"
@@ -265,10 +265,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="LargeSquareTemplate"
@@ -281,10 +281,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SmallPortraitTemplate"
@@ -297,10 +297,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="MediumPortraitTemplate"
@@ -313,10 +313,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="LargePortraitTemplate"
@@ -329,10 +329,10 @@
                         <core:InvokeCommandAction Command="{x:Bind NavigateToItem}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Image Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
-                       Stretch="UniformToFill"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Top" />
+                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
@@ -460,14 +460,14 @@
                                Style="{StaticResource LargeThinTextBlockStyle}"
                                Margin="10" />
                     <Grid>
-                        <Image x:Name="ArtistBackdropImage"
-                               Source="{x:Bind Home.ArtistBackdrop}"
-                               Stretch="UniformToFill"
-                               Height="300"
-                               Width="600"
-                               Opacity="0.7"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left" />
+                        <controls:EmbyImage x:Name="ArtistBackdropImage"
+                                            Source="{x:Bind Home.ArtistBackdrop}"
+                                            Stretch="UniformToFill"
+                                            Height="300"
+                                            Width="600"
+                                            Opacity="0.7"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left" />
                         <Grid x:Name="ArtistBackdropOverlay"
                               Height="300"
                               Width="600"
@@ -523,7 +523,8 @@
                                Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelWhatsOn}"
                                Style="{StaticResource LargeThinTextBlockStyle}"
                                Margin="10" />
-                    <ListView x:Name="WhatsOnListView" ScrollViewer.HorizontalScrollMode="Auto"
+                    <ListView x:Name="WhatsOnListView"
+                              ScrollViewer.HorizontalScrollMode="Auto"
                               Padding="0"
                               VerticalAlignment="Stretch"
                               ItemsSource="{x:Bind Home.WhatsOnItems, Mode=OneWay}"

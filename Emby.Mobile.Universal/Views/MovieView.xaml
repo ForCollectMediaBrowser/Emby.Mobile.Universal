@@ -62,18 +62,18 @@
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
                         RelativePanel.Below="OpacLayer" />
-                <Image x:Name="PrimaryImage"
-                       Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
-                       MaxHeight="200"
-                       MaxWidth="200"
-                       Stretch="Uniform"
-                       RelativePanel.Below="OpacLayer" />
+                <controls:EmbyImage x:Name="PrimaryImage"
+                                    Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
+                                    MaxHeight="200"
+                                    MaxWidth="200"
+                                    Stretch="Uniform"
+                                    RelativePanel.Below="OpacLayer" />
                 <controls:PlayButton RelativePanel.Below="PrimaryImage"
                                      RelativePanel.AlignLeftWith="PrimaryImage"
                                      RelativePanel.AlignRightWith="PrimaryImage"
-                                     PlayCommand="{x:Bind Item.Item.PlayItemCommand}" 
+                                     PlayCommand="{x:Bind Item.Item.PlayItemCommand}"
                                      ResumeCommand="{x:Bind Item.Item.ResumeItemCommand}"
-                                     CanResume="{x:Bind Item.Item.CanResume, Mode=OneWay}"/>
+                                     CanResume="{x:Bind Item.Item.CanResume, Mode=OneWay}" />
             </RelativePanel>
         </ScrollViewer>
     </Grid>

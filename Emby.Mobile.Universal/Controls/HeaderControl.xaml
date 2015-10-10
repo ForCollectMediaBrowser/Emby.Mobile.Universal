@@ -132,10 +132,10 @@
         </Grid.ColumnDefinitions>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Command="{x:Bind Header.GoHomeCommand}">
-            <Image Stretch="UniformToFill"
-                   Margin="5"
-                   Tag="{ThemeResource EmbyLogo}"
-                   Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+            <controls:EmbyImage Stretch="UniformToFill"
+                                Margin="5"
+                                Tag="{ThemeResource EmbyLogo}"
+                                Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
         </Button>
         <Button x:Name="SearchButton"
                 Style="{StaticResource EmptyButtonStyle}"

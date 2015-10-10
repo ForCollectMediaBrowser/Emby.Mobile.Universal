@@ -16,13 +16,13 @@
                             CommandParameter="{Binding}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            
-                            <Image Source="{x:Bind PrimaryImageLarge}" 
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"
-                                   Stretch="Uniform"/>
+
+                            <controls:EmbyImage Source="{x:Bind PrimaryImageLarge}"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Stretch="Uniform" />
                         </Grid>
                     </Button>
                 </DataTemplate>

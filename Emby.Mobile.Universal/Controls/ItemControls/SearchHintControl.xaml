@@ -18,11 +18,11 @@
         <RelativePanel>
             <Grid x:Name="HintImage"
                   Width="60">
-                <Image Width="50"
-                       Height="70"
-                       Stretch="Uniform"
-                       Margin="0,5,10,5"
-                       Source="{x:Bind SearchHint.ImageUrl, Mode=OneWay}" />
+                <controls:EmbyImage Width="50"
+                                    Height="70"
+                                    Stretch="Uniform"
+                                    Margin="0,5,10,5"
+                                    Source="{x:Bind SearchHint.ImageUrl, Mode=OneWay}" />
             </Grid>
             <TextBlock x:Name="NameLabel"
                        Text="{x:Bind SearchHint.Name, Mode=OneWay}"

@@ -17,10 +17,10 @@
 
     <Grid Background="{ThemeResource BackgroundBrush}">
         <RelativePanel>
-            <Image x:Name="SplashScreenImage"
-                   Source="/Assets/SplashScreen.png"
-                   RelativePanel.AlignHorizontalCenterWithPanel="True"
-                   RelativePanel.AlignVerticalCenterWithPanel="True" />
+            <controls:EmbyImage x:Name="SplashScreenImage"
+                                Source="/Assets/SplashScreen.png"
+                                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                RelativePanel.AlignVerticalCenterWithPanel="True" />
             <ProgressRing x:Name="ProgressRing"
                           Visibility="Visible"
                           Height="50"

@@ -13,12 +13,12 @@
             <TextBlock Text="{x:Bind Item.Item.Name, Mode=OneWay}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        x:Name="Title" />
-            <Image x:Name="PrimaryImage"
-                   Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
-                   MaxHeight="200"
-                   MaxWidth="200"
-                   Stretch="Uniform"
-                   RelativePanel.Below="Title" />
+            <controls:EmbyImage x:Name="PrimaryImage"
+                                Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
+                                MaxHeight="200"
+                                MaxWidth="200"
+                                Stretch="Uniform"
+                                RelativePanel.Below="Title" />
             <GridView ItemsSource="{x:Bind Season.Episodes, Mode=OneWay}"
                       RelativePanel.Below="PrimaryImage">
                 <GridView.ItemContainerStyle>
@@ -33,9 +33,9 @@
                                 Command="{x:Bind NavigateToItem}"
                                 ClickMode="Release">
                             <StackPanel Orientation="Vertical">
-                                <Image Source="{x:Bind PrimaryImageMedium}"
-                                       Height="150"
-                                       Stretch="Uniform" />
+                                <controls:EmbyImage Source="{x:Bind PrimaryImageMedium}"
+                                                    Height="150"
+                                                    Stretch="Uniform" />
                                 <TextBlock Text="{x:Bind Name}"
                                            Style="{StaticResource BodyTextBlockStyle}" />
                             </StackPanel>

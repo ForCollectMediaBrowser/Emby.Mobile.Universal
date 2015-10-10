@@ -32,14 +32,14 @@
                                 VerticalContentAlignment="Stretch"
                                 Height="100">
                             <RelativePanel>
-                                <Image Source="{x:Bind PrimaryImageLarge}"
-                                       HorizontalAlignment="Stretch"
-                                       VerticalAlignment="Stretch"
-                                       Stretch="Uniform"
-                                       Width="75"
-                                       Height="75"
-                                       x:Name="Artwork"
-                                       RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                                <controls:EmbyImage Source="{x:Bind PrimaryImageLarge}"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Stretch"
+                                                    Stretch="Uniform"
+                                                    Width="75"
+                                                    Height="75"
+                                                    x:Name="Artwork"
+                                                    RelativePanel.AlignVerticalCenterWithPanel="True" />
 
                                 <StackPanel RelativePanel.RightOf="Artwork"
                                             RelativePanel.AlignVerticalCenterWith="Artwork"
@@ -47,12 +47,11 @@
                                     <TextBlock Text="{x:Bind Name}"
                                                Style="{StaticResource SubtitleTextBlockStyle}"
                                                Foreground="White"
-                                               
-                                               x:Name="TrackName"/>
+                                               x:Name="TrackName" />
                                     <TextBlock Text="{x:Bind TrackRuntime, Mode=OneWay}"
                                                Style="{StaticResource BodyTextBlockStyle}"
                                                Foreground="{ThemeResource SubtleBrush}"
-                                               RelativePanel.Below="TrackName"/>
+                                               RelativePanel.Below="TrackName" />
                                 </StackPanel>
                             </RelativePanel>
                         </Button>

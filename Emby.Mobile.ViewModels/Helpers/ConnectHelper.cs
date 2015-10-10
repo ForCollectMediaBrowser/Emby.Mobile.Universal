@@ -2,6 +2,7 @@
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Net;
 
 namespace Emby.Mobile.Helpers
 {
@@ -35,9 +36,16 @@ namespace Emby.Mobile.Helpers
                 case ConnectionState.SignedIn:
                     if (services.ServerInteractions.Authentication.SignedInUser == null)
                     {
-                        var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
-                        services.ServerInteractions.Authentication.SetUser(user);
-                        services.ServerInteractions.Authentication.SetAccessToken(apiClient.AccessToken);
+                        try
+                        {
+                            var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
+                            services.ServerInteractions.Authentication.SetUser(user);
+                            services.ServerInteractions.Authentication.SetAccessToken(apiClient.AccessToken);
+                        }
+                        catch (HttpException ex)
+                        {
+                            var i = 0;
+                        }
                     }
 
                     if (services.ServerInteractions.Authentication.AuthenticationResult == null)
