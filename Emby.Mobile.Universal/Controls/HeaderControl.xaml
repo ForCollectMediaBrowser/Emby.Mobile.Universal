@@ -54,6 +54,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraWideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="FeedbackControl.Width"
+                                Value="400" />
                         <Setter Target="LayoutRoot.Height"
                                 Value="45" />
                         <Setter Target="ProfilePicture.Height"
@@ -75,6 +77,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="FeedbackControl.Width"
+                                Value="400" />
                         <Setter Target="LayoutRoot.Height"
                                 Value="40" />
                         <Setter Target="ProfilePicture.Height"
@@ -96,6 +100,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="FeedbackControl.Width"
+                                Value="300"/>
                         <Setter Target="LayoutRoot.Height"
                                 Value="35" />
                         <Setter Target="ProfilePicture.Height"
@@ -145,14 +151,15 @@
                 Height="30"
                 Width="30">
             <Button.Flyout>
-                <Flyout FlyoutPresenterStyle="{StaticResource BorderlessFlyoutStyle}">
-                    <controls:FeedbackControl />
+                <Flyout >
+                    <controls:FeedbackControl Height="150"
+                                              Width="400"
+                                              x:Name="FeedbackControl"/>
                 </Flyout>
             </Button.Flyout>
             <Grid>
                 <FontIcon Glyph="&#xEA3B;"
-                          Foreground="DarkOrange"/>
-                <FontIcon Glyph="&#xEA3A;"/>
+                          Foreground="Goldenrod"/>
                 <FontIcon Glyph="{StaticResource Emoji}"/>
             </Grid>
         </Button>

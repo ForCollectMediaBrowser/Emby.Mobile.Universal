@@ -890,6 +890,15 @@ namespace Emby.Mobile.Core.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How are we doing?.
+        /// </summary>
+        public static string HeaderHowAreWeDoing {
+            get {
+                return ResourceManager.GetString("HeaderHowAreWeDoing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item limit:.
         /// </summary>
         public static string HeaderItemLimit {
@@ -1201,6 +1210,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelChooseQuality {
             get {
                 return ResourceManager.GetString("LabelChooseQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string LabelClear {
+            get {
+                return ResourceManager.GetString("LabelClear", resourceCulture);
             }
         }
         
@@ -2461,6 +2479,15 @@ namespace Emby.Mobile.Core.Strings {
         public static string LabelSecondsAgo {
             get {
                 return ResourceManager.GetString("LabelSecondsAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send feedback.
+        /// </summary>
+        public static string LabelSendFeedback {
+            get {
+                return ResourceManager.GetString("LabelSendFeedback", resourceCulture);
             }
         }
         
