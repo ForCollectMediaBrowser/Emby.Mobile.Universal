@@ -1429,4 +1429,13 @@
   <data name="HeaderWatchList" xml:space="preserve">
     <value>Watch List</value>
   </data>
+  <data name="LabelClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="LabelSendFeedback" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
+  <data name="HeaderHowAreWeDoing" xml:space="preserve">
+    <value>How are we doing?</value>
+  </data>
 </root>

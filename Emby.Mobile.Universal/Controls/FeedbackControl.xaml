@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Emby.Mobile.Universal.Controls.FeedbackControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="250"
+             d:DesignWidth="400"
+             DataContext="{Binding Feedback, Source={StaticResource Locator}}">
+
+    <Grid>
+        <RelativePanel>
+            <TextBlock x:Name="Header"
+                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=HeaderHowAreWeDoing}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       RelativePanel.AlignTopWithPanel="True"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       Margin="0,0,0,6"/>
+            <TextBox AcceptsReturn="True"
+                     HorizontalAlignment="Stretch"
+                     RelativePanel.AlignRightWithPanel="True"
+                     RelativePanel.AlignLeftWithPanel="True"
+                     RelativePanel.Below="Header"
+                     Text="{Binding FeedbackText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     RelativePanel.Above="SendFeedback"
+                     />
+            <Button x:Name="SendFeedback"
+                    Style="{StaticResource HeroButtonStyle}"
+                    Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSendFeedback}"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.LeftOf="Clear"
+                    ClickMode="Release"
+                    Command="{x:Bind Feedback.SendFeedbackCommand}"
+                    Margin="6,6,6,0" />
+            <Button x:Name="Clear"
+                    Content="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelClear}"
+                    Command="{x:Bind Feedback.ClearFeedbackCommand}"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Margin="6,0,0,0"/>
+        </RelativePanel>
+    </Grid>
+</UserControl>

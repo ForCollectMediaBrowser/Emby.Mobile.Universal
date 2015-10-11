@@ -558,7 +558,7 @@
                         <Setter Target="Header.Margin"
                                 Value="0,-40,0,0" />
                         <Setter Target="Header.Padding"
-                                Value="150,0,0,0" />
+                                Value="130,0,0,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">

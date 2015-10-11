@@ -9,5 +9,6 @@ namespace Emby.Mobile.Core.Interfaces
         IMessageBoxService MessageBox { get; }
         ILauncherService Launcher { get; }
         IStatusBarService StatusBar { get; }
+        IEmailComposeService Email { get; }
     }
 }

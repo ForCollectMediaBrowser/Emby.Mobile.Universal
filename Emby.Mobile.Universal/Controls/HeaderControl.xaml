@@ -54,6 +54,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraWideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="FeedbackControl.Width"
+                                Value="400" />
                         <Setter Target="LayoutRoot.Height"
                                 Value="45" />
                         <Setter Target="ProfilePicture.Height"
@@ -75,6 +77,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="FeedbackControl.Width"
+                                Value="400" />
                         <Setter Target="LayoutRoot.Height"
                                 Value="40" />
                         <Setter Target="ProfilePicture.Height"
@@ -96,6 +100,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowAdaptiveWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="FeedbackControl.Width"
+                                Value="300"/>
                         <Setter Target="LayoutRoot.Height"
                                 Value="35" />
                         <Setter Target="ProfilePicture.Height"
@@ -129,6 +135,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Command="{x:Bind Header.GoHomeCommand}">
@@ -137,11 +144,32 @@
                                 Tag="{ThemeResource EmbyLogo}"
                                 Source="{Binding Tag, RelativeSource={RelativeSource Self}}" />
         </Button>
-        <Button x:Name="SearchButton"
+        
+        <Button x:Name="FeedbackButton"
                 Style="{StaticResource EmptyButtonStyle}"
                 Grid.Column="2"
                 Height="30"
                 Width="30">
+            <Button.Flyout>
+                <Flyout >
+                    <controls:FeedbackControl Height="150"
+                                              Width="400"
+                                              x:Name="FeedbackControl"/>
+                </Flyout>
+            </Button.Flyout>
+            <Grid>
+                <FontIcon Glyph="&#xEA3B;"
+                          Foreground="Goldenrod"/>
+                <FontIcon Glyph="{StaticResource Emoji}"/>
+            </Grid>
+        </Button>
+        
+        <Button x:Name="SearchButton"
+                Style="{StaticResource EmptyButtonStyle}"
+                Grid.Column="3"
+                Height="30"
+                Width="30"
+                Margin="8,0,0,0">
             <FontIcon x:Name="SearchIcon"
                       Glyph="{StaticResource Search}"
                       FontSize="15"
@@ -153,7 +181,7 @@
             </Button.Flyout>
         </Button>
         <Button Style="{StaticResource EmptyButtonStyle}"
-                Grid.Column="3">
+                Grid.Column="4">
             <controls:ProfilePicture ProfileImage="{x:Bind Header.User.UserImageUrl, Mode=OneWay}"
                                      Height="30"
                                      Width="30"

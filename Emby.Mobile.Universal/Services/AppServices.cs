@@ -82,6 +82,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IStartUpService, StartupService>();
             SimpleIoc.Default.RegisterIf<IStatusBarService, StatusBarService>();
             SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
+            SimpleIoc.Default.RegisterIf<IEmailComposeService, EmailComposeService>();
 
             //Sync
             SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
@@ -140,6 +141,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IStatusBarService, NullStatusBarService>();
             SimpleIoc.Default.RegisterIf<ICredentialProvider, NullCredentialProvider>();
             SimpleIoc.Default.RegisterIf<ISettingsService, NullSettingsService>();
+            SimpleIoc.Default.RegisterIf<IEmailComposeService, NullEmailComposeService>();
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();

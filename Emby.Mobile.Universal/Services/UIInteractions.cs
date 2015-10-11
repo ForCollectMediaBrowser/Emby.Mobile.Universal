@@ -12,17 +12,20 @@ namespace Emby.Mobile.Universal.Services
             INavigationService navigationService,
             IMessageBoxService messageBox,
             ILauncherService launcher,
-            IStatusBarService statusBar)
+            IStatusBarService statusBar,
+            IEmailComposeService email)
         {
             NavigationService = navigationService;
             MessageBox = messageBox;
             Launcher = launcher;
             StatusBar = statusBar;
+            Email = email;
         }
 
         public INavigationService NavigationService { get; }
         public ILauncherService Launcher { get; }
         public IMessageBoxService MessageBox { get; }
         public IStatusBarService StatusBar { get; }
+        public IEmailComposeService Email { get; }
     }
 }

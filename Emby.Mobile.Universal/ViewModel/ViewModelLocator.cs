@@ -57,6 +57,7 @@ namespace Emby.Mobile.Universal.ViewModel
             Register<MusicAlbumViewModel>();
             Register<MusicArtistViewModel>();
             Register<TrailerViewModel>();
+            Register<FeedbackViewModel>();
         }
 
         public MainViewModel Main => Get<MainViewModel>();
@@ -89,6 +90,7 @@ namespace Emby.Mobile.Universal.ViewModel
         public MusicAlbumViewModel MusicAlbum => Get<MusicAlbumViewModel>();
         public MusicArtistViewModel MusicArtist => Get<MusicArtistViewModel>();
         public TrailerViewModel Trailer => Get<TrailerViewModel>();
+        public FeedbackViewModel Feedback => Get<FeedbackViewModel>();
         
         public static void Cleanup()
         {
