@@ -174,6 +174,7 @@ namespace Emby.Mobile.Universal.Controls
 
         public EmbyGridView()
         {
+            DefaultStyleKey = typeof (EmbyGridView);
             Loaded += EmbyGridView_Loaded;
             Columns = 2;
             Rows = 2;

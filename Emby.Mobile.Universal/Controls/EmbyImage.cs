@@ -1,13 +1,20 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace Emby.Mobile.Universal.Controls
 {
     [TemplatePart(Name = TheImage)]
+    [TemplateVisualState(GroupName = ImageLoadedGroup, Name = LoadedState)]
+    [TemplateVisualState(GroupName = ImageLoadedGroup, Name = NotLoadedState)]
     public sealed class EmbyImage : Control
     {
+        private const string ImageLoadedGroup = "ImageLoadedGroup";
+        private const string LoadedState = "Loaded";
+        private const string NotLoadedState = "NotLoaded";
         private const string TheImage = "TheImage";
+
         // This may change to something else, but for now, just use an Image control in the template
         private Image _image;
 
@@ -39,6 +46,24 @@ namespace Emby.Mobile.Universal.Controls
             base.OnApplyTemplate();
 
             _image = GetTemplateChild(TheImage) as Image;
+            if (_image != null)
+            {
+                _image.ImageOpened -= ImageOnImageOpened;
+                _image.ImageOpened += ImageOnImageOpened;
+
+                _image.ImageFailed -= ImageOnImageFailed;
+                _image.ImageFailed += ImageOnImageFailed;
+            }
+        }
+
+        private void ImageOnImageFailed(object sender, ExceptionRoutedEventArgs exceptionRoutedEventArgs)
+        {
+            VisualStateManager.GoToState(this, NotLoadedState, true);
+        }
+
+        private void ImageOnImageOpened(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, LoadedState, true);
         }
     }
 }
