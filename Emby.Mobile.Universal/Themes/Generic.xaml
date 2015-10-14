@@ -2614,6 +2614,52 @@
     <Style TargetType="controls:EmbyImage">
         <Setter Property="Stretch"
                 Value="Uniform" />
+        <Setter Property="PlaceholderType"
+                Value="Image" />
+        <Setter Property="FontFamily"
+                Value="Segoe MDL2 Assets"/>
+        <Setter Property="FontSize"
+                Value="18"/>
+        <Setter Property="ImageTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid Tag="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                          x:Name="ContainingGrid">
+                        <Image Source="{Binding Tag, ElementName=ContainingGrid}"
+                               Stretch="{Binding Tag, RelativeSource={RelativeSource Self}}"
+                               Tag="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                               Height="{TemplateBinding Height}"
+                               Width="{TemplateBinding Width}"
+                               MaxWidth="{TemplateBinding MaxWidth}"
+                               MaxHeight="{TemplateBinding MaxHeight}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <FontIcon Tag="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              Glyph="{Binding Tag, RelativeSource={RelativeSource Self}}"
+                              FontSize="{TemplateBinding FontSize}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              Foreground="{TemplateBinding Foreground}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SymbolTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <SymbolIcon Foreground="{TemplateBinding Foreground}"
+                                Tag="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                Symbol="{Binding Tag, RelativeSource={RelativeSource Self}}"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}"
+                                MaxWidth="{TemplateBinding MaxWidth}"
+                                MaxHeight="{TemplateBinding MaxHeight}" /> 
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:EmbyImage">
@@ -2633,10 +2679,33 @@
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.3"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="PlaceholderContent">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.1"
+                                                                  Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="PlaceholderContent">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter Content="{TemplateBinding Placeholder}"
+                                          Tag="{TemplateBinding PlaceholderStretch}"
+                                          x:Name="PlaceholderContent" />
                         <Image Source="{TemplateBinding Source}"
                                Stretch="{TemplateBinding Stretch}"
                                Height="{TemplateBinding Height}"
