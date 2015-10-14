@@ -2705,6 +2705,9 @@
                         </VisualStateManager.VisualStateGroups>
                         <ContentPresenter Content="{TemplateBinding Placeholder}"
                                           Tag="{TemplateBinding PlaceholderStretch}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          FontSize="{TemplateBinding FontSize}"
+                                          FontFamily="{TemplateBinding FontFamily}"
                                           x:Name="PlaceholderContent" />
                         <Image Source="{TemplateBinding Source}"
                                Stretch="{TemplateBinding Stretch}"
