@@ -8,7 +8,7 @@ namespace Emby.Mobile.Universal.Controls
         private ItemViewModel Item => DataContext as ItemViewModel;
 
         public static readonly DependencyProperty ImageUrlProperty = DependencyProperty.Register(
-            "ImageUrl", typeof (string), typeof (ThumbnailControl), new PropertyMetadata(default(string)));
+            "ImageUrl", typeof (string), typeof (ThumbnailControl), new PropertyMetadata(" "));
 
         public string ImageUrl
         {
@@ -19,7 +19,10 @@ namespace Emby.Mobile.Universal.Controls
         public ThumbnailControl()
         {
             InitializeComponent();
-            DataContextChanged += (sender, args) => Bindings.Update();
+            DataContextChanged += (sender, args) =>
+            {
+                Bindings.Update();
+            };
         }
     }
 }

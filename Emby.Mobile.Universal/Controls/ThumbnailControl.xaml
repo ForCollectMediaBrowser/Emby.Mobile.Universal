@@ -8,8 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid Width="{x:Bind Width, Mode=OneWay}"
-          Height="{x:Bind Height, Mode=OneWay}">
+    <Grid>
         <Button Style="{StaticResource EmptyButtonStyle}"
                 Command="{x:Bind Item.NavigateToItem}"
                 ClickMode="Release">
