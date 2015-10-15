@@ -6,8 +6,10 @@ using Windows.UI.Xaml.Input;
 
 namespace Emby.Mobile.Universal.Controls
 {
+    [TemplatePart(Name = ContainingGrid, Type = typeof(Grid))]
     public sealed class PlayButton : Control
     {
+        private const string ContainingGrid = "ContainingGrid";
         private Grid _containingGrid;
 
         public static readonly DependencyProperty PlayCommandProperty = DependencyProperty.Register(
@@ -59,7 +61,7 @@ namespace Emby.Mobile.Universal.Controls
         {
             base.OnApplyTemplate();
 
-            _containingGrid = GetTemplateChild("ContainingGrid") as Grid;
+            _containingGrid = GetTemplateChild(ContainingGrid) as Grid;
         }
     }
 }

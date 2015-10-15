@@ -4,8 +4,14 @@ using Windows.UI.Xaml.Media;
 
 namespace Emby.Mobile.Universal.Controls
 {
+    [TemplateVisualState(GroupName = ImageLoadedGroup, Name = LoadedState)]
+    [TemplateVisualState(GroupName = ImageLoadedGroup, Name = NotLoadedState)]
     public sealed class ProfilePicture : Control
     {
+        private const string ImageLoadedGroup = "ImageLoadedGroup";
+        private const string LoadedState = "Loaded";
+        private const string NotLoadedState = "NotLoaded";
+
         public static readonly DependencyProperty ShowBackgroundProperty = DependencyProperty.Register(
             "ShowBackground", typeof (bool), typeof (ProfilePicture), new PropertyMetadata(default(bool)));
 
@@ -39,13 +45,11 @@ namespace Emby.Mobile.Universal.Controls
         }
 
         private ImageBrush _imageBrush;
-        private Grid _placeHolderGrid;
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             _imageBrush = GetTemplateChild("ProfileImage") as ImageBrush;
-            _placeHolderGrid = GetTemplateChild("PlaceholderGrid") as Grid;
 
             if (_imageBrush != null)
             {
@@ -59,15 +63,12 @@ namespace Emby.Mobile.Universal.Controls
 
         private void ImageBrushOnImageFailed(object sender, ExceptionRoutedEventArgs exceptionRoutedEventArgs)
         {
-            var i = 12;
+            VisualStateManager.GoToState(this, NotLoadedState, true);
         }
 
         private void ImageBrushOnImageOpened(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (_placeHolderGrid != null)
-            {
-                _placeHolderGrid.Visibility = Visibility.Collapsed;
-            }
+            VisualStateManager.GoToState(this, LoadedState, true);
         }
     }
 }

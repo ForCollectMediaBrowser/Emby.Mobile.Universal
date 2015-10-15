@@ -6,6 +6,8 @@ namespace Emby.Mobile.Universal.Controls
     [TemplatePart(Name = PasswordBox, Type = typeof(PasswordBox))]
     [TemplateVisualState(GroupName = CommonStatesGroup, Name = FocusedState)]
     [TemplateVisualState(GroupName = CommonStatesGroup, Name = LostFocusState)]
+    [TemplateVisualState(GroupName = WatermarkPositions, Name = InText)]
+    [TemplateVisualState(GroupName = WatermarkPositions, Name = InHeader)]
     public sealed class EmbyPasswordBox : Control
     {
         private const string PasswordBox = "PasswordBox";
