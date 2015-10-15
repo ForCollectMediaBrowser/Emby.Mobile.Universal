@@ -81,7 +81,8 @@
                                                               FlowDirection="LeftToRight" />
                                 <Grid x:Name="grid"
                                       Width="{StaticResource ImageSize}"
-                                      Height="{StaticResource ImageSize}">
+                                      Height="{StaticResource ImageSize}"
+                                      Opacity="0">
                                     <Ellipse x:Name="Ellipse"
                                              Width="{StaticResource CentreImageSize}"
                                              Height="{StaticResource CentreImageSize}"
