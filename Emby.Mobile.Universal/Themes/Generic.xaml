@@ -25,6 +25,42 @@
                             <x:Double x:Key="ImageSize">200</x:Double>
                             <x:Double x:Key="CentreImageSize">150</x:Double>
                         </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ImageLoadedGroup">
+                                <VisualState x:Name="Loaded">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="grid">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="PlaceholderGrid">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.1"
+                                                                  Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="PlaceholderGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NotLoaded" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Viewbox Width="{TemplateBinding Width}"
                                  Height="{TemplateBinding Height}"
                                  Stretch="UniformToFill"
@@ -43,7 +79,8 @@
                                                               Tag="{TemplateBinding ShowBackground}"
                                                               Visibility="{Binding Tag, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=Self}}"
                                                               FlowDirection="LeftToRight" />
-                                <Grid Width="{StaticResource ImageSize}"
+                                <Grid x:Name="grid"
+                                      Width="{StaticResource ImageSize}"
                                       Height="{StaticResource ImageSize}">
                                     <Ellipse x:Name="Ellipse"
                                              Width="{StaticResource CentreImageSize}"
@@ -2617,9 +2654,9 @@
         <Setter Property="PlaceholderType"
                 Value="Image" />
         <Setter Property="FontFamily"
-                Value="Segoe MDL2 Assets"/>
+                Value="Segoe MDL2 Assets" />
         <Setter Property="FontSize"
-                Value="18"/>
+                Value="18" />
         <Setter Property="ImageTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -2643,7 +2680,7 @@
                               Glyph="{Binding Tag, RelativeSource={RelativeSource Self}}"
                               FontSize="{TemplateBinding FontSize}"
                               FontFamily="{TemplateBinding FontFamily}"
-                              Foreground="{TemplateBinding Foreground}"/>
+                              Foreground="{TemplateBinding Foreground}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -2656,7 +2693,7 @@
                                 Height="{TemplateBinding Height}"
                                 Width="{TemplateBinding Width}"
                                 MaxWidth="{TemplateBinding MaxWidth}"
-                                MaxHeight="{TemplateBinding MaxHeight}" /> 
+                                MaxHeight="{TemplateBinding MaxHeight}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>

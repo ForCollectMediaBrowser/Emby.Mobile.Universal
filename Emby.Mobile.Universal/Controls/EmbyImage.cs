@@ -4,8 +4,8 @@ using Windows.UI.Xaml.Media;
 
 namespace Emby.Mobile.Universal.Controls
 {
-    [TemplatePart(Name = TheImage)]
-    [TemplatePart(Name = PlaceHolder)]
+    [TemplatePart(Name = TheImage, Type = typeof(Image))]
+    [TemplatePart(Name = PlaceHolder, Type = typeof(ContentPresenter))]
     [TemplateVisualState(GroupName = ImageLoadedGroup, Name = LoadedState)]
     [TemplateVisualState(GroupName = ImageLoadedGroup, Name = NotLoadedState)]
     public sealed class EmbyImage : Control
