@@ -202,6 +202,9 @@
       <DependentUpon>ServerListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StatusBarControl.cs" />
+    <Compile Include="Controls\ThumbnailControl.xaml.cs">
+      <DependentUpon>ThumbnailControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UnplayedCountControl.cs" />
     <Compile Include="Controls\EmbyGridView.cs" />
     <Compile Include="Converters\ParallaxConverter.cs" />
@@ -404,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ServerListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ThumbnailControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
