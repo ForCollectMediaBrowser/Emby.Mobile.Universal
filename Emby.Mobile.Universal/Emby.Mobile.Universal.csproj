@@ -164,6 +164,7 @@
     <Compile Include="Controls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HighlightTextBlock.cs" />
     <Compile Include="Controls\ItemControls\AddServerControl.xaml.cs">
       <DependentUpon>AddServerControl.xaml</DependentUpon>
     </Compile>
