@@ -21,7 +21,7 @@
                                RelativePanel.AlignLeftWithPanel="True"
                                RelativePanel.AlignRightWithPanel="True"
                                RelativePanel.AlignTopWithPanel="True"
-                               PlaceholderText="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSearch}"/>
+                               Header="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelSearch}"/>
             <ListView x:Name="ResultBox"
                       RelativePanel.Below="TxtSearch"
                       RelativePanel.AlignLeftWithPanel="True"
