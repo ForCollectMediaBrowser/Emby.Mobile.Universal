@@ -43,6 +43,8 @@ namespace Emby.Mobile.ViewModels
 
         public ObservableCollection<ItemViewModel> WhatsOnItems { get; set; }
 
+        public bool DataLoaded { get; set; }
+
         private async Task LoadData()
         {
             string parentId = null;
@@ -65,6 +67,8 @@ namespace Emby.Mobile.ViewModels
                 LoadWhatsOn()
             };
             await Task.WhenAll(tasks);
+
+            DataLoaded = true;
         }
 
         private async Task LoadResumableItems(string parentId)

@@ -202,6 +202,7 @@
     <Compile Include="Controls\ServerListControl.xaml.cs">
       <DependentUpon>ServerListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SilhouetteControl.cs" />
     <Compile Include="Controls\StatusBarControl.cs" />
     <Compile Include="Controls\ThumbnailControl.xaml.cs">
       <DependentUpon>ThumbnailControl.xaml</DependentUpon>
