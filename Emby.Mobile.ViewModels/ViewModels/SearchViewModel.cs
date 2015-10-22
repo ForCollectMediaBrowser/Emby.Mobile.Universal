@@ -35,7 +35,11 @@ namespace Emby.Mobile.ViewModels
         [UsedImplicitly]
         private async void OnSearchTextChanged()
         {
-            if (SearchText?.Length > 1)
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                SearchResults?.Clear();
+            }
+            else if (SearchText?.Length > 1)
             {
                 var query = new SearchQuery
                 {

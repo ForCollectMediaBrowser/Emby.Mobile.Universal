@@ -2775,7 +2775,8 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <TextBlock x:Name="TextBlock"
-                                   Style="{TemplateBinding TextBlockStyle}"/>
+                                   Style="{TemplateBinding TextBlockStyle}"
+                                   Foreground="{TemplateBinding Foreground}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

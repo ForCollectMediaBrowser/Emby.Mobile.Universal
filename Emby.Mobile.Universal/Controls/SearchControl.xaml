@@ -17,7 +17,7 @@
             <local:EmbyTextBox x:Name="TxtSearch"
                                VerticalAlignment="Top"
                                Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                               Margin="10"
+                               Margin="10,15,10,10"
                                RelativePanel.AlignLeftWithPanel="True"
                                RelativePanel.AlignRightWithPanel="True"
                                RelativePanel.AlignTopWithPanel="True"

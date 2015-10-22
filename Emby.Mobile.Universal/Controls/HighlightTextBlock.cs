@@ -44,16 +44,7 @@ namespace Emby.Mobile.Universal.Controls
         }
 
         public static readonly DependencyProperty HighlightBrushProperty = DependencyProperty.Register("HighlightBrush", typeof(SolidColorBrush), typeof(HighlightTextBlock), new PropertyMetadata(default(SolidColorBrush), PropertyChangedCallback));
-
-        public static readonly new DependencyProperty ForegroundProperty = DependencyProperty.Register(
-            "Foreground", typeof (SolidColorBrush), typeof (HighlightTextBlock), new PropertyMetadata(default(SolidColorBrush), PropertyChangedCallback));
-
-        public new SolidColorBrush Foreground
-        {
-            get { return (SolidColorBrush) GetValue(ForegroundProperty); }
-            set { SetValue(ForegroundProperty, value); }
-        }
-
+        
         public static readonly DependencyProperty TextBlockStyleProperty = DependencyProperty.Register(
             "TextBlockStyle", typeof (Style), typeof (HighlightTextBlock), new PropertyMetadata(default(Style)));
 
@@ -99,10 +90,9 @@ namespace Emby.Mobile.Universal.Controls
                 _textBlock.Inlines.Add(new Run
                 {
                     Text = part,
-                    Foreground = Foreground
                 });
 
-                if (Text.Length >= len)
+                if (Text.Length >= len && !_textBlock.Text.Equals(Text))
                 {
                     var highlight = Text.Substring(len - 1, HighlightedText.Length); //to match the case
 
