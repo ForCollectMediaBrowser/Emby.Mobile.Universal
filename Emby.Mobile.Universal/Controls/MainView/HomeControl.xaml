@@ -227,157 +227,145 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <controls:SilhouetteControl>
-            <controls:SilhouetteControl.Content>
-                <ScrollViewer>
-                    <RelativePanel Padding="0,0,0,60">
-                        <StackPanel x:Name="LatestVideoStack"
-                                    Visibility="{x:Bind Home.HasLatestVideoItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    RelativePanel.AlignTopWithPanel="True"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                    RelativePanel.AlignRightWithPanel="True">
-                            <TextBlock x:Name="LatestTextBlock"
-                                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLatestUnseen}"
-                                       Style="{StaticResource LargeThinTextBlockStyle}"
-                                       Margin="10" />
-                            <seven:LoopingFlipview x:Name="LatestVideoFlipview"
-                                                   ItemsSource="{x:Bind Home.LatestVideoItems, Mode=OneWay}"
-                                                   ItemTemplate="{StaticResource MediumBackdropTemplate}"
-                                                   ContextIndicatorVisiblity="Collapsed"
-                                                   Interval="5" />
-                            <Border Style="{StaticResource HorizontalDividerStyle}" />
-                        </StackPanel>
-                        <StackPanel x:Name="ResumableStack"
-                                    Visibility="{x:Bind Home.HasResumableItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                    RelativePanel.Below="LatestVideoStack"
-                                    RelativePanel.AlignRightWithPanel="True">
-                            <TextBlock x:Name="ResumeTextBlock"
-                                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelResume}"
-                                       Margin="10"
-                                       Style="{StaticResource LargeThinTextBlockStyle}" />
-                            <seven:LoopingFlipview x:Name="ResumableFlipview"
-                                                   ItemsSource="{x:Bind Home.ResumableItems, Mode=OneWay}"
-                                                   ItemTemplate="{StaticResource MediumThumbTemplate}"
-                                                   Interval="7"
-                                                   ContextIndicatorVisiblity="Collapsed" />
-                            <Border Style="{StaticResource HorizontalDividerStyle}" />
-                        </StackPanel>
-                        <StackPanel x:Name="LatestMusicStack"
-                                    Visibility="{x:Bind Home.HasLatestMusicItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    RelativePanel.Below="ResumableStack"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                    RelativePanel.AlignRightWithPanel="True">
-                            <TextBlock x:Name="LatestMusicTextBlock"
-                                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLatestMusic}"
-                                       Style="{StaticResource LargeThinTextBlockStyle}"
-                                       Margin="10" />
-                            <Grid>
-                                <controls:EmbyImage x:Name="ArtistBackdropImage"
-                                                    Source="{x:Bind Home.ArtistBackdrop}"
-                                                    Stretch="UniformToFill"
-                                                    Height="300"
-                                                    Width="600"
-                                                    Opacity="0.7"
-                                                    VerticalAlignment="Center"
-                                                    HorizontalAlignment="Left" />
-                                <Grid x:Name="ArtistBackdropOverlay"
-                                      Height="300"
-                                      Width="600"
-                                      HorizontalAlignment="Left">
-                                    <Grid.Background>
+        <ScrollViewer>
+            <RelativePanel Padding="0,0,0,60">
+                <StackPanel x:Name="LatestVideoStack"
+                            Visibility="{x:Bind Home.HasLatestVideoItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="LatestTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLatestUnseen}"
+                               Style="{StaticResource LargeThinTextBlockStyle}"
+                               Margin="10" />
+                    <seven:LoopingFlipview x:Name="LatestVideoFlipview"
+                                           ItemsSource="{x:Bind Home.LatestVideoItems, Mode=OneWay}"
+                                           ItemTemplate="{StaticResource MediumBackdropTemplate}"
+                                           ContextIndicatorVisiblity="Collapsed"
+                                           Interval="5" />
+                    <Border Style="{StaticResource HorizontalDividerStyle}" />
+                </StackPanel>
+                <StackPanel x:Name="ResumableStack"
+                            Visibility="{x:Bind Home.HasResumableItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.Below="LatestVideoStack"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="ResumeTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelResume}"
+                               Margin="10"
+                               Style="{StaticResource LargeThinTextBlockStyle}" />
+                    <seven:LoopingFlipview x:Name="ResumableFlipview"
+                                           ItemsSource="{x:Bind Home.ResumableItems, Mode=OneWay}"
+                                           ItemTemplate="{StaticResource MediumThumbTemplate}"
+                                           Interval="7"
+                                           ContextIndicatorVisiblity="Collapsed" />
+                    <Border Style="{StaticResource HorizontalDividerStyle}" />
+                </StackPanel>
+                <StackPanel x:Name="LatestMusicStack"
+                            Visibility="{x:Bind Home.HasLatestMusicItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.Below="ResumableStack"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="LatestMusicTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelLatestMusic}"
+                               Style="{StaticResource LargeThinTextBlockStyle}"
+                               Margin="10" />
+                    <Grid>
+                        <controls:EmbyImage x:Name="ArtistBackdropImage"
+                                            Source="{x:Bind Home.ArtistBackdrop}"
+                                            Stretch="UniformToFill"
+                                            Height="300"
+                                            Width="600"
+                                            Opacity="0.7"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left" />
+                        <Grid x:Name="ArtistBackdropOverlay"
+                              Height="300"
+                              Width="600"
+                              HorizontalAlignment="Left">
+                            <Grid.Background>
+                                <LinearGradientBrush EndPoint="1,0.5"
+                                                     StartPoint="0, 0.2">
+                                    <GradientStop  Color="#33000000" />
+                                    <GradientStop Color="#FF000000"
+                                                  Offset="1" />
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                        </Grid>
+                        <ListView x:Name="LatestAlbumsListView"
+                                  ScrollViewer.HorizontalScrollMode="Auto"
+                                  Padding="200,0,0,0"
+                                  VerticalAlignment="Stretch"
+                                  ItemsSource="{x:Bind Home.LatestMusicItems, Mode=OneWay}"
+                                  RelativePanel.Below="LatestMusicTextBlock"
+                                  RelativePanel.AlignLeftWithPanel="True"
+                                  RelativePanel.AlignBottomWithPanel="True"
+                                  RelativePanel.AlignRightWithPanel="True"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollMode="Disabled"
+                                  ScrollViewer.ZoomMode="Disabled"
+                                  SelectionMode="None"
+                                  ItemTemplate="{StaticResource MediumSquareTemplate}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel.Background>
+                                            <LinearGradientBrush EndPoint="1,0.5"
+                                                                 StartPoint="0, 0.2">
+                                                <GradientStop  Color="#00000000" />
+                                                <GradientStop Color="#FF000000"
+                                                              Offset="0.3" />
+                                            </LinearGradientBrush>
+                                        </StackPanel.Background>
+                                    </StackPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Grid>
+                    <Border Style="{StaticResource HorizontalDividerStyle}" />
+                </StackPanel>
+                <StackPanel x:Name="WhatsOnStack"
+                            Visibility="{x:Bind Home.HasWhatsOnItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            RelativePanel.Below="LatestMusicStack"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock x:Name="WhatsOnTextBlock"
+                               Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelWhatsOn}"
+                               Style="{StaticResource LargeThinTextBlockStyle}"
+                               Margin="10" />
+                    <ListView x:Name="WhatsOnListView"
+                              ScrollViewer.HorizontalScrollMode="Auto"
+                              Padding="0"
+                              VerticalAlignment="Stretch"
+                              ItemsSource="{x:Bind Home.WhatsOnItems, Mode=OneWay}"
+                              RelativePanel.Below="WhatsOnTextBlock"
+                              RelativePanel.AlignLeftWithPanel="True"
+                              RelativePanel.AlignBottomWithPanel="True"
+                              RelativePanel.AlignRightWithPanel="True"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              ScrollViewer.ZoomMode="Disabled"
+                              SelectionMode="None"
+                              ItemTemplate="{StaticResource MediumSquareTemplate}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Background>
                                         <LinearGradientBrush EndPoint="1,0.5"
                                                              StartPoint="0, 0.2">
                                             <GradientStop  Color="#33000000" />
                                             <GradientStop Color="#FF000000"
-                                                          Offset="1" />
+                                                          Offset="0.3" />
                                         </LinearGradientBrush>
-                                    </Grid.Background>
-                                </Grid>
-                                <ListView x:Name="LatestAlbumsListView"
-                                          ScrollViewer.HorizontalScrollMode="Auto"
-                                          Padding="200,0,0,0"
-                                          VerticalAlignment="Stretch"
-                                          ItemsSource="{x:Bind Home.LatestMusicItems, Mode=OneWay}"
-                                          RelativePanel.Below="LatestMusicTextBlock"
-                                          RelativePanel.AlignLeftWithPanel="True"
-                                          RelativePanel.AlignBottomWithPanel="True"
-                                          RelativePanel.AlignRightWithPanel="True"
-                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                          ScrollViewer.VerticalScrollMode="Disabled"
-                                          ScrollViewer.ZoomMode="Disabled"
-                                          SelectionMode="None"
-                                          ItemTemplate="{StaticResource MediumSquareTemplate}">
-                                    <ListView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <StackPanel.Background>
-                                                    <LinearGradientBrush EndPoint="1,0.5"
-                                                                         StartPoint="0, 0.2">
-                                                        <GradientStop  Color="#00000000" />
-                                                        <GradientStop Color="#FF000000"
-                                                                      Offset="0.3" />
-                                                    </LinearGradientBrush>
-                                                </StackPanel.Background>
-                                            </StackPanel>
-                                        </ItemsPanelTemplate>
-                                    </ListView.ItemsPanel>
-                                </ListView>
-                            </Grid>
-                            <Border Style="{StaticResource HorizontalDividerStyle}" />
-                        </StackPanel>
-                        <StackPanel x:Name="WhatsOnStack"
-                                    Visibility="{x:Bind Home.HasWhatsOnItems, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    RelativePanel.Below="LatestMusicStack"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                    RelativePanel.AlignRightWithPanel="True">
-                            <TextBlock x:Name="WhatsOnTextBlock"
-                                       Text="{x:Bind Converter={StaticResource LocalizationConverter}, ConverterParameter=LabelWhatsOn}"
-                                       Style="{StaticResource LargeThinTextBlockStyle}"
-                                       Margin="10" />
-                            <ListView x:Name="WhatsOnListView"
-                                      ScrollViewer.HorizontalScrollMode="Auto"
-                                      Padding="0"
-                                      VerticalAlignment="Stretch"
-                                      ItemsSource="{x:Bind Home.WhatsOnItems, Mode=OneWay}"
-                                      RelativePanel.Below="WhatsOnTextBlock"
-                                      RelativePanel.AlignLeftWithPanel="True"
-                                      RelativePanel.AlignBottomWithPanel="True"
-                                      RelativePanel.AlignRightWithPanel="True"
-                                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                      ScrollViewer.VerticalScrollMode="Disabled"
-                                      ScrollViewer.ZoomMode="Disabled"
-                                      SelectionMode="None"
-                                      ItemTemplate="{StaticResource MediumSquareTemplate}">
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel.Background>
-                                                <LinearGradientBrush EndPoint="1,0.5"
-                                                                     StartPoint="0, 0.2">
-                                                    <GradientStop  Color="#33000000" />
-                                                    <GradientStop Color="#FF000000"
-                                                                  Offset="0.3" />
-                                                </LinearGradientBrush>
-                                            </StackPanel.Background>
-                                        </StackPanel>
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                            </ListView>
-                        </StackPanel>
-                    </RelativePanel>
-                </ScrollViewer>
-            </controls:SilhouetteControl.Content>
-            <controls:SilhouetteControl.Silhouette>
-                <Grid>
-                    <TextBlock Text="SILHOUETTE!!!"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
-                </Grid>
-            </controls:SilhouetteControl.Silhouette>
-        </controls:SilhouetteControl>
-
+                                    </StackPanel.Background>
+                                </StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </StackPanel>
+            </RelativePanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
