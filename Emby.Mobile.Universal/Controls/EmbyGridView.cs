@@ -198,6 +198,8 @@ namespace Emby.Mobile.Universal.Controls
         {
             _count = 0;
             base.OnItemsChanged(e);
+
+            ShowParts();
         }
 
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
