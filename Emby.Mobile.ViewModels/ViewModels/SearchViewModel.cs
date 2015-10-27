@@ -7,6 +7,7 @@ using MediaBrowser.Model.Search;
 using Emby.Mobile.Core.Strings;
 using Emby.Mobile.ViewModels.Entities;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace Emby.Mobile.ViewModels
 {
@@ -31,9 +32,14 @@ namespace Emby.Mobile.ViewModels
         public string SearchText { get; set; }
         public ObservableCollection<SearchHintViewModel> SearchResults { get; set; }
 
+        [UsedImplicitly]
         private async void OnSearchTextChanged()
         {
-            if (SearchText?.Length > 1)
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                SearchResults?.Clear();
+            }
+            else if (SearchText?.Length > 1)
             {
                 var query = new SearchQuery
                 {
@@ -61,7 +67,7 @@ namespace Emby.Mobile.ViewModels
                 }
                 catch (HttpException e)
                 {
-
+                    var i = 1;
                 }
                 finally
                 {

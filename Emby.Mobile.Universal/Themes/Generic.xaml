@@ -2760,4 +2760,26 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="controls:HighlightTextBlock">
+        <Setter Property="Foreground"
+                Value="{ThemeResource ApplicationForegroundThemeBrush}"/>
+        <Setter Property="HighlightBrush"
+                Value="{StaticResource EmbyGreenBrush}"/>
+        <Setter Property="TextBlockStyle"
+                Value="{StaticResource BodyTextBlockStyle}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:HighlightTextBlock">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock x:Name="TextBlock"
+                                   Style="{TemplateBinding TextBlockStyle}"
+                                   Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

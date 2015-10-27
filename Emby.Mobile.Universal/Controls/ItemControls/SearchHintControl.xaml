@@ -2,13 +2,8 @@
              x:Name="Control"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:Emby.Mobile.Universal.Controls.ItemControls"
-             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="using:Emby.Mobile.Universal.Converters"
              xmlns:controls="using:Emby.Mobile.Universal.Controls"
              mc:Ignorable="d"
              d:DesignHeight="80"
@@ -24,12 +19,20 @@
                                     Margin="0,5,10,5"
                                     Source="{x:Bind SearchHint.ImageUrl, Mode=OneWay}" />
             </Grid>
-            <TextBlock x:Name="NameLabel"
-                       Text="{x:Bind SearchHint.Name, Mode=OneWay}"
-                       Style="{StaticResource BodyTextBlockStyle}"
-                       RelativePanel.RightOf="HintImage"
-                       TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis" />
+            <controls:HighlightTextBlock x:Name="NameLabel"
+                                         Text="{x:Bind SearchHint.Name, Mode=OneWay}"
+                                         RelativePanel.RightOf="HintImage"
+                                         HighlightedText="{Binding Search.SearchText, Source={StaticResource Locator}}">
+                <controls:HighlightTextBlock.TextBlockStyle>
+                    <Style TargetType="TextBlock"
+                           BasedOn="{StaticResource BodyTextBlockStyle}">
+                        <Setter Property="TextWrapping"
+                                Value="NoWrap"/>
+                        <Setter Property="TextTrimming"
+                                Value="CharacterEllipsis"/>
+                    </Style>
+                </controls:HighlightTextBlock.TextBlockStyle>
+            </controls:HighlightTextBlock>
             <TextBlock x:Name="TypeLabel"
                        Text="{x:Bind SearchHint.Type}"
                        Style="{StaticResource CaptionTextBlockStyle}"
