@@ -23,7 +23,7 @@
                       x:DataType="entities:ItemViewModel">
             <controls:ThumbnailControl Height="255"
                                        Width="450"
-                                       ImageUrl="{x:Bind BackdropImageMedium, Mode=OneWay}"/>
+                                       ImageUrl="{x:Bind BackdropImageMedium, Mode=OneWay}" />
         </DataTemplate>
         <DataTemplate x:Key="LargeBackdropTemplate"
                       x:DataType="entities:ItemViewModel">

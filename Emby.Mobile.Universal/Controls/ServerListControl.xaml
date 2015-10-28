@@ -43,7 +43,8 @@
         <controls:EmbyGridView x:Name="ServerList"
                                ItemsSource="{x:Bind ChooseServer.Servers, Mode=OneWay}"
                                ItemsPanel="{StaticResource HorizontalItemsWrapGrid}"
-                               Margin="19">
+                               Margin="19"
+                               IsEmpty="False">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="entities:ServerInfoViewModel">
                     <Grid>
