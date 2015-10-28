@@ -1,4 +1,5 @@
-﻿using MediaBrowser.Model.Drawing;
+﻿using Emby.Mobile.Core.Interfaces;
+using MediaBrowser.Model.Drawing;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 
@@ -6,6 +7,8 @@ namespace Emby.Mobile.Core.Helpers
 {
     public static class ImageOptionsHelper
     {
+        private static IDeviceInfoService _deviceInfoService;
+
         public static ImageOptions SearchHint { get; } = GetOptions(ImageType.Primary, 50);
         public static ImageOptions UserProfile { get; } = GetOptions(ImageType.Primary, height: 120);
 
@@ -19,6 +22,11 @@ namespace Emby.Mobile.Core.Helpers
         public static ImageOptions ItemThumbMedium { get; } = GetOptions(ImageType.Thumb, height: 200);
         public static ImageOptions ItemBannerMedium { get; } = GetOptions(ImageType.Banner, height: 200);
 
+        public static void SetDeviceInfoService(IDeviceInfoService deviceInfoService)
+        {
+            _deviceInfoService = deviceInfoService;
+        }
+
         private static ImageOptions GetOptions(
             ImageType imageType, 
             int? maxWidth = null,
@@ -29,7 +37,7 @@ namespace Emby.Mobile.Core.Helpers
                 Quality = 80,
                 ImageType = imageType,
                 Format = ImageFormat.Png,
-                MaxWidth = maxWidth,
+                MaxWidth = _deviceInfoService.GetDeviceScaleImageValue(maxWidth),
                 Height = height
             };
 
