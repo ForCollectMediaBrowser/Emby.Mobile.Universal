@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
+using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using Emby.Mobile.Universal.Core.Helpers;
 using Emby.Mobile.Universal.Core.Implementations;
@@ -31,12 +32,18 @@ namespace Emby.Mobile.Universal.Services
     {
         static AppServices()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            if (!ServiceLocator.IsLocationProviderSet)
+            {
+                ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            }
         }
 
         public static async Task Create()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            if (!ServiceLocator.IsLocationProviderSet)
+            {
+                ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            }
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -77,6 +84,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IMessengerService, MessengerService>();
             SimpleIoc.Default.RegisterIf<IAuthenticationService, AuthenticationService>();
             SimpleIoc.Default.RegisterIf<ILauncherService, LauncherService>();
+            SimpleIoc.Default.RegisterIf<IDisplayPropertiesService, DisplayPropertiesService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, DeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, AnalyticsService>();
             SimpleIoc.Default.RegisterIf<IStartUpService, StartupService>();
@@ -100,6 +108,8 @@ namespace Emby.Mobile.Universal.Services
             await AddConnectionServices(device, mbLogger, network, credentials);
 
             RegisterBackgroundPlayer();
+
+            ImageOptionsHelper.SetDeviceInfoService(DeviceInfo);
         }
 
         private static async Task AddConnectionServices(IDevice device, ILogger mbLogger, INetworkConnection network, ICredentialProvider credentialProvider)
@@ -134,6 +144,7 @@ namespace Emby.Mobile.Universal.Services
             SimpleIoc.Default.RegisterIf<IMessengerService, NullMessengerService>();
             SimpleIoc.Default.RegisterIf<IAuthenticationService, NullAuthenticationService>();
             SimpleIoc.Default.RegisterIf<ILauncherService, NullLauncherService>();
+            SimpleIoc.Default.RegisterIf<IDisplayPropertiesService, NullDisplayPropertiesService>();
             SimpleIoc.Default.RegisterIf<IDeviceInfoService, NullDeviceInfoService>();
             SimpleIoc.Default.RegisterIf<IAnalyticsService, NullAnalyticsService>();
             SimpleIoc.Default.RegisterIf<IPlaybackService, NullPlaybackService>();

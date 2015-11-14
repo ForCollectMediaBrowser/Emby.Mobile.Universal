@@ -2,6 +2,7 @@
 using Emby.Mobile.Core.Helpers;
 using Emby.Mobile.Core.Interfaces;
 using Windows.Foundation.Metadata;
+using Cimbalino.Toolkit.Services;
 using Emby.Mobile.Universal.Core.Implementations;
 using MediaBrowser.Model.ApiClient;
 
@@ -9,17 +10,21 @@ namespace Emby.Mobile.Universal.Core.Services
 {
     public class DeviceInfoService : IDeviceInfoService
     {
-        public bool SupportsBackButton => ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons");
-        public bool SupportsVibrate => ApiInformation.IsTypePresent("Windows.Phone.Devices.Notification.VibrationDevice");
-        public bool SupportsStatusBar => ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar");
+        private readonly IDisplayPropertiesService _displayProperties;
 
-        public DeviceInfoService(IDevice device)
+        public DeviceInfoService(IDevice device, IDisplayPropertiesService displayProperties)
         {
+            _displayProperties = displayProperties;
             Device = device;
             DeviceFamily = GetDeviceFamily();
         }
 
+        public bool SupportsBackButton => ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons");
+        public bool SupportsVibrate => ApiInformation.IsTypePresent("Windows.Phone.Devices.Notification.VibrationDevice");
+        public bool SupportsStatusBar => ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar");
+
         public IDevice Device { get; }
+
         public void SetName(string name)
         {
             var device = Device as Device;
@@ -27,6 +32,20 @@ namespace Emby.Mobile.Universal.Core.Services
             {
                 device.DeviceName = name;
             }
+        }
+
+        public int? GetDeviceScaleImageValue(int? value)
+        {
+            var result = value;
+
+            if (value.HasValue)
+            {
+                var scale = _displayProperties.LogicalDpi;
+
+                result = (int) (result*(scale/100));
+            }
+
+            return result;
         }
 
         public DeviceFamily DeviceFamily { get; }

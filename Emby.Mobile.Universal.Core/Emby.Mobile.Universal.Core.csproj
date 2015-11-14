@@ -131,6 +131,7 @@
     <Compile Include="Implementations\Sync\UserRepository.cs" />
     <Compile Include="Logging\WinLogger.cs" />
     <Compile Include="NullServices\Cimbalino\NullApplicationSettingsService.cs" />
+    <Compile Include="NullServices\Cimbalino\NullDisplayPropertiesService.cs" />
     <Compile Include="NullServices\Cimbalino\NullEmailComposeService.cs" />
     <Compile Include="NullServices\Cimbalino\NullStorageService.cs" />
     <Compile Include="NullServices\NullAuthenticationService.cs" />

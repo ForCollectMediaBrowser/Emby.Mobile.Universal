@@ -11,5 +11,6 @@ namespace Emby.Mobile.Core.Interfaces
         DeviceFamily DeviceFamily { get; }
         IDevice Device { get; }
         void SetName(string name);
+        int? GetDeviceScaleImageValue(int? value);
     }
 }

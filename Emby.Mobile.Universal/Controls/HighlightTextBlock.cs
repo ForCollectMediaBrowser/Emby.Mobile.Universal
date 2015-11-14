@@ -64,7 +64,6 @@ namespace Emby.Mobile.Universal.Controls
             base.OnApplyTemplate();
 
             _textBlock = GetTemplateChild(TextBlockControl) as TextBlock;
-
         }
 
         private void Update()

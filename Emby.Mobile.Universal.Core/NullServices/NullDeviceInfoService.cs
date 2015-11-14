@@ -13,6 +13,11 @@ namespace Emby.Mobile.Universal.Core.NullServices
         {
         }
 
+        public int? GetDeviceScaleImageValue(int? value)
+        {
+            return value;
+        }
+
         public bool SupportsBackButton { get; } = false;
         public bool SupportsStatusBar { get; } = false;
         public bool SupportsVibrate { get; } = false;
