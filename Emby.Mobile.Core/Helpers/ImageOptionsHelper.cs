@@ -5,7 +5,7 @@ using MediaBrowser.Model.Entities;
 
 namespace Emby.Mobile.Core.Helpers
 {
-    public static class ImageOptionsHelper
+    public class ImageOptionsHelper
     {
         private static IDeviceInfoService _deviceInfoService;
 
@@ -37,8 +37,8 @@ namespace Emby.Mobile.Core.Helpers
                 Quality = 80,
                 ImageType = imageType,
                 Format = ImageFormat.Png,
-                MaxWidth = _deviceInfoService.GetDeviceScaleImageValue(maxWidth),
-                Height = height
+                MaxWidth = _deviceInfoService?.GetDeviceScaleImageValue(maxWidth) ?? maxWidth,
+                MaxHeight = height
             };
 
             return options;
