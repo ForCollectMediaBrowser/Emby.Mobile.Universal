@@ -4,12 +4,10 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:Emby.Mobile.Universal.Controls"
-                   xmlns:converters="using:Emby.Mobile.Universal.Converters"
+                   xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                   xmlns:behaviours="using:Emby.Mobile.Universal.Behaviours"
                    mc:Ignorable="d"
                    d:DataContext="{Binding Movie, Source={StaticResource Locator}}">
-    <controls:EmbyPage.Resources>
-        <converters:ParallaxConverter x:Key="ParallaxConverter" />
-    </controls:EmbyPage.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WideNarrowGroup">
@@ -37,9 +35,9 @@
                                Height="500"
                                VerticalAlignment="Top"
                                HorizontalAlignment="Stretch">
-            <controls:FadingImages.RenderTransform>
-                <CompositeTransform TranslateY="{Binding ElementName=ContentScrollViewer, Path=VerticalOffset, Converter={StaticResource ParallaxConverter}}" />
-            </controls:FadingImages.RenderTransform>
+            <interactivity:Interaction.Behaviors>
+                <behaviours:ParallaxBehavior Scroller="{Binding ElementName=ContentScrollViewer}"/>
+            </interactivity:Interaction.Behaviors>
         </controls:FadingImages>
 
         <ScrollViewer x:Name="ContentScrollViewer">
