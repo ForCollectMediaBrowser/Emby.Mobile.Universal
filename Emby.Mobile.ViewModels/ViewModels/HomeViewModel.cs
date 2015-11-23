@@ -48,16 +48,6 @@ namespace Emby.Mobile.ViewModels
         private async Task LoadData()
         {
             string parentId = null;
-            try
-            {
-                var response = await ApiClient.GetRootFolderAsync(AuthenticationService.SignedInUserId);
-                if (response != null)
-                {
-                    parentId = response.Id;
-                }
-            }
-            catch (HttpException e)
-            { }
 
             var tasks = new List<Task>
             {
@@ -104,17 +94,18 @@ namespace Emby.Mobile.ViewModels
         {
             try
             {
-                var response = await ApiClient.GetLatestItems(new LatestItemsQuery
+                var query = new LatestItemsQuery
                 {
                     UserId = AuthenticationService.SignedInUserId,
                     GroupItems = true,
                     IsPlayed = false,
-                    IncludeItemTypes = new[] { "Movie", "Episode" },
-                    Fields = new[] { ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines },
-                    EnableImageTypes = new[] { ImageType.Banner, ImageType.Backdrop, ImageType.Primary, ImageType.Thumb },
+                    IncludeItemTypes = new[] {"Movie", "Episode"},
+                    Fields = new[] {ItemFields.SyncInfo, ItemFields.MediaSources, ItemFields.Taglines},
+                    EnableImageTypes = new[] {ImageType.Banner, ImageType.Backdrop, ImageType.Primary, ImageType.Thumb},
                     Limit = 20,
                     ParentId = parentId
-                });
+                };
+                var response = await ApiClient.GetLatestItems(query);
                 if (!response.IsNullOrEmpty())
                 {
                     LatestVideoItems = response.Select(x => new ItemViewModel(Services, x)).ToObservableCollection();
@@ -122,7 +113,7 @@ namespace Emby.Mobile.ViewModels
             }
             catch (HttpException he)
             {
-
+                var i = 1;
             }
         }
 
