@@ -18,6 +18,14 @@
                     <VisualState.Setters>
                         <Setter Target="Title.Style"
                                 Value="{StaticResource HeaderTextBlockStyle}" />
+                        <Setter Target="BackdropImage.Height"
+                                Value="300" />
+                        <Setter Target="ContentPanel.Padding"
+                                Value="0,200,0,0" />
+                        <Setter Target="OpacLayer.Height"
+                                Value="100" />
+                        <Setter Target="PrimaryImage.Margin"
+                                Value="100,0,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -27,45 +35,60 @@
                     <VisualState.Setters>
                         <Setter Target="Title.Style"
                                 Value="{StaticResource SubheaderTextBlockStyle}" />
+                        <Setter Target="BackdropImage.Height"
+                                Value="200" />
+                        <Setter Target="ContentPanel.Padding"
+                                Value="0,100,0,0" />
+                        <Setter Target="OpacLayer.Height"
+                                Value="0" />
+                        <Setter Target="PrimaryImage.Margin"
+                                Value="19,0,0,0" />
+                        <Setter Target="PrimaryImage.MaxHeight"
+                                Value="150" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <controls:FadingImages ImageSources="{x:Bind Item.Item.BackdropImages, Mode=OneWay}"
-                               Height="500"
                                VerticalAlignment="Top"
-                               HorizontalAlignment="Stretch">
+                               HorizontalAlignment="Stretch"
+                               x:Name="BackdropImage">
             <interactivity:Interaction.Behaviors>
-                <behaviours:ParallaxBehavior Scroller="{Binding ElementName=ContentScrollViewer}"/>
+                <behaviours:ParallaxBehavior Scroller="{Binding ElementName=ContentScrollViewer}" />
             </interactivity:Interaction.Behaviors>
         </controls:FadingImages>
 
         <ScrollViewer x:Name="ContentScrollViewer">
-            <RelativePanel Padding="0,400,0,0">
+            <RelativePanel x:Name="ContentPanel">
                 <Border x:Name="OpacLayer"
                         RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
-                        Background="{ThemeResource SmokeContrastBrush}">
-                    <TextBlock  Text="{x:Bind Item.Item.Name, Mode=OneWay}"
-                                Style="{StaticResource ExtraLargeThinTextBlockStyle}"
-                                x:Name="Title"
-                                Margin="15"
-                                VerticalAlignment="Center" />
-                </Border>
-
-                <!-- This border is just for debug, remove this once we have some content-->
+                        Background="{ThemeResource SmokeContrastBrush}" />
                 <Border Height="1200"
-                        Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                        Background="{ThemeResource BackgroundBrush}"
                         RelativePanel.AlignLeftWithPanel="True"
                         RelativePanel.AlignRightWithPanel="True"
                         RelativePanel.Below="OpacLayer" />
+                <TextBlock  Text="{x:Bind Item.Item.Name, Mode=OneWay}"
+                            Style="{StaticResource ExtraLargeThinTextBlockStyle}"
+                            x:Name="Title"
+                            Margin="15"
+                            VerticalAlignment="Center"
+                            RelativePanel.RightOf="PrimaryImage" />
+                
+                <TextBlock Text="{x:Bind Item.Item.YearOfRelease, Mode=OneWay}"
+                           Visibility="{x:Bind Item.Item.YearOfRelease, Mode=OneWay, Converter={StaticResource NullStringVisibilityConverter}}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           RelativePanel.RightOf="PrimaryImage"
+                           RelativePanel.Below="Title"
+                           Margin="12,0"/>
+                
                 <controls:EmbyImage x:Name="PrimaryImage"
                                     Source="{x:Bind Item.Item.PrimaryImageMedium, Mode=OneWay}"
                                     MaxHeight="200"
                                     MaxWidth="200"
-                                    Stretch="Uniform"
-                                    RelativePanel.Below="OpacLayer" />
+                                    Stretch="Uniform" />
                 <controls:PlayButton RelativePanel.Below="PrimaryImage"
                                      RelativePanel.AlignLeftWith="PrimaryImage"
                                      RelativePanel.AlignRightWith="PrimaryImage"
